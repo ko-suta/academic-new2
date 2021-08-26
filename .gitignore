@@ -2,3 +2,12 @@
 .Rhistory
 .RData
 .Ruserdata
+Thumbs.db
+/node_modules
+/public
+/resources
+/.yarn
+.yarnrc.yml
+yarn.lock
+/functions/
+package.json
