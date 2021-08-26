@@ -1,0 +1,178 @@
+---
+title: 'Market & Innovations: Overview'
+author: Kostiantyn Ovsiannikov
+output:
+  blogdown::html_page:
+    toc: true
+math: true
+date: '2021-06-27'
+slug: market-innovations-overview
+categories:
+tags:
+  - Knowledge Assets
+  - Technological Innovations
+subtitle: ''
+summary: 'Snapshot of the data used for the related article'
+authors: []
+lastmod: '2020-08-31T15:04:30+09:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: [market-innovation]
+bibliography: [Innovation-Postdoc.bib, pkg-refs.bib]
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+<script src="{{< blogdown/postref >}}index.en_files/fitvids/fitvids.min.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#data">Data</a></li>
+<li><a href="#model">Model</a></li>
+<li><a href="#embedded-sase-presentation">Embedded SASE presentation</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+
+<div id="data" class="section level1">
+<h1>Data</h1>
+<p>The data-set used here is the result of merging two files: one, obtained from the Nikkei NEEDS Financial Quest, includes corporate financial information, another, extracted from the Institute of Intellectual Property Patent Database (IIP-DB) – captures companies’ technological activity registered with the Japan Patent Office (JPO).
+The latter source was originally compiled by <span class="citation"><a href="#ref-goto2007rp" role="doc-biblioref">Goto and Motohashi</a> (<a href="#ref-goto2007rp" role="doc-biblioref">2007</a>)</span>.
+Following the example of <span class="citation"><a href="#ref-Hall.2005" role="doc-biblioref">Hall, Jaffe, and Trajtenberg</a> (<a href="#ref-Hall.2005" role="doc-biblioref">2005</a>)</span>, I included the companies from pharmaceutical, chemical, machinery and electrical equipment industries as specified in the NEEDS Database.</p>
+<p>The total count of companies is 632, with each unit extending over 19 years (from 1998 till 2016), making the obtained time-series considerably larger than any of those used in existing studies on Japan.
+My sample is also comparable to the majority of the international studies cited here.
+The resulting data-set analyzed in this article contains 7,813 observations.
+For the comparison, the data-set employed by <span class="citation"><a href="#ref-sandner2010" role="doc-biblioref">Sandner</a> (<a href="#ref-sandner2010" role="doc-biblioref">2010</a>)</span> encompasses 6,757 observations.
+My data includes fewer companies but stretches across a longer time-frame, which, at the end, brings the number of total cases to the common benchmark.</p>
+<p>The problem of classifying patents was addressed by <span class="citation"><a href="#ref-griliches1998raptee" role="doc-biblioref">Griliches</a> (<a href="#ref-griliches1998raptee" role="doc-biblioref">1998</a>)</span>.
+On one hand, there is a “target” approach based on the classification of the World Intellectual Property Organization (WIPO) or the National Bureau of Economic Research (NBER).
+The IIP-DB, on which the current study relies, uses this classification as well <span class="citation">(<a href="#ref-goto2007rp" role="doc-biblioref">Goto and Motohashi 2007, 1433</a>)</span>.
+It answers the question which field can the respective patent be most fitting at.
+This, however, entails serious problems for the firm-level study, as the same company can file patents belonging to multiple classes.</p>
+<blockquote>
+<p>“The Patent Office classifies patents into many classes (300+ in the mid-1950s) and even many more subclasses (over 50,000), based on its need to ease the search for prior art.
+The resulting classification system is based primarily on technological and functional principles and is only rarely related to economists’ notions of products or well-defined industries (which may be a mirage anyway).
+A subclass dealing with the dispensing of liquids contains both a patent for a water pistol and one for a holy water dispenser.”</p>
+<p>— <span class="citation">(<a href="#ref-griliches1998raptee" role="doc-biblioref">Griliches 1998, 292</a>)</span></p>
+</blockquote>
+<p>Hence, the alternative “origin” approach adopted in this article “starts from patent totals for particular firms and then groups them into industries according to the firm’s primary activity” <span class="citation">(<a href="#ref-griliches1998raptee" role="doc-biblioref">Griliches 1998, 294</a>)</span>. Following the methodological suggestion by <span class="citation"><a href="#ref-haneda1998eoiant" role="doc-biblioref">Haneda and Odagiri</a> (<a href="#ref-haneda1998eoiant" role="doc-biblioref">1998</a>)</span> (p. 309) that was implemented in all the subsequent works related to Japan, I used the industrial classification present in the NEEDS Database.</p>
+<p>The chronological frames are motivated by the following circumstances.
+On one hand, the lower limit was dictated by the earliest availability of the market-related corporate information.
+On the other, the latest accessible year in the IIP-DB for the patent applications approved ex post is 2019.
+However, it takes on average several years for an application to be either rejected or granted.
+That is why the years 2017 to 2019 so far contain very few information, which will however become more substantial as time passes.
+As a result, 2016 is the last significant year, for which the patent-related data is available.
+The length of the patent-registration process is one of the reasons why the curves on the Figure <a href="#fig:timing">1</a> are downward-sloping from the mid-2000s.
+Application-filing process is especially time-consuming for the Pharmaceutical industry, where the average period for granting a patent is 7.1 years – well above the cumulative mean of 6.45 years.</p>
+<p>Although an average time for receiving a patent within the Chemical industry throughout 1971-2014 was roughly the same as within the Electronics, the Figure <a href="#fig:timing">1</a> shows that starting from 1990s Chemical-related applications have required more approval time than the Electric-related ones.
+Hence, especially for the period analyzed in this article, most challenging conditions for licensing appear to be in Chemical and the related Pharmaceutical industry.
+This goes hand in hand with the importance of patenting activities for these sectors both in Japan and internationally <span class="citation">(<a href="#ref-Cohen.2002" role="doc-biblioref">Cohen et al. 2002</a>; <a href="#ref-Hall.2005" role="doc-biblioref">Hall, Jaffe, and Trajtenberg 2005</a>)</span>.
+In general, it is certainly too early to provide the full information on the number of granted patents filed during the last decade. However, this problem is mitigated by accounting for patents’ <em>stock</em> rather than flow.</p>
+
+<div class="figure" style="text-align: center"><span id="fig:timing"></span>
+<img src="Timing2.png" alt="Timing for turning patent applications into grants" width="\textwidth" />
+<p class="caption">
+Figure 1: Timing for turning patent applications into grants
+</p>
+</div>
+<p>While corporate financial data (except the R&amp;D spending) does not entail any particular technical issues, patent-related information needs to meet some criteria before running a regression.
+Following the methodology adopted in the existing literature, I have used the entries based on the <em>date of filing the patent application</em>, which is a point in time, from which a corresponding invention would be legally protected.
+However, the copyright mechanism can only be enforced if a patent is subsequently granted.
+In this case, a corresponding company can receive benefits associated with license possession, apart from the technological improvements an invention may generate <span class="citation">(<a href="#ref-czarnitzki2006mip" role="doc-biblioref">Czarnitzki, Hall, and Oriani 2006, 123</a>)</span>.
+This is the main reason behind choosing only the successful patent applications for this study.</p>
+<p>In fact, as seen from the Figure <a href="#fig:patrat">2</a>, the median granting success rate of patents filed with the Japan Patent Office (JPO) from 1971 to 2014 was 37 percent.
+This number is very similar to the 35 percent in Germany and is considerably lower compared to countries such as France (90 percent) and the U.K. (80 percent) <span class="citation">(<a href="#ref-griliches1998raptee" role="doc-biblioref">Griliches 1998, 289</a>)</span>.
+Although the granting rate has been on a sharp rise in Japan since early 2000s, it is still indicative of a stringent control mechanism that the local application process entails.
+<span class="citation"><a href="#ref-schankerman1998rje" role="doc-biblioref">Schankerman</a> (<a href="#ref-schankerman1998rje" role="doc-biblioref">1998</a>)</span> notes the following: “Patents originating in Japan are substantially more valuable than in other countries, and the difference is most striking for electronics patents” (p. 80).
+This trend is depicted, among others, on the Figure <a href="#fig:patrat">2</a>, where Electronics have the lowest granting rate of 30 percent.</p>
+<p>At the same time, the comparatively high industrial success rates for Pharmaceuticals (50 percent) and Chemicals (48 percent) do not automatically imply the low quality of the respective patents.
+It is rather a cause of patents being particularly important for realizing the gains from intangible assets.
+Differently from Electronics, “in the pharmaceutical industry, patents are perceived as a relatively effective tool of appropriating rents from technological innovations as compared to other types of mechanism such as trade secret, increasing complexity of product design and faster market introduction” <span class="citation">(<a href="#ref-Motohashi.2008" role="doc-biblioref">Motohashi 2008, 1548</a>)</span>.
+This has been a common finding across numerous studies concluding that the knowledge assets have the most pronounced role for the market evaluation of companies within the Pharmaceutical sector <span class="citation">(<a href="#ref-czarnitzki2006mip" role="doc-biblioref">Czarnitzki, Hall, and Oriani 2006, 15</a>)</span>.
+Finally, if we look at the yearly cohorts displayed in the Figure <a href="#fig:patrat">2</a>, the numbers for Pharmaceuticals and Chemicals within the period of 1991-2000 (part of which is included in this article’s econometric analysis) hardly surpass the cumulative median.</p>
+
+<div class="figure" style="text-align: center"><span id="fig:patrat"></span>
+<img src="Patrat2.png" alt="Granting success rate of patents filed with the JPO" width="\textwidth" />
+<p class="caption">
+Figure 2: Granting success rate of patents filed with the JPO
+</p>
+</div>
+</div>
+<div id="model" class="section level1">
+<h1>Model</h1>
+<p>Most of the studies on this topic have followed the model developed in the seminal work by <span class="citation"><a href="#ref-griliches1981el" role="doc-biblioref">Griliches</a> (<a href="#ref-griliches1981el" role="doc-biblioref">1981</a>)</span> that was further elaborated in <span class="citation"><a href="#ref-cockburn1988aer" role="doc-biblioref">Cockburn and Griliches</a> (<a href="#ref-cockburn1988aer" role="doc-biblioref">1988</a>)</span>.
+According to them, the market value of the firm, <em>V</em>, can be expressed as follows:</p>
+<p><span class="math display" id="eq:value">\[\begin{equation} 
+  V_{it} = \alpha(A_{it} + \beta K_{it})
+  \tag{1}
+\end{equation}\]</span></p>
+<p>where <em>A</em> stands for the firm’s tangible assets that include “plant, equipment, inventories, and financial assets” <span class="citation">(<a href="#ref-griliches1981el" role="doc-biblioref">Griliches 1981, 183</a>)</span>, <em>K</em> represents the knowledge stock, and <span class="math inline">\(\alpha\)</span> – “current market valuation […] of the firm’s assets, reflecting its differential risk and monopoly position” <span class="citation">(<a href="#ref-griliches1981el" role="doc-biblioref">Griliches 1981, 183</a>)</span>.</p>
+<p>As the definition of <em>Tobin’s q</em> is the ratio of the market value <em>V</em> of a firm to its book value <em>A</em>, we can rewrite the formula as:</p>
+<p><span class="math display" id="eq:value2">\[\begin{equation} 
+  q_t = \frac {V_{it}} {A_{it}} = \alpha \biggl(1 + \beta \frac {K_{it}} {A_{it}}\biggr)
+  \tag{2}
+\end{equation}\]</span></p>
+<p>Taking the logarithms, we get</p>
+<p><span class="math display" id="eq:value3">\[\begin{equation} 
+  \log q_{it} = \log \alpha_t + \log \biggl(1 + \beta \frac {K_{it}} {A_{it}}\biggr) + \varepsilon_{it}
+  \tag{3}
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(\varepsilon_{it}\)</span> is the error term or the noise of the model.</p>
+<p>Here, the knowledge stock <em>K</em> consists of three components, such as: <em>R&amp;D weighted by Assets</em>, <em>Patents per dollar of R&amp;D</em>, and <em>Citations per Patent</em>.
+Incorporating these measurements, we can rewrite the last equation as follows, according to the suggestion of <span class="citation"><a href="#ref-Hall.2005" role="doc-biblioref">Hall, Jaffe, and Trajtenberg</a> (<a href="#ref-Hall.2005" role="doc-biblioref">2005</a>)</span> (p. 24):</p>
+<p><span class="math display" id="eq:value4">\[\begin{equation} 
+  \log q_{it} = \log \alpha_t + \log \biggl(1 + \beta_1 \frac {R\&amp;D_{it}} {A_{it}} + \beta_2 \frac {Pat_{it}} {R\&amp;D_{it}} + \beta_3 \frac {Cites_{it}} {Pat_{it}}\biggr) + \varepsilon_{it}
+  \tag{4}
+\end{equation}\]</span></p>
+<p><code></code><br />
+<code></code></p>
+</div>
+<div id="embedded-sase-presentation" class="section level1">
+<h1>Embedded SASE presentation</h1>
+<div class="shareagain" style="min-width:300px;margin:1em auto;">
+<iframe src="https://kovsiannikov.com/slides/sase-2019/sase-2019.html" width="1600" height="900" style="border:2px solid currentColor;" loading="lazy" allowfullscreen></iframe>
+<script>fitvids('.shareagain', {players: 'iframe'});</script>
+</div>
+<p><code></code><br />
+<code></code></p>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-cockburn1988aer" class="csl-entry">
+Cockburn, Iain, and Zvi Griliches. 1988. <span>“Industry <span>Effects</span> and <span>Appropriability Measures</span> in the <span>Stock Market</span>’s <span>Valuation</span> of <span>R</span>&amp;<span>D</span> and <span>Patents</span>.”</span> <em>American Economic Review</em> 78 (2): 419–23.
+</div>
+<div id="ref-Cohen.2002" class="csl-entry">
+Cohen, Wesley M., Akira Goto, Akiya Nagata, Richard R. Nelson, and John P. Walsh. 2002. <span>“R&amp;<span>D</span> Spillovers, Patents and the Incentives to Innovate in <span>Japan</span> and the <span>United States</span>.”</span> <em>Research Policy</em> 31 (8-9): 1349–67.
+</div>
+<div id="ref-czarnitzki2006mip" class="csl-entry">
+Czarnitzki, Dirk, Bronwyn H Hall, and Raffaele Oriani. 2006. <span>“The Market Valuation of Knowledge Assets in <span>US</span> and <span>European</span> Firms.”</span> <em>The Management of Intellectual Property</em>, 111–31.
+</div>
+<div id="ref-goto2007rp" class="csl-entry">
+Goto, Akira, and Kazuyuki Motohashi. 2007. <span>“Construction of a <span>Japanese Patent Database</span> and a First Look at <span>Japanese</span> Patenting Activities.”</span> <em>Research Policy</em> 36 (9): 1431–42. <a href="https://doi.org/10.1016/j.respol.2007.06.005">https://doi.org/10.1016/j.respol.2007.06.005</a>.
+</div>
+<div id="ref-griliches1981el" class="csl-entry">
+Griliches, Zvi. 1981. <span>“Market Value, <span>R</span>&amp;<span>D</span>, and Patents.”</span> <em>Economics Letters</em> 7 (2): 183–87. <a href="https://doi.org/10.1016/0165-1765(87)90114-5">https://doi.org/10.1016/0165-1765(87)90114-5</a>.
+</div>
+<div id="ref-griliches1998raptee" class="csl-entry">
+———. 1998. <span>“Patent <span>Statistics</span> as <span>Economic Indicators</span>: <span>A Survey</span>.”</span> In <em>R&amp;<span>D</span> and <span>Productivity</span>: <span>The Econometric Evidence</span></em>, 287–343. <span>Chicago</span>: <span>University of Chicago Press, National Bureau of Economic Research</span>.
+</div>
+<div id="ref-Hall.2005" class="csl-entry">
+Hall, Bronwyn H., Adam Jaffe, and Manuel Trajtenberg. 2005. <span>“Market Value and Patent Citations.”</span> <em>RAND Journal of Economics</em>, 16–38.
+</div>
+<div id="ref-haneda1998eoiant" class="csl-entry">
+Haneda, Shoko, and Hiroyuki Odagiri. 1998. <span>“Appropriation of <span>Returns From Technological Assets And The Values Of Patents And R</span>&amp;<span>D In Japanese High</span>-<span>Tech Firms</span>.”</span> <em>Economics of Innovation and New Technology</em> 7 (4): 303–21. <a href="https://doi.org/10.1080/10438599800000038">https://doi.org/10.1080/10438599800000038</a>.
+</div>
+<div id="ref-Motohashi.2008" class="csl-entry">
+Motohashi, Kazuyuki. 2008. <span>“Licensing or Not Licensing? <span>An</span> Empirical Analysis of the Strategic Use of Patents by <span>Japanese</span> Firms.”</span> <em>Research Policy</em> 37 (9): 1548–55.
+</div>
+<div id="ref-sandner2010" class="csl-entry">
+Sandner, Philipp. 2010. <em>The <span>Valuation</span> of <span>Intangible Assets</span>: <span>An Exploration</span> of <span>Patent</span> and <span>Trademark Portfolios</span></em>. Innovation Und <span>Entrepreneurship</span>. <span>Gabler Verlag</span>. <a href="https://doi.org/10.1007/978-3-8349-8393-0">https://doi.org/10.1007/978-3-8349-8393-0</a>.
+</div>
+<div id="ref-schankerman1998rje" class="csl-entry">
+Schankerman, Mark. 1998. <span>“How <span>Valuable</span> Is <span>Patent Protection</span>? <span>Estimates</span> by <span>Technology Field</span>.”</span> <em>The RAND Journal of Economics</em> 29 (1): 77–107. <a href="https://doi.org/10.2307/2555817">https://doi.org/10.2307/2555817</a>.
+</div>
+</div>
+</div>

@@ -1,0 +1,48 @@
+[build]
+  command = "hugo"
+#  functions = "functions"
+  publish = "public"
+  
+[context.production.environment]
+  HUGO_VERSION = "0.84.4"
+  HUGO_ENV = "production"
+  HUGO_ENABLEGITINFO = "false"
+  PYTHON_VERSION = "3.7"
+
+[context.branch-deploy.environment]
+  HUGO_VERSION = "0.84.4"
+
+[context.deploy-preview.environment]
+  HUGO_VERSION = "0.84.4"
+  
+
+[[redirects]]
+  from = "https://kovsiannikov.netlify.app"
+  to = "https://kovsiannikov.com"
+  status = 301
+  force = true
+  
+[[redirects]]
+  from = "http://kovsiannikov.netlify.app"
+  to = "https://kovsiannikov.com"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://kovsiannikov2.netlify.app"
+  to = "https://kovsiannikov.com"
+  status = 301
+  force = true
+  
+[[redirects]]
+  from = "http://kovsiannikov2.netlify.app"
+  to = "https://kovsiannikov.com"
+  status = 301
+  force = true
+  
+[[redirects]]
+  from = "http://kovsiannikov.com"
+  to = "https://kovsiannikov.com"
+  status = 301
+  force = true
+  
