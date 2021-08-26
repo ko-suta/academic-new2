@@ -1,0 +1,1111 @@
+---
+title: "Market Valuation of Corporate Technological Assets: <br> The Case of Japan's Institutional Adaptability"
+subtitle: "2021 EAJS Conference: <br> .white.bg-black[Econ07: Corporate governance and monetary policy]"
+author: "Kostiantyn Ovsiannikov, Ph.D."
+institute: ".white.bg-green[Kochi University of Technology]"
+date: "27 August 2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["rutgers-new.css", "rutgers-fonts"]
+    nature:
+      beforeInit: "macros.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: 16:9
+      #ratio: "191:100"
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(summarytools)
+library(here)
+library(ymlthis)
+library(tidyverse)
+library(fontawesome)
+library(readr)
+library(ggthemes)
+library(ggpubr)
+library(RColorBrewer)
+library(kableExtra)
+library(data.table)
+library(metathis)
+library(xaringanthemer)
+library(xaringanExtra)
+library(data.table)
+library(RefManageR)
+library(plm)
+library(mgcv)
+library(mgcViz)
+library(stargazer)
+library(plotly)
+library(htmlwidgets)
+library(modelsummary)
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(collapse = TRUE,
+                      fig.retina = 3)
+
+```
+
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "alphabetic",
+           style = "markdown",
+           hyperlink = FALSE,
+           dashed = FALSE)
+myBib <- ReadBib(here("static", "slides", "EAJS-2021", "Innovation.bib"), check = FALSE)
+```
+
+
+```{r xaringan-extra, echo=FALSE}
+
+xaringanExtra::use_scribble()
+xaringanExtra::use_tile_view()
+xaringanExtra::use_tachyons()
+xaringanExtra::use_panelset()
+xaringanExtra::use_share_again()
+xaringanExtra::use_broadcast()
+xaringanExtra::use_search(show_icon = TRUE)
+
+xaringanExtra::style_share_again(
+  foreground = "white",
+  background = "black",
+  share_buttons = c("twitter", "linkedin", "facebook")
+)
+
+xaringanExtra::use_logo(
+  width = "220px",
+  height = "256px",
+  position = xaringanExtra::css_position(top = "2em", right = "2em"),
+  image_url = "assets/img/KUT.jpg",
+  exclude_class = "hide_logo"
+)
+
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+
+xaringanExtra::use_progress_bar(
+  color = "#0051BA", 
+  location = "top", 
+  height = "10px"
+  )
+```
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+style_duo(primary_color = "#ffffff", secondary_color = "#515151")
+```
+
+```{r metathis, echo=FALSE}
+meta() %>%
+  meta_name("github-repo" = "ko-suta/academic-new") %>% 
+  meta_social(
+    title = "Market Valuation of Corporate Technological Assets: <br> The Case of Japan's Institutional Adaptability",
+    description = paste(
+      "Market Valuation of Corporate Technological Assets.",
+      "Presented at 2021 EAJS Conference."
+    ),
+    url = "https://kovsiannikov.com/slides/EAJS-2021/EAJS-2021",
+    image = "https://kovsiannikov.com/img/Techno-screen.png",
+    image_alt = "2021 EAJS Conference Presentation",
+    og_type = "website",
+    og_author = "Kostiantyn Ovsiannikov",
+    twitter_card_type = "summary_large_image",
+    twitter_creator = "@kovsiann"
+  ) %>%
+  include_meta()
+```
+
+# Background: Japan's intrapreneurial regime
+
+--
+
+.pull-left-narrow[
+.center[### `r fa("people-carry", fill = "green")`]]
+.pull-right-wide[### large companies `r fa("handshake", fill = "blue")` financial institutions]
+
+--
+
+.pull-left-narrow[
+.center[### `r fa("parachute-box", fill = "green")`]]
+.pull-right-wide[### .white.bg-black[low employment turnover rates] `r fa("arrows-alt-h", fill = "blue")` employees' loyalty]
+
+--
+
+.pull-left-narrow[
+.center[### `r fa("user-ninja", fill = "green")`]]
+.pull-right-wide[### accumulated .white.bg-black[firm-specific knowledge] `r anicon::faa("wrench", animate="wrench", colour = "blue", speed = "slow")`]
+
+--
+
+.pull-left-narrow[
+.center[### `r fa("user-astronaut", fill = "green")`]]
+.pull-right-wide[### `r anicon::faa("lightbulb", animate="pulse", colour = "blue", speed = "slow")` .white.bg-black[routinized innovation model] `r fa("arrows-alt-h", fill = "blue")` well-established R&D departments]
+
+---
+class: highlight-last-item
+
+# Why current research matters
+
+- Japan has the .white.bg-black[3rd-largest] market capitalization for listed companies in the `r fa("globe-asia", fill = "blue")`
+
+--
+
+- both patenting quality and quantity are among the highest in the `r fa("globe-asia", fill = "blue")`
+
+--
+
+- distinct corporate institutional arrangements (.white.bg-black[relational finance] & .white.bg-black[stakeholder governance]) `r fa("arrow-right", fill = "blue")`
+
+
+--
+
+<br>
+
+<ru-blockquote>Organizations are social communities in which individual and social expertise is transformed into economically useful products and services
+.right[— <cite>`r TextCite(myBib, "kogut1992os", .opts = list(cite.style = "authoryear", style = "html"))`</cite>]</ru-blockquote>
+
+--
+
+<br>
+
+- .white.bg-black[However], during the last 30 years, Japan has witnessed **institutional** `r fa("random", fill = "blue")` , as **market influence** has `r fa("arrow-up", fill = "blue")`
+
+
+???
+
+* legislation promoting market competition has been toughened -- 2005 amendment of Japan's Anti-Monopoly Act
+
+* entry barriers lowered for pharmaceuticals during the late-1990s, which paved a path to a more intensive industrial competition
+
+* similar processes have been observed in Japan's electric sector since mid-1990s, leading to a higher R&D efficiency as well as more intensive patenting
+
+* these developments invited further attention to changing market perceptions of corporate innovations amid the ongoing balance shift from the institutional towards a more market-based industrial model
+
+---
+
+# RQ & Hypotheses
+
+.black.bg-washed-green.b--dark-green.ba.bw2.br3.shadow-5.ph4.mt5[
+How does Tokyo Stock Exchange (TSE) evaluate corporate innovations?]
+
+--
+> **Hypothesis 1**
+>
+TSE positively evaluates companies with higher R&D expenditures.
+This represents the .white.bg-black[institutional] aspect of corporate innovations.
+
+???
+
+* R&D stock is a long-term institutional signaling; attribute of a **network-based** business approach that works in the regulated and coordinated environment
+
+--
+
+> **Hypothesis 2**
+>
+TSE positively evaluates companies whose R&D expenditures yield higher patent stocks.
+This represents the .white.bg-black[quantitative-market] aspect of corporate innovative policies.
+
+???
+
+- Patents' quantity and quality are preconditions for successfully waging market **competition**. Here, not only the mere R&D spending, but rather **R&D efficiency** matters
+
+--
+
+> **Hypothesis 3**
+>
+TSE positively evaluates influential patents judged by the number of citations accruing to them.
+This represents the .white.bg-black[qualitative-market] aspect of innovative policies.
+
+
+---
+
+# Data
+
+.panelset.sideways[
+.panel[.panel-name[Size]
+
+- 684 companies `r fa("times", fill = "blue")` 19 years (1998 — 2016) `r fa("arrow-right", fill = "blue")`
+
+
+- 12,996 observations `r fa("minus", fill = "blue")` outliers `r fa("equals", fill = "blue")` 8,038 observations. 
+]
+
+
+.panel[.panel-name[Sources]
+
+- .white.bg-black[Nikkei NEEDS Financial Quest] 
+
+
+- .white.bg-black[Institute of Intellectual Property Patent Database] (IIP-DB) `r Citep(myBib, "goto2007rp", .opts = list(cite.style = "authoryear", style = "html"))`
+
+]
+
+.panel[.panel-name[Industries]
+
+
+## `r fa("capsules", fill = "green")` &nbsp;&nbsp;&nbsp; Pharmaceutical
+
+
+## `r fa("bong", fill = "green")` &nbsp;&nbsp;&nbsp;&nbsp; Chemical
+
+
+## `r fa("fighter-jet", fill = "green")` &nbsp;&nbsp; Machinery
+
+
+## `r fa("charging-station", fill = "green")` &nbsp;&nbsp;&nbsp; Electrical Equipment
+
+]
+
+]
+
+---
+
+# Timing of patent grants
+
+```{r, read-data, include=FALSE}
+data <- read_csv(here("static", "slides", "EAJS-2021", "Data", "Timing.csv"), col_names = TRUE)
+```
+
+```{r, time-frames, include=FALSE}
+# Order industries
+data$Industry <- factor(data$Industry, c("Chemical", "Electronics", "Machinery", "Motor", "Pharm", "Precision", "Cumulative"))
+
+# Filter Years
+data2 <- data %>%
+  filter(Year >= 1971 & Year <= 2014)
+
+data3 <-  data2 %>%
+  mutate(Period = cut(Year, 4, breaks = c(1971, 1980, 1990, 2000, 2014), 
+                     labels = c("1971-1980", "1981-1990", "1991-2000", "2001-2014")))
+
+```
+
+
+```{r, ind.samples, include=FALSE}
+Gen <- data2 %>%
+  group_by(Industry) %>%
+  dplyr::summarize(Value = mean(Mean))
+```
+
+
+```{r, timing-sum, include=FALSE}
+data4 <- as.data.frame(with(data3, tapply(Mean, list(Industry, Period), mean)))
+data4 <- cbind(data4, Gen[,2])
+data4 <- setDT(data4, keep.rownames = TRUE)[]
+colnames(data4)[1] <- "Industry"
+colnames(data4)[6] <- "Combined"
+data4$Industry <- factor(data4$Industry, c("Chemical", "Electronics", "Machinery", "Motor", "Pharm", "Precision", "Cumulative"))
+
+data4 <- data4 %>% 
+  arrange(Industry) %>%
+  column_to_rownames(., var = "Industry")
+
+#write.csv(data4, file = "Timing-Period.csv")
+```
+
+.panelset[
+
+```{r, ind-coding, include=FALSE}
+data$Industry <- factor(data$Industry, c("Cumulative", "Chemical", "Electronics", "Machinery", "Motor", "Pharm", "Precision"))
+cols <- c('#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#e78ac3','#a65628')
+```
+
+.panel[.panel-name[Plot]
+
+```{r, grant-timing-plot, echo=FALSE, fig.showtext=TRUE, fig.align="center", fig.width=12, fig.height=6}
+(timing <- data %>%
+  filter(Year >= 1971 & Year <= 2014) %>%
+  ggplot(aes(x = Year, y = Mean, group = Industry, 
+             color = Industry, shape = Industry, linetype = Industry)) + 
+  geom_line(size = 2) +
+  labs(y="Average Number of Years Required",
+       x="Application Year") +
+  scale_colour_manual(values = cols) +
+  scale_shape_manual(values=1:nlevels(data$Industry)) +
+  scale_x_continuous(breaks=seq(1970,2015,5)) +
+  scale_y_continuous(breaks=seq(0, 10, 1)) +
+  geom_hline(yintercept = 6.58, col = "black", size = 1, linetype = "twodash") +
+  theme_hc() +
+  theme(axis.text=element_text(size=22),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, color = 'black'),
+        axis.text.y = element_text(color = 'black'),
+        axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
+        axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)),
+        axis.title=element_text(size=24,face="bold"),
+        plot.title = element_text(hjust = 0.5, size=25,face="bold"),
+        legend.position = c(0.15, 0.25),
+        legend.justification = c("left"),
+        legend.direction="vertical",
+        legend.box.just = c("left"),
+        legend.margin = margin(6, 6, 6, 6),
+        legend.text=element_text(size=15),
+        legend.box.background = element_rect(color="black", size=2),
+        legend.title=element_text(size=18, face="bold")) +
+  theme_xaringan())
+```
+
+]
+
+.panel[.panel-name[Table]
+
+<div align="center">
+
+```{r, grant-timing-table, echo = FALSE, results = 'asis'}
+data4 %>%
+  DT::datatable(fillContainer = FALSE, width = '80%', 
+                options = list(pageLength = 9,
+                               initComplete = JS(
+    "function(settings, json) {",
+    "$(this.api().table().header()).css({'background-color': '#000', 'color': '#fff'});",
+    "}"))) %>%
+  DT::formatRound(columns=c(1:5), digits=2)
+```
+</div>
+]
+]
+
+
+???
+
+# Plot
+
+1. In 1994, the pre-grant opposition system was replaced for the post-grant one, thereby eliminating potential procedural delays.
+
+2. In 1998, the punishments for the copy-rights infringements were severed.
+Due to this, patentees had more solid reasons to seek for the legal protection of their inventions.
+
+3. In 1999, the period for the compulsory request for patent examination was decreased from 7 to 3 years from the date of application.
+Thereby, many applicants were prompted to speed up the registration of their inventions.
+
+
+# Table
+
+* Application-filing process is especially time-consuming for the **Pharmaceutical** industry, where the average period for granting a patent is 7.1 years -- well above the cumulative mean of 6.45 years.
+
+* Although an average time for receiving a patent within the **Chemical** industry throughout 1971-2014 was roughly the same as within the Electronics, starting from 1990s Chemical-related applications have required more approval time than the Electric-related ones.
+
+<!-- * Hence, especially for the period analyzed in this article, most challenging conditions for licensing appear to be in the **Chemical** and the related **Pharmaceutical** industries.  -->
+<!-- This goes hand in hand with the importance of patenting activities for these sectors both in Japan and internationally. -->
+
+---
+
+# Patents-to-applications ratio
+
+
+```{r include=FALSE}
+datapar <- read_csv(here("static", "slides", "EAJS-2021", "Data", "Patratio-long2.csv"), col_names = TRUE)
+```
+
+```{r, echo = FALSE, include=FALSE}
+# Order industries
+datapar$Industry <- factor(datapar$Industry, c("Chemical", "Electronics", "Machinery", "Motor", "Pharm", "Precision", "Cumulative"))
+
+# Filter Years
+datapar2 <- datapar %>%
+  filter(Year >= 1971 & Year <= 2014)
+```
+
+```{r, echo = FALSE, include=FALSE}
+datapar3 <-  datapar2 %>%
+  mutate(Period = cut(Year, 4, breaks = c(1971, 1980, 1990, 2000, 2014), 
+                     labels = c("1971-1980", "1981-1990", "1991-2000", "2001-2014")))
+
+```
+
+
+```{r, ind.samples2, include=FALSE}
+Genpar <- datapar2 %>%
+  group_by(Industry) %>%
+  dplyr::summarize(Value = median(Ratio))
+```
+
+```{r, include=FALSE}
+datapar4 <- as.data.frame(with(datapar3, tapply(Ratio, list(Industry, Period), median)))
+datapar4 <- cbind(datapar4, Genpar[,2])
+datapar4 <- setDT(datapar4, keep.rownames = TRUE)[]
+colnames(datapar4)[1] <- "Industry"
+colnames(datapar4)[6] <- "Combined"
+datapar4$Industry <- factor(datapar4$Industry, c("Chemical", "Electronics", "Machinery", "Motor", "Pharm", "Precision", "Cumulative"))
+
+datapar4 <- datapar4 %>% 
+  arrange(Industry) %>%
+  column_to_rownames(., var = "Industry")
+
+# write.csv(data4, file = "Patrat-Period.csv")
+```
+
+```{r, include=FALSE}
+datapar$Industry <- factor(datapar$Industry, c("Cumulative", "Chemical", "Electronics", "Machinery", "Motor", "Pharm", "Precision"))
+
+cols <- c('#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#e78ac3','#a65628')
+```
+
+
+.panelset[
+.panel[.panel-name[Plot]
+
+```{r, patrat-plot, fig.showtext=TRUE, echo=FALSE, fig.align="center", fig.width=12, fig.height=6}
+(patrat <- datapar %>%
+  filter(Year >= 1971 & Year <= 2014) %>%
+  ggplot(aes(x = Year, y = Ratio, group = Industry, 
+             color = Industry, shape = Industry, linetype = Industry)) + 
+  geom_line(size = 2) +
+  labs(y="Ratio", 
+       x="Application Year") +
+  scale_colour_manual(values = cols) +
+  scale_shape_manual(values=1:nlevels(data$Industry)) +
+  scale_x_continuous(breaks=seq(1970,2015,5)) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 5L), 
+                     breaks = seq(0, 2, by = 0.1)) +
+  geom_hline(yintercept = 0.36, col = "black", size = 1, linetype = "twodash") +
+  theme_hc() +
+  theme(axis.text=element_text(size=22),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, color = 'black'),
+        axis.text.y = element_text(color = 'black'),
+        axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
+        axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)),
+        axis.title=element_text(size=24,face="bold"),
+        plot.title = element_text(hjust = 0.5, size=25,face="bold"),
+        legend.position = c(0.928, 0.52),
+        legend.justification = c("top"),
+        legend.direction="vertical",
+        legend.box.just = "top",
+        legend.margin = margin(6, 6, 6, 6),
+        legend.text=element_text(size=15),
+        legend.box.background = element_rect(color="black", size=2),
+        legend.title=element_text(size=18, face="bold")) +
+  theme_xaringan())
+```
+
+]
+
+.panel[.panel-name[Table]
+
+<div align="center">
+
+```{r, echo = FALSE, results = 'asis'}
+datapar4 %>%
+  DT::datatable(fillContainer = FALSE, width = '80%', 
+                options = list(pageLength = 9,
+                               initComplete = JS(
+    "function(settings, json) {",
+    "$(this.api().table().header()).css({'background-color': '#000', 'color': '#fff'});",
+    "}"))) %>%
+  DT::formatRound(columns=c(1:5), digits=2)
+```
+</div>
+]
+]
+
+
+???
+
+# Plot
+
+* Median granting success rate of patents filed with the Japan Patent Office (JPO) from 1971 to 2014 was 37 percent. 
+Very similar to the 35 percent in Germany and is considerably lower compared to countries such as France (90 percent) and the U.K. (80 percent) [griliches1998, p. 289]. 
+
+* Although the granting rate has been on a sharp rise in Japan since early 2000s, it is still indicative of a stringent control mechanism that the local application process entails.
+
+
+# Table
+
+* comparatively high industrial success rates for **Pharmaceuticals** (50 percent) and **Chemicals** (48 percent) are a cause of patents being particularly important for realizing the gains from intangible assets.
+
+* "In the **pharmaceutical** industry, patents are perceived as a relatively effective tool of appropriating rents from technological innovations as compared to other types of mechanism such as trade secret, increasing complexity of product design and faster market introduction" [Motohashi.2008, p. 1548].
+
+
+---
+
+#Methodology
+
+--
+
+- Market value of the firm, **V**, can be expressed as follows `r Citep(myBib, "griliches1981el", .opts = list(cite.style = "authoryear", style = "html"))`:
+
+$$V_{it} = \alpha(A_{it} + \beta K_{it})$$
+
+
+> where **A** — firm's tangible assets, **K** — knowledge stock, and $\alpha$ — market valuation of the firm’s assets
+
+
+--
+<br>
+
+- **Tobin's q** = .white.bg-black[market value] **V** / .white.bg-black[book value] **A** `r fa("arrow-right", fill = "blue")`
+
+$$q_t = \frac {V_{it}} {A_{it}} = \alpha \biggl(1 + \beta \frac {K_{it}} {A_{it}}\biggr) + \varepsilon_{it}$$
+
+--
+
+- Knowledge stock **K**: .white.bg-black[R&D / Tangible Assets], .white.bg-black[Patents per Japanese yen spent on R&D], .white.bg-black[Citations per Patent] `r Citep(myBib, "Hall.2005", .opts = list(cite.style = "authoryear", style = "html"))` `r fa("arrow-right", fill = "blue")`
+
+$$\log q_{it} = \log \alpha_t + \log \biggl(1 + \beta_1 \frac {R\&D_{it}} {A_{it}} + \beta_2 \frac {Pat_{it}} {R\&D_{it}} + \beta_3 \frac {Cites_{it}} {Pat_{it}}\biggr) + \varepsilon_{it}$$
+???
+
+To sum up, **Tobins's Q** can be expressed as the sum of knowledge stocks weighted by tangible assets.
+
+
+---
+
+# OLS regression
+
+```{r echo = FALSE}
+General <- read.csv(here("static", "slides", "EAJS-2021", "Data", "General3.csv"), sep=",", header=TRUE, encoding="UTF-8")
+
+colnames(General)[1] <- "Name"
+General$Industry <- as.factor(General$Industry)
+General$Year <- as.character(General$Year)
+General$Year <- as.factor(General$Year)
+General$PSA <- as.numeric(General$PSA)
+General$CSA <- as.numeric(General$CSA)
+General$RDA <- as.numeric(General$RDA)
+```
+
+
+
+```{r echo = FALSE}
+General$RDA[General$RDA < 0] <- NA
+General$RDA[General$RDA > 1.25] <- NA
+
+General$PSA[General$PSA < 0] <- NA
+General$PSA[General$PSA > .02] <- NA
+
+General$CSA[General$CSA < 0] <- NA
+General$CSA[General$CSA > .7] <- NA
+
+General$Q[General$Q < 0] <- NA
+General$Q[General$Q > 8] <- NA
+
+General$PatRD[General$PatRD > .15] <- NA
+
+General$RDInt[General$RDInt > .25] <- NA
+
+General$ROA[General$ROA < - .25] <- NA
+General$ROA[General$ROA > .25] <- NA
+
+General$Process[General$Process > 8] <- NA
+
+General$Capint[General$Capint > 100] <- NA
+
+General$CitPat[General$CitPat > 13] <- NA
+
+General$Leverage[General$Leverage > 1] <- NA
+
+General$Age[General$Age < 1] <- NA
+
+
+General$InvCSA <- (General$CSA)^.25
+General$InvPSA <- sqrt(General$PSA)
+General$InvQ <- sqrt(General$Q)
+General$InvRDA <- (General$RDA)^.25
+General$InvPatRD <- sqrt(General$PatRD)
+General$InvCitPat <- sqrt(General$CitPat)
+General$InvRDInt <- sqrt(General$RDInt)
+General$InvProcess <- sqrt(General$Process)
+General$InvCapint <- sqrt(General$Capint)
+General$InvInter <- sqrt(General$Inter)
+```
+
+
+```{r echo = FALSE}
+fix.new.1.sqrt <- plm(InvQ ~ Year + Industry + InvRDA +
+                   InvPatRD + InvCitPat + InvRDInt + InvProcess + 
+                   Leverage + ROA + InvCapint + Age, 
+            data = General, index = c("Name", "Year"), model="pooling")
+
+fix.new.2.sqrt <- plm(InvQ ~ Year + Industry*InvRDA +
+                   InvPatRD*Industry + InvCitPat*Industry +
+                   InvRDInt + InvProcess + Leverage + ROA + InvCapint + Age, 
+            data = General, index = c("Name", "Year"), model="pooling")
+
+models <- list()
+models[['OLS']] <- fix.new.1.sqrt
+models[['OLS (Industrial)']] <- fix.new.2.sqrt
+```
+
+
+```{r echo=FALSE}
+cm <- c("(Intercept)" = "Constant", 
+  "IndustryElectric" = "D (Electric)",
+  "IndustryMachinery" = "D (Machinery)", 
+  "IndustryPharm" = "D (Pharm)",
+  "InvRDA" = "R&D/Assets (x Chemical)", "IndustryElectric:InvRDA" = "R&D/Assets x Electric", 
+  "IndustryMachinery:InvRDA" = "R&D/Assets x Machinery", 
+  "IndustryPharm:InvRDA" = "R&D/Assets x Pharm", 
+  "InvPatRD" = "Patents/R&D (x Chemical)", "IndustryElectric:InvPatRD" = "Patents/R&D x Electric", 
+  "IndustryMachinery:InvPatRD" = "Patents/R&D x Machinery", 
+  "IndustryPharm:InvPatRD" = "Patents/R&D x Pharm",
+  "InvCitPat" = "Citations/Patents (x Chemical)", "IndustryElectric:InvCitPat" = "Citations/Patents x Electric", 
+  "IndustryMachinery:InvCitPat" = "Citations/Patents x Machinery", 
+  "IndustryPharm:InvCitPat" = "Citations/Patents x Pharm",
+  "InvRDInt" = "R&D Intensity",
+  "InvProcess" = "Process Innovation",
+  "Leverage" = "Leverage", 
+  "ROA" = "ROA",
+  "InvCapint" = "Capital Intensity",
+  "Age" = "Age")
+```
+
+
+
+```{r echo=FALSE, warning=FALSE}
+tab1 <- modelsummary(models, output = 'kableExtra', estimate = "{estimate} ({std.error}){stars}",
+         coef_map = cm, gof_omit = 'IC|Log|Adj',
+         statistic = NULL)
+```
+
+
+```{r echo=FALSE, warning=FALSE, results='asis'}
+tab1 %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), 
+                font_size = 15) %>%
+  add_indent(c(6:8, 10:12, 14:16), level_of_indent = 3) %>%
+  row_spec(0, color = "white", background = "black") %>%
+  row_spec(c(5, 9, 13), background = 'grey', color = "white") %>%
+  row_spec(c(23, 24), background = 'blue', color = "white") %>%
+  column_spec(1, bold = T)
+```
+
+---
+count: false
+
+# OLS regression
+
+```{r echo=FALSE, warning=FALSE, results='asis'}
+tab1 %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), 
+                font_size = 15) %>%
+  add_indent(c(6:8, 10:12, 14:16), level_of_indent = 3) %>%
+  row_spec(0, color = "white", background = "black") %>%
+  row_spec(c(5, 9, 13), background = 'grey', color = "white") %>%
+  row_spec(c(23, 24), background = 'blue', color = "white") %>%
+  column_spec(1, bold = T) %>%
+  row_spec(c(4), background = 'green')
+```
+
+???
+
+# Industrial premium
+
+* Belonging to **Pharmaceuticals** per se implies a premium in terms of market valuation of corporate knowledge assets. 
+
+
+---
+count: false
+
+# OLS regression
+
+```{r echo=FALSE, warning=FALSE, results='asis'}
+tab1 %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), 
+                font_size = 15) %>%
+  add_indent(c(6:8, 10:12, 14:16), level_of_indent = 3) %>%
+  row_spec(0, color = "white", background = "black") %>%
+  row_spec(c(5, 9, 13), background = 'grey', color = "white") %>%
+  row_spec(c(23, 24), background = 'blue', color = "white") %>%
+  column_spec(1, bold = T) %>%
+  row_spec(c(5, 7, 8), background = 'green')
+```
+
+???
+
+# R&D stock
+
+* **Drugs** are notable for the marketability of their R&D expenditures (R&D stock weighted by Assets).
+
+* The same holds true about the positive assessment of R&D stocks for **Chemicals** and **Machinery**.
+
+* (Linear model does not capture this but) market does appreciate R&D spending by the Electric Equipment companies when the R&D stock levels exceed the lower quartile of the observed range.
+
+* Thus, R&D spending is actually universally important for all industries
+
+
+---
+count: false
+
+# OLS regression
+
+```{r echo=FALSE, warning=FALSE, results='asis'}
+tab1 %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), 
+                font_size = 15) %>%
+  add_indent(c(6:8, 10:12, 14:16), level_of_indent = 3) %>%
+  row_spec(0, color = "white", background = "black") %>%
+  row_spec(c(5, 9, 13), background = 'grey', color = "white") %>%
+  row_spec(c(23, 24), background = 'blue', color = "white") %>%
+  column_spec(1, bold = T) %>%
+  row_spec(c(9), background = 'green')
+```
+
+
+???
+
+# Patents per Japanese Yes spent on R&D
+
+* Only **Chemicals** stand out for their R&D spending that translates into more inventions valued by market. 
+
+
+---
+count: false
+
+# OLS regression
+
+```{r echo=FALSE, warning=FALSE, results='asis'}
+tab1 %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), 
+                font_size = 15) %>%
+  add_indent(c(6:8, 10:12, 14:16), level_of_indent = 3) %>%
+  row_spec(0, color = "white", background = "black") %>%
+  row_spec(c(5, 9, 13), background = 'grey', color = "white") %>%
+  row_spec(c(23, 24), background = 'blue', color = "white") %>%
+  column_spec(1, bold = T) %>%
+  row_spec(c(14, 15), background = 'green')
+```
+
+
+???
+
+# Citations per Patent
+
+* **Electrical Equipment** and **Machinery**: peculiar for receiving market premium for more influential patents.
+
+* Thus, quality of patents is particularly important for the **manufacturing** sector
+
+* For **Chemicals**, based on GAMs, there is an evidence of a positive market reaction when the Cit/Pat ratio rises from 3 to 6
+
+
+---
+# Generalized Additive Models (GAMs)
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, include=FALSE}
+General2 <- General[,-c(3,4,15)]
+General2 <- General2[complete.cases(General2), ]
+General2$Q <- as.numeric(General2$Q)
+General2$ROA <- as.numeric(General2$ROA)
+
+gam.new <- mgcv::gam(InvQ ~ Year + Industry + s(InvRDA, by = Industry) +
+                       s(InvPatRD, by = Industry) + 
+                       s(InvCitPat, by = Industry) + 
+                       s(InvRDInt) + s(sqrt(InvProcess)) + s(Leverage) +
+                       s(ROA) + s(InvCapint) + s(Age),
+                       data=General, select = TRUE)
+
+
+gam.new.1 <- mgcv::gam(InvQ ~ Year + Industry + s(InvRDA) +
+                   s(InvPatRD) + s(InvCitPat) + s(InvRDInt) + s(InvProcess) + 
+                   s(Leverage) + s(ROA) + s(InvCapint) + s(Age), 
+                   data = General, select = TRUE)
+```
+
+
+```{r echo=FALSE, results='hide'}
+type <- "deviance"  ## "pearson" & "response" are other valid choices
+resid <- residuals(gam.new, type = type)
+linpred <- napredict(gam.new$na.action, gam.new$linear.predictors)
+observed.y <- napredict(gam.new$na.action, gam.new$y)
+
+gam.captions <- c('', '', '', '')
+
+b <- getViz(gam.new.1)
+b2 <- getViz(gam.new)
+
+diagnostic <- cbind.data.frame(resid, linpred, fitted(gam.new), observed.y)
+colnames(diagnostic)[3] <- "fitted"
+```
+
+.panelset[
+.panel[.panel-name[R&D]
+
+```{r gamrd, fig.showtext=TRUE, echo=FALSE, fig.align="center", fig.width=9, fig.height=6}
+
+plot(b, select = c(1)) + 
+  l_rug(alpha = 0.2) +
+  l_fitLine(linetype = 3, size = 2) + 
+  l_fitContour() +
+  l_ciLine(colour = "red", size = 2) +
+  labs(x = "R&D Stock", y = "Tobin's q") +
+  theme_hc() +
+  theme(axis.text=element_text(size=18),
+        axis.text.x = element_text(vjust = 0.5, color = 'black'),
+        axis.text.y = element_text(color = 'black'),
+        axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
+        axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)),
+        axis.title=element_text(size=24,face="bold"),
+        axis.ticks.y = element_blank(),
+        plot.title = element_text(hjust = 0.5, size=25,face="bold"),
+        legend.position = "none")
+```
+
+]
+
+.panel[.panel-name[Patent per R&D yen]
+
+```{r gampatrd, fig.showtext=TRUE, echo=FALSE, fig.align="center", fig.width=9, fig.height=6}
+
+plot(b, select = c(2)) + 
+  l_rug(alpha = 0.2) +
+  l_fitLine(linetype = 3, size = 2) + 
+  l_fitContour() +
+  l_ciLine(colour = "red", size = 2) +
+  labs(x = "Patent per R&D yen", y = "Tobin's q") +
+  theme_hc() +
+  theme(axis.text=element_text(size=18),
+        axis.text.x = element_text(vjust = 0.5, color = 'black'),
+        axis.text.y = element_text(color = 'black'),
+        axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
+        axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)),
+        axis.title=element_text(size=24,face="bold"),
+        axis.ticks.y = element_blank(),
+        plot.title = element_text(hjust = 0.5, size=25,face="bold"),
+        legend.position = "none")
+```
+
+]
+
+.panel[.panel-name[Citations per Patent]
+
+```{r gamcitpat, fig.showtext=TRUE, echo=FALSE, fig.align="center", fig.width=9, fig.height=6}
+
+plot(b, select = c(3)) + 
+  l_rug(alpha = 0.2) +
+  l_fitLine(linetype = 3, size = 2) + 
+  l_fitContour() +
+  l_ciLine(colour = "red", size = 2) +
+  labs(x = "Citations per Patent", y = "Tobin's q") +
+  theme_hc() +
+  theme(axis.text=element_text(size=18),
+        axis.text.x = element_text(vjust = 0.5, color = 'black'),
+        axis.text.y = element_text(color = 'black'),
+        axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
+        axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)),
+        axis.title=element_text(size=24,face="bold"),
+        axis.ticks.y = element_blank(),
+        plot.title = element_text(hjust = 0.5, size=25,face="bold"),
+        legend.position = "none")
+```
+
+]
+
+.panel[.panel-name[R&D Intensity]
+
+```{r gamrdint, fig.showtext=TRUE, echo=FALSE, fig.align="center", fig.width=9, fig.height=6}
+
+plot(b, select = c(4)) + 
+  l_rug(alpha = 0.2) +
+  l_fitLine(linetype = 3, size = 2) + 
+  l_fitContour() +
+  l_ciLine(colour = "red", size = 2) +
+  labs(x = "R&D Intensity", y = "Tobin's q") +
+  theme_hc() +
+  theme(axis.text=element_text(size=18),
+        axis.text.x = element_text(vjust = 0.5, color = 'black'),
+        axis.text.y = element_text(color = 'black'),
+        axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
+        axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)),
+        axis.title=element_text(size=24,face="bold"),
+        axis.ticks.y = element_blank(),
+        plot.title = element_text(hjust = 0.5, size=25,face="bold"),
+        legend.position = "none")
+```
+
+]
+
+.panel[.panel-name[Process Innovation]
+
+```{r gamproc, fig.showtext=TRUE, echo=FALSE, fig.align="center", fig.width=9, fig.height=6}
+
+plot(b, select = c(5)) + 
+  l_rug(alpha = 0.2) +
+  l_fitLine(linetype = 3, size = 2) + 
+  l_fitContour() +
+  l_ciLine(colour = "red", size = 2) +
+  labs(x = "Process Innovation", y = "Tobin's q") +
+  theme_hc() +
+  theme(axis.text=element_text(size=18),
+        axis.text.x = element_text(vjust = 0.5, color = 'black'),
+        axis.text.y = element_text(color = 'black'),
+        axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
+        axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)),
+        axis.title=element_text(size=24,face="bold"),
+        axis.ticks.y = element_blank(),
+        plot.title = element_text(hjust = 0.5, size=25,face="bold"),
+        legend.position = "none")
+```
+
+]
+
+
+```{r gamlever, fig.showtext=TRUE, echo=FALSE, fig.align="center", fig.width=9, fig.height=6, include=FALSE}
+
+plot(b, select = c(6)) + 
+  l_rug(alpha = 0.2) +
+  l_fitLine(linetype = 3, size = 2) + 
+  l_fitContour() +
+  l_ciLine(colour = "red", size = 2) +
+  labs(x = "Leverage", y = "Tobin's q") +
+  theme_hc() +
+  theme(axis.text=element_text(size=18),
+        axis.text.x = element_text(vjust = 0.5, color = 'black'),
+        axis.text.y = element_text(color = 'black'),
+        axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
+        axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)),
+        axis.title=element_text(size=24,face="bold"),
+        axis.ticks.y = element_blank(),
+        plot.title = element_text(hjust = 0.5, size=25,face="bold"),
+        legend.position = "none")
+```
+
+
+```{r gamroa, fig.showtext=TRUE, echo=FALSE, fig.align="center", fig.width=9, fig.height=6, include=FALSE}
+
+plot(b, select = c(7)) + 
+  l_rug(alpha = 0.2) +
+  l_fitLine(linetype = 3, size = 2) + 
+  l_fitContour() +
+  l_ciLine(colour = "red", size = 2) +
+  labs(x = "ROA", y = "Tobin's q") +
+  theme_hc() +
+  theme(axis.text=element_text(size=18),
+        axis.text.x = element_text(vjust = 0.5, color = 'black'),
+        axis.text.y = element_text(color = 'black'),
+        axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
+        axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)),
+        axis.title=element_text(size=24,face="bold"),
+        axis.ticks.y = element_blank(),
+        plot.title = element_text(hjust = 0.5, size=25,face="bold"),
+        legend.position = "none")
+```
+
+
+```{r gamcapint, fig.showtext=TRUE, echo=FALSE, fig.align="center", fig.width=9, fig.height=6, include=FALSE}
+
+plot(b, select = c(8)) + 
+  l_rug(alpha = 0.2) +
+  l_fitLine(linetype = 3, size = 2) + 
+  l_fitContour() +
+  l_ciLine(colour = "red", size = 2) +
+  labs(x = "Capital Intensity", y = "Tobin's q") +
+  theme_hc() +
+  theme(axis.text=element_text(size=18),
+        axis.text.x = element_text(vjust = 0.5, color = 'black'),
+        axis.text.y = element_text(color = 'black'),
+        axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
+        axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)),
+        axis.title=element_text(size=24,face="bold"),
+        axis.ticks.y = element_blank(),
+        plot.title = element_text(hjust = 0.5, size=25,face="bold"),
+        legend.position = "none")
+```
+
+.panel[.panel-name[Age]
+
+```{r gamage, fig.showtext=TRUE, echo=FALSE, fig.align="center", fig.width=9, fig.height=6}
+
+plot(b, select = c(9)) + 
+  l_rug(alpha = 0.2) +
+  l_fitLine(linetype = 3, size = 2) + 
+  l_fitContour() +
+  l_ciLine(colour = "red", size = 2) +
+  labs(x = "Age", y = "Tobin's q") +
+  theme_hc() +
+  theme(axis.text=element_text(size=18),
+        axis.text.x = element_text(vjust = 0.5, color = 'black'),
+        axis.text.y = element_text(color = 'black'),
+        axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
+        axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)),
+        axis.title=element_text(size=24,face="bold"),
+        axis.ticks.y = element_blank(),
+        plot.title = element_text(hjust = 0.5, size=25,face="bold"),
+        legend.position = "none")
+```
+
+]
+
+]
+
+
+???
+
+* With the medium age of the companies analyzed being 59 years, it can be concluded from the Figure that TSE expects companies with the age below this median value to be *less* innovative as they get older.
+
+* The opposite also holds true: firms that passed the median-age threshold are seen to be more likely to generate knowledge as their age increases.
+
+* In other words, new market entrants as well as the undoubtedly experienced players tend to be more attractive to investors.
+
+
+---
+
+# Conclusions
+
+--
+
+> 
+**1.** Institutional features associated with .white.bg-black[R&D spending] provide valuable signals for investors across multiple industries.
+>
+
+???
+
+* Most of the companies, but especially the ones belonging to **Pharm** and **Chemical** industries are still embedded in a system of industrial coordination. Oligopolistic features still prevalent
+
+--
+
+> 
+**2.** Quality of a patented output .white.bg-black[(Citations per Patent)] mostly matters for the manufacturing sector.
+>
+
+???
+
+* Thereby these companies react to the accumulating competitive pressures and are redefining themselves within an open-market system
+
+--
+
+> 
+**3.** Pronounced nonlinear trend in the market perception of .white.bg-black[corporate age]: only the more experienced companies receive market premium as they get older.
+>
+
+
+--
+
+## Limitations
+
+* Only utilized the JPO data, need to look at **Triadic Patents** as well
+
+* Find out the updated **depreciation rates** for the knowledge stocks (per industry) 
+
+* Possibly including **corporate governance** and **shareholding structure** to better capture the institutional aspects of innovation
+
+---
+
+# References
+
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+
+---
+
+class: title-slide-final, middle
+background-image: url(assets/img/EAJS.png)
+background-size: 200px
+background-position: 5% 1%
+
+# Thank You for Your attention!
+
+## Questions / Suggestions?
+
+### You can access the presentation & contact me `r fa("arrow-alt-circle-down", fill = "#cc0033")`
+
+|                                                                                                            |                                   |
+| :--------------------------------------------------------------------------------------------------------- | :-------------------------------- |
+| <a href="mailto:ovsiannikov@kochi-tech.ac.jp">`r fa("paper-plane", fill = "#cc0033")`          | ovsiannikov@kochi-tech.ac.jp |
+|                                                                                                |                              |
+| <a href="https://kovsiannikov.com/slides/ajbs-2021/ajbs-2021">`r fa("link", fill = "#cc0033")` | kovsiannikov.com             |
