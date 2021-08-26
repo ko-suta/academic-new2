@@ -1,0 +1,3 @@
+https://kovsiannikov.netlify.app/*  https://kovsiannikov.com/:splat  301!
+http://kovsiannikov.netlify.app/*   https://kovsiannikov.com/:splat  301!
+http://kovsiannikov.com/*   https://kovsiannikov.com/:splat  301!

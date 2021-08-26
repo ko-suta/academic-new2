@@ -1,0 +1,16 @@
+[build]
+  command = "hugo"
+#  functions = "functions"
+  publish = "public"
+  
+[context.production.environment]
+  HUGO_VERSION = "0.87.0"
+  HUGO_ENV = "production"
+  HUGO_ENABLEGITINFO = "true"
+  PYTHON_VERSION = "3.7"
+
+[context.branch-deploy.environment]
+  HUGO_VERSION = "0.87.0"
+
+[context.deploy-preview.environment]
+  HUGO_VERSION = "0.87.0"
