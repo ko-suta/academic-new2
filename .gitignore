@@ -11,3 +11,4 @@ Thumbs.db
 yarn.lock
 /functions/
 package.json
+"\\.knit\\.md$", "\\.utf8\\.md$"
