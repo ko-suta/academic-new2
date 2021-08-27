@@ -542,7 +542,7 @@ $$V_{it} = \alpha(A_{it} + \beta K_{it})$$
 
 - **Tobin's q** = .white.bg-black[market value] **V** / .white.bg-black[book value] **A** `r fa("arrow-right", fill = "blue")`
 
-$$q_t = \frac {V_{it}} {A_{it}} = \alpha \biggl(1 + \beta \frac {K_{it}} {A_{it}}\biggr) + \varepsilon_{it}$$
+$$q_t = \frac{V_{it}}{A_{it}} = \alpha \biggl(1 + \beta \frac{K_{it}}{A_{it}}\biggr) + \varepsilon_{it}$$
 
 ???
 
@@ -552,7 +552,7 @@ By plugging the market value $V_{it}$ from the first equation into the numerator
 
 - Knowledge stock **K**: .white.bg-black[R&D / Tangible Assets], .white.bg-black[Patents per Japanese yen spent on R&D], .white.bg-black[Citations per Patent] `r Citep(myBib, "Hall.2005", .opts = list(cite.style = "authoryear", style = "html"))` `r fa("arrow-right", fill = "blue")`
 
-$$\log q_{it} = \log \alpha_t + \log \biggl(1 + \beta_1 \frac {R\&D_{it}} {A_{it}} + \beta_2 \frac {Pat_{it}} {R\&D_{it}} + \beta_3 \frac {Cites_{it}} {Pat_{it}}\biggr) + \varepsilon_{it}$$
+$$\log q_{it} = \log \alpha_t + \log \biggl(1 + \beta_1 \frac{R\&D_{it}}{A_{it}} + \beta_2 \frac{Pat_{it}}{R\&D_{it}} + \beta_3 \frac{Cites_{it}}{Pat_{it}}\biggr) + \varepsilon_{it}$$
 ???
 
 To sum up, **Tobins's Q** can be expressed as the sum of knowledge stocks weighted by tangible assets.
@@ -662,9 +662,9 @@ cm <- c("(Intercept)" = "Constant",
 
 
 ```{r echo=FALSE, warning=FALSE}
-(tab1 <- modelsummary(models, output = 'kableExtra', estimate = "{estimate} ({std.error}){stars}",
+tab1 <- modelsummary(models, output = 'kableExtra', estimate = "{estimate} ({std.error}){stars}",
          coef_map = cm, gof_omit = 'IC|Log|Adj',
-         statistic = NULL))
+         statistic = NULL)
 ```
 
 
