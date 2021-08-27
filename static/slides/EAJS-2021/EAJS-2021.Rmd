@@ -642,16 +642,16 @@ cm <- c("(Intercept)" = "Constant",
   "IndustryElectric" = "D (Electric)",
   "IndustryMachinery" = "D (Machinery)", 
   "IndustryPharm" = "D (Pharm)",
-  "InvRDA" = "R&D/Assets (x Chemical)", "IndustryElectric:InvRDA" = "R&D/Assets x Electric", 
-  "IndustryMachinery:InvRDA" = "R&D/Assets x Machinery", 
-  "IndustryPharm:InvRDA" = "R&D/Assets x Pharm", 
-  "InvPatRD" = "Patents/R&D (x Chemical)", "IndustryElectric:InvPatRD" = "Patents/R&D x Electric", 
-  "IndustryMachinery:InvPatRD" = "Patents/R&D x Machinery", 
-  "IndustryPharm:InvPatRD" = "Patents/R&D x Pharm",
+  "InvRDA" = "RD/Assets (x Chemical)", "IndustryElectric:InvRDA" = "RD/Assets x Electric", 
+  "IndustryMachinery:InvRDA" = "RD/Assets x Machinery", 
+  "IndustryPharm:InvRDA" = "RD/Assets x Pharm", 
+  "InvPatRD" = "Patents/RD (x Chemical)", "IndustryElectric:InvPatRD" = "Patents/RD x Electric", 
+  "IndustryMachinery:InvPatRD" = "Patents/RD x Machinery", 
+  "IndustryPharm:InvPatRD" = "Patents/RD x Pharm",
   "InvCitPat" = "Citations/Patents (x Chemical)", "IndustryElectric:InvCitPat" = "Citations/Patents x Electric", 
   "IndustryMachinery:InvCitPat" = "Citations/Patents x Machinery", 
   "IndustryPharm:InvCitPat" = "Citations/Patents x Pharm",
-  "InvRDInt" = "R&D Intensity",
+  "InvRDInt" = "RD Intensity",
   "InvProcess" = "Process Innovation",
   "Leverage" = "Leverage", 
   "ROA" = "ROA",
@@ -662,9 +662,9 @@ cm <- c("(Intercept)" = "Constant",
 
 
 ```{r echo=FALSE, warning=FALSE}
-tab1 <- modelsummary(models, output = 'kableExtra', estimate = "{estimate} ({std.error}){stars}",
+(tab1 <- modelsummary(models, output = 'kableExtra', estimate = "{estimate} ({std.error}){stars}",
          coef_map = cm, gof_omit = 'IC|Log|Adj',
-         statistic = NULL)
+         statistic = NULL))
 ```
 
 
