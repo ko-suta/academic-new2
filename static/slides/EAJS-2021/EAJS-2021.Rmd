@@ -544,6 +544,10 @@ $$V_{it} = \alpha(A_{it} + \beta K_{it})$$
 
 $$q_t = \frac {V_{it}} {A_{it}} = \alpha \biggl(1 + \beta \frac {K_{it}} {A_{it}}\biggr) + \varepsilon_{it}$$
 
+???
+
+By plugging the market value $V_{it}$ from the first equation into the numerator, we get the following equation:
+
 --
 
 - Knowledge stock **K**: .white.bg-black[R&D / Tangible Assets], .white.bg-black[Patents per Japanese yen spent on R&D], .white.bg-black[Citations per Patent] `r Citep(myBib, "Hall.2005", .opts = list(cite.style = "authoryear", style = "html"))` `r fa("arrow-right", fill = "blue")`
