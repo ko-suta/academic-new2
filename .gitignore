@@ -4,10 +4,11 @@
 .Ruserdata
 Thumbs.db
 /node_modules
-/public
-/resources
+/public/
+/resources/
 /.yarn
 .yarnrc.yml
 yarn.lock
 /functions/
 package.json
+.DS_Store
