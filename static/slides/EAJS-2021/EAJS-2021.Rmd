@@ -728,7 +728,7 @@ tab1 %>%
 
 * The same holds true about the positive assessment of R&D stocks for **Chemicals** and **Machinery**.
 
-* (Linear model does not capture this but) market does appreciate R&D spending by the Electric Equipment companies when the R&D stock levels exceed the lower quartile of the observed range.
+<!-- * (Linear model does not capture this but) market does appreciate R&D spending by the Electric Equipment companies when the R&D stock levels exceed the lower quartile of the observed range. -->
 
 * Thus, R&D spending is actually universally important for all industries
 
@@ -784,7 +784,7 @@ tab1 %>%
 
 * Thus, quality of patents is particularly important for the **manufacturing** sector
 
-* For **Chemicals**, based on GAMs, there is an evidence of a positive market reaction when the Cit/Pat ratio rises from 3 to 6
+<!-- * For **Chemicals**, based on GAMs, there is an evidence of a positive market reaction when the Cit/Pat ratio rises from 3 to 6 -->
 
 
 ---
