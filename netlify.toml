@@ -46,3 +46,9 @@
   status = 301
   force = true
   
+[[redirects]]
+  from = "https://kovsiannikov.com/slides/eajs-2021/eajs-2021"
+  to = "https://kovsiannikov.com/slides/sase-2021/sase-2021"
+  status = 301
+  force = true
+  
