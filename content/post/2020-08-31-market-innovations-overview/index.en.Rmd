@@ -190,17 +190,12 @@ Incorporating these measurements, we can rewrite the last equation as follows, a
 
 # Embedded SASE presentation
 
-```{r embed-example, echo=FALSE}
-knitr::include_url('https://kovsiannikov.com/slides/sase-2019/sase-2019#1')
-```
-
-
 
 ```{r embed-example, echo=FALSE}
-# xaringanExtra::embed_xaringan(
-#   knitr::include_url('https://kovsiannikov.com/slides/sase-2019/sase-2019#1'),
-#   ratio = "16:9"
-# )
+xaringanExtra::embed_xaringan(
+  knitr::include_url('https://kovsiannikov.com/slides/sase-2019/sase-2019#1'),
+  ratio = "16:9"
+)
 ```
 
 
