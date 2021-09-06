@@ -191,7 +191,7 @@ Incorporating these measurements, we can rewrite the last equation as follows, a
 # Embedded SASE presentation
 
 ```{r embed-xaringan, echo=FALSE}
-xaringanExtra::embed_xaringan(url = "https://kovsiannikov.com/slides/sase-2019/sase-2019.html", ratio = "16:9")
+xaringanExtra::embed_xaringan(url = 'slides/sase-2019/sase-2019.html', ratio = "16:9")
 ```
 
 ` ` 
