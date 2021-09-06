@@ -49,7 +49,7 @@ math: true
 diagram: true
 privacy_pack: false
 edit_page:
-  repo_url: 'https://github.com/ko-suta/academic-new'
+  repo_url: 'https://github.com/ko-suta/academic-new2'
   content_dir: ''
   repo_branch: main
   editable:
