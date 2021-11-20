@@ -5,7 +5,7 @@ output:
   blogdown::html_page:
     toc: true
     keep_md: yes
-date: '`r Sys.Date()`'
+date: '2021-11-20'
 slug: market-innovations-overview
 categories:
 tags:
@@ -24,38 +24,7 @@ projects: [market-innovation]
 bibliography: [Innovation-Postdoc.bib, pkg-refs.bib]
 ---
 
-```{r results='hide', echo=FALSE, include=FALSE}
-p_needed <- c("bookdown",
-              "here",
-              "ggthemes",
-              "tidyverse",
-              "readr",
-              "data.table",
-              "kableExtra",
-              "texreg",
-              "knitr",
-              "pander",
-              "mgcv",
-              "stargazer",
-              "summarytools",
-              "reporttools",
-              "DataExplorer",
-              "plm",
-              "rstatix",
-              "ggcorrplot",
-              "mgcViz",
-              "ggpubr",
-              "utils",
-              "memisc",
-              "xaringanExtra"
-)
-packages <- rownames(installed.packages())
-p_to_install <- p_needed[!(p_needed %in% packages)]
-if (length(p_to_install) > 0) {
-  install.packages(p_to_install)
-}
-lapply(p_needed, require, character.only = TRUE)
-```
+
 
 
 
@@ -95,12 +64,7 @@ The length of the patent-registration process is one of the reasons why the curv
 Application-filing process is especially time-consuming for the Pharmaceutical industry, where the average period for granting a patent is 7.1 years -- well above the cumulative mean of 6.45 years. 
 
 
-```{r data, echo = FALSE, results='hide', message=FALSE}
-data3 <- read_csv(here("content", "post", "2020-08-31-market-innovations-overview", "Timing-Period.csv"), col_names = TRUE)
 
-data3 <- data3 %>% 
-  column_to_rownames(., var = "Industry")
-```
 
 
 
@@ -111,9 +75,10 @@ In general, it is certainly too early to provide the full information on the num
 
 (ref:timing) Timing for turning patent applications into grants 
 
-```{r timing, fig.cap = "(ref:timing)", fig.align="center", echo=FALSE, out.width='\\textwidth'}
-knitr::include_graphics(here("content", "post", "2020-08-31-market-innovations-overview", "Timing2.png"))
-```
+<div class="figure" style="text-align: center">
+<img src="/Users/kota/Dropbox/Academic-new2/content/post/2020-08-31-market-innovations-overview/Timing2.png" alt="(ref:timing)" width="\textwidth" />
+<p class="caption">(\#fig:timing)(ref:timing)</p>
+</div>
 
 While corporate financial data (except the R&D spending) does not entail any particular technical issues, patent-related information needs to meet some criteria before running a regression. 
 Following the methodology adopted in the existing literature, I have used the entries based on the *date of filing the patent application*, which is a point in time, from which a corresponding invention would be legally protected. 
@@ -134,19 +99,15 @@ This has been a common finding across numerous studies concluding that the knowl
 Finally, if we look at the yearly cohorts displayed in the Figure \@ref(fig:patrat), the numbers for Pharmaceuticals and Chemicals within the period of 1991-2000 (part of which is included in this article's econometric analysis) hardly surpass the cumulative median.
 
 
-```{r data2, echo = FALSE, results='hide', message=FALSE}
-data4 <- read_csv(here("content", "post", "2020-08-31-market-innovations-overview", "Patrat-Period.csv"), col_names = TRUE)
 
-data4 <- data4 %>% 
-  column_to_rownames(., var = "Industry")
-```
 
 
 (ref:patrat) Granting success rate of patents filed with the JPO 
 
-```{r patrat, fig.cap = "(ref:patrat)", fig.align="center", echo=FALSE, out.width='\\textwidth'}
-knitr::include_graphics(here("content", "post", "2020-08-31-market-innovations-overview", "Patrat2.png"))
-```
+<div class="figure" style="text-align: center">
+<img src="/Users/kota/Dropbox/Academic-new2/content/post/2020-08-31-market-innovations-overview/Patrat2.png" alt="(ref:patrat)" width="\textwidth" />
+<p class="caption">(\#fig:patrat)(ref:patrat)</p>
+</div>
 
 
 # Model
@@ -192,11 +153,12 @@ Incorporating these measurements, we can rewrite the last equation as follows, a
 # Embedded SASE presentation
 
 
-```{r embed-example, echo=FALSE}
-xaringanExtra::embed_xaringan(
-  knitr::include_url('https://kovsiannikov.com/slides/sase-2019/sase-2019/'),
-  ratio = "16:9"
-)
+
+```{=html}
+<div class="shareagain" style="min-width:300px;margin:1em auto;">
+<iframe src="https://kovsiannikov.com/slides/sase-2019/sase-2019/ 400px https://kovsiannikov.com/slides/sase-2019/sase-2019/" width="1600" height="900" style="border:2px solid currentColor;" loading="lazy" allowfullscreen></iframe>
+<script>fitvids('.shareagain', {players: 'iframe'});</script>
+</div>
 ```
 
 
