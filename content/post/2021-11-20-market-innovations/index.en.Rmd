@@ -194,7 +194,7 @@ Incorporating these measurements, we can rewrite the last equation as follows, a
 
 ```{r embed-example, echo=FALSE}
 xaringanExtra::embed_xaringan(
-  knitr::include_url('https://kovsiannikov.com/slides/sase-2019/sase-2019/'),
+  knitr::include_url('https://kovsiannikov.com/slides/sase-2019/sase-2019.html'),
   ratio = "16:9"
 )
 ```
