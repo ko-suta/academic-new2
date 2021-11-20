@@ -13,7 +13,7 @@ main:
     url: 'publication'
     weight: 30
   - name: Teaching
-    url: '#courses'
+    url: 'courses'
     weight: 40
   - name: Talks
     url: '#talks'

@@ -4,7 +4,6 @@ linkTitle: Labor Market Dualism
 summary: Transdisciplinary Course Program at the University of Tübingen.
 title: "Labor Market Dualism in the International Context"
 type: book
-featured: true
 ---
 
 {{< figure src="featured.jpg" >}}
