@@ -4,7 +4,7 @@ author: Kostiantyn Ovsiannikov
 output:
   blogdown::html_page:
     toc: true
-    keep_md: yes
+#    keep_md: yes
 date: '`r Sys.Date()`'
 slug: market-innovations-overview
 categories:
