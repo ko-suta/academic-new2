@@ -182,19 +182,19 @@ Here, the knowledge stock *K* consists of three components, such as: *R&D weight
 Incorporating these measurements, we can rewrite the last equation as follows, according to the suggestion of @Hall.2005 (p. 24):
 
 \begin{equation} 
-  \log q_{it} = \log \alpha_t + \log \biggl(1 + \beta_1 \frac {R\&D_{it}} {A_{it}} + \beta_2 \frac {Pat_{it}} {R\&D_{it}} + \beta_3 \frac {Cites_{it}} {Pat_{it}}\biggr) + \varepsilon_{it}
+  \log q_{it} = \log \alpha_t + \log \biggl(\beta_1 \frac {R\&D_{it}} {A_{it}} + \beta_2 \frac {Pat_{it}} {R\&D_{it}} + \beta_3 \frac {Cites_{it}} {Pat_{it}}\biggr) + \varepsilon_{it}
   (\#eq:value4)
 \end{equation}
 
 ` `  
 ` `
 
-# Embedded SASE presentation
+<!-- # Embedded SASE presentation -->
 
 
-```{r embed-example, echo=FALSE}
+```{r embed-example, echo=FALSE, include=FALSE}
 xaringanExtra::embed_xaringan(
-  "sase-2019/sase-2019.html", ratio = "16:9"
+  "https://kovsiannikov.com/slides/sase-2019/sase-2019.html", ratio = "16:9"
 )
 ```
 
