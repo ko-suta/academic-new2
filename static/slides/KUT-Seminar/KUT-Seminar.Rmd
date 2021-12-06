@@ -1,0 +1,235 @@
+---
+title: "Ukraine and Japan: <br> Comparative Advantages"
+subtitle: "2021 KUT Seminar: <br> .white.bg-black[“Global Competency Modelling”]"
+author: "Kostiantyn Ovsiannikov, Ph.D."
+institute: ".white.bg-green[Kochi University of Technology]"
+date: "13 December 2021"
+output:
+  xaringan::moon_reader:
+#    chakra: libs/remark-latest.min.js
+    lib_dir: libs
+    css: ["rutgers-new.css", "rutgers-fonts"]
+    nature:
+      beforeInit: "macros.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: 16:9
+      #ratio: "191:100"
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(summarytools)
+library(here)
+library(ymlthis)
+library(tidyverse)
+library(fontawesome)
+library(readr)
+library(ggthemes)
+library(ggpubr)
+library(RColorBrewer)
+library(kableExtra)
+library(data.table)
+library(metathis)
+library(xaringanthemer)
+library(xaringanExtra)
+library(data.table)
+library(RefManageR)
+library(plm)
+library(mgcv)
+library(mgcViz)
+library(stargazer)
+library(plotly)
+library(htmlwidgets)
+library(modelsummary)
+library(leaflet)
+library(webshot)
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(collapse = TRUE,
+                      eval = TRUE,
+                      fig.retina = 3)
+
+```
+
+
+
+```{r xaringan-extra, echo=FALSE}
+
+xaringanExtra::use_scribble()
+xaringanExtra::use_tile_view()
+xaringanExtra::use_tachyons()
+xaringanExtra::use_panelset()
+xaringanExtra::use_share_again()
+xaringanExtra::use_broadcast()
+xaringanExtra::use_search(show_icon = TRUE)
+
+xaringanExtra::style_share_again(
+  foreground = "white",
+  background = "black",
+  share_buttons = c("twitter", "linkedin", "facebook")
+)
+
+xaringanExtra::use_logo(
+  width = "220px",
+  height = "256px",
+  position = xaringanExtra::css_position(top = "2em", right = "2em"),
+  image_url = "assets/img/KUT.jpg",
+  exclude_class = "hide_logo"
+)
+
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+
+xaringanExtra::use_progress_bar(
+  color = "#0051BA", 
+  location = "top", 
+  height = "10px"
+  )
+```
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+style_duo(primary_color = "#ffffff", secondary_color = "#515151")
+```
+
+```{r metathis, echo=FALSE}
+meta() %>%
+  meta_name("github-repo" = "ko-suta/academic-new") %>% 
+  meta_social(
+    title = "Ukraine and Japan: <br> Comparative Advantages",
+    description = paste(
+      "Global Competency Modelling 2021"
+    ),
+    url = "https://kovsiannikov.com/slides/kut-seminar/kut-seminar",
+    image = "https://kovsiannikov.com/img/wheat-field.jpg",
+    image_alt = "2021 KUT Global Competency Modelling",
+    og_type = "website",
+    og_author = "Kostiantyn Ovsiannikov",
+    twitter_card_type = "summary_large_image",
+    twitter_creator = "@kovsiann"
+  ) %>%
+  include_meta()
+```
+
+
+# Ukraine & Japan: general facts
+
+--
+
+.pull-left[
+
+ ### .blue[Population]: 44 million people;
+
+
+ ### .blue[Territory]: 603,628 $km^2$;
+ 
+
+ ### .blue[GDP per capita]: &#36; 3,118;
+
+
+ ### .blue[School enrollment]: 99.04%;
+
+
+ ### .blue[Life expectancy]: 71.6 years
+]
+
+--
+
+.pull-right[
+
+ ### 125.8 million people;
+
+ ### 377,975 $km^2$;
+
+ ### &#36; 40,113;
+
+ ### 98.8%;
+
+ ### 84.4 years
+]
+ 
+---
+
+# Exports: Ukraine vs. Japan
+
+.pull-left[
+
+```{r echo=FALSE, include=TRUE, out.width = "200%"}
+knitr::include_graphics("assets/img/Ukraine_Exports.png")
+```
+]
+
+--
+
+.pull-right[
+
+```{r echo=FALSE, out.width = "200%"}
+knitr::include_graphics("assets/img/Japan_Exports.jpg")
+```
+
+]
+
+
+---
+
+# Export destinations: Ukraine vs. Japan
+
+.pull-left[
+
+```{r echo=FALSE, include=TRUE, out.width = 500}
+knitr::include_graphics("assets/img/Ukraine_Export_Partners.jpg")
+```
+]
+
+--
+
+.pull-right[
+
+```{r echo=FALSE, include=TRUE, out.width = 500}
+knitr::include_graphics("assets/img/Japan_Export_Partners.jpg")
+```
+]
+
+
+---
+
+# Import sources: Ukraine vs. Japan
+
+.pull-left[
+
+```{r echo=FALSE, include=TRUE, out.width = 500}
+knitr::include_graphics("assets/img/Ukraine_Import_Partners.jpg")
+```
+]
+
+--
+
+.pull-right[
+
+```{r echo=FALSE, include=TRUE, out.width = 500}
+knitr::include_graphics("assets/img/Japan_Import_Partners.jpg")
+```
+]
+
+
+---
+
+class: title-slide-final, middle
+background-size: 200px
+background-position: 5% 1%
+
+# Thank You for Your attention!
+
+## Questions / Suggestions?
+
+### You can access the presentation & contact me `r fa("arrow-alt-circle-down", fill = "#cc0033")`
+
+|                                                                                                            |                                   |
+| :--------------------------------------------------------------------------------------------------------- | :-------------------------------- |
+| <a href="mailto:ovsiannikov@kochi-tech.ac.jp">`r fa("paper-plane", fill = "#cc0033")`          | ovsiannikov@kochi-tech.ac.jp |
+|                                                                                                |                              |
+| <a href="https://kovsiannikov.com/slides/kut-seminar/kut-seminar">`r fa("link", fill = "#cc0033")` | kovsiannikov.com             |
