@@ -54,7 +54,7 @@ my_pal <- scales::col_numeric(
 
 <br><br>
 
-## Kaso 2021 values
+## 2021 "Kaso" values
 
 ### Basic differences between "Normal" and "Kaso" 
 
@@ -264,7 +264,7 @@ Elections %>%
 
 <br><br>
 
-## Year-specific kaso values
+## Year-specific "Kaso" values
 
 ### Basic differences between "Normal" and "Kaso" 
 
