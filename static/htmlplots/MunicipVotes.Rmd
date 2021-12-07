@@ -76,7 +76,7 @@ Elections %>%
   gt(rowname_col = "Kaso2.x") %>%
   fmt_number(
     columns = 2:11,
-    decimals = 2 # decrease decimal places
+    decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
     style = list(
@@ -128,7 +128,7 @@ Elections %>%
   gt(rowname_col = "Kaso2.x.fusion") %>%
   fmt_number(
     columns = 2:11,
-    decimals = 2 # decrease decimal places
+    decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
     style = list(
@@ -180,7 +180,7 @@ Elections %>%
   gt(rowname_col = "Kaso.x") %>%
   fmt_number(
     columns = 2:11,
-    decimals = 2 # decrease decimal places
+    decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
     style = list(
@@ -232,7 +232,7 @@ Elections %>%
   gt(rowname_col = "Kaso.x.fusion") %>%
   fmt_number(
     columns = 2:11,
-    decimals = 2 # decrease decimal places
+    decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
     style = list(
@@ -286,7 +286,7 @@ Elections %>%
   gt(rowname_col = "Kaso2.y") %>%
   fmt_number(
     columns = 2:11,
-    decimals = 2 # decrease decimal places
+    decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
     style = list(
@@ -339,7 +339,7 @@ Elections %>%
   gt(rowname_col = "Kaso2.y.fusion") %>%
   fmt_number(
     columns = 2:11,
-    decimals = 2 # decrease decimal places
+    decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
     style = list(
@@ -392,7 +392,7 @@ Elections %>%
   gt(rowname_col = "Kaso.y") %>%
   fmt_number(
     columns = 2:11,
-    decimals = 2 # decrease decimal places
+    decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
     style = list(
@@ -422,6 +422,8 @@ Elections %>%
     )
 ```
 
+
+
 <br><br>
 
 ### Detailed differences (including types of "Kaso") + Merged/Non-Merged
@@ -444,7 +446,7 @@ Elections %>%
   gt(rowname_col = "Kaso.y.fusion") %>%
   fmt_number(
     columns = 2:11,
-    decimals = 2 # decrease decimal places
+    decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
     style = list(
