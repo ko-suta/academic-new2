@@ -115,8 +115,47 @@ meta() %>%
   include_meta()
 ```
 
+# Ukraine & Japan: Geographic location
 
-# Ukraine & Japan: general facts
+```{r echo=FALSE, include=TRUE, out.width = "200%"}
+knitr::include_graphics("assets/img/Japan_Ukraine_Locator.png")
+```
+
+---
+
+# Japanese-Ukrainian relationship
+
+
+```{r echo=FALSE, include=TRUE, out.width = "50%", fig.align='center'}
+knitr::include_graphics("assets/img/Kozak_Samurai.jpg")
+```
+
+---
+
+# Taih&#333; K&#333;ki (大鵬幸喜)
+
+
+.pull-left[
+
+```{r echo=FALSE, include=TRUE, out.width = "90%", fig.align='left'}
+knitr::include_graphics("assets/img/Ivan_Boryshko.jpg")
+```
+]
+
+.pull-right[
+ 
+- ### Ukrainian name: Ivan Boryshko
+ 
+- ### born on the Sakhalin (樺太廳, Karafuto-ch&#333;) to a Japanese mother and a Ukrainian father
+ 
+- ### 1961: became *yokozuna* (横綱) at the age of 21
+ 
+- ### won 32 tournament championships between 1960 and 1971
+]
+
+---
+
+# General Information: Ukraine vs. Japan
 
 --
 
@@ -156,64 +195,36 @@ meta() %>%
 
 # Exports: Ukraine vs. Japan
 
-.pull-left[
 
-```{r echo=FALSE, include=TRUE, out.width = "200%"}
+```{r echo=FALSE, out.width='50%', fig.show="hold"}
 knitr::include_graphics("assets/img/Ukraine_Exports.png")
-```
-]
-
---
-
-.pull-right[
-
-```{r echo=FALSE, out.width = "200%"}
 knitr::include_graphics("assets/img/Japan_Exports.jpg")
 ```
-
-]
-
 
 ---
 
 # Export destinations: Ukraine vs. Japan
 
-.pull-left[
 
-```{r echo=FALSE, include=TRUE, out.width = 500}
+```{r echo=FALSE, out.width='50%', fig.show="hold"}
 knitr::include_graphics("assets/img/Ukraine_Export_Partners.jpg")
-```
-]
-
---
-
-.pull-right[
-
-```{r echo=FALSE, include=TRUE, out.width = 500}
 knitr::include_graphics("assets/img/Japan_Export_Partners.jpg")
 ```
-]
+
 
 
 ---
 
 # Import sources: Ukraine vs. Japan
 
-.pull-left[
 
-```{r echo=FALSE, include=TRUE, out.width = 500}
+```{r echo=FALSE, out.width='50%', fig.show="hold"}
 knitr::include_graphics("assets/img/Ukraine_Import_Partners.jpg")
-```
-]
-
---
-
-.pull-right[
-
-```{r echo=FALSE, include=TRUE, out.width = 500}
 knitr::include_graphics("assets/img/Japan_Import_Partners.jpg")
 ```
-]
+
+
+
 
 
 ---
