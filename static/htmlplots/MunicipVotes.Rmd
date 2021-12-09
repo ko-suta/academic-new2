@@ -94,8 +94,7 @@ Elections %>%
     table_body.hlines.color = "white"
     ) %>%
   tab_header(
-    title = md("**Municipal characteristics**"),
-    subtitle = md("*Aggregated by fiscal profiles*")
+    title = md("**Municipal characteristics**")
   ) %>%
     data_color(
     columns = 2:11,
