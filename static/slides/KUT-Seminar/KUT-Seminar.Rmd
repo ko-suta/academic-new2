@@ -116,13 +116,6 @@ meta() %>%
 ```
 
 
-# Ukraine & Japan: Geographic location
-
-```{r echo=FALSE, include=TRUE, out.width = "200%"}
-knitr::include_graphics("assets/img/Japan_Ukraine_Locator.png")
-```
-
----
 
 # Japanese-Ukrainian parallels
 
@@ -185,7 +178,7 @@ knitr::include_graphics("assets/img/biwa.png")
 
 - light cavalry with pikes and pistols
 
-```{r echo=FALSE, include=TRUE, out.width = "50%", fig.align='center'}
+```{r echo=FALSE, include=TRUE, out.width = "55%", fig.align='center'}
 knitr::include_graphics("assets/img/kozak.jpg")
 ```
 
@@ -201,7 +194,7 @@ knitr::include_graphics("assets/img/kozak.jpg")
 
 - heavily armored cavalry with bows
 
-```{r echo=FALSE, include=TRUE, out.width = "60%", fig.align='center'}
+```{r echo=FALSE, include=TRUE, out.width = "80%", fig.align='center'}
 knitr::include_graphics("assets/img/samurai.jpg")
 ```
 
@@ -286,9 +279,7 @@ background-size: 650px
 ]
 
 
-
 ---
-
 
 # Chernobyl-Fukushima cooperation
 
@@ -333,6 +324,14 @@ background-color: yellow
 
 ---
 
+# Ukraine & Japan: Geographic location
+
+```{r echo=FALSE, include=TRUE, out.width = "200%"}
+knitr::include_graphics("assets/img/Japan_Ukraine_Locator.png")
+```
+
+---
+
 
 # General Information: Ukraine vs. Japan
 
@@ -349,9 +348,6 @@ background-color: yellow
  ### .blue[GDP per capita]: &#36; 3,118;
 
 
- ### .blue[School enrollment]: 99.04%;
-
-
  ### .blue[Life expectancy]: 71.6 years
 ]
 
@@ -365,8 +361,6 @@ background-color: yellow
 
  ### &#36; 40,113;
 
- ### 98.8%;
-
  ### 84.4 years
 ]
 
@@ -374,11 +368,9 @@ background-color: yellow
 ---
 
 
-# Political regimes
+# Political regimes (Ukraine vs. Japan)
 
 .pull-left[
-
-### Ukraine:
 
 - 1991 Soviet Union collapse (planned economy `r fa("arrow-alt-circle-right", fill = "#cc0033")` capitalism)
 
@@ -389,7 +381,7 @@ background-color: yellow
 - ongoing conflict with Russia
 
 
-```{r echo=FALSE, include=TRUE, out.width = "60%", fig.align='center'}
+```{r echo=FALSE, include=TRUE, out.width = "90%", fig.align='center'}
 knitr::include_graphics("assets/img/lenin.jpg")
 ```
 
@@ -399,13 +391,15 @@ knitr::include_graphics("assets/img/lenin.jpg")
 
 .pull-right[
 
-### Japan:
-
 - post 1945: democratic system (LDP domination)
 
 - peaceful relationships with neighbors (however: territorial disputes)
 
 - Sh&#363;shin koy&#333; (終身雇用) `r fa("arrow-alt-circle-right", fill = "#cc0033")` [partially] performance-based
+
+```{r echo=FALSE, include=TRUE, out.width = "90%", fig.align='center'}
+knitr::include_graphics("assets/img/tokyo.jpg")
+```
 
 ]
 ---
