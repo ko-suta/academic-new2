@@ -393,9 +393,10 @@ knitr::include_graphics("assets/img/lenin.jpg")
 
 - post 1945: democratic system (LDP domination)
 
+- Sh&#363;shin koy&#333; (終身雇用) `r fa("arrow-alt-circle-right", fill = "#cc0033")` [partially] performance-based
+
 - peaceful relationships with neighbors (however: territorial disputes)
 
-- Sh&#363;shin koy&#333; (終身雇用) `r fa("arrow-alt-circle-right", fill = "#cc0033")` [partially] performance-based
 
 ```{r echo=FALSE, include=TRUE, out.width = "90%", fig.align='center'}
 knitr::include_graphics("assets/img/tokyo.jpg")
