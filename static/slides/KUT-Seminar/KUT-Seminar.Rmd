@@ -133,12 +133,9 @@ knitr::include_graphics("assets/img/Kozak_Samurai.jpg")
 
 ---
 
-```{r echo=FALSE}
+```{r echo=FALSE, include=FALSE}
 knitr::include_url("https://mariaruban.com/ukraine-in-the-mirror-of-japan")
 ```
-
-
---- 
 
 
 # Kobzar vs. Biwa h&#333;shi (琵琶法師)
@@ -158,6 +155,7 @@ knitr::include_graphics("assets/img/kobzar.jpg")
 
 ]
 
+--
 
 .pull-right[
 
@@ -169,7 +167,7 @@ knitr::include_graphics("assets/img/kobzar.jpg")
 - Buddhist monks
 
 
-```{r echo=FALSE, include=TRUE, out.width = "50%", fig.align='center'}
+```{r echo=FALSE, include=TRUE, out.width = "90%", fig.align='center'}
 knitr::include_graphics("assets/img/biwa.png")
 ```
 
@@ -193,6 +191,7 @@ knitr::include_graphics("assets/img/kozak.jpg")
 
 ]
 
+--
 
 .pull-right[
 
@@ -359,6 +358,65 @@ background-size: 650px
 - ### revamping the Exclusion Zones
 
 ]
+
+
+---
+
+class: middle
+background-color: yellow
+
+# .center[.blue[Ukraine] **Japan** .black[differences]]
+
+---
+
+# Political regimes
+
+.pull-left[
+
+### Ukraine:
+
+- 1991 Soviet Union collapse (planned economy `r fa("arrow-alt-circle-right", fill = "#cc0033")` capitalism)
+
+- companies: long-term `r fa("arrow-alt-circle-right", fill = "#cc0033")` short-term contracts
+
+- socialism `r fa("arrow-alt-circle-right", fill = "#cc0033")` democracy
+
+- ongoing conflict with Russia
+
+
+```{r echo=FALSE, include=TRUE, out.width = "60%", fig.align='center'}
+knitr::include_graphics("assets/img/lenin.jpg")
+```
+
+]
+
+--
+
+.pull-right[
+
+### Japan:
+
+- post 1945: democratic system (LDP domination)
+
+- peaceful relationships with neighbors (however: territorial disputes)
+
+- Sh&#363;shin koy&#333; (終身雇用) `r fa("arrow-alt-circle-right", fill = "#cc0033")` [partially] performance-based
+
+]
+---
+
+class: middle
+background-color: yellow
+
+# .center.black[.blue[Ukraine]: turbulent modern history]
+
+--
+
+# .center.black[.red[Japan]: stable post-war institutions]
+
+--
+
+# .center.black[cultural similarities `r fa("arrow-alt-circle-right", fill = "#cc0033")` room for mutual learning]
 
 
 ---
