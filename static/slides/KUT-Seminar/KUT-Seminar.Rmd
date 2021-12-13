@@ -231,43 +231,7 @@ knitr::include_graphics("assets/img/Ivan_Boryshko.jpg")
 - ### won 32 tournament championships between 1960 and 1971
 ]
 
----
 
-# General Information: Ukraine vs. Japan
-
---
-
-.pull-left[
-
- ### .blue[Population]: 44 million people;
-
-
- ### .blue[Territory]: 603,628 $km^2$;
- 
-
- ### .blue[GDP per capita]: &#36; 3,118;
-
-
- ### .blue[School enrollment]: 99.04%;
-
-
- ### .blue[Life expectancy]: 71.6 years
-]
-
---
-
-.pull-right[
-
- ### 125.8 million people;
-
- ### 377,975 $km^2$;
-
- ### &#36; 40,113;
-
- ### 98.8%;
-
- ### 84.4 years
-]
  
 
 <!-- # Exports: Ukraine vs. Japan -->
@@ -369,6 +333,47 @@ background-color: yellow
 
 ---
 
+
+# General Information: Ukraine vs. Japan
+
+--
+
+.pull-left[
+
+ ### .blue[Population]: 44 million people;
+
+
+ ### .blue[Territory]: 603,628 $km^2$;
+ 
+
+ ### .blue[GDP per capita]: &#36; 3,118;
+
+
+ ### .blue[School enrollment]: 99.04%;
+
+
+ ### .blue[Life expectancy]: 71.6 years
+]
+
+--
+
+.pull-right[
+
+ ### 125.8 million people;
+
+ ### 377,975 $km^2$;
+
+ ### &#36; 40,113;
+
+ ### 98.8%;
+
+ ### 84.4 years
+]
+
+
+---
+
+
 # Political regimes
 
 .pull-left[
@@ -416,7 +421,15 @@ background-color: yellow
 
 --
 
-# .center.black[cultural similarities `r fa("arrow-alt-circle-right", fill = "#cc0033")` room for mutual learning]
+# .center[`r fa("arrow-alt-circle-down", fill = "#cc0033")`] 
+
+--
+
+# .center.black[reason: .light-blue[indivual property rights'] protection `r fa("arrow-alt-circle-right", fill = "#cc0033")` oldest companies in the world]
+
+--
+
+# .center.black[.light-blue[but], peace is not eternal `r fa("arrow-alt-circle-right", fill = "#cc0033")` always be ready to face sudden changes!]
 
 
 ---
