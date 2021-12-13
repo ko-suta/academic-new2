@@ -95,7 +95,7 @@ top:2em;right:2em;
         setTimeout(addLogo, 100)
       }
     } else {
-      document.querySelectorAll('.remark-slide-content:not(.hide_logo)')
+      document.querySelectorAll('.remark-slide-content:not(.hide_logo):not(.title-slide)')
         .forEach(function (slide) {
           const logo = document.createElement('div')
           logo.classList = 'xaringan-extra-logo'

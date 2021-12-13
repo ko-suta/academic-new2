@@ -76,7 +76,7 @@ xaringanExtra::use_logo(
   height = "256px",
   position = xaringanExtra::css_position(top = "2em", right = "2em"),
   image_url = "assets/img/KUT.jpg",
-  exclude_class = "hide_logo"
+  exclude_class = c("hide_logo", "title-slide")
 )
 
 xaringanExtra::use_extra_styles(
