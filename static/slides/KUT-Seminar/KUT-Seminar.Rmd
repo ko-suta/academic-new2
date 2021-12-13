@@ -133,7 +133,47 @@ knitr::include_graphics("assets/img/Kozak_Samurai.jpg")
 
 ---
 
+```{r echo=FALSE}
 knitr::include_url("https://mariaruban.com/ukraine-in-the-mirror-of-japan")
+```
+
+
+--- 
+
+
+# Kobzar vs. Biwa h&#333;shi (琵琶法師)
+
+.pull-left[
+
+- instruments: *kobza*, *bandura*, *lira*
+
+- first mentioning: 13th century
+
+- historical themes
+
+
+```{r echo=FALSE, include=TRUE, out.width = "50%", fig.align='center'}
+knitr::include_graphics("assets/img/kobzar.jpg")
+```
+
+]
+
+
+.pull-right[
+
+
+- instruments: *biwa*
+
+- first mentioning: 13th century (平家物語, *Heike Monogatari*)
+
+- Buddhist monks
+
+
+```{r echo=FALSE, include=TRUE, out.width = "50%", fig.align='center'}
+knitr::include_graphics("assets/img/biwa.png")
+```
+
+]
 
 ---
 
@@ -230,34 +270,28 @@ knitr::include_graphics("assets/img/Ivan_Boryshko.jpg")
  ### 84.4 years
 ]
  
----
 
-# Exports: Ukraine vs. Japan
+<!-- # Exports: Ukraine vs. Japan -->
 
 
-```{r echo=FALSE, out.width='50%', fig.show="hold"}
+```{r include=FALSE, echo=FALSE, out.width='50%', fig.show="hold"}
 knitr::include_graphics("assets/img/Ukraine_Exports.png")
 knitr::include_graphics("assets/img/Japan_Exports.jpg")
 ```
 
----
 
-# Export destinations: Ukraine vs. Japan
+<!-- # Export destinations: Ukraine vs. Japan -->
 
 
-```{r echo=FALSE, out.width='50%', fig.show="hold"}
+```{r include=FALSE, echo=FALSE, out.width='50%', fig.show="hold"}
 knitr::include_graphics("assets/img/Ukraine_Export_Partners.jpg")
 knitr::include_graphics("assets/img/Japan_Export_Partners.jpg")
 ```
 
+<!-- # Import sources: Ukraine vs. Japan -->
 
 
----
-
-# Import sources: Ukraine vs. Japan
-
-
-```{r echo=FALSE, out.width='50%', fig.show="hold"}
+```{r include=FALSE, echo=FALSE, out.width='50%', fig.show="hold"}
 knitr::include_graphics("assets/img/Ukraine_Import_Partners.jpg")
 knitr::include_graphics("assets/img/Japan_Import_Partners.jpg")
 ```
