@@ -1,9 +1,9 @@
 ---
-title: "Ukraine and Japan: <br> Comparative Advantages"
-subtitle: "2021 KUT Seminar: <br> .white.bg-black[“Global Competency Modelling”]"
+title: ".yellow[Ukraine] & .red[Japan]: <br> Comparative Advantages"
+subtitle: ".light-blue[2021 KUT Seminar:] <br> .white.bg-black[“Global Competency Modelling”]"
 author: "Kostiantyn Ovsiannikov, Ph.D."
 institute: ".white.bg-green[Kochi University of Technology]"
-date: "13 December 2021"
+date: "14 December 2021"
 output:
   xaringan::moon_reader:
 #    chakra: libs/remark-latest.min.js
@@ -115,6 +115,7 @@ meta() %>%
   include_meta()
 ```
 
+
 # Ukraine & Japan: Geographic location
 
 ```{r echo=FALSE, include=TRUE, out.width = "200%"}
@@ -123,12 +124,50 @@ knitr::include_graphics("assets/img/Japan_Ukraine_Locator.png")
 
 ---
 
-# Japanese-Ukrainian relationship
+# Japanese-Ukrainian parallels
 
 
 ```{r echo=FALSE, include=TRUE, out.width = "50%", fig.align='center'}
 knitr::include_graphics("assets/img/Kozak_Samurai.jpg")
 ```
+
+---
+
+knitr::include_url("https://mariaruban.com/ukraine-in-the-mirror-of-japan")
+
+---
+
+# Cossacks vs. Bushi (武士)
+
+.pull-left[
+
+- emerged in 16th century
+
+- self-organized; mass troops
+
+- light cavalry with pikes and pistols
+
+```{r echo=FALSE, include=TRUE, out.width = "50%", fig.align='center'}
+knitr::include_graphics("assets/img/kozak.jpg")
+```
+
+]
+
+
+.pull-right[
+
+- emerged in 12th century (鎌倉時代)
+
+- warrior cast; nobility; hereditary
+
+- heavily armored cavalry with bows
+
+```{r echo=FALSE, include=TRUE, out.width = "60%", fig.align='center'}
+knitr::include_graphics("assets/img/samurai.jpg")
+```
+
+]
+
 
 ---
 
@@ -224,7 +263,68 @@ knitr::include_graphics("assets/img/Japan_Import_Partners.jpg")
 ```
 
 
+---
 
+background-image: url("assets//img/chernobyl.jpg")
+background-position: right
+background-size: 650px
+
+
+# Chernobyl vs. Fukushima Daiichi
+
+.pull-left[
+
+- .blue[date]: 1986/04/26 `r fa("arrow-alt-circle-right", fill = "#cc0033")` 2011/03/11
+
+- .blue[cause]: human error `r fa("arrow-alt-circle-right", fill = "#cc0033")`   natural disaster
+
+- .blue[radioactivity]: 14,000 PBq (Becquerel) ~ air `r fa("arrow-alt-circle-right", fill = "#cc0033")`  780 PBq ~ ocean
+
+- .blue[area affected]: 500 km `r fa("arrow-alt-circle-right", fill = "#cc0033")` 30 km
+
+- .blue[population relocated]: 335,000 `r fa("arrow-alt-circle-right", fill = "#cc0033")` 154,000
+
+- .blue[population returned]: none `r fa("arrow-alt-circle-right", fill = "#cc0033")` 122,00
+
+]
+
+
+
+---
+
+
+# Chernobyl-Fukushima cooperation
+
+--
+
+.pull-left[
+
+.black[福島大学環境放射能研究所] (founded in 2013)  **`r fa("people-carry", fill = "green")`**
+
+ - ウクライナ･オデッサ国立環境大学(OSENU)
+
+ - ウクライナ･チェルニーヒウ国立工科大学(ChNUT)
+
+ - ウクライナ科学アカデミー計算機計算システム研究所(IMMSP)
+
+ - ウクライナ・国営専門公社エコセンター
+
+ - ウクライナ国立科学アカデミー 原子力研究所（KINR）
+
+ - ウクライナ国立生命環境科学大学(NUBiP)
+
+]
+--
+
+.pull-right[
+
+- ### research on radioactive substances (.blue[strontium-90] and .blue[cesium-137])
+
+- ### research on contaminated waters `r fa("arrow-alt-circle-right", fill = "#cc0033")`
+
+- ### revamping the Exclusion Zones
+
+]
 
 
 ---

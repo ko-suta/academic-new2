@@ -114,9 +114,9 @@ thead, tfoot, tr:nth-child(even) { background: none; }
 
 /* Add image and change bg color */
 .title-slide {
-  background-image: url(assets/img/wheat-field.jpg);
-  background-position: 400% 50%;
-  background-size: 1100px;
+  background-image: url(assets/img/ukraine-anime.jpg);
+  background-position: 100% 50%;
+  background-size: 700px;
   background-color: #000000;
  /* padding-left: 100px;  /* delete this for 4:3 aspect ratio */
 }
