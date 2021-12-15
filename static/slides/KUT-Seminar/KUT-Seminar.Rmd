@@ -120,15 +120,11 @@ meta() %>%
 # Japanese-Ukrainian parallels
 
 
-```{r echo=FALSE, include=TRUE, out.width = "50%", fig.align='center'}
+```{r echo=FALSE, include=TRUE, out.width = "45%", fig.align='center', fig.cap = '<a href="https://www.facebook.com/ukr.embassy.japan/" style="color:Black;">Image source</a>'}
 knitr::include_graphics("assets/img/Kozak_Samurai.jpg")
 ```
 
 ---
-
-```{r echo=FALSE, include=FALSE}
-knitr::include_url("https://mariaruban.com/ukraine-in-the-mirror-of-japan")
-```
 
 
 # Kobzar vs. Biwa h&#333;shi (琵琶法師)
@@ -142,7 +138,7 @@ knitr::include_url("https://mariaruban.com/ukraine-in-the-mirror-of-japan")
 - historical themes
 
 
-```{r echo=FALSE, include=TRUE, out.width = "50%", fig.align='center'}
+```{r echo=FALSE, include=TRUE, out.width = "46%", fig.align='center', fig.cap = '<a href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Slastion-Bandurist_Samiylo_Yasnij.jpg/480px-Slastion-Bandurist_Samiylo_Yasnij.jpg" style="color:Black;">Image source</a>'}
 knitr::include_graphics("assets/img/kobzar.jpg")
 ```
 
@@ -160,7 +156,7 @@ knitr::include_graphics("assets/img/kobzar.jpg")
 - Buddhist monks
 
 
-```{r echo=FALSE, include=TRUE, out.width = "90%", fig.align='center'}
+```{r echo=FALSE, include=TRUE, out.width = "100%", fig.align='center', fig.cap = '<a href="https://ukiyoestock.com/wp-content/uploads/7479052-49.png" style="color:Black;">Image source</a>'}
 knitr::include_graphics("assets/img/biwa.png")
 ```
 
@@ -178,7 +174,7 @@ knitr::include_graphics("assets/img/biwa.png")
 
 - light cavalry with pikes and pistols
 
-```{r echo=FALSE, include=TRUE, out.width = "55%", fig.align='center'}
+```{r echo=FALSE, include=TRUE, out.width = "45%", fig.align='center', fig.cap = '<a href="https://cdnb.artstation.com/p/assets/images/images/007/778/547/large/kasia-slupecka-kozak-zaporowski-small.jpg?1509301491" style="color:Black;">Image source</a>'}
 knitr::include_graphics("assets/img/kozak.jpg")
 ```
 
@@ -194,7 +190,7 @@ knitr::include_graphics("assets/img/kozak.jpg")
 
 - heavily armored cavalry with bows
 
-```{r echo=FALSE, include=TRUE, out.width = "80%", fig.align='center'}
+```{r echo=FALSE, include=TRUE, out.width = "47%", fig.align='center', fig.cap = '<a href="https://unsplash.com/photos/Y_e_3q4bErg" style="color:Black;">Image source</a>'}
 knitr::include_graphics("assets/img/samurai.jpg")
 ```
 
@@ -208,7 +204,7 @@ knitr::include_graphics("assets/img/samurai.jpg")
 
 .pull-left[
 
-```{r echo=FALSE, include=TRUE, out.width = "90%", fig.align='left'}
+```{r echo=FALSE, include=TRUE, out.width = "73%", fig.align='left', fig.cap = '<a href="https://upload.wikimedia.org/wikipedia/uk/8/86/Ivan_Boryshko.jpg" style="color:Black;">Image source</a>'}
 knitr::include_graphics("assets/img/Ivan_Boryshko.jpg")
 ```
 ]
@@ -225,44 +221,21 @@ knitr::include_graphics("assets/img/Ivan_Boryshko.jpg")
 ]
 
 
- 
-
-<!-- # Exports: Ukraine vs. Japan -->
-
-
-```{r include=FALSE, echo=FALSE, out.width='50%', fig.show="hold"}
-knitr::include_graphics("assets/img/Ukraine_Exports.png")
-knitr::include_graphics("assets/img/Japan_Exports.jpg")
-```
-
-
-<!-- # Export destinations: Ukraine vs. Japan -->
-
-
-```{r include=FALSE, echo=FALSE, out.width='50%', fig.show="hold"}
-knitr::include_graphics("assets/img/Ukraine_Export_Partners.jpg")
-knitr::include_graphics("assets/img/Japan_Export_Partners.jpg")
-```
-
-<!-- # Import sources: Ukraine vs. Japan -->
-
-
-```{r include=FALSE, echo=FALSE, out.width='50%', fig.show="hold"}
-knitr::include_graphics("assets/img/Ukraine_Import_Partners.jpg")
-knitr::include_graphics("assets/img/Japan_Import_Partners.jpg")
-```
-
-
 ---
-
-background-image: url("assets//img/chernobyl.jpg")
-background-position: right
-background-size: 650px
 
 
 # Chernobyl vs. Fukushima Daiichi
 
 .pull-left[
+
+```{r echo=FALSE, include=TRUE, out.width = "150%", fig.align='left', fig.cap = '<a href="https://millardwestcatalyst.com/wp-content/uploads/2019/09/6c532595-chernobyl-season-1-hbo-series-all-cmyk.jpg" style="color:Black;">Image source</a>'}
+knitr::include_graphics("assets/img/chernobyl.jpg")
+```
+
+]
+
+
+.pull-right[
 
 - .blue[date]: 1986/04/26 `r fa("arrow-alt-circle-right", fill = "#cc0033")` 2011/03/11
 
@@ -326,7 +299,8 @@ background-color: yellow
 
 # Ukraine & Japan: Geographic location
 
-```{r echo=FALSE, include=TRUE, out.width = "200%"}
+```{r echo=FALSE, include=TRUE, fig.cap = '<a href="https://upload.wikimedia.org/wikipedia/commons/5/53/Japan_Ukraine_Locator.png" style="color:Black;">Image source</a>', out.width = "80%", fig.align='center'}
+
 knitr::include_graphics("assets/img/Japan_Ukraine_Locator.png")
 ```
 
@@ -381,7 +355,7 @@ knitr::include_graphics("assets/img/Japan_Ukraine_Locator.png")
 - ongoing conflict with Russia
 
 
-```{r echo=FALSE, include=TRUE, out.width = "90%", fig.align='center'}
+```{r echo=FALSE, include=TRUE, out.width = "75%", fig.align='center', fig.cap = '<a href="https://unsplash.com/photos/gpjGmbPLUxk" style="color:Black;">Image source</a>'}
 knitr::include_graphics("assets/img/lenin.jpg")
 ```
 
@@ -398,7 +372,7 @@ knitr::include_graphics("assets/img/lenin.jpg")
 - peaceful relationships with neighbors (however: territorial disputes)
 
 
-```{r echo=FALSE, include=TRUE, out.width = "90%", fig.align='center'}
+```{r echo=FALSE, include=TRUE, out.width = "84%", fig.align='center', fig.cap = '<a href="https://images.unsplash.com/photo-1542051841857-5f90071e7989?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=jezael-melgoza-alY6_OpdwRQ-unsplash.jpg" style="color:Black;">Image source</a>'}
 knitr::include_graphics("assets/img/tokyo.jpg")
 ```
 
@@ -436,6 +410,8 @@ background-position: 5% 1%
 # Thank You for Your attention!
 
 ## Questions / Suggestions?
+
+### [title-slide picture source](https://www.facebook.com/worldflagsamurai/)
 
 ### You can access the presentation & contact me `r fa("arrow-alt-circle-down", fill = "#cc0033")`
 
