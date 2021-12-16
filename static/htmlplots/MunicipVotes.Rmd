@@ -94,12 +94,15 @@ Elections %>%
     table_body.hlines.color = "white"
     ) %>%
   tab_header(
-    title = md("**Municipal characteristics**")
+    title = md("**Municipal characteristics**"),
   ) %>%
     data_color(
     columns = 2:11,
     colors = my_pal
-    )
+    ) %>%
+  gtsave(
+    "merged.png"
+)
 ```
 
 <br><br>
@@ -134,7 +137,10 @@ Elections %>%
     data_color(
     columns = 2:5,
     colors = my_pal
-    )
+    ) %>%
+  gtsave(
+    "merged-kaso-2021.png"
+)
 ```
 
 <br><br>
@@ -186,7 +192,10 @@ Elections %>%
     data_color(
     columns = 2:11,
     colors = my_pal
-    )
+    ) %>%
+  gtsave(
+    "kaso-nonkaso-2021.png"
+)
 ```
 
 
@@ -237,7 +246,7 @@ Elections %>%
     data_color(
     columns = 2:11,
     colors = my_pal
-    )
+    ) 
 ```
 
 <br><br>
@@ -289,7 +298,10 @@ Elections %>%
     data_color(
     columns = 2:11,
     colors = my_pal
-    )
+    ) %>%
+  gtsave(
+    "kaso-detailed-2021.png"
+)
 ```
 
 <br><br>
@@ -341,7 +353,10 @@ Elections %>%
     data_color(
     columns = 2:11,
     colors = my_pal
-    )
+    ) %>%
+  gtsave(
+    "kaso-merged-detailed-2021.png"
+)
 ```
 
 <br><br>
@@ -376,7 +391,10 @@ Elections %>%
     data_color(
     columns = 2:5,
     colors = my_pal
-    )
+    ) %>%
+  gtsave(
+    "merged-unique.png"
+)
 ```
 
 ### Basic differences between "Normal" and "Kaso" 
@@ -426,7 +444,10 @@ Elections %>%
     data_color(
     columns = 2:11,
     colors = my_pal
-    )
+    ) %>%
+  gtsave(
+    "kaso-nonkaso-unique.png"
+)
 ```
 
 
@@ -530,7 +551,10 @@ Elections %>%
     data_color(
     columns = 2:11,
     colors = my_pal
-    )
+    ) %>%
+  gtsave(
+    "kaso-detailed-unique.png"
+)
 ```
 
 
@@ -584,7 +608,10 @@ Elections %>%
     data_color(
     columns = 2:11,
     colors = my_pal
-    )
+    ) %>%
+  gtsave(
+    "kaso-merged-detailed-unique.png"
+)
 ```
 
 <br><br>
@@ -639,7 +666,10 @@ Elections %>%
     data_color(
     columns = 2:10,
     colors = my_pal
-    )
+    ) %>%
+  gtsave(
+    "kaso-nonkaso-overall.png"
+)
 ```
 
 ### Detailed differences (including types of "Kaso") + Merged/Non-Merged
@@ -690,5 +720,8 @@ Elections %>%
     data_color(
     columns = 2:10,
     colors = my_pal
-    )
+    ) %>%
+  gtsave(
+    "kaso-merged-detailed-overall.png"
+)
 ```
