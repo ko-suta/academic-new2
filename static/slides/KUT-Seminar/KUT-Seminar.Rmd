@@ -273,18 +273,16 @@ knitr::include_graphics("assets/img/chernobyl.jpg")
  - ウクライナ国立科学アカデミー 原子力研究所（KINR）
 
  - ウクライナ国立生命環境科学大学(NUBiP)
+ 
+.black[Research]: radioactive substances (.blue[strontium-90] and .blue[cesium-137]) + contaminated waters `r fa("arrow-alt-circle-right", fill = "#cc0033")` revamping the .black[Exclusion Zones]
 
 ]
 --
 
 .pull-right[
 
-- research on radioactive substances (.blue[strontium-90] and .blue[cesium-137])
-- research on contaminated waters `r fa("arrow-alt-circle-right", fill = "#cc0033")`
-- revamping the Exclusion Zones
 
-
-```{r echo=FALSE}
+```{r echo=FALSE, fig.cap = '<a href="https://www.jica.go.jp/english/news/field/2020/20210310_01.html" style="color:Black;">Source</a>'}
 knitr::include_url("https://www.jica.go.jp/english/news/field/2020/20210310_01.html")
 ```
 
