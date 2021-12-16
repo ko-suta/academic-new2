@@ -357,8 +357,8 @@ knitr::include_graphics("assets/img/Japan_Ukraine_Locator.png")
 - ongoing conflict with Russia
 
 
-```{r echo=FALSE, include=TRUE, out.width = "75%", fig.align='center', fig.cap = '<a href="https://unsplash.com/photos/gpjGmbPLUxk" style="color:Black;">Image source</a>'}
-knitr::include_graphics("assets/img/lenin.jpg")
+```{r echo=FALSE, include=TRUE, out.width = "90%", fig.align='center', fig.cap = '<a href="https://www.podbean.com/media/share/pb-bjk2s-92e9e8" style="color:Black;">Image source</a>'}
+knitr::include_graphics("assets/img/sovietunion.jpg")
 ```
 
 ]
@@ -400,7 +400,7 @@ background-color: yellow
 
 --
 
-# .center.black[.light-blue[but], peace is not eternal `r fa("arrow-alt-circle-right", fill = "#cc0033")` always be ready to face unexpected challanges!]
+# .center.black[.light-blue[but], peace is not eternal `r fa("arrow-alt-circle-right", fill = "#cc0033")` importance of being prepared for unexpected challanges]
 
 
 ---
