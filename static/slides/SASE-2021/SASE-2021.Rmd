@@ -19,6 +19,7 @@ output:
 
 ```{r setup, include=FALSE}
 library(knitr)
+library(showtext)
 library(summarytools)
 library(here)
 library(ymlthis)
@@ -321,6 +322,7 @@ cols <- c('#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#e78ac3','#a65628')
 .panel[.panel-name[Plot]
 
 ```{r, grant-timing-plot, echo=FALSE, fig.showtext=TRUE, fig.align="center", fig.width=12, fig.height=6}
+
 (timing <- data %>%
   filter(Year >= 1971 & Year <= 2014) %>%
   ggplot(aes(x = Year, y = Mean, group = Industry, 
