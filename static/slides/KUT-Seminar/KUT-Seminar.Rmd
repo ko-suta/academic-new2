@@ -398,7 +398,7 @@ background-color: yellow
 
 --
 
-# .center.black[.light-blue[but], peace is not eternal `r fa("arrow-alt-circle-right", fill = "#cc0033")` always be ready to face sudden changes!]
+# .center.black[.light-blue[but], peace is not eternal `r fa("arrow-alt-circle-right", fill = "#cc0033")` always be ready to face unexpected challanges!]
 
 
 ---
