@@ -552,13 +552,17 @@ cor(Elections3[,c(6:12,19)], use = "complete.obs") %>%
 
 ## Regressions
 
-### Turnout
+### Turnout ratio
 
 ```{r echo=FALSE, include=FALSE}
-TurnoutMod <- lm(Turnout ~ Fstrength + LDP + 
-                   Kaso.fusion + EldPop + Year, data = Elections3)
+TurnoutMod1 <- lm(Turnout ~ Year + Fstrength, data = Elections3)
 
-sqrt(car::vif(TurnoutMod))
+TurnoutMod2 <- lm(Turnout ~ Year + Fstrength + EldPop + LDP, data = Elections3)
+
+TurnoutMod3 <- lm(Turnout ~ Year + Fstrength + EldPop + LDP + 
+                   Kaso.fusion, data = Elections3)
+
+sqrt(car::vif(TurnoutMod3))
 ```
 
 ```{r echo=FALSE}
@@ -575,13 +579,15 @@ turnout.re <- plm(Turnout ~ Fstrength + LDP + Kaso.fusion + EldPop,
 
 
 ```{r turnout, results='asis', echo=FALSE}
-htmlreg(list(turnout.pooled, turnout.fe, turnout.re),
-       custom.model.names = c("Pooled OLS", "Fixed Effects", "Random Effects"),
-       custom.coef.names = c("Fiscal Strength", "LDP", "みなし過疎",
-                             "一部過疎", "全部過疎", "全部過疎-Merged",
-                             "Elderly", "(Intercept)"),
-       groups = list("Fiscal type (base group = 'Normal')" = 3:5),
-       caption = "Turnout ratio",
+htmlreg(list(TurnoutMod1, TurnoutMod2, TurnoutMod3),
+       custom.model.names = c("Model 1", "Model 2", "Model 3"),
+       custom.coef.names = c("(Intercept)",
+                             "2014", "2017", "Fiscal Strength",
+                             "Elderly", "LDP", "みなし過疎",
+                             "一部過疎", "全部過疎", "全部過疎-Merged"),
+       groups = list("Year dummy (base group = '2012')" = 2:3,
+         "Fiscal type (base group = 'Normal')" = 7:10),
+       caption = NULL,
        digits = 2,
 #       reorder.coef = c(2:8,1),
        include.ercomp = FALSE,
@@ -598,7 +604,18 @@ htmlreg(list(turnout.pooled, turnout.fe, turnout.re),
 
 <br><br>
 
-### LDP
+### LDP: SMD-Votes
+
+```{r echo=FALSE, include=FALSE}
+LDPMod1 <- lm(LDP ~ Year + Fstrength, data = Elections3)
+
+LDPMod2 <- lm(LDP ~ Year + Fstrength + EldPop + Turnout, data = Elections3)
+
+LDPMod3 <- lm(LDP ~ Year + Fstrength + EldPop + Turnout + 
+                   Kaso.fusion, data = Elections3)
+
+sqrt(car::vif(LDPMod3))
+```
 
 ```{r echo=FALSE}
 ldp.pooled <- plm(LDP ~ Fstrength + Turnout + Kaso.fusion + EldPop,
@@ -614,13 +631,15 @@ ldp.re <- plm(LDP ~ Fstrength + Turnout + Kaso.fusion + EldPop,
 
 
 ```{r ldp, results='asis', echo=FALSE}
-htmlreg(list(ldp.pooled, ldp.fe, ldp.re),
-       custom.model.names = c("Pooled OLS", "Fixed Effects", "Random Effects"),
-       custom.coef.names = c("Fiscal Strength", "Turnout", "みなし過疎",
-                             "一部過疎", "全部過疎", "全部過疎-Merged",
-                             "Elderly", "(Intercept)"),
-       groups = list("Fiscal type (base group = 'Normal')" = 3:5),
-       caption = "LDP: SMD Votes",
+htmlreg(list(LDPMod1, LDPMod2, LDPMod3),
+       custom.model.names = c("Model 1", "Model 2", "Model 3"),
+       custom.coef.names = c("(Intercept)",
+                             "2014", "2017", "Fiscal Strength",
+                             "Elderly", "Turnout", "みなし過疎",
+                             "一部過疎", "全部過疎", "全部過疎-Merged"),
+       groups = list("Year dummy (base group = '2012')" = 2:3,
+         "Fiscal type (base group = 'Normal')" = 7:10),
+       caption = NULL,
        digits = 2,
 #       reorder.coef = c(2:8,1),
        include.ercomp = FALSE,
