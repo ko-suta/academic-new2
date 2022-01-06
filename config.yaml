@@ -76,3 +76,12 @@ related:
       weight: 100
     - name: categories
       weight: 70
+
+# Security
+# https://stackoverflow.com/questions/70429317/blogdownserve-site-fails-to-produce-template-site
+
+security:
+  funcs:
+    getenv:
+      - ^HUGO_
+      - ^WC_
