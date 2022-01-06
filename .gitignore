@@ -13,3 +13,4 @@ yarn.lock
 package.json
 .DS_Store
 .hugo_build.lock
+/blogdown
