@@ -59,6 +59,10 @@ markup:
     endLevel: 3
 security:
   _merge: deep
+  funcs:
+    getenv:
+      - ^HUGO_
+      - ^WC_
 imaging:
   resampleFilter: lanczos
   quality: 75
@@ -81,10 +85,3 @@ related:
 
 # Security
 # https://stackoverflow.com/questions/70429317/blogdownserve-site-fails-to-produce-template-site
-
-# security:
-#   funcs:
-#     getenv:
-#       - ^HUGO_
-#       - ^WC_
-#       - ^BLOGDOWN_POST_RELREF_
