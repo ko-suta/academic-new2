@@ -58,7 +58,6 @@ markup:
     startLevel: 2
     endLevel: 3
 security:
-  _merge: deep
   funcs:
     getenv:
       - ^HUGO_
