@@ -20,7 +20,10 @@ p_needed <- c("tidyverse",
               "xml2",
               "gt",
               "gtExtras",
-              "rmdformats"
+              "rmdformats",
+              "ggcorrplot",
+              "texreg",
+              "plm"
 )
 packages <- rownames(installed.packages())
 p_to_install <- p_needed[!(p_needed %in% packages)]
@@ -50,6 +53,7 @@ my_pal <- scales::col_numeric(
 
 ```
 
+# Exploratory tables
 
 ## Basic differences between "merged" and "non-merged"
 
@@ -99,264 +103,10 @@ Elections %>%
     data_color(
     columns = 2:11,
     colors = my_pal
-    ) %>%
-  gtsave(
-    "merged.png"
-)
-```
-
-<br><br>
-
-## 2021 "Kaso" values
-
-### Merged / non-merged counts and proportions across kaso-types 
-
-```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
-Elections %>%
-  select(Year, Fusion, Kaso.x) %>%
-  group_by(Year, Kaso.x, Fusion) %>%
-  summarise(n = n()) %>%
-  mutate(freq = n / sum(n)*100) %>%
-  mutate(Fusion = factor(Fusion, levels = c("0", "1"), 
-                      labels = c("Non-Merged", "Merged"))) %>%
-  gt(rowname_col = "Fusion") %>%
-  fmt_number(
-    columns = 2:5,
-    decimals = 0 # decrease decimal places
-    ) %>%
-  tab_options(
-    column_labels.border.top.color = "black",
-    column_labels.border.bottom.color = "black",
-    table_body.border.bottom.color = "black",
-    table_body.hlines.color = "white"
-    ) %>%
-  tab_header(
-    title = md("**Municipal characteristics**"),
-    subtitle = md("*Aggregated by fiscal profiles*")
-  ) %>%
-    data_color(
-    columns = 2:5,
-    colors = my_pal
-    ) %>%
-  gtsave(
-    "merged-kaso-2021.png"
-)
-```
-
-<br><br>
-
-### Basic differences between "Normal" and "Kaso" 
-
-```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
-Elections %>%
-  group_by(Year, Kaso2.x) %>%
-  filter(LDP>=0 & LDP <=1) %>%
-  filter(JCP>=0 & JCP <=1) %>%
-  mutate(EldPop = EldPop/100) %>%
-    dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
-                     `LDP-PR` = mean(LDPPR, na.rm=TRUE),
-                     `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
-                     `JCP-SMD` = mean(JCP, na.rm=TRUE),
-                     `JCP-PR` = mean(JCPPR, na.rm=TRUE),
-                     `JCP-Gap` = mean(JCPDif, na.rm=TRUE),
-                     Turnout = mean(Turnout, na.rm=TRUE),
-                     FStrength = mean(Fstrength, na.rm=TRUE),
-                     Elderly = mean(EldPop, na.rm=TRUE)) %>%
-  gt(rowname_col = "Kaso2.x") %>%
-  fmt_number(
-    columns = 2:11,
-    decimals = 3 # decrease decimal places
-    ) %>%
-  tab_style(
-    style = list(
-      cell_borders(
-        sides = "left",
-        color = "black",
-        weight = px(3)
-      )
-    ),
-    locations = list(
-      cells_body(
-        columns = vars(`JCP-SMD`, Turnout)
-      ))) %>%
-  tab_options(
-    column_labels.border.top.color = "black",
-    column_labels.border.bottom.color = "black",
-    table_body.border.bottom.color = "black",
-    table_body.hlines.color = "white"
-    ) %>%
-  tab_header(
-    title = md("**Municipal characteristics**"),
-    subtitle = md("*Aggregated by fiscal profiles*")
-  ) %>%
-    data_color(
-    columns = 2:11,
-    colors = my_pal
-    ) %>%
-  gtsave(
-    "kaso-nonkaso-2021.png"
-)
-```
-
-
-<!-- ### Basic differences between "Normal" and "Kaso" + Merged/Non-Merged -->
-
-```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE, include=FALSE}
-Elections %>%
-  group_by(Year, Kaso2.x.fusion) %>%
-  filter(LDP>=0 & LDP <=1) %>%
-  filter(JCP>=0 & JCP <=1) %>%
-  mutate(EldPop = EldPop/100) %>%
-    dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
-                     `LDP-PR` = mean(LDPPR, na.rm=TRUE),
-                     `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
-                     `JCP-SMD` = mean(JCP, na.rm=TRUE),
-                     `JCP-PR` = mean(JCPPR, na.rm=TRUE),
-                     `JCP-Gap` = mean(JCPDif, na.rm=TRUE),
-                     Turnout = mean(Turnout, na.rm=TRUE),
-                     FStrength = mean(Fstrength, na.rm=TRUE),
-                     Elderly = mean(EldPop, na.rm=TRUE)) %>%
-  gt(rowname_col = "Kaso2.x.fusion") %>%
-  fmt_number(
-    columns = 2:11,
-    decimals = 3 # decrease decimal places
-    ) %>%
-  tab_style(
-    style = list(
-      cell_borders(
-        sides = "left",
-        color = "black",
-        weight = px(3)
-      )
-    ),
-    locations = list(
-      cells_body(
-        columns = vars(`JCP-SMD`, Turnout)
-      ))) %>%
-  tab_options(
-    column_labels.border.top.color = "black",
-    column_labels.border.bottom.color = "black",
-    table_body.border.bottom.color = "black",
-    table_body.hlines.color = "white"
-    ) %>%
-  tab_header(
-    title = md("**Municipal characteristics**"),
-    subtitle = md("*Aggregated by fiscal profiles*")
-  ) %>%
-    data_color(
-    columns = 2:11,
-    colors = my_pal
-    ) 
-```
-
-<br><br>
-
-### Detailed differences (including types of "Kaso")
-
-```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
-Elections %>%
-  group_by(Year, Kaso.x) %>%
-  filter(LDP>=0 & LDP <=1) %>%
-  filter(JCP>=0 & JCP <=1) %>%
-  mutate(EldPop = EldPop/100) %>%
-    dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
-                     `LDP-PR` = mean(LDPPR, na.rm=TRUE),
-                     `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
-                     `JCP-SMD` = mean(JCP, na.rm=TRUE),
-                     `JCP-PR` = mean(JCPPR, na.rm=TRUE),
-                     `JCP-Gap` = mean(JCPDif, na.rm=TRUE),
-                     Turnout = mean(Turnout, na.rm=TRUE),
-                     FStrength = mean(Fstrength, na.rm=TRUE),
-                     Elderly = mean(EldPop, na.rm=TRUE)) %>%
-  gt(rowname_col = "Kaso.x") %>%
-  fmt_number(
-    columns = 2:11,
-    decimals = 3 # decrease decimal places
-    ) %>%
-  tab_style(
-    style = list(
-      cell_borders(
-        sides = "left",
-        color = "black",
-        weight = px(3)
-      )
-    ),
-    locations = list(
-      cells_body(
-        columns = vars(`JCP-SMD`, Turnout)
-      ))) %>%
-  tab_options(
-    column_labels.border.top.color = "black",
-    column_labels.border.bottom.color = "black",
-    table_body.border.bottom.color = "black",
-    table_body.hlines.color = "white"
-    ) %>%
-  tab_header(
-    title = md("**Municipal characteristics**"),
-    subtitle = md("*Aggregated by fiscal profiles*")
-  ) %>%
-    data_color(
-    columns = 2:11,
-    colors = my_pal
-    ) %>%
-  gtsave(
-    "kaso-detailed-2021.png"
-)
-```
-
-<br><br>
-
-### Detailed differences (including types of "Kaso") + Merged/Non-Merged
-
-```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
-Elections %>%
-  group_by(Year, Kaso.x.fusion) %>%
-  filter(LDP>=0 & LDP <=1) %>%
-  filter(JCP>=0 & JCP <=1) %>%
-  mutate(EldPop = EldPop/100) %>%
-    dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
-                     `LDP-PR` = mean(LDPPR, na.rm=TRUE),
-                     `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
-                     `JCP-SMD` = mean(JCP, na.rm=TRUE),
-                     `JCP-PR` = mean(JCPPR, na.rm=TRUE),
-                     `JCP-Gap` = mean(JCPDif, na.rm=TRUE),
-                     Turnout = mean(Turnout, na.rm=TRUE),
-                     FStrength = mean(Fstrength, na.rm=TRUE),
-                     Elderly = mean(EldPop, na.rm=TRUE)) %>%
-  gt(rowname_col = "Kaso.x.fusion") %>%
-  fmt_number(
-    columns = 2:11,
-    decimals = 3 # decrease decimal places
-    ) %>%
-  tab_style(
-    style = list(
-      cell_borders(
-        sides = "left",
-        color = "black",
-        weight = px(3)
-      )
-    ),
-    locations = list(
-      cells_body(
-        columns = vars(`JCP-SMD`, Turnout)
-      ))) %>%
-  tab_options(
-    column_labels.border.top.color = "black",
-    column_labels.border.bottom.color = "black",
-    table_body.border.bottom.color = "black",
-    table_body.hlines.color = "white"
-    ) %>%
-  tab_header(
-    title = md("**Municipal characteristics**"),
-    subtitle = md("*Aggregated by fiscal profiles*")
-  ) %>%
-    data_color(
-    columns = 2:11,
-    colors = my_pal
-    ) %>%
-  gtsave(
-    "kaso-merged-detailed-2021.png"
-)
+    )
+#   gtsave(
+#     "merged.png"
+# )
 ```
 
 <br><br>
@@ -367,8 +117,8 @@ Elections %>%
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 Elections %>%
-  select(Year, Fusion, Kaso.y) %>%
-  group_by(Year, Kaso.y, Fusion) %>%
+  select(Year, Fusion, Kaso) %>%
+  group_by(Year, Kaso, Fusion) %>%
   summarise(n = n()) %>%
   mutate(freq = n / sum(n)*100) %>%
   mutate(Fusion = factor(Fusion, levels = c("0", "1"), 
@@ -391,17 +141,17 @@ Elections %>%
     data_color(
     columns = 2:5,
     colors = my_pal
-    ) %>%
-  gtsave(
-    "merged-unique.png"
-)
+    )
+#   gtsave(
+#     "merged-unique.png"
+# )
 ```
 
 ### Basic differences between "Normal" and "Kaso" 
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 Elections %>%
-  group_by(Year, Kaso2.y) %>%
+  group_by(Year, Kaso2) %>%
   filter(LDP>=0 & LDP <=1) %>%
   filter(JCP>=0 & JCP <=1) %>%
   mutate(EldPop = EldPop/100) %>%
@@ -414,7 +164,7 @@ Elections %>%
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
                      Elderly = mean(EldPop, na.rm=TRUE)) %>%
-  gt(rowname_col = "Kaso2.y") %>%
+  gt(rowname_col = "Kaso2") %>%
   fmt_number(
     columns = 2:11,
     decimals = 3 # decrease decimal places
@@ -444,10 +194,10 @@ Elections %>%
     data_color(
     columns = 2:11,
     colors = my_pal
-    ) %>%
-  gtsave(
-    "kaso-nonkaso-unique.png"
-)
+    )
+#   gtsave(
+#     "kaso-nonkaso-unique.png"
+# )
 ```
 
 
@@ -455,7 +205,7 @@ Elections %>%
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE, include=FALSE}
 Elections %>%
-  group_by(Year, Kaso2.y.fusion) %>%
+  group_by(Year, Kaso2.fusion) %>%
   filter(LDP>=0 & LDP <=1) %>%
   filter(JCP>=0 & JCP <=1) %>%
   mutate(EldPop = EldPop/100) %>%
@@ -468,7 +218,7 @@ Elections %>%
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
                      Elderly = mean(EldPop, na.rm=TRUE)) %>%
-  gt(rowname_col = "Kaso2.y.fusion") %>%
+  gt(rowname_col = "Kaso2.fusion") %>%
   fmt_number(
     columns = 2:11,
     decimals = 3 # decrease decimal places
@@ -508,7 +258,7 @@ Elections %>%
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 Elections %>%
-  group_by(Year, Kaso.y) %>%
+  group_by(Year, Kaso) %>%
   filter(LDP>=0 & LDP <=1) %>%
   filter(JCP>=0 & JCP <=1) %>%
   mutate(EldPop = EldPop/100) %>%
@@ -521,7 +271,7 @@ Elections %>%
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
                      Elderly = mean(EldPop, na.rm=TRUE)) %>%
-  gt(rowname_col = "Kaso.y") %>%
+  gt(rowname_col = "Kaso") %>%
   fmt_number(
     columns = 2:11,
     decimals = 3 # decrease decimal places
@@ -551,10 +301,10 @@ Elections %>%
     data_color(
     columns = 2:11,
     colors = my_pal
-    ) %>%
-  gtsave(
-    "kaso-detailed-unique.png"
-)
+    )
+#   gtsave(
+#     "kaso-detailed-unique.png"
+# )
 ```
 
 
@@ -565,7 +315,7 @@ Elections %>%
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 Elections %>%
-  group_by(Year, Kaso.y.fusion) %>%
+  group_by(Year, Kaso.fusion) %>%
   filter(LDP>=0 & LDP <=1) %>%
   filter(JCP>=0 & JCP <=1) %>%
   mutate(EldPop = EldPop/100) %>%
@@ -578,7 +328,7 @@ Elections %>%
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
                      Elderly = mean(EldPop, na.rm=TRUE)) %>%
-  gt(rowname_col = "Kaso.y.fusion") %>%
+  gt(rowname_col = "Kaso.fusion") %>%
   fmt_number(
     columns = 2:11,
     decimals = 3 # decrease decimal places
@@ -608,10 +358,10 @@ Elections %>%
     data_color(
     columns = 2:11,
     colors = my_pal
-    ) %>%
-  gtsave(
-    "kaso-merged-detailed-unique.png"
-)
+    )
+#   gtsave(
+#     "kaso-merged-detailed-unique.png"
+# )
 ```
 
 <br><br>
@@ -623,7 +373,7 @@ Elections %>%
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 Elections %>%
   filter(!Year %in% 2009) %>%
-  group_by(Kaso2.y) %>%
+  group_by(Kaso2) %>%
   filter(LDP>=0 & LDP <=1) %>%
   filter(JCP>=0 & JCP <=1) %>%
   mutate(EldPop = EldPop/100) %>%
@@ -636,7 +386,7 @@ Elections %>%
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
                      Elderly = mean(EldPop, na.rm=TRUE)) %>%
-  gt(rowname_col = "Kaso2.y") %>%
+  gt(rowname_col = "Kaso2") %>%
   fmt_number(
     columns = 2:10,
     decimals = 3 # decrease decimal places
@@ -666,10 +416,10 @@ Elections %>%
     data_color(
     columns = 2:10,
     colors = my_pal
-    ) %>%
-  gtsave(
-    "kaso-nonkaso-overall.png"
-)
+    )
+#   gtsave(
+#     "kaso-nonkaso-overall.png"
+# )
 ```
 
 ### Detailed differences (including types of "Kaso") + Merged/Non-Merged
@@ -677,7 +427,7 @@ Elections %>%
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 Elections %>%
   filter(!Year %in% 2009) %>%
-  group_by(Kaso.y.fusion) %>%
+  group_by(Kaso.fusion) %>%
   filter(LDP>=0 & LDP <=1) %>%
   filter(JCP>=0 & JCP <=1) %>%
   mutate(EldPop = EldPop/100) %>%
@@ -690,7 +440,7 @@ Elections %>%
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
                      Elderly = mean(EldPop, na.rm=TRUE)) %>%
-  gt(rowname_col = "Kaso.y.fusion") %>%
+  gt(rowname_col = "Kaso.fusion") %>%
   fmt_number(
     columns = 2:10,
     decimals = 3 # decrease decimal places
@@ -720,8 +470,169 @@ Elections %>%
     data_color(
     columns = 2:10,
     colors = my_pal
-    ) %>%
-  gtsave(
-    "kaso-merged-detailed-overall.png"
-)
+    ) 
+#   gtsave(
+#     "kaso-merged-detailed-overall.png"
+# )
 ```
+
+
+# Statistical analysis
+
+```{r echo=FALSE, include=FALSE}
+Elections$Year <- as.character(Elections$Year)
+Elections$Year <- as.factor(Elections$Year)
+
+Elections2 <- Elections %>%
+  filter(!Year %in% 2009 &
+           !Code %in% NA) %>%
+  mutate(Turnout = ifelse(Turnout >=1, NA, Turnout),
+         EldPop = EldPop/100)
+
+Elections3 <- Elections2[!duplicated(Elections2[,1:2]),]
+```
+
+
+## Summary statistics
+
+```{r echo=FALSE, results='asis'}
+Elections3 %>%
+  # Keep numeric variables
+  select_if(is.numeric) %>%
+  # gather variables
+  gather(Variable, value) %>%
+  # Summarize by variable
+  group_by(Variable) %>%
+  # summarise all columns
+  summarise(n = sum(!is.na(value)),
+            `Mean` = mean(value, na.rm = TRUE),
+            `Std. Dev.` = sd(value, na.rm = TRUE),
+            `Median` = median(value, na.rm = TRUE),
+            `Min.` = min(value, na.rm = TRUE),
+            `Max.` = max(value, na.rm = TRUE)) %>%
+  gt() %>%
+  fmt_number(
+    columns = 3:7,
+    decimals = 2) %>%
+  fmt_number(
+    rows = 4,
+    columns = 3:7,
+    decimals = 0) %>%
+  tab_options(
+    column_labels.border.top.color = "black",
+    column_labels.border.bottom.color = "black",
+    table_body.border.bottom.color = "black",
+    table_body.hlines.color = "white"
+    ) %>%
+  tab_header(
+    title = md("**Summary statistics**"))
+
+```
+
+
+## Correlation matrix
+
+```{r echo=FALSE, results='asis'}
+cor(Elections3[,c(6:12,19)], use = "complete.obs") %>% 
+  ggcorrplot(hc.order = TRUE, #hierarchical ordering
+             type = "lower",
+             lab = TRUE,
+             lab_size = 5,
+             outline.color = "white",
+             colors = c("#6D9EC1", "white", "#E46726"),
+             sig.level=0.05,
+             insig = "blank") +
+  theme(plot.background = element_rect(fill = "#303030", color = "#303030"),
+        axis.text.x = element_text(colour = "grey", family = "serif", size = 15),
+        axis.text.y = element_text(colour = "grey",family = "serif", size = 15),
+        legend.title = element_text(color = "white"),
+        legend.text = element_text(color = "white"),
+        plot.title = element_text(hjust = 0.5, color = "white", face="bold"))
+```
+
+## Regressions
+
+### Turnout
+
+```{r echo=FALSE, include=FALSE}
+TurnoutMod <- lm(Turnout ~ Fstrength + LDP + 
+                   Kaso.fusion + EldPop + Year, data = Elections3)
+
+sqrt(car::vif(TurnoutMod))
+```
+
+```{r echo=FALSE}
+turnout.pooled <- plm(Turnout ~ Fstrength + LDP + Kaso.fusion + EldPop,
+                  index=c("Code","Year"), data = Elections3, model = "within", effect = "time")
+
+turnout.fe <- plm(Turnout ~ Fstrength + LDP + Kaso.fusion + EldPop,
+                  index=c("Code","Year"), data = Elections3, model = "within")
+
+turnout.re <- plm(Turnout ~ Fstrength + LDP + Kaso.fusion + EldPop,
+                  index=c("Code","Year"), data = Elections3, 
+                  model = "random")
+```
+
+
+```{r turnout, results='asis', echo=FALSE}
+htmlreg(list(turnout.pooled, turnout.fe, turnout.re),
+       custom.model.names = c("Pooled OLS", "Fixed Effects", "Random Effects"),
+       custom.coef.names = c("Fiscal Strength", "LDP", "みなし過疎",
+                             "一部過疎", "全部過疎", "全部過疎-Merged",
+                             "Elderly", "(Intercept)"),
+       groups = list("Fiscal type (base group = 'Normal')" = 3:5),
+       caption = "Turnout ratio",
+       digits = 2,
+#       reorder.coef = c(2:8,1),
+       include.ercomp = FALSE,
+       single.row = FALSE,
+       booktabs = TRUE,
+       dcolumn = TRUE,
+       caption.above = TRUE,
+       threeparttable = TRUE,
+       use.packages = FALSE,
+       stars = c(0.01, 0.05, 0.1),
+       label = "tab:Turnout"
+       )
+```
+
+<br><br>
+
+### LDP
+
+```{r echo=FALSE}
+ldp.pooled <- plm(LDP ~ Fstrength + Turnout + Kaso.fusion + EldPop,
+                  index=c("Code","Year"), data = Elections3, model = "within", effect = "time")
+
+ldp.fe <- plm(LDP ~ Fstrength + Turnout + Kaso.fusion + EldPop,
+                  index=c("Code","Year"), data = Elections3, model = "within")
+
+ldp.re <- plm(LDP ~ Fstrength + Turnout + Kaso.fusion + EldPop,
+                  index=c("Code","Year"), data = Elections3, 
+                  model = "random")
+```
+
+
+```{r ldp, results='asis', echo=FALSE}
+htmlreg(list(ldp.pooled, ldp.fe, ldp.re),
+       custom.model.names = c("Pooled OLS", "Fixed Effects", "Random Effects"),
+       custom.coef.names = c("Fiscal Strength", "Turnout", "みなし過疎",
+                             "一部過疎", "全部過疎", "全部過疎-Merged",
+                             "Elderly", "(Intercept)"),
+       groups = list("Fiscal type (base group = 'Normal')" = 3:5),
+       caption = "LDP: SMD Votes",
+       digits = 2,
+#       reorder.coef = c(2:8,1),
+       include.ercomp = FALSE,
+       single.row = FALSE,
+       booktabs = TRUE,
+       dcolumn = TRUE,
+       caption.above = TRUE,
+       threeparttable = TRUE,
+       use.packages = FALSE,
+       stars = c(0.01, 0.05, 0.1),
+       label = "tab:LDP"
+       )
+```
+
+<br><br>
