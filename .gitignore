@@ -12,3 +12,4 @@ yarn.lock
 /functions/
 package.json
 .DS_Store
+.hugo_build.lock
