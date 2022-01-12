@@ -479,18 +479,37 @@ Elections %>%
 
 # Statistical analysis
 
-```{r echo=FALSE, include=FALSE}
-Elections$Year <- as.character(Elections$Year)
-Elections$Year <- as.factor(Elections$Year)
 
-Elections2 <- Elections %>%
-  filter(!Year %in% 2009 &
-           !Code %in% NA) %>%
+```{r echo=FALSE, include=FALSE}
+ElectionsSMD <- read_csv("Data/ElectionsSMD.csv")
+
+ElectionsSMD <- ElectionsSMD[,-c(6,9)]
+
+ElectionsSMD <- ElectionsSMD[,c(7,6,1:5,8:16)]
+
+ElectionsSMD2 <- ElectionsSMD %>%
+  filter(LDP>=0 | LDP %in% NA) %>%
+  filter(LDP <=1 | LDP %in% NA) %>%
+  filter(JCP>=0 | JCP %in% NA) %>%
+  filter(JCP <=1 | JCP %in% NA)
+```
+
+
+```{r echo=FALSE, include=FALSE}
+ElectionsSMD2$Year <- as.character(ElectionsSMD2$Year)
+ElectionsSMD2$Year <- as.factor(ElectionsSMD2$Year)
+
+ElectionsSMD2$Code <- as.character(ElectionsSMD2$Code)
+ElectionsSMD2$Code <- as.factor(ElectionsSMD2$Code)
+
+ElectionsSMD2 <- ElectionsSMD2 %>%
+  filter(!Code %in% NA) %>%
   mutate(Turnout = ifelse(Turnout >=1, NA, Turnout),
          EldPop = EldPop/100)
 
-Elections3 <- Elections2[!duplicated(Elections2[,1:2]),]
+Elections3 <- ElectionsSMD2[!duplicated(ElectionsSMD2[,1:2]),]
 ```
+
 
 
 ## Summary statistics
@@ -533,7 +552,9 @@ Elections3 %>%
 ## Correlation matrix
 
 ```{r echo=FALSE, results='asis'}
-cor(Elections3[,c(6:12,19)], use = "complete.obs") %>% 
+Elections3 %>%
+  select_if(is.numeric) %>%
+  cor(use = "complete.obs") %>% 
   ggcorrplot(hc.order = TRUE, #hierarchical ordering
              type = "lower",
              lab = TRUE,
@@ -581,12 +602,12 @@ turnout.re <- plm(Turnout ~ Fstrength + LDP + Kaso.fusion + EldPop,
 ```{r turnout, results='asis', echo=FALSE}
 htmlreg(list(TurnoutMod1, TurnoutMod2, TurnoutMod3),
        custom.model.names = c("Model 1", "Model 2", "Model 3"),
-       custom.coef.names = c("(Intercept)",
-                             "2014", "2017", "Fiscal Strength",
+       custom.coef.names = c("(Intercept)", "2012",
+                             "2014", "2017", "2021", "Fiscal Strength",
                              "Elderly", "LDP", "みなし過疎",
                              "一部過疎", "全部過疎", "全部過疎-Merged"),
-       groups = list("Year dummy (base group = '2012')" = 2:3,
-         "Fiscal type (base group = 'Normal')" = 7:10),
+       groups = list("Year dummy (base group = '2009')" = 2:5,
+         "Fiscal type (base group = 'Normal')" = 9:12),
        caption = NULL,
        digits = 2,
 #       reorder.coef = c(2:8,1),
@@ -633,12 +654,12 @@ ldp.re <- plm(LDP ~ Fstrength + Turnout + Kaso.fusion + EldPop,
 ```{r ldp, results='asis', echo=FALSE}
 htmlreg(list(LDPMod1, LDPMod2, LDPMod3),
        custom.model.names = c("Model 1", "Model 2", "Model 3"),
-       custom.coef.names = c("(Intercept)",
-                             "2014", "2017", "Fiscal Strength",
+       custom.coef.names = c("(Intercept)", "2012",
+                             "2014", "2017", "2021", "Fiscal Strength",
                              "Elderly", "Turnout", "みなし過疎",
                              "一部過疎", "全部過疎", "全部過疎-Merged"),
-       groups = list("Year dummy (base group = '2012')" = 2:3,
-         "Fiscal type (base group = 'Normal')" = 7:10),
+       groups = list("Year dummy (base group = '2009')" = 2:5,
+         "Fiscal type (base group = 'Normal')" = 9:12),
        caption = NULL,
        digits = 2,
 #       reorder.coef = c(2:8,1),
@@ -653,5 +674,12 @@ htmlreg(list(LDPMod1, LDPMod2, LDPMod3),
        label = "tab:LDP"
        )
 ```
+
+```{r echo=FALSE, include=FALSE}
+ElectionsSMD2 %>%
+  group_by(Year) %>%
+  summarise(Turnout = mean(Turnout, na.rm = TRUE))
+```
+
 
 <br><br>
