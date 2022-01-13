@@ -44,6 +44,33 @@ Elections <- read_csv(here("static", "htmlplots", "Data", "Elections.csv"), col_
 ```
 
 ```{r echo=FALSE}
+Elections <- Elections[,-c(6,9)]
+
+Elections <- Elections[,c(7,6,1:5,8:20)]
+
+Elections2 <- Elections %>%
+  filter(LDP>=0 | LDP %in% NA) %>%
+  filter(LDP <=1 | LDP %in% NA) %>%
+  filter(JCP>=0 | JCP %in% NA) %>%
+  filter(JCP <=1 | JCP %in% NA)
+
+Elections2$Year <- as.character(Elections2$Year)
+Elections2$Year <- as.factor(Elections2$Year)
+
+Elections2$Code <- as.character(Elections2$Code)
+Elections2$Code <- as.factor(Elections2$Code)
+
+Elections2 <- Elections2 %>%
+  filter(!Code %in% NA) %>%
+  mutate(Turnout = ifelse(Turnout >=1, NA, Turnout),
+         EldPop = EldPop/100)
+
+Elections3 <- Elections2[!duplicated(Elections2[,1:2]),]
+```
+
+
+
+```{r echo=FALSE}
 my_pal <- scales::col_numeric(
   paletteer::paletteer_d(
     palette = "ggsci::red_material"
@@ -58,14 +85,11 @@ my_pal <- scales::col_numeric(
 ## Basic differences between "merged" and "non-merged"
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
-Elections %>%
+Elections3 %>%
   mutate(Fusion = factor(Fusion, levels = c("0", "1"), 
                       labels = c("Non-Merged", "Merged"))) %>%
   group_by(Year, Fusion) %>%
-  filter(LDP>=0 & LDP <=1) %>%
-  filter(JCP>=0 & JCP <=1) %>%
-  mutate(EldPop = EldPop/100) %>%
-    dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+  dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                      `LDP-PR` = mean(LDPPR, na.rm=TRUE),
                      `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
                      `JCP-SMD` = mean(JCP, na.rm=TRUE),
@@ -116,7 +140,7 @@ Elections %>%
 ### Merged / non-merged counts and proportions across kaso-types 
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
-Elections %>%
+Elections3 %>%
   select(Year, Fusion, Kaso) %>%
   group_by(Year, Kaso, Fusion) %>%
   summarise(n = n()) %>%
@@ -150,12 +174,9 @@ Elections %>%
 ### Basic differences between "Normal" and "Kaso" 
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
-Elections %>%
+Elections3 %>%
   group_by(Year, Kaso2) %>%
-  filter(LDP>=0 & LDP <=1) %>%
-  filter(JCP>=0 & JCP <=1) %>%
-  mutate(EldPop = EldPop/100) %>%
-    dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+  dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                      `LDP-PR` = mean(LDPPR, na.rm=TRUE),
                      `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
                      `JCP-SMD` = mean(JCP, na.rm=TRUE),
@@ -204,12 +225,9 @@ Elections %>%
 <!-- ### Basic differences between "Normal" and "Kaso" + Merged/Non-Merged -->
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE, include=FALSE}
-Elections %>%
+Elections3 %>%
   group_by(Year, Kaso2.fusion) %>%
-  filter(LDP>=0 & LDP <=1) %>%
-  filter(JCP>=0 & JCP <=1) %>%
-  mutate(EldPop = EldPop/100) %>%
-    dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+  dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                      `LDP-PR` = mean(LDPPR, na.rm=TRUE),
                      `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
                      `JCP-SMD` = mean(JCP, na.rm=TRUE),
@@ -257,12 +275,9 @@ Elections %>%
 ### Detailed differences (including types of "Kaso")
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
-Elections %>%
+Elections3 %>%
   group_by(Year, Kaso) %>%
-  filter(LDP>=0 & LDP <=1) %>%
-  filter(JCP>=0 & JCP <=1) %>%
-  mutate(EldPop = EldPop/100) %>%
-    dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+  dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                      `LDP-PR` = mean(LDPPR, na.rm=TRUE),
                      `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
                      `JCP-SMD` = mean(JCP, na.rm=TRUE),
@@ -314,12 +329,9 @@ Elections %>%
 ### Detailed differences (including types of "Kaso") + Merged/Non-Merged
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
-Elections %>%
+Elections3 %>%
   group_by(Year, Kaso.fusion) %>%
-  filter(LDP>=0 & LDP <=1) %>%
-  filter(JCP>=0 & JCP <=1) %>%
-  mutate(EldPop = EldPop/100) %>%
-    dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+  dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                      `LDP-PR` = mean(LDPPR, na.rm=TRUE),
                      `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
                      `JCP-SMD` = mean(JCP, na.rm=TRUE),
@@ -366,18 +378,15 @@ Elections %>%
 
 <br><br>
 
-## 2012 -- 2017 trends
+## 2009 -- 2021 trends
 
 ### Basic differences between "Normal" and "Kaso"
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
-Elections %>%
-  filter(!Year %in% 2009) %>%
+Elections3 %>%
+#  filter(!Year %in% 2009) %>%
   group_by(Kaso2) %>%
-  filter(LDP>=0 & LDP <=1) %>%
-  filter(JCP>=0 & JCP <=1) %>%
-  mutate(EldPop = EldPop/100) %>%
-    dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+  dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                      `LDP-PR` = mean(LDPPR, na.rm=TRUE),
                      `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
                      `JCP-SMD` = mean(JCP, na.rm=TRUE),
@@ -425,13 +434,10 @@ Elections %>%
 ### Detailed differences (including types of "Kaso") + Merged/Non-Merged
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
-Elections %>%
-  filter(!Year %in% 2009) %>%
+Elections3 %>%
+#  filter(!Year %in% 2009) %>%
   group_by(Kaso.fusion) %>%
-  filter(LDP>=0 & LDP <=1) %>%
-  filter(JCP>=0 & JCP <=1) %>%
-  mutate(EldPop = EldPop/100) %>%
-    dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+  dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                      `LDP-PR` = mean(LDPPR, na.rm=TRUE),
                      `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
                      `JCP-SMD` = mean(JCP, na.rm=TRUE),
@@ -479,39 +485,6 @@ Elections %>%
 
 # Statistical analysis
 
-
-```{r echo=FALSE, include=FALSE}
-ElectionsSMD <- read_csv("Data/ElectionsSMD.csv")
-
-ElectionsSMD <- ElectionsSMD[,-c(6,9)]
-
-ElectionsSMD <- ElectionsSMD[,c(7,6,1:5,8:16)]
-
-ElectionsSMD2 <- ElectionsSMD %>%
-  filter(LDP>=0 | LDP %in% NA) %>%
-  filter(LDP <=1 | LDP %in% NA) %>%
-  filter(JCP>=0 | JCP %in% NA) %>%
-  filter(JCP <=1 | JCP %in% NA)
-```
-
-
-```{r echo=FALSE, include=FALSE}
-ElectionsSMD2$Year <- as.character(ElectionsSMD2$Year)
-ElectionsSMD2$Year <- as.factor(ElectionsSMD2$Year)
-
-ElectionsSMD2$Code <- as.character(ElectionsSMD2$Code)
-ElectionsSMD2$Code <- as.factor(ElectionsSMD2$Code)
-
-ElectionsSMD2 <- ElectionsSMD2 %>%
-  filter(!Code %in% NA) %>%
-  mutate(Turnout = ifelse(Turnout >=1, NA, Turnout),
-         EldPop = EldPop/100)
-
-Elections3 <- ElectionsSMD2[!duplicated(ElectionsSMD2[,1:2]),]
-```
-
-
-
 ## Summary statistics
 
 ```{r echo=FALSE, results='asis'}
@@ -552,7 +525,7 @@ Elections3 %>%
 ## Correlation matrix
 
 ```{r echo=FALSE, results='asis'}
-Elections3 %>%
+Elections3[,-c(13:14)] %>%
   select_if(is.numeric) %>%
   cor(use = "complete.obs") %>% 
   ggcorrplot(hc.order = TRUE, #hierarchical ordering
@@ -674,12 +647,5 @@ htmlreg(list(LDPMod1, LDPMod2, LDPMod3),
        label = "tab:LDP"
        )
 ```
-
-```{r echo=FALSE, include=FALSE}
-ElectionsSMD2 %>%
-  group_by(Year) %>%
-  summarise(Turnout = mean(Turnout, na.rm = TRUE))
-```
-
 
 <br><br>
