@@ -44,9 +44,9 @@ Elections <- read_csv(here("static", "htmlplots", "Data", "Elections.csv"), col_
 ```
 
 ```{r echo=FALSE}
-Elections <- Elections[,-c(6,9)]
+Elections <- Elections[,-c(8,9)]
 
-Elections <- Elections[,c(7,6,1:5,8:20)]
+#Elections <- Elections[,c(7,6,1:5,8:20)]
 
 Elections2 <- Elections %>%
   filter(LDP>=0 | LDP %in% NA) %>%
@@ -549,17 +549,21 @@ Elections3[,-c(13:14)] %>%
 ### Turnout ratio
 
 ```{r echo=FALSE, include=FALSE}
-TurnoutMod1 <- lm(Turnout ~ Year + Fstrength, data = Elections3)
+TurnoutMod1 <- plm(Turnout ~ Year + Fstrength, index=c("Code","Year"),
+                   model = "pooling", data = Elections3)
 
-TurnoutMod2 <- lm(Turnout ~ Year + Fstrength + EldPop + LDP, data = Elections3)
+TurnoutMod2 <- plm(Turnout ~ Year + Fstrength + EldPop + LDP,
+                   index=c("Code","Year"),
+                   model = "pooling", data = Elections3)
 
-TurnoutMod3 <- lm(Turnout ~ Year + Fstrength + EldPop + LDP + 
-                   Kaso.fusion, data = Elections3)
+TurnoutMod3 <- plm(Turnout ~ Year + Fstrength + EldPop + LDP + 
+                   Kaso.fusion, index=c("Code","Year"),
+                   model = "pooling", data = Elections3)
 
 sqrt(car::vif(TurnoutMod3))
 ```
 
-```{r echo=FALSE}
+```{r echo=FALSE, include=FALSE}
 turnout.pooled <- plm(Turnout ~ Fstrength + LDP + Kaso.fusion + EldPop,
                   index=c("Code","Year"), data = Elections3, model = "within", effect = "time")
 
@@ -601,17 +605,21 @@ htmlreg(list(TurnoutMod1, TurnoutMod2, TurnoutMod3),
 ### LDP: SMD-Votes
 
 ```{r echo=FALSE, include=FALSE}
-LDPMod1 <- lm(LDP ~ Year + Fstrength, data = Elections3)
+LDPMod1 <- plm(LDP ~ Year + Fstrength, index=c("Code","Year"),
+                   model = "pooling", data = Elections3)
 
-LDPMod2 <- lm(LDP ~ Year + Fstrength + EldPop + Turnout, data = Elections3)
+LDPMod2 <- plm(LDP ~ Year + Fstrength + EldPop + Turnout, index=c("Code","Year"),
+                   model = "pooling", data = Elections3)
 
-LDPMod3 <- lm(LDP ~ Year + Fstrength + EldPop + Turnout + 
-                   Kaso.fusion, data = Elections3)
+LDPMod3 <- plm(LDP ~ Year + Fstrength + EldPop + Turnout + 
+                   Kaso.fusion, index=c("Code","Year"),
+                   model = "pooling", data = Elections3)
 
 sqrt(car::vif(LDPMod3))
 ```
 
-```{r echo=FALSE}
+
+```{r echo=FALSE, include=FALSE}
 ldp.pooled <- plm(LDP ~ Fstrength + Turnout + Kaso.fusion + EldPop,
                   index=c("Code","Year"), data = Elections3, model = "within", effect = "time")
 
