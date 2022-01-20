@@ -657,3 +657,44 @@ htmlreg(list(LDPMod1, LDPMod2, LDPMod3),
 ```
 
 <br><br>
+
+### LDP: SMD-PR Difference
+
+```{r echo=FALSE, include=FALSE}
+LDPDifMod1 <- plm(LDPDif ~ Year + Fstrength, index=c("Code","Year"),
+                   model = "pooling", data = Elections3)
+
+LDPDifMod2 <- plm(LDPDif ~ Year + Fstrength + EldPop + Turnout, index=c("Code","Year"),
+                   model = "pooling", data = Elections3)
+
+LDPDifMod3 <- plm(LDPDif ~ Year + Fstrength + EldPop + Turnout + 
+                   Kaso.fusion, index=c("Code","Year"),
+                   model = "pooling", data = Elections3)
+
+sqrt(car::vif(LDPMod3))
+```
+
+
+```{r ldpdif, results='asis', echo=FALSE}
+htmlreg(list(LDPDifMod1, LDPDifMod2, LDPDifMod3),
+       custom.model.names = c("Model 1", "Model 2", "Model 3"),
+       custom.coef.names = c("(Intercept)", "2012",
+                             "2014", "2017", "2021", "Fiscal Strength",
+                             "Elderly", "Turnout", "みなし過疎",
+                             "一部過疎", "全部過疎", "全部過疎-Merged"),
+       groups = list("Year dummy (base group = '2009')" = 2:5,
+         "Fiscal type (base group = 'Normal')" = 9:12),
+       caption = NULL,
+       digits = 2,
+#       reorder.coef = c(2:8,1),
+       include.ercomp = FALSE,
+       single.row = FALSE,
+       booktabs = TRUE,
+       dcolumn = TRUE,
+       caption.above = TRUE,
+       threeparttable = TRUE,
+       use.packages = FALSE,
+       stars = c(0.01, 0.05, 0.1),
+       label = "tab:LDPDif"
+       )
+```
