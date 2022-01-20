@@ -19,7 +19,9 @@ p_needed <- c("tidyverse",
               "htmltab",
               "xml2",
               "gt",
+              "gtsummary",
               "gtExtras",
+              "crosstable",
               "rmdformats",
               "ggcorrplot",
               "texreg",
@@ -139,37 +141,92 @@ Elections3 %>%
 
 ### Merged / non-merged counts and proportions across kaso-types 
 
-```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE, include=FALSE}
 Elections3 %>%
   select(Year, Fusion, Kaso) %>%
-  group_by(Year, Kaso, Fusion) %>%
-  summarise(n = n()) %>%
-  mutate(freq = n / sum(n)*100) %>%
   mutate(Fusion = factor(Fusion, levels = c("0", "1"), 
                       labels = c("Non-Merged", "Merged"))) %>%
-  gt(rowname_col = "Fusion") %>%
-  fmt_number(
-    columns = 2:5,
-    decimals = 0 # decrease decimal places
-    ) %>%
-  tab_options(
-    column_labels.border.top.color = "black",
-    column_labels.border.bottom.color = "black",
-    table_body.border.bottom.color = "black",
-    table_body.hlines.color = "white"
-    ) %>%
-  tab_header(
-    title = md("**Municipal characteristics**"),
-    subtitle = md("*Aggregated by fiscal profiles*")
+  tbl_summary(
+    by = Year, # split table by group
+    missing = "no" # don't list missing data separately
   ) %>%
-    data_color(
-    columns = 2:5,
-    colors = my_pal
-    )
-#   gtsave(
-#     "merged-unique.png"
-# )
+  add_overall() %>%
+  modify_header(label = "**Variable**") %>% # update the column header
+  bold_labels() 
 ```
+
+```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+Elections3 %>%
+  filter(Year %in% 2009) %>%
+  select(Year, Fusion, Kaso) %>%
+  mutate(Fusion = factor(Fusion, levels = c("0", "1"), 
+                      labels = c("Non-Merged", "Merged"))) %>%
+  tbl_cross(
+    row = Fusion,
+    col = Kaso,
+    percent = "column",
+    label = list(Kaso ~ "2009", Fusion ~ "Fusion")
+  )
+
+Elections3 %>%
+  filter(Year %in% 2012) %>%
+  select(Year, Fusion, Kaso) %>%
+  mutate(Fusion = factor(Fusion, levels = c("0", "1"), 
+                      labels = c("Non-Merged", "Merged"))) %>%
+  tbl_cross(
+    row = Fusion,
+    col = Kaso,
+    percent = "column",
+    label = list(Kaso ~ "2012", Fusion ~ "Fusion")
+  )
+
+Elections3 %>%
+  filter(Year %in% 2014) %>%
+  select(Year, Fusion, Kaso) %>%
+  mutate(Fusion = factor(Fusion, levels = c("0", "1"), 
+                      labels = c("Non-Merged", "Merged"))) %>%
+  tbl_cross(
+    row = Fusion,
+    col = Kaso,
+    percent = "column",
+    label = list(Kaso ~ "2014", Fusion ~ "Fusion")
+  )
+
+Elections3 %>%
+  filter(Year %in% 2017) %>%
+  select(Year, Fusion, Kaso) %>%
+  mutate(Fusion = factor(Fusion, levels = c("0", "1"), 
+                      labels = c("Non-Merged", "Merged"))) %>%
+  tbl_cross(
+    row = Fusion,
+    col = Kaso,
+    percent = "column",
+    label = list(Kaso ~ "2017", Fusion ~ "Fusion")
+  )
+
+Elections3 %>%
+  filter(Year %in% 2021) %>%
+  select(Year, Fusion, Kaso) %>%
+  mutate(Fusion = factor(Fusion, levels = c("0", "1"), 
+                      labels = c("Non-Merged", "Merged"))) %>%
+  tbl_cross(
+    row = Fusion,
+    col = Kaso,
+    percent = "column",
+    label = list(Kaso ~ "2021", Fusion ~ "Fusion")
+  )
+```
+
+```{r include=FALSE}
+# Elections3 %>%
+#   select(Year, Fusion, Kaso) %>%
+#   mutate(Fusion = factor(Fusion, levels = c("0", "1"), 
+#                       labels = c("Non-Merged", "Merged"))) %>%
+#   crosstable(c(Fusion, Kaso), by=Year, total="both") %>%
+#   as_flextable(keep_id=FALSE)
+```
+
+
 
 ### Basic differences between "Normal" and "Kaso" 
 
