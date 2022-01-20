@@ -1,6 +1,6 @@
 ---
 title: "Japanese General Elections"
-subtitle: "Exploratory Analysis"
+#subtitle: "Exploratory Analysis"
 author: "Populism in Regional Japan: Where is the 'Revenge of the Places That Don't Matter'?"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
@@ -135,7 +135,7 @@ Elections3 %>%
 
 <br><br>
 
-## Year-specific "Kaso" values
+## Fiscal differences
 
 ### Merged / non-merged counts and proportions across kaso-types 
 
