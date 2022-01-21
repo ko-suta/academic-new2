@@ -99,10 +99,11 @@ Elections3 %>%
                      `JCP-Gap` = mean(JCPDif, na.rm=TRUE),
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
+                     LATperCapita = mean(LATperCapita, na.rm=TRUE),
                      Elderly = mean(EldPop, na.rm=TRUE)) %>%
   gt(rowname_col = "Fusion") %>%
   fmt_number(
-    columns = 2:11,
+    columns = 2:12,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -127,7 +128,7 @@ Elections3 %>%
     title = md("**Municipal characteristics**"),
   ) %>%
     data_color(
-    columns = 2:11,
+    columns = 2:12,
     colors = my_pal
     )
 #   gtsave(
@@ -241,10 +242,11 @@ Elections3 %>%
                      `JCP-Gap` = mean(JCPDif, na.rm=TRUE),
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
+                     LATperCapita = mean(LATperCapita, na.rm=TRUE),
                      Elderly = mean(EldPop, na.rm=TRUE)) %>%
   gt(rowname_col = "Kaso2") %>%
   fmt_number(
-    columns = 2:11,
+    columns = 2:12,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -270,7 +272,7 @@ Elections3 %>%
     subtitle = md("*Aggregated by fiscal profiles*")
   ) %>%
     data_color(
-    columns = 2:11,
+    columns = 2:12,
     colors = my_pal
     )
 #   gtsave(
@@ -292,10 +294,11 @@ Elections3 %>%
                      `JCP-Gap` = mean(JCPDif, na.rm=TRUE),
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
+                     LATperCapita = mean(LATperCapita, na.rm=TRUE), 
                      Elderly = mean(EldPop, na.rm=TRUE)) %>%
   gt(rowname_col = "Kaso2.fusion") %>%
   fmt_number(
-    columns = 2:11,
+    columns = 2:12,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -321,7 +324,7 @@ Elections3 %>%
     subtitle = md("*Aggregated by fiscal profiles*")
   ) %>%
     data_color(
-    columns = 2:11,
+    columns = 2:12,
     colors = my_pal
     )
 ```
@@ -342,10 +345,11 @@ Elections3 %>%
                      `JCP-Gap` = mean(JCPDif, na.rm=TRUE),
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
+                     LATperCapita = mean(LATperCapita, na.rm=TRUE),
                      Elderly = mean(EldPop, na.rm=TRUE)) %>%
   gt(rowname_col = "Kaso") %>%
   fmt_number(
-    columns = 2:11,
+    columns = 2:12,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -371,7 +375,7 @@ Elections3 %>%
     subtitle = md("*Aggregated by fiscal profiles*")
   ) %>%
     data_color(
-    columns = 2:11,
+    columns = 2:12,
     colors = my_pal
     )
 #   gtsave(
@@ -396,10 +400,11 @@ Elections3 %>%
                      `JCP-Gap` = mean(JCPDif, na.rm=TRUE),
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
+                     LATperCapita = mean(LATperCapita, na.rm=TRUE),
                      Elderly = mean(EldPop, na.rm=TRUE)) %>%
   gt(rowname_col = "Kaso.fusion") %>%
   fmt_number(
-    columns = 2:11,
+    columns = 2:12,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -425,7 +430,7 @@ Elections3 %>%
     subtitle = md("*Aggregated by fiscal profiles*")
   ) %>%
     data_color(
-    columns = 2:11,
+    columns = 2:12,
     colors = my_pal
     )
 #   gtsave(
@@ -451,10 +456,11 @@ Elections3 %>%
                      `JCP-Gap` = mean(JCPDif, na.rm=TRUE),
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
+                     LATperCapita = mean(LATperCapita, na.rm=TRUE),
                      Elderly = mean(EldPop, na.rm=TRUE)) %>%
   gt(rowname_col = "Kaso2") %>%
   fmt_number(
-    columns = 2:10,
+    columns = 2:11,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -480,7 +486,7 @@ Elections3 %>%
     subtitle = md("*Aggregated by fiscal profiles*")
   ) %>%
     data_color(
-    columns = 2:10,
+    columns = 2:11,
     colors = my_pal
     )
 #   gtsave(
@@ -502,10 +508,11 @@ Elections3 %>%
                      `JCP-Gap` = mean(JCPDif, na.rm=TRUE),
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
+                     LATperCapita = mean(LATperCapita, na.rm=TRUE),
                      Elderly = mean(EldPop, na.rm=TRUE)) %>%
   gt(rowname_col = "Kaso.fusion") %>%
   fmt_number(
-    columns = 2:10,
+    columns = 2:11,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -531,7 +538,7 @@ Elections3 %>%
     subtitle = md("*Aggregated by fiscal profiles*")
   ) %>%
     data_color(
-    columns = 2:10,
+    columns = 2:11,
     colors = my_pal
     ) 
 #   gtsave(
@@ -588,7 +595,7 @@ Elections3[,-c(13:14)] %>%
   ggcorrplot(hc.order = TRUE, #hierarchical ordering
              type = "lower",
              lab = TRUE,
-             lab_size = 5,
+             lab_size = 4,
              outline.color = "white",
              colors = c("#6D9EC1", "white", "#E46726"),
              sig.level=0.05,
