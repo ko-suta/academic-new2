@@ -25,7 +25,15 @@ p_needed <- c("tidyverse",
               "rmdformats",
               "ggcorrplot",
               "texreg",
-              "plm"
+              "plm",
+              "sf",
+              "spdep",
+              "ggthemes",
+              "ggpubr",
+              "ggrepel",
+              "splm",
+              "spatialreg",
+              "viridis"
 )
 packages <- rownames(installed.packages())
 p_to_install <- p_needed[!(p_needed %in% packages)]
@@ -100,10 +108,11 @@ Elections3 %>%
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
                      LATperCapita = mean(LATperCapita, na.rm=TRUE),
-                     Elderly = mean(EldPop, na.rm=TRUE)) %>%
+                     Elderly = mean(EldPop, na.rm=TRUE),
+                     SCapital = mean(social_capital, na.rm=TRUE)) %>%
   gt(rowname_col = "Fusion") %>%
   fmt_number(
-    columns = 2:12,
+    columns = 2:13,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -128,7 +137,7 @@ Elections3 %>%
     title = md("**Municipal characteristics**"),
   ) %>%
     data_color(
-    columns = 2:12,
+    columns = 2:13,
     colors = my_pal
     )
 #   gtsave(
@@ -243,10 +252,11 @@ Elections3 %>%
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
                      LATperCapita = mean(LATperCapita, na.rm=TRUE),
-                     Elderly = mean(EldPop, na.rm=TRUE)) %>%
+                     Elderly = mean(EldPop, na.rm=TRUE),
+                     SCapital = mean(social_capital, na.rm=TRUE)) %>%
   gt(rowname_col = "Kaso2") %>%
   fmt_number(
-    columns = 2:12,
+    columns = 2:13,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -272,7 +282,7 @@ Elections3 %>%
     subtitle = md("*Aggregated by fiscal profiles*")
   ) %>%
     data_color(
-    columns = 2:12,
+    columns = 2:13,
     colors = my_pal
     )
 #   gtsave(
@@ -295,10 +305,11 @@ Elections3 %>%
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
                      LATperCapita = mean(LATperCapita, na.rm=TRUE), 
-                     Elderly = mean(EldPop, na.rm=TRUE)) %>%
+                     Elderly = mean(EldPop, na.rm=TRUE),
+                     SCapital = mean(social_capital, na.rm=TRUE)) %>%
   gt(rowname_col = "Kaso2.fusion") %>%
   fmt_number(
-    columns = 2:12,
+    columns = 2:13,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -324,7 +335,7 @@ Elections3 %>%
     subtitle = md("*Aggregated by fiscal profiles*")
   ) %>%
     data_color(
-    columns = 2:12,
+    columns = 2:13,
     colors = my_pal
     )
 ```
@@ -346,10 +357,11 @@ Elections3 %>%
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
                      LATperCapita = mean(LATperCapita, na.rm=TRUE),
-                     Elderly = mean(EldPop, na.rm=TRUE)) %>%
+                     Elderly = mean(EldPop, na.rm=TRUE),
+                     SCapital = mean(social_capital, na.rm=TRUE)) %>%
   gt(rowname_col = "Kaso") %>%
   fmt_number(
-    columns = 2:12,
+    columns = 2:13,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -375,7 +387,7 @@ Elections3 %>%
     subtitle = md("*Aggregated by fiscal profiles*")
   ) %>%
     data_color(
-    columns = 2:12,
+    columns = 2:13,
     colors = my_pal
     )
 #   gtsave(
@@ -401,10 +413,11 @@ Elections3 %>%
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
                      LATperCapita = mean(LATperCapita, na.rm=TRUE),
-                     Elderly = mean(EldPop, na.rm=TRUE)) %>%
+                     Elderly = mean(EldPop, na.rm=TRUE),
+                     SCapital = mean(social_capital, na.rm=TRUE)) %>%
   gt(rowname_col = "Kaso.fusion") %>%
   fmt_number(
-    columns = 2:12,
+    columns = 2:13,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -430,7 +443,7 @@ Elections3 %>%
     subtitle = md("*Aggregated by fiscal profiles*")
   ) %>%
     data_color(
-    columns = 2:12,
+    columns = 2:13,
     colors = my_pal
     )
 #   gtsave(
@@ -457,10 +470,11 @@ Elections3 %>%
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
                      LATperCapita = mean(LATperCapita, na.rm=TRUE),
-                     Elderly = mean(EldPop, na.rm=TRUE)) %>%
+                     Elderly = mean(EldPop, na.rm=TRUE),
+                     SCapital = mean(social_capital, na.rm=TRUE)) %>%
   gt(rowname_col = "Kaso2") %>%
   fmt_number(
-    columns = 2:11,
+    columns = 2:12,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -486,7 +500,7 @@ Elections3 %>%
     subtitle = md("*Aggregated by fiscal profiles*")
   ) %>%
     data_color(
-    columns = 2:11,
+    columns = 2:12,
     colors = my_pal
     )
 #   gtsave(
@@ -509,10 +523,11 @@ Elections3 %>%
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
                      LATperCapita = mean(LATperCapita, na.rm=TRUE),
-                     Elderly = mean(EldPop, na.rm=TRUE)) %>%
+                     Elderly = mean(EldPop, na.rm=TRUE),
+                     SCapital = mean(social_capital, na.rm=TRUE)) %>%
   gt(rowname_col = "Kaso.fusion") %>%
   fmt_number(
-    columns = 2:11,
+    columns = 2:12,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -538,7 +553,7 @@ Elections3 %>%
     subtitle = md("*Aggregated by fiscal profiles*")
   ) %>%
     data_color(
-    columns = 2:11,
+    columns = 2:12,
     colors = my_pal
     ) 
 #   gtsave(
@@ -762,3 +777,75 @@ htmlreg(list(LDPDifMod1, LDPDifMod2, LDPDifMod3),
        label = "tab:LDPDif"
        )
 ```
+
+
+<br><br>
+
+## Mapping
+
+### Turnout ratio
+
+```{r results='hide', echo=FALSE, include=FALSE}
+d3 <- sf::st_read("GIS/japan_ver81.shp") %>%
+  st_transform(CRS("+proj=longlat +datum=WGS84"))
+
+d3 <- d3[,-c(2:6, 8:9)]
+colnames(d3)[1] <- "Code"
+
+Elections2021 <- Elections3 %>%
+  filter(Year %in% 2021)
+
+# Filter geo-dataframe by fiscal one
+d3 <- d3 %>%
+  filter (Code %in% Elections2021$Code)
+
+# Filter fiscal data-frame by geo-one
+Elections2021 <- Elections2021 %>%
+  filter(Code %in% d3$Code)
+
+Elections2021 <- merge(x = d3, y = Elections2021, all.x = TRUE, by = "Code")
+
+PrefMap <- sf::st_read("GIS/JPref.shp") %>%
+  st_transform(CRS("+proj=longlat +datum=WGS84"))
+```
+
+
+```{r results='asis', echo=FALSE}
+Elections2021 %>%
+  mutate(TurnoutDecile = ntile(Turnout,10)) %>%
+  ggplot() +
+  geom_sf(aes(fill = TurnoutDecile), colour = NA) +
+  geom_sf(data = PrefMap, # prefectural level
+           fill = NA,
+           color = "black",
+           size = 0.1) +
+  coord_sf(xlim = c(128, 147), 
+           ylim = c(30.1, 46),
+           expand = FALSE) +
+  scale_fill_viridis(option="F", direction = -1,
+                     # breaks = c(2, 4, 6, 8, 10),
+                     # labels = c("32%", "33%", "34%", 
+                     #            "35%", "38%"),
+                     name = "Turnout") +
+  labs(title = NULL) +
+  theme_map() +
+  theme(axis.text=element_text(size=22),
+        axis.text.x = element_text(vjust = 0.5, color = 'black'),
+        axis.text.y = element_text(color = 'black'),
+        axis.title.y = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title=element_text(size=24,face="bold"),
+        legend.position = c(0.85, 0.1),
+        legend.title.align=0.5,
+        plot.title = element_text(hjust = 0.5, size=25,face="bold"),
+        legend.text=element_text(size=12),
+        legend.title=element_text(size=13, face="bold"),
+        legend.margin = margin(8, 8, 8, 8),
+        legend.spacing.y = unit(0.5, 'cm'),
+        legend.key = element_rect(fill = "white"),
+        legend.box.background = element_rect(color="black", size=1),
+        legend.key.width=unit(1.5, "cm"),
+        legend.key.height = unit(1.5, "cm"))
+```
+
+<br><br>
