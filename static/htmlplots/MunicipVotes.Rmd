@@ -810,7 +810,7 @@ PrefMap <- sf::st_read("GIS/JPref.shp") %>%
 ```
 
 
-```{r results='asis', echo=FALSE}
+```{r results='asis', echo=FALSE, include=FALSE}
 Elections2021 %>%
   mutate(TurnoutDecile = ntile(Turnout,10)) %>%
   ggplot() +
