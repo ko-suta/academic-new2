@@ -11,7 +11,7 @@ date: "2022-03-01T13:00:00Z"
 date_end: "2022-07-01T15:00:00Z"
 event: 2021 KUT Seminar “Global Competency Modeling”
 event_url:
-featured: true
+featured: false
 image:
   caption:
   focal_point: Right
