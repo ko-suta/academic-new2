@@ -27,6 +27,6 @@ main:
   - name: CV
     url: files/cv.pdf
     weight: 70
-  - name: &#127482 & &#127471
+  - name: \U+1F1FA
     url: 'ukraine'
     weight: 70
