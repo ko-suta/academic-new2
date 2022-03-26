@@ -2,6 +2,6 @@
 header:
   caption: ""
   image: "img/ukraine-anime.png"
-title: Ukraine & Japan 
+title: 🇺🇦 & 🇯🇵 
 view: 2
 ---
