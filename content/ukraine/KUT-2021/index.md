@@ -7,8 +7,8 @@ address:
 
 all_day: true
 authors: []
-date: "2021-07-02T13:00:00Z"
-date_end: "2021-07-05T15:00:00Z"
+date: "2022-03-01T13:00:00Z"
+date_end: "2022-07-01T15:00:00Z"
 event: 2021 KUT Seminar “Global Competency Modeling”
 event_url:
 featured: false
@@ -18,9 +18,8 @@ image:
 
 location: online
 math: true
-projects:
-- market-innovation
-publishDate: "2021-07-01T00:00:00Z"
+
+publishDate: "2022-03-01T00:00:00Z"
 slides: []
 summary: Presentation made at 2021 SASE Conference
 tags: []
