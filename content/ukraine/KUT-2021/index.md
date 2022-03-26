@@ -11,8 +11,8 @@ date: "2022-03-01T13:00:00Z"
 date_end: "2022-07-01T15:00:00Z"
 event: 2021 KUT Seminar “Global Competency Modeling”
 event_url:
-featured: false
-image: "img/ukraine-anime.png"
+featured: true
+image:
   caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/wO42Rmamef8)'
   focal_point: Right
 
