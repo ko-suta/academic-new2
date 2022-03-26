@@ -24,7 +24,7 @@ publishDate: "2021-07-01T00:00:00Z"
 slides: []
 summary: Presentation made at 2021 SASE Conference
 tags: []
-title: Ukraine \& Japan: Comparative Advantages
+title: Ukraine & Japan\: Comparative Advantages
 url_code: ""
 url_pdf: ""
 url_slides: "slides/KUT-Seminar/KUT-Seminar.html"
