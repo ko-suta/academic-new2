@@ -1,5 +1,5 @@
 ---
-abstract: Presentation at Kochi University of Technology.
+abstract: Presentation made at K&#333;chi University of Technology.
 
 address:
   city:
@@ -12,7 +12,7 @@ date_end: "2022-07-01T15:00:00Z"
 event: 2021 KUT Seminar “Global Competency Modeling”
 event_url:
 featured: false
-image:
+image: "img/ukraine-anime.png"
   caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/wO42Rmamef8)'
   focal_point: Right
 
@@ -21,7 +21,7 @@ math: true
 
 publishDate: "2022-03-01T00:00:00Z"
 slides: []
-summary: Presentation made at 2021 SASE Conference
+summary: Presentation made at K&#333;chi University of Technology
 tags: []
 title: Ukraine & Japan. Comparative Advantages
 url_code: ""
