@@ -13,7 +13,7 @@ event: 2021 KUT Seminar “Global Competency Modeling”
 event_url:
 featured: true
 image:
-  caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/wO42Rmamef8)'
+  caption:
   focal_point: Right
 
 location: online
