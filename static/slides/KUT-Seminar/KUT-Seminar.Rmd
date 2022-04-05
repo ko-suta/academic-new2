@@ -396,11 +396,11 @@ background-color: yellow
 
 --
 
-# .center.black[reason: .light-blue[indivual property rights'] protection `r fa("arrow-alt-circle-right", fill = "#cc0033")` oldest companies in the world]
+# .center.black[reason: .light-blue[individual property rights'] protection `r fa("arrow-alt-circle-right", fill = "#cc0033")` oldest companies in the world]
 
 --
 
-# .center.black[.light-blue[but], peace is not eternal `r fa("arrow-alt-circle-right", fill = "#cc0033")` importance of being prepared for unexpected challanges]
+# .center.black[.light-blue[but], peace is not eternal `r fa("arrow-alt-circle-right", fill = "#cc0033")` importance of being prepared for unexpected challenges]
 
 
 ---
