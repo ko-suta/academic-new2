@@ -3,7 +3,7 @@ title: ".red[日本]と.yellow[ウクライナ]の <br> 文化的関係性"
 subtitle: ".light-blue[高知県議会の勉強会]"
 author: "オヴシアン二コウ コスチャンチン"
 institute: ".green[高知工科大学] <br> 経済・マネージメント学群"
-date: "2022年4月5日"
+date: "2022年4月6日"
 output:
   xaringan::moon_reader:
 #    chakra: libs/remark-latest.min.js
@@ -396,7 +396,7 @@ background-color: yellow
 
 --
 
-# .center.black[理由ウ: .light-blue[個人の財産権]の保護 `r fa("arrow-alt-circle-right", fill = "#cc0033")` 世界で最も古い企業]
+# .center.black[理由: .light-blue[個人の財産権]の保護 `r fa("arrow-alt-circle-right", fill = "#cc0033")` 世界で最も古い企業]
 
 --
 
