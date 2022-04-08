@@ -1,9 +1,9 @@
 ---
 title: ".red[日本]と.yellow[ウクライナ]の <br> 文化的関係性"
-subtitle: ".light-blue[高知県議会の勉強会]"
+subtitle: ".light-blue[高知家食べ応援プロジェクト]"
 author: "オヴシアン二コウ コスチャンチン"
 institute: ".green[高知工科大学] <br> 経済・マネージメント学群"
-date: "2022年4月6日"
+date: "2022年4月10日"
 output:
   xaringan::moon_reader:
 #    chakra: libs/remark-latest.min.js
@@ -223,6 +223,34 @@ knitr::include_graphics("assets/img/Ivan_Boryshko.jpg")
 
 ---
 
+# 極東のウクライナ
+
+<ru-blockquote>地球儀を半周動かせば、欧州で起きている惨事が、対岸の火事でないことが分かる。ロシア、中国、北朝鮮と対峙する日本は地政学上、「極東のウクライナ」とも呼べる存在だ。
+<br><br> .right[**山川 龍雄**.black[（日経ビジネス編集委員） 2022／3／10]]</ru-blockquote>
+
+--
+
+.pull-left[
+
+```{r echo=FALSE, include=TRUE, out.width = "200%", fig.align='left', fig.cap = '<a href="https://uk.wikipedia.org/wiki/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%97%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B9_%D0%9A%D0%BB%D0%B8%D0%BD_1918.png" style="color:Black;">画像ソース</a>'}
+knitr::include_graphics("assets/img/Zelenyy_Klyn_1918.png")
+```
+
+]
+
+.pull-right[
+
+- 「**緑ウクライナ**」アムール川から太平洋岸までのロシア極東におけるウクライナ人の植民地
+
+- 1917年のロシア革命以降、**極東ウクライナ共和国**がウクライナ人によってロシア極東に建国されることが計画された
+
+- 領域は100万km<sup>2</sup>を含む広大な土地でウクライナ人の人口は1926年には人口の**41％～47％**に達していた。なお総人口は1958年の時点で人口は310万人であった
+
+- 現在，北方領土の**~6割の人口**がウクライナ系（岡部芳彦・神戸学院大学教授）
+
+]
+
+---
 
 # チェルノブイリ 対 福島第一
 
