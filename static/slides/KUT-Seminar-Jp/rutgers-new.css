@@ -115,7 +115,7 @@ thead, tfoot, tr:nth-child(even) { background: none; }
 /* Add image and change bg color */
 .title-slide {
   background-image: url(assets/img/ukraine-anime.jpg);
-  background-position: 100% 65%;
+  background-position: 110% 65%;
   background-size: 700px;
   background-color: #000000;
  /* padding-left: 100px;  /* delete this for 4:3 aspect ratio */

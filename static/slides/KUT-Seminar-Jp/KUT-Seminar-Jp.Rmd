@@ -1,7 +1,7 @@
 ---
 title: ".red[日本]と.yellow[ウクライナ]の <br> 文化的関係性"
 subtitle: ".light-blue[高知家食べ応援プロジェクト]"
-author: "オヴシアン二コウ コスチャンチン"
+author: "オヴシアン二コウ・コスチャンチン"
 institute: ".green[高知工科大学] <br> 経済・マネージメント学群"
 date: "2022年4月10日"
 output:
