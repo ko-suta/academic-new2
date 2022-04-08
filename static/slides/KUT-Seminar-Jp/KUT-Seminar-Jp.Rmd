@@ -449,4 +449,4 @@ background-position: 5% 1%
 | :--------------------------------------------------------------------------------------------------------- | :-------------------------------- |
 | <a href="mailto:ovsiannikov@kochi-tech.ac.jp">`r fa("paper-plane", fill = "#cc0033")`          | ovsiannikov@kochi-tech.ac.jp |
 |                                                                                                |                              |
-| <a href="https://kovsiannikov.com/slides/kut-seminar/kut-seminar">`r fa("link", fill = "#cc0033")` | kovsiannikov.com             |
+| <a href="https://kovsiannikov.com/slides/kut-seminar-jp/kut-seminar-jp">`r fa("link", fill = "#cc0033")` | kovsiannikov.com             |
