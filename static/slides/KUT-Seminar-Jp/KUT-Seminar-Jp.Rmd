@@ -102,13 +102,13 @@ meta() %>%
   meta_social(
     title = "日本とウクライナの文化的関係性",
     description = paste(
-      "2022・高知県議会の勉強会"
+      "2022・高知家食べ応援プロジェクト"
     ),
     url = "https://kovsiannikov.com/slides/kut-seminar-jp/kut-seminar-jp",
-    image = "https://kovsiannikov.com/img/ukraine-anime.png",
+    image = "https://kovsiannikov.com/img/ukraine-anime-jp.png",
     image_alt = "2022・高知県議会の勉強会",
     og_type = "website",
-    og_author = "オヴシアン二コウ　コスチャンチン",
+    og_author = "オヴシアン二コウ・コスチャンチン",
     twitter_card_type = "summary_large_image",
     twitter_creator = "@kovsiann"
   ) %>%

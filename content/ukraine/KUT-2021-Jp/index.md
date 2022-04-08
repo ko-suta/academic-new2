@@ -11,7 +11,7 @@ date: "2022-04-10T13:00:00Z"
 date_end: "2022-07-01T15:00:00Z"
 event: 高知家食べ応援プロジェクト
 event_url:
-featured: true
+featured: false
 image:
   caption:
   focal_point: Right
