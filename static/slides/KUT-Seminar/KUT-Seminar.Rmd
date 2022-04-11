@@ -354,7 +354,7 @@ knitr::include_graphics("assets/img/Japan_Ukraine_Locator.png")
 
 - socialism `r fa("arrow-alt-circle-right", fill = "#cc0033")` democracy
 
-- ongoing conflict with Russia
+- ongoing war with Russia
 
 
 ```{r echo=FALSE, include=TRUE, out.width = "90%", fig.align='center', fig.cap = '<a href="https://www.podbean.com/media/share/pb-bjk2s-92e9e8" style="color:Black;">Image source</a>'}
