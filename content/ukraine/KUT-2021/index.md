@@ -7,7 +7,7 @@ address:
 
 all_day: true
 authors: []
-date: "2022-03-01T13:00:00Z"
+date: "2022-04-16T13:00:00Z"
 date_end: "2022-07-01T15:00:00Z"
 event: 2022 K&#333;chi Prefectural Assembly event”
 event_url:
