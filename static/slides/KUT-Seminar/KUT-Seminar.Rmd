@@ -223,7 +223,7 @@ knitr::include_graphics("assets/img/Ivan_Boryshko.jpg")
 
 ---
 
-# 極東のウクライナ
+# Far Eastern Ukraine (極東のウクライナ)
 
 <ru-blockquote>If you rotate the globe halfway through, you can see that the disaster occurring in Europe is an issue that concerns us. Japan, which confronts Russia, China, and North Korea, can be called 'Ukraine of the Far East' in terms of geopolitics.
 <br><br> .right[**Tatsuo Yamakawa** .black["Nikkei Business", 2022/3/10]]</ru-blockquote>
