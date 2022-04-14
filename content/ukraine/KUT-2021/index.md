@@ -9,7 +9,7 @@ all_day: true
 authors: []
 date: "2022-03-01T13:00:00Z"
 date_end: "2022-07-01T15:00:00Z"
-event: 2021 KUT Seminar “Global Competency Modeling”
+event: 2022 K&#333;chi Prefectural Assembly event”
 event_url:
 featured: true
 image:
@@ -19,11 +19,11 @@ image:
 location: online
 math: true
 
-publishDate: "2022-03-01T00:00:00Z"
+publishDate: "2022-04-14T00:00:00Z"
 slides: []
-summary: Presentation made at K&#333;chi University of Technology
+summary: Presentation made at K&#333;chi Prefectural Assembly
 tags: []
-title: Ukraine & Japan. Comparative Advantages
+title: Ukraine & Japan. Historical & Cultural Parallels
 url_code: ""
 url_pdf: ""
 url_slides: "slides/KUT-Seminar/KUT-Seminar.html"

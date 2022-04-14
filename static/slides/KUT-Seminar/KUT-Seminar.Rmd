@@ -1,9 +1,9 @@
 ---
-title: ".yellow[Ukraine] & .red[Japan]: <br> Comparative Advantages"
-subtitle: ".light-blue[2021 KUT Seminar:] <br> .white.bg-black[“Global Competency Modeling”]"
+title: ".yellow[Ukraine] & .red[Japan]: <br> Historical & Cultural Parallels"
+subtitle: ".light-blue[Presentation made at <br> K&#333;chi Prefectural Assembly]"
 author: "Kostiantyn Ovsiannikov, Ph.D."
-institute: ".white.bg-green[Kochi University of Technology]"
-date: "14 December 2021"
+institute: ".white.bg-green[K&#333;chi University of Technology]"
+date: "6 April 2022"
 output:
   xaringan::moon_reader:
 #    chakra: libs/remark-latest.min.js
@@ -100,13 +100,13 @@ style_duo(primary_color = "#ffffff", secondary_color = "#515151")
 meta() %>%
   meta_name("github-repo" = "ko-suta/academic-new") %>% 
   meta_social(
-    title = "Ukraine and Japan: <br> Comparative Advantages",
+    title = "Ukraine and Japan: Historical & Cultural Parallels",
     description = paste(
-      "Global Competency Modeling 2021"
+      "K&#333;chi Prefectural Assembly presentation"
     ),
     url = "https://kovsiannikov.com/slides/kut-seminar/kut-seminar",
     image = "https://kovsiannikov.com/img/ukraine-anime.png",
-    image_alt = "2021 KUT Global Competency Modeling",
+    image_alt = "K&#333;chi Prefectural Assembly presentation",
     og_type = "website",
     og_author = "Kostiantyn Ovsiannikov",
     twitter_card_type = "summary_large_image",
@@ -218,6 +218,36 @@ knitr::include_graphics("assets/img/Ivan_Boryshko.jpg")
 - ### 1961: became *yokozuna* (横綱) at the age of 21
  
 - ### won 32 tournament championships between 1960 and 1971
+]
+
+
+---
+
+# 極東のウクライナ
+
+<ru-blockquote>If you rotate the globe halfway through, you can see that the disaster occurring in Europe is an issue that concerns us. Japan, which confronts Russia, China, and North Korea, can be called 'Ukraine of the Far East' in terms of geopolitics.
+<br><br> .right[**Tatsuo Yamakawa** .black["Nikkei Business", 2022/3/10]]</ru-blockquote>
+
+--
+
+.pull-left[
+
+```{r echo=FALSE, include=TRUE, out.width = "200%", fig.align='left', fig.cap = '<a href="https://uk.wikipedia.org/wiki/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%97%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B9_%D0%9A%D0%BB%D0%B8%D0%BD_1918.png" style="color:Black;">画像ソース</a>'}
+knitr::include_graphics("assets/img/Zelenyy_Klyn_1918.png")
+```
+
+]
+
+.pull-right[
+
+- **Green Ukraine**: the land in the Russian Far East area between the Amur River and the Pacific Ocean
+
+- **Ukrainian Far East Republic** was designed as an autonomous/independent entity after the 1917 October Revolution
+
+- 1926: over 1,000,000 km<sup>2</sup>, Ukrainians making up **41％～47％** of the entire population
+
+- today, up to **60%** of the Northern Territories' (北方領土) population have Ukrainian roots
+
 ]
 
 
