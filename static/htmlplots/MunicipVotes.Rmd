@@ -19,6 +19,7 @@ p_needed <- c("tidyverse",
               "htmltab",
               "xml2",
               "gt",
+              "lme4",
               "gtsummary",
               "gtExtras",
               "crosstable",
@@ -50,12 +51,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-Elections <- read_csv(here("static", "htmlplots", "Data", "Elections.csv"), col_names = TRUE)
+Elections <- read_csv(here("static", "htmlplots", "Data", "Elections2.csv"), col_names = TRUE)
 ```
 
 ```{r echo=FALSE}
 
-Elections <- Elections[,-c(5,8)]
+# Elections <- Elections[,-c(5,8)]
 Elections[, 5:7][Elections[, 5:7] == 0] <- NA
 
 Elections2 <- Elections %>%
@@ -639,14 +640,31 @@ TurnoutMod3 <- plm(Turnout ~ Year + Fstrength + EldPop + LDP +
                    Kaso.fusion, index=c("Code","Year"),
                    model = "pooling", data = Elections3)
 
-sqrt(car::vif(TurnoutMod3))
+#sqrt(car::vif(TurnoutMod3))
 ```
+
+
+```{r echo=FALSE, include=FALSE}
+TurnoutMod4 <- plm(Turnout_relative ~ Year + Fstrength, index=c("Code","Year"),
+                   model = "pooling", data = Elections3)
+
+TurnoutMod5 <- plm(Turnout_relative ~ Year + Fstrength + EldPop + LDP,
+                   index=c("Code","Year"),
+                   model = "pooling", data = Elections3)
+
+TurnoutMod6 <- plm(Turnout_relative ~ Year + Fstrength + EldPop + LDP + 
+                   Kaso.fusion, index=c("Code","Year"),
+                   model = "pooling", data = Elections3)
+
+#sqrt(car::vif(TurnoutMod6))
+```
+
 
 ```{r echo=FALSE, include=FALSE}
 turnout.pooled <- plm(Turnout ~ Fstrength + LDP + Kaso.fusion + EldPop,
                   index=c("Code","Year"), data = Elections3, model = "within", effect = "time")
 
-turnout.fe <- plm(Turnout ~ Fstrength + LDP + Kaso.fusion + EldPop,
+turnout.fe <- plm(Turnout ~ Year + Fstrength + LDP + Kaso.fusion + EldPop,
                   index=c("Code","Year"), data = Elections3, model = "within")
 
 turnout.re <- plm(Turnout ~ Fstrength + LDP + Kaso.fusion + EldPop,
@@ -655,8 +673,39 @@ turnout.re <- plm(Turnout ~ Fstrength + LDP + Kaso.fusion + EldPop,
 ```
 
 
+#### Absolute values
+
 ```{r turnout, results='asis', echo=FALSE}
 htmlreg(list(TurnoutMod1, TurnoutMod2, TurnoutMod3),
+       custom.model.names = c("Model 1", "Model 2", "Model 3"),
+       custom.coef.names = c("(Intercept)", "2012",
+                             "2014", "2017", "2021", "Fiscal Strength",
+                             "Elderly", "LDP", "みなし過疎",
+                             "一部過疎", "全部過疎", "全部過疎-Merged"),
+       groups = list("Year dummy (base group = '2009')" = 2:5,
+         "Fiscal type (base group = 'Normal')" = 9:12),
+       caption = NULL,
+       digits = 2,
+#       reorder.coef = c(2:8,1),
+       include.ercomp = FALSE,
+       single.row = FALSE,
+       booktabs = TRUE,
+       dcolumn = TRUE,
+       caption.above = TRUE,
+       threeparttable = TRUE,
+       use.packages = FALSE,
+       stars = c(0.01, 0.05, 0.1),
+       label = "tab:Turnout"
+       )
+```
+
+
+<br>
+
+#### Values relative to SMD-average
+
+```{r turnout2, results='asis', echo=FALSE}
+htmlreg(list(TurnoutMod4, TurnoutMod5, TurnoutMod6),
        custom.model.names = c("Model 1", "Model 2", "Model 3"),
        custom.coef.names = c("(Intercept)", "2012",
                              "2014", "2017", "2021", "Fiscal Strength",
@@ -694,7 +743,21 @@ LDPMod3 <- plm(LDP ~ Year + Fstrength + EldPop + Turnout +
                    Kaso.fusion, index=c("Code","Year"),
                    model = "pooling", data = Elections3)
 
-sqrt(car::vif(LDPMod3))
+#sqrt(car::vif(LDPMod6))
+```
+
+```{r echo=FALSE, include=FALSE}
+LDPMod4 <- plm(LDP_relative ~ Year + Fstrength, index=c("Code","Year"),
+                   model = "pooling", data = Elections3)
+
+LDPMod5 <- plm(LDP_relative ~ Year + Fstrength + EldPop + Turnout, index=c("Code","Year"),
+                   model = "pooling", data = Elections3)
+
+LDPMod6 <- plm(LDP_relative ~ Year + Fstrength + EldPop + Turnout + 
+                   Kaso.fusion, index=c("Code","Year"),
+                   model = "pooling", data = Elections3)
+
+#sqrt(car::vif(LDPMod6))
 ```
 
 
@@ -711,6 +774,8 @@ ldp.re <- plm(LDP ~ Fstrength + Turnout + Kaso.fusion + EldPop,
 ```
 
 
+#### Absolute values
+
 ```{r ldp, results='asis', echo=FALSE}
 htmlreg(list(LDPMod1, LDPMod2, LDPMod3),
        custom.model.names = c("Model 1", "Model 2", "Model 3"),
@@ -723,6 +788,35 @@ htmlreg(list(LDPMod1, LDPMod2, LDPMod3),
        caption = NULL,
        digits = 2,
 #       reorder.coef = c(2:8,1),
+       include.ercomp = FALSE,
+       single.row = FALSE,
+       booktabs = TRUE,
+       dcolumn = TRUE,
+       caption.above = TRUE,
+       threeparttable = TRUE,
+       use.packages = FALSE,
+       stars = c(0.01, 0.05, 0.1),
+       label = "tab:LDP"
+       )
+```
+
+
+<br>
+
+#### Values relative to SMD-average
+
+```{r ldp2, results='asis', echo=FALSE}
+htmlreg(list(LDPMod4, LDPMod5, LDPMod6),
+       custom.model.names = c("Model 1", "Model 2", "Model 3"),
+       custom.coef.names = c("(Intercept)", "2012",
+                             "2014", "2017", "2021", "Fiscal Strength",
+                             "Elderly", "Turnout", "みなし過疎",
+                             "一部過疎", "全部過疎", "全部過疎-Merged"),
+       groups = list("Year dummy (base group = '2009')" = 2:5,
+         "Fiscal type (base group = 'Normal')" = 9:12),
+       caption = NULL,
+       digits = 2,
+#       reorder.coef = c(2:8,1),Absolute
        include.ercomp = FALSE,
        single.row = FALSE,
        booktabs = TRUE,
