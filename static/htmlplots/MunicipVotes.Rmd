@@ -580,7 +580,7 @@ Elections3 %>%
 ## Summary statistics
 
 ```{r echo=FALSE, results='asis'}
-Elections3 %>%
+Elections3[,-c(23:26)] %>%
   # Keep numeric variables
   select_if(is.numeric) %>%
   # gather variables
