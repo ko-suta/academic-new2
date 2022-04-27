@@ -170,7 +170,9 @@ Elections3 %>%
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 Elections3 %>%
-  filter(Year %in% 2009) %>%
+  filter(Year %in% 2009,
+         Kaso %in% c("Normal", "みなし過疎", 
+                     "一部過疎", "全部過疎")) %>%
   select(Year, Fusion, Kaso) %>%
   mutate(Fusion = factor(Fusion, levels = c("0", "1"), 
                       labels = c("Non-Merged", "Merged"))) %>%
