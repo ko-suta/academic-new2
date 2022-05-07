@@ -101,12 +101,10 @@ Elections3 %>%
                       labels = c("Non-Merged", "Merged"))) %>%
   group_by(Year, Fusion) %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+                   `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
                    `LDP-PR` = mean(LDPPR, na.rm=TRUE),
                    `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
-                   `LDP-relative` = mean(LDP_relative, na.rm=TRUE),
-                   # `JCP-SMD` = mean(JCP, na.rm=TRUE),
-                   # `JCP-PR` = mean(JCPPR, na.rm=TRUE),
-                   # `JCP-Gap` = mean(JCPDif, na.rm=TRUE),
+                   `LDP-Gap-relative` = mean(LDPDif_relative, na.rm=TRUE),
                    Turnout = mean(Turnout, na.rm=TRUE),
                    `Turnout-relative` = mean(Turnout_relative, na.rm=TRUE),
                    FStrength = mean(Fstrength, na.rm=TRUE),
@@ -115,7 +113,7 @@ Elections3 %>%
                    SCapital = mean(social_capital, na.rm=TRUE)) %>%
   gt(rowname_col = "Fusion") %>%
   fmt_number(
-    columns = 2:12,
+    columns = 2:13,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -140,7 +138,7 @@ Elections3 %>%
     title = md("**Municipal characteristics**"),
   ) %>%
     data_color(
-    columns = 2:12,
+    columns = 2:13,
     colors = my_pal
     )
 #   gtsave(
@@ -249,12 +247,10 @@ Elections3 %>%
 Elections3 %>%
   group_by(Year, Kaso2) %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+                   `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
                    `LDP-PR` = mean(LDPPR, na.rm=TRUE),
                    `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
-                   `LDP-relative` = mean(LDP_relative, na.rm=TRUE),
-                     # `JCP-SMD` = mean(JCP, na.rm=TRUE),
-                     # `JCP-PR` = mean(JCPPR, na.rm=TRUE),
-                     # `JCP-Gap` = mean(JCPDif, na.rm=TRUE),
+                   `LDP-Gap-relative` = mean(LDPDif_relative, na.rm=TRUE),
                    Turnout = mean(Turnout, na.rm=TRUE),
                    `Turnout-relative` = mean(Turnout_relative, na.rm=TRUE), 
                    FStrength = mean(Fstrength, na.rm=TRUE),
@@ -263,7 +259,7 @@ Elections3 %>%
                    SCapital = mean(social_capital, na.rm=TRUE)) %>%
   gt(rowname_col = "Kaso2") %>%
   fmt_number(
-    columns = 2:12,
+    columns = 2:13,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -289,7 +285,7 @@ Elections3 %>%
     subtitle = md("*Aggregated by fiscal profiles*")
   ) %>%
     data_color(
-    columns = 2:12,
+    columns = 2:13,
     colors = my_pal
     )
 #   gtsave(
@@ -356,12 +352,10 @@ Elections3 %>%
 Elections3 %>%
   group_by(Year, Kaso) %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+                   `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
                    `LDP-PR` = mean(LDPPR, na.rm=TRUE),
                    `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
-                   `LDP-relative` = mean(LDP_relative, na.rm=TRUE),
-                     # `JCP-SMD` = mean(JCP, na.rm=TRUE),
-                     # `JCP-PR` = mean(JCPPR, na.rm=TRUE),
-                     # `JCP-Gap` = mean(JCPDif, na.rm=TRUE),
+                   `LDP-Gap-relative` = mean(LDPDif_relative, na.rm=TRUE),
                    Turnout = mean(Turnout, na.rm=TRUE),
                    `Turnout-relative` = mean(Turnout_relative, na.rm=TRUE),
                    FStrength = mean(Fstrength, na.rm=TRUE),
@@ -370,7 +364,7 @@ Elections3 %>%
                    SCapital = mean(social_capital, na.rm=TRUE)) %>%
   gt(rowname_col = "Kaso") %>%
   fmt_number(
-    columns = 2:12,
+    columns = 2:13,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -396,7 +390,7 @@ Elections3 %>%
     subtitle = md("*Aggregated by fiscal profiles*")
   ) %>%
     data_color(
-    columns = 2:12,
+    columns = 2:13,
     colors = my_pal
     )
 #   gtsave(
@@ -414,12 +408,10 @@ Elections3 %>%
 Elections3 %>%
   group_by(Year, Kaso.fusion) %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+                   `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
                    `LDP-PR` = mean(LDPPR, na.rm=TRUE),
                    `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
-                   `LDP-relative` = mean(LDP_relative, na.rm=TRUE),
-                     # `JCP-SMD` = mean(JCP, na.rm=TRUE),
-                     # `JCP-PR` = mean(JCPPR, na.rm=TRUE),
-                     # `JCP-Gap` = mean(JCPDif, na.rm=TRUE),
+                   `LDP-Gap-relative` = mean(LDPDif_relative, na.rm=TRUE),
                    Turnout = mean(Turnout, na.rm=TRUE),
                    `Turnout-relative` = mean(Turnout_relative, na.rm = TRUE),
                    FStrength = mean(Fstrength, na.rm=TRUE),
@@ -428,7 +420,7 @@ Elections3 %>%
                    SCapital = mean(social_capital, na.rm=TRUE)) %>%
   gt(rowname_col = "Kaso.fusion") %>%
   fmt_number(
-    columns = 2:12,
+    columns = 2:13,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -454,7 +446,7 @@ Elections3 %>%
     subtitle = md("*Aggregated by fiscal profiles*")
   ) %>%
     data_color(
-    columns = 2:12,
+    columns = 2:13,
     colors = my_pal
     )
 #   gtsave(
@@ -473,12 +465,10 @@ Elections3 %>%
 #  filter(!Year %in% 2009) %>%
   group_by(Kaso2) %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+                   `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
                    `LDP-PR` = mean(LDPPR, na.rm=TRUE),
                    `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
-                   `LDP-relative` = mean(LDP_relative, na.rm=TRUE),
-                     # `JCP-SMD` = mean(JCP, na.rm=TRUE),
-                     # `JCP-PR` = mean(JCPPR, na.rm=TRUE),
-                     # `JCP-Gap` = mean(JCPDif, na.rm=TRUE),
+                   `LDP-Gap-relative` = mean(LDPDif_relative, na.rm=TRUE),
                    Turnout = mean(Turnout, na.rm=TRUE),
                    `Turnout-relative` = mean(Turnout_relative, na.rm=TRUE),
                    FStrength = mean(Fstrength, na.rm=TRUE),
@@ -487,7 +477,7 @@ Elections3 %>%
                    SCapital = mean(social_capital, na.rm=TRUE)) %>%
   gt(rowname_col = "Kaso2") %>%
   fmt_number(
-    columns = 2:11,
+    columns = 2:12,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -513,7 +503,7 @@ Elections3 %>%
     subtitle = md("*Aggregated by fiscal profiles*")
   ) %>%
     data_color(
-    columns = 2:11,
+    columns = 2:12,
     colors = my_pal
     )
 #   gtsave(
@@ -528,12 +518,10 @@ Elections3 %>%
 #  filter(!Year %in% 2009) %>%
   group_by(Kaso.fusion) %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+                   `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
                    `LDP-PR` = mean(LDPPR, na.rm=TRUE),
                    `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
-                   `LDP-relative` = mean(LDP_relative, na.rm=TRUE),
-                     # `JCP-SMD` = mean(JCP, na.rm=TRUE),
-                     # `JCP-PR` = mean(JCPPR, na.rm=TRUE),
-                     # `JCP-Gap` = mean(JCPDif, na.rm=TRUE),
+                   `LDP-Gap-relative` = mean(LDPDif_relative, na.rm=TRUE),
                    Turnout = mean(Turnout, na.rm=TRUE),
                    `Turnout-relative` = mean(Turnout_relative, na.rm=TRUE),
                    FStrength = mean(Fstrength, na.rm=TRUE),
@@ -542,7 +530,7 @@ Elections3 %>%
                    SCapital = mean(social_capital, na.rm=TRUE)) %>%
   gt(rowname_col = "Kaso.fusion") %>%
   fmt_number(
-    columns = 2:11,
+    columns = 2:12,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -568,7 +556,7 @@ Elections3 %>%
     subtitle = md("*Aggregated by fiscal profiles*")
   ) %>%
     data_color(
-    columns = 2:11,
+    columns = 2:12,
     colors = my_pal
     ) 
 #   gtsave(
@@ -582,7 +570,7 @@ Elections3 %>%
 ## Summary statistics
 
 ```{r echo=FALSE, results='asis'}
-Elections3[,-c(23:26)] %>%
+Elections3[,-c(23:28)] %>%
   # Keep numeric variables
   select_if(is.numeric) %>%
   # gather variables
@@ -619,7 +607,7 @@ Elections3[,-c(23:26)] %>%
 ## Correlation matrix
 
 ```{r echo=FALSE, results='asis'}
-Elections3[,-c(6,11,13:15,18:24)] %>%
+Elections3[,-c(6,11,13:15,18:20,22:28)] %>%
   select_if(is.numeric) %>%
   cor(use = "complete.obs") %>% 
   ggcorrplot(hc.order = TRUE, #hierarchical ordering
@@ -738,7 +726,7 @@ htmlreg(list(TurnoutMod4, TurnoutMod5, TurnoutMod6),
        threeparttable = TRUE,
        use.packages = FALSE,
        stars = c(0.01, 0.05, 0.1),
-       label = "tab:Turnout"
+       label = "tab:Turnout2"
        )
 ```
 
@@ -839,7 +827,7 @@ htmlreg(list(LDPMod4, LDPMod5, LDPMod6),
        threeparttable = TRUE,
        use.packages = FALSE,
        stars = c(0.01, 0.05, 0.1),
-       label = "tab:LDP"
+       label = "tab:LDP2"
        )
 ```
 
@@ -858,9 +846,25 @@ LDPDifMod3 <- plm(LDPDif ~ Year + Fstrength + EldPop + Turnout +
                    Kaso.fusion, index=c("Code","Year"),
                    model = "pooling", data = Elections3)
 
-sqrt(car::vif(LDPMod3))
+#sqrt(car::vif(LDPMod3))
 ```
 
+```{r echo=FALSE, include=FALSE}
+LDPDifMod4 <- plm(LDPDif_relative ~ Year + Fstrength, index=c("Code","Year"),
+                   model = "pooling", data = Elections3)
+
+LDPDifMod5 <- plm(LDPDif_relative ~ Year + Fstrength + EldPop + Turnout, index=c("Code","Year"),
+                   model = "pooling", data = Elections3)
+
+LDPDifMod6 <- plm(LDPDif_relative ~ Year + Fstrength + EldPop + Turnout + 
+                   Kaso.fusion, index=c("Code","Year"),
+                   model = "pooling", data = Elections3)
+
+#sqrt(car::vif(LDPMod3))
+```
+
+
+#### Absolute values
 
 ```{r ldpdif, results='asis', echo=FALSE}
 htmlreg(list(LDPDifMod1, LDPDifMod2, LDPDifMod3),
@@ -883,6 +887,35 @@ htmlreg(list(LDPDifMod1, LDPDifMod2, LDPDifMod3),
        use.packages = FALSE,
        stars = c(0.01, 0.05, 0.1),
        label = "tab:LDPDif"
+       )
+```
+
+
+<br>
+
+#### Values relative to SMD-average
+
+```{r ldpdif2, results='asis', echo=FALSE}
+htmlreg(list(LDPDifMod4, LDPDifMod5, LDPDifMod6),
+       custom.model.names = c("Model 1", "Model 2", "Model 3"),
+       custom.coef.names = c("(Intercept)", "2012",
+                             "2014", "2017", "2021", "Fiscal Strength",
+                             "Elderly", "Turnout", "みなし過疎",
+                             "一部過疎", "全部過疎", "全部過疎-Merged"),
+       groups = list("Year dummy (base group = '2009')" = 2:5,
+         "Fiscal type (base group = 'Normal')" = 9:12),
+       caption = NULL,
+       digits = 2,
+#       reorder.coef = c(2:8,1),
+       include.ercomp = FALSE,
+       single.row = FALSE,
+       booktabs = TRUE,
+       dcolumn = TRUE,
+       caption.above = TRUE,
+       threeparttable = TRUE,
+       use.packages = FALSE,
+       stars = c(0.01, 0.05, 0.1),
+       label = "tab:LDPDif2"
        )
 ```
 
