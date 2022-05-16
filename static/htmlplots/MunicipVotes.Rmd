@@ -352,7 +352,7 @@ Elections3 %>%
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 Elections3 %>%
   filter(Kaso %in% c("Normal", "みなし過疎", 
-                     "一部過疎", "全部過疎", "全部過疎-Merged")) %>%
+                     "一部過疎", "全部過疎")) %>%
   group_by(Year, Kaso) %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                    `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
@@ -409,6 +409,8 @@ Elections3 %>%
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 Elections3 %>%
+  filter(Kaso %in% c("Normal", "みなし過疎", 
+                     "一部過疎", "全部過疎", "全部過疎-Merged")) %>%
   group_by(Year, Kaso.fusion) %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                    `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
@@ -465,7 +467,7 @@ Elections3 %>%
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 Elections3 %>%
-  filter(Kaso %in% c("Kaso", "Normal")) %>%
+  filter(Kaso2 %in% c("Kaso", "Normal")) %>%
   group_by(Kaso2) %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                    `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
