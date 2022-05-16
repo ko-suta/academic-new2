@@ -126,7 +126,7 @@ Elections3 %>%
     ),
     locations = list(
       cells_body(
-        columns = vars(Turnout)
+        columns = c(Turnout)
       ))) %>%
   tab_options(
     column_labels.border.top.color = "black",
@@ -245,6 +245,7 @@ Elections3 %>%
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 Elections3 %>%
+  filter(Kaso %in% c("Kaso", "Normal")) %>%
   group_by(Year, Kaso2) %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                    `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
@@ -272,7 +273,7 @@ Elections3 %>%
     ),
     locations = list(
       cells_body(
-        columns = vars(Turnout)
+        columns = c(Turnout)
       ))) %>%
   tab_options(
     column_labels.border.top.color = "black",
@@ -325,7 +326,7 @@ Elections3 %>%
     ),
     locations = list(
       cells_body(
-        columns = vars(`JCP-SMD`, Turnout)
+        columns = c(`JCP-SMD`, Turnout)
       ))) %>%
   tab_options(
     column_labels.border.top.color = "black",
@@ -350,6 +351,8 @@ Elections3 %>%
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 Elections3 %>%
+  filter(Kaso %in% c("Normal", "みなし過疎", 
+                     "一部過疎", "全部過疎", "全部過疎-Merged")) %>%
   group_by(Year, Kaso) %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                    `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
@@ -377,7 +380,7 @@ Elections3 %>%
     ),
     locations = list(
       cells_body(
-        columns = vars(Turnout)
+        columns = c(Turnout)
       ))) %>%
   tab_options(
     column_labels.border.top.color = "black",
@@ -433,7 +436,7 @@ Elections3 %>%
     ),
     locations = list(
       cells_body(
-        columns = vars(Turnout)
+        columns = c(Turnout)
       ))) %>%
   tab_options(
     column_labels.border.top.color = "black",
@@ -462,7 +465,7 @@ Elections3 %>%
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 Elections3 %>%
-#  filter(!Year %in% 2009) %>%
+  filter(Kaso %in% c("Kaso", "Normal")) %>%
   group_by(Kaso2) %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                    `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
@@ -490,7 +493,7 @@ Elections3 %>%
     ),
     locations = list(
       cells_body(
-        columns = vars(Turnout)
+        columns = c(Turnout)
       ))) %>%
   tab_options(
     column_labels.border.top.color = "black",
@@ -515,7 +518,8 @@ Elections3 %>%
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 Elections3 %>%
-#  filter(!Year %in% 2009) %>%
+  filter(Kaso %in% c("Normal", "みなし過疎", 
+                     "一部過疎", "全部過疎", "全部過疎-Merged")) %>%
   group_by(Kaso.fusion) %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                    `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
@@ -543,7 +547,7 @@ Elections3 %>%
     ),
     locations = list(
       cells_body(
-        columns = vars(Turnout)
+        columns = c(Turnout)
       ))) %>%
   tab_options(
     column_labels.border.top.color = "black",
