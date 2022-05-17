@@ -103,14 +103,16 @@ Elections3 %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                    `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
                    `LDP-PR` = mean(LDPPR, na.rm=TRUE),
+                   `LDP-PR-relative` = mean(LDPPR_relative, na.rm=TRUE),
                    `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
                    `LDP-Gap-relative` = mean(LDPDif_relative, na.rm=TRUE),
                    Turnout = mean(Turnout, na.rm=TRUE),
                    `Turnout-relative` = mean(Turnout_relative, na.rm=TRUE),
                    FStrength = mean(Fstrength, na.rm=TRUE),
                    LATperCapita = mean(LATperCapita, na.rm=TRUE),
-                   Elderly = mean(EldPop, na.rm=TRUE),
-                   SCapital = mean(social_capital, na.rm=TRUE)) %>%
+                   Elderly = mean(EldPop, na.rm=TRUE)
+                   #SCapital = mean(social_capital, na.rm=TRUE)
+                   ) %>%
   gt(rowname_col = "Fusion") %>%
   fmt_number(
     columns = 2:13,
@@ -245,19 +247,21 @@ Elections3 %>%
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 Elections3 %>%
-  filter(Kaso %in% c("Kaso", "Normal")) %>%
+  filter(Kaso2 %in% c("Kaso", "Normal")) %>%
   group_by(Year, Kaso2) %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                    `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
                    `LDP-PR` = mean(LDPPR, na.rm=TRUE),
+                   `LDP-PR-relative` = mean(LDPPR_relative, na.rm=TRUE),
                    `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
                    `LDP-Gap-relative` = mean(LDPDif_relative, na.rm=TRUE),
                    Turnout = mean(Turnout, na.rm=TRUE),
                    `Turnout-relative` = mean(Turnout_relative, na.rm=TRUE), 
                    FStrength = mean(Fstrength, na.rm=TRUE),
                    LATperCapita = mean(LATperCapita, na.rm=TRUE),
-                   Elderly = mean(EldPop, na.rm=TRUE),
-                   SCapital = mean(social_capital, na.rm=TRUE)) %>%
+                   Elderly = mean(EldPop, na.rm=TRUE)
+                   #SCapital = mean(social_capital, na.rm=TRUE)
+                   ) %>%
   gt(rowname_col = "Kaso2") %>%
   fmt_number(
     columns = 2:13,
@@ -302,6 +306,7 @@ Elections3 %>%
   group_by(Year, Kaso2.fusion) %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                      `LDP-PR` = mean(LDPPR, na.rm=TRUE),
+                     `LDP-PR-relative` = mean(LDPPR_relative, na.rm=TRUE),
                      `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
                      `JCP-SMD` = mean(JCP, na.rm=TRUE),
                      `JCP-PR` = mean(JCPPR, na.rm=TRUE),
@@ -309,8 +314,9 @@ Elections3 %>%
                      Turnout = mean(Turnout, na.rm=TRUE),
                      FStrength = mean(Fstrength, na.rm=TRUE),
                      LATperCapita = mean(LATperCapita, na.rm=TRUE), 
-                     Elderly = mean(EldPop, na.rm=TRUE),
-                     SCapital = mean(social_capital, na.rm=TRUE)) %>%
+                     Elderly = mean(EldPop, na.rm=TRUE)
+                     #SCapital = mean(social_capital, na.rm=TRUE)
+                   ) %>%
   gt(rowname_col = "Kaso2.fusion") %>%
   fmt_number(
     columns = 2:13,
@@ -357,14 +363,16 @@ Elections3 %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                    `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
                    `LDP-PR` = mean(LDPPR, na.rm=TRUE),
+                   `LDP-PR-relative` = mean(LDPPR_relative, na.rm=TRUE),
                    `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
                    `LDP-Gap-relative` = mean(LDPDif_relative, na.rm=TRUE),
                    Turnout = mean(Turnout, na.rm=TRUE),
                    `Turnout-relative` = mean(Turnout_relative, na.rm=TRUE),
                    FStrength = mean(Fstrength, na.rm=TRUE),
                    LATperCapita = mean(LATperCapita, na.rm=TRUE),
-                   Elderly = mean(EldPop, na.rm=TRUE),
-                   SCapital = mean(social_capital, na.rm=TRUE)) %>%
+                   Elderly = mean(EldPop, na.rm=TRUE)
+                   #SCapital = mean(social_capital, na.rm=TRUE)
+                   ) %>%
   gt(rowname_col = "Kaso") %>%
   fmt_number(
     columns = 2:13,
@@ -415,6 +423,7 @@ Elections3 %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                    `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
                    `LDP-PR` = mean(LDPPR, na.rm=TRUE),
+                   `LDP-PR-relative` = mean(LDPPR_relative, na.rm=TRUE),
                    `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
                    `LDP-Gap-relative` = mean(LDPDif_relative, na.rm=TRUE),
                    Turnout = mean(Turnout, na.rm=TRUE),
@@ -422,7 +431,8 @@ Elections3 %>%
                    FStrength = mean(Fstrength, na.rm=TRUE),
                    LATperCapita = mean(LATperCapita, na.rm=TRUE),
                    Elderly = mean(EldPop, na.rm=TRUE),
-                   SCapital = mean(social_capital, na.rm=TRUE)) %>%
+                   #SCapital = mean(social_capital, na.rm=TRUE)
+                   ) %>%
   gt(rowname_col = "Kaso.fusion") %>%
   fmt_number(
     columns = 2:13,
@@ -472,14 +482,16 @@ Elections3 %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                    `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
                    `LDP-PR` = mean(LDPPR, na.rm=TRUE),
+                   `LDP-PR-relative` = mean(LDPPR_relative, na.rm=TRUE),
                    `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
                    `LDP-Gap-relative` = mean(LDPDif_relative, na.rm=TRUE),
                    Turnout = mean(Turnout, na.rm=TRUE),
                    `Turnout-relative` = mean(Turnout_relative, na.rm=TRUE),
                    FStrength = mean(Fstrength, na.rm=TRUE),
                    LATperCapita = mean(LATperCapita, na.rm=TRUE),
-                   Elderly = mean(EldPop, na.rm=TRUE),
-                   SCapital = mean(social_capital, na.rm=TRUE)) %>%
+                   Elderly = mean(EldPop, na.rm=TRUE)
+                   #SCapital = mean(social_capital, na.rm=TRUE)
+                   ) %>%
   gt(rowname_col = "Kaso2") %>%
   fmt_number(
     columns = 2:12,
@@ -526,14 +538,16 @@ Elections3 %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                    `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
                    `LDP-PR` = mean(LDPPR, na.rm=TRUE),
+                   `LDP-PR-relative` = mean(LDPPR_relative, na.rm=TRUE),
                    `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
                    `LDP-Gap-relative` = mean(LDPDif_relative, na.rm=TRUE),
                    Turnout = mean(Turnout, na.rm=TRUE),
                    `Turnout-relative` = mean(Turnout_relative, na.rm=TRUE),
                    FStrength = mean(Fstrength, na.rm=TRUE),
                    LATperCapita = mean(LATperCapita, na.rm=TRUE),
-                   Elderly = mean(EldPop, na.rm=TRUE),
-                   SCapital = mean(social_capital, na.rm=TRUE)) %>%
+                   Elderly = mean(EldPop, na.rm=TRUE)
+                   #SCapital = mean(social_capital, na.rm=TRUE)
+                   ) %>%
   gt(rowname_col = "Kaso.fusion") %>%
   fmt_number(
     columns = 2:12,
@@ -613,7 +627,7 @@ Elections3[,-c(23:28)] %>%
 ## Correlation matrix
 
 ```{r echo=FALSE, results='asis'}
-Elections3[,-c(6,11,13:15,18:20,22:28)] %>%
+Elections3[,-c(6,11,13:15,18:20,22:30)] %>%
   select_if(is.numeric) %>%
   cor(use = "complete.obs") %>% 
   ggcorrplot(hc.order = TRUE, #hierarchical ordering
