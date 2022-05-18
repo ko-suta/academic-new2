@@ -77,6 +77,16 @@ Elections2 <- Elections2 %>%
          EldPop = EldPop/100)
 
 Elections3 <- Elections2[!duplicated(Elections2[,1:2]),]
+
+Elections4 <- Elections3 %>%
+  group_by(kuname) %>%
+  filter(all(c("全部過疎", "Normal") %in% Kaso))
+
+Elections5 <- Elections3 %>%
+  group_by(kuname) %>%
+  filter(all(c("全部過疎", "Normal", "一部過疎") %in% Kaso))
+
+# https://stackoverflow.com/a/58207744
 ```
 
 
