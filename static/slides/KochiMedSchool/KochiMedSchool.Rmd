@@ -409,9 +409,10 @@ knitr::include_graphics("assets/img/tokyo.jpg")
 ```
 
 ]
+
 ---
 
-# Hospitallers Medical Battalion
+# Hospitallers Medical Battalion `r fa("hand-holding-medical", fill = "black")`
 
 --
 
@@ -428,11 +429,14 @@ knitr::include_graphics("assets/img/hosp.jpg")
 
 - Ukrainian volunteer medical battalion formed in 2014
 
-- provide first aid and evacuate wounded Ukrainian soldiers
+- provides first aid and evacuates wounded Ukrainian soldiers
 
-- helped to minimize casualties during the ongoing Russian invasion
+- since 2019: holding training on performing first aid
 
-- <a href=" https://www.newyorker.com/newsletter/the-daily/on-the-ground-with-a-medical-battalion-in-ukraine">The New Yorker artice</a> 
+- <a href="https://www.newyorker.com/newsletter/the-daily/on-the-ground-with-a-medical-battalion-in-ukraine">The New Yorker article</a> 
+
+- <a href="https://www.hospitallers.life/">Dedicated website</a> 
+
 
 
 ]
