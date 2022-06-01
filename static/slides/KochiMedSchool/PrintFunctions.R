@@ -5,4 +5,4 @@ library(here)
 
 ------------------
 
-build_pdf(here("static", "slides", "KUT-Seminar", "KUT-Seminar.Rmd"))
+build_pdf(here("static", "slides", "KochiMedSchool", "KochiMedSchool.Rmd"))
