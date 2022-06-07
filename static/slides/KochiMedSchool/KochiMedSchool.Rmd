@@ -6,7 +6,6 @@ institute: ".white.bg-green[K&#333;chi University of Technology]"
 date: "3 June 2022"
 output:
   xaringan::moon_reader:
-#    chakra: libs/remark-latest.min.js
     lib_dir: libs
     css: ["rutgers-new.css", "rutgers-fonts"]
     nature:
