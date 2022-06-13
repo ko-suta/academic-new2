@@ -487,7 +487,8 @@ Elections3 %>%
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 Elections3 %>%
-  filter(Kaso2 %in% c("Kaso", "Normal")) %>%
+  filter(Kaso2 %in% c("Kaso", "Normal"),
+         !Year %in% 2009) %>%
   group_by(Kaso2) %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                    `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
@@ -543,7 +544,8 @@ Elections3 %>%
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 Elections3 %>%
   filter(Kaso %in% c("Normal", "みなし過疎", 
-                     "一部過疎", "全部過疎", "全部過疎-Merged")) %>%
+                     "一部過疎", "全部過疎", "全部過疎-Merged"),
+         !Year %in% 2009) %>%
   group_by(Kaso.fusion) %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                    `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
@@ -597,6 +599,14 @@ Elections3 %>%
 
 # Statistical analysis
 
+```{r echo=FALSE}
+# optionally exclude 2009
+
+Elections3 <- Elections3 %>%
+  filter(!Year %in% 2009)
+```
+
+
 ## Summary statistics
 
 ```{r echo=FALSE, results='asis'}
@@ -634,6 +644,7 @@ Elections3[,-c(23:28)] %>%
 ```
 
 
+
 ## Correlation matrix
 
 ```{r echo=FALSE, results='asis'}
@@ -655,6 +666,7 @@ Elections3[,-c(6,11,13:15,18:20,22:30)] %>%
         legend.text = element_text(color = "white"),
         plot.title = element_text(hjust = 0.5, color = "white", face="bold"))
 ```
+
 
 ## Regressions
 
@@ -710,12 +722,12 @@ turnout.re <- plm(Turnout ~ Fstrength + LDP + Kaso.fusion + EldPop,
 ```{r turnout, results='asis', echo=FALSE}
 htmlreg(list(TurnoutMod1, TurnoutMod2, TurnoutMod3),
        custom.model.names = c("Model 1", "Model 2", "Model 3"),
-       custom.coef.names = c("(Intercept)", "2012",
+       custom.coef.names = c("(Intercept)",
                              "2014", "2017", "2021", "Fiscal Strength",
                              "Elderly", "LDP", "みなし過疎",
                              "一部過疎", "全部過疎", "全部過疎-Merged"),
-       groups = list("Year dummy (base group = '2009')" = 2:5,
-         "Fiscal type (base group = 'Normal')" = 9:12),
+       groups = list("Year dummy (base group = '2012')" = 2:4,
+         "Fiscal type (base group = 'Normal')" = 8:11),
        caption = NULL,
        digits = 2,
 #       reorder.coef = c(2:8,1),
@@ -739,12 +751,12 @@ htmlreg(list(TurnoutMod1, TurnoutMod2, TurnoutMod3),
 ```{r turnout2, results='asis', echo=FALSE}
 htmlreg(list(TurnoutMod4, TurnoutMod5, TurnoutMod6),
        custom.model.names = c("Model 1", "Model 2", "Model 3"),
-       custom.coef.names = c("(Intercept)", "2012",
+       custom.coef.names = c("(Intercept)",
                              "2014", "2017", "2021", "Fiscal Strength",
                              "Elderly", "LDP", "みなし過疎",
                              "一部過疎", "全部過疎", "全部過疎-Merged"),
-       groups = list("Year dummy (base group = '2009')" = 2:5,
-         "Fiscal type (base group = 'Normal')" = 9:12),
+       groups = list("Year dummy (base group = '2012')" = 2:4,
+         "Fiscal type (base group = 'Normal')" = 8:11),
        caption = NULL,
        digits = 2,
 #       reorder.coef = c(2:8,1),
@@ -811,12 +823,12 @@ ldp.re <- plm(LDP ~ Fstrength + Turnout + Kaso.fusion + EldPop,
 ```{r ldp, results='asis', echo=FALSE}
 htmlreg(list(LDPMod1, LDPMod2, LDPMod3),
        custom.model.names = c("Model 1", "Model 2", "Model 3"),
-       custom.coef.names = c("(Intercept)", "2012",
+       custom.coef.names = c("(Intercept)",
                              "2014", "2017", "2021", "Fiscal Strength",
                              "Elderly", "Turnout", "みなし過疎",
                              "一部過疎", "全部過疎", "全部過疎-Merged"),
-       groups = list("Year dummy (base group = '2009')" = 2:5,
-         "Fiscal type (base group = 'Normal')" = 9:12),
+       groups = list("Year dummy (base group = '2012')" = 2:4,
+         "Fiscal type (base group = 'Normal')" = 8:11),
        caption = NULL,
        digits = 2,
 #       reorder.coef = c(2:8,1),
@@ -840,12 +852,12 @@ htmlreg(list(LDPMod1, LDPMod2, LDPMod3),
 ```{r ldp2, results='asis', echo=FALSE}
 htmlreg(list(LDPMod4, LDPMod5, LDPMod6),
        custom.model.names = c("Model 1", "Model 2", "Model 3"),
-       custom.coef.names = c("(Intercept)", "2012",
+       custom.coef.names = c("(Intercept)", 
                              "2014", "2017", "2021", "Fiscal Strength",
                              "Elderly", "Turnout", "みなし過疎",
                              "一部過疎", "全部過疎", "全部過疎-Merged"),
-       groups = list("Year dummy (base group = '2009')" = 2:5,
-         "Fiscal type (base group = 'Normal')" = 9:12),
+       groups = list("Year dummy (base group = '2012')" = 2:4,
+         "Fiscal type (base group = 'Normal')" = 9:11),
        caption = NULL,
        digits = 2,
 #       reorder.coef = c(2:8,1),Absolute
@@ -899,12 +911,12 @@ LDPDifMod6 <- plm(LDPDif_relative ~ Year + Fstrength + EldPop + Turnout +
 ```{r ldpdif, results='asis', echo=FALSE}
 htmlreg(list(LDPDifMod1, LDPDifMod2, LDPDifMod3),
        custom.model.names = c("Model 1", "Model 2", "Model 3"),
-       custom.coef.names = c("(Intercept)", "2012",
+       custom.coef.names = c("(Intercept)", 
                              "2014", "2017", "2021", "Fiscal Strength",
                              "Elderly", "Turnout", "みなし過疎",
                              "一部過疎", "全部過疎", "全部過疎-Merged"),
-       groups = list("Year dummy (base group = '2009')" = 2:5,
-         "Fiscal type (base group = 'Normal')" = 9:12),
+       groups = list("Year dummy (base group = '2012')" = 2:4,
+         "Fiscal type (base group = 'Normal')" = 9:11),
        caption = NULL,
        digits = 2,
 #       reorder.coef = c(2:8,1),
@@ -928,12 +940,12 @@ htmlreg(list(LDPDifMod1, LDPDifMod2, LDPDifMod3),
 ```{r ldpdif2, results='asis', echo=FALSE}
 htmlreg(list(LDPDifMod4, LDPDifMod5, LDPDifMod6),
        custom.model.names = c("Model 1", "Model 2", "Model 3"),
-       custom.coef.names = c("(Intercept)", "2012",
+       custom.coef.names = c("(Intercept)",
                              "2014", "2017", "2021", "Fiscal Strength",
                              "Elderly", "Turnout", "みなし過疎",
                              "一部過疎", "全部過疎", "全部過疎-Merged"),
-       groups = list("Year dummy (base group = '2009')" = 2:5,
-         "Fiscal type (base group = 'Normal')" = 9:12),
+       groups = list("Year dummy (base group = '2012')" = 2:4,
+         "Fiscal type (base group = 'Normal')" = 9:11),
        caption = NULL,
        digits = 2,
 #       reorder.coef = c(2:8,1),
