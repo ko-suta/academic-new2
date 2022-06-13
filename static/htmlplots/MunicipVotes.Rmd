@@ -481,7 +481,7 @@ Elections3 %>%
 
 <br><br>
 
-## 2009 -- 2021 trends
+## 2012 -- 2021 trends
 
 ### Basic differences between "Normal" and "Kaso"
 
