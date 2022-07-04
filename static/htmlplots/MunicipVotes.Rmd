@@ -1239,7 +1239,7 @@ align_legend <- function(p, hjust = 0.5)
             family = "HiraKakuPro-W3"))
 ```
 
-```{r}
+```{r echo=FALSE}
 TurnoutRatio2021 <- mainland +
     annotation_custom(
       grob = ggplotGrob(Ryukyu),
@@ -1339,7 +1339,7 @@ ggdraw(align_legend(TurnoutRatio2021))
 ```
 
 
-```{r}
+```{r echo=FALSE}
 TurnoutRatio2017 <- mainland +
     annotation_custom(
       grob = ggplotGrob(Ryukyu),
@@ -1437,7 +1437,7 @@ ggdraw(align_legend(TurnoutRatio2017))
             family = "HiraKakuPro-W3"))
 ```
 
-```{r}
+```{r echo=FALSE}
 TurnoutRatio2014 <- mainland +
     annotation_custom(
       grob = ggplotGrob(Ryukyu),
@@ -1535,7 +1535,7 @@ ggdraw(align_legend(TurnoutRatio2014))
             family = "HiraKakuPro-W3"))
 ```
 
-```{r}
+```{r echo=FALSE}
 TurnoutRatio2012 <- mainland +
     annotation_custom(
       grob = ggplotGrob(Ryukyu),
@@ -1584,7 +1584,7 @@ Nagano2021 <- Elections4 %>%
 ```
 
 
-```{r}
+```{r echo=FALSE}
 Elections4 %>%
    filter(Year %in% 2021) %>%
    mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
