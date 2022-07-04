@@ -1,0 +1,512 @@
+legend.key.height = unit(1.5, "cm"))
+ggsave(filename = "NaganoTurnout2021.pdf", width = 15, height = 16, units = "in", device = cairo_pdf)
+ggsave(filename = "NaganoTurnout2021.png", width = 15, height = 16, units = "in")
+#library(ggsflabel)
+Elections4 %>%
+filter(Year %in% 2021) %>%
+mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
+filter(EPref %in% "Nagano") %>%
+ggplot() +
+geom_sf(aes(fill = TurnoutDecile), colour = NA) +
+geom_sf(data = Elections2021 %>%
+filter(EPref %in% "Nagano"),
+fill = NA,
+color = "black",
+size = 0.5) +
+scale_fill_viridis(option="F", direction = -1,
+breaks = c(2, 4, 6, 8, 10),
+labels = c("53%", "57%", "61%",
+"67%", "87%"),
+name = "Voters' Turnout") +
+scale_x_continuous(breaks = seq(137.4, 138.8, by = .4)) +
+# geom_sf_label_repel(data = Elections2021 %>%
+#                       filter(EPref %in% "Nagano"),
+#                 aes(label = District),
+#                 fontface = 'bold',
+#                 color = 'white',
+#                 box.padding = unit(0.35, "lines"),
+#                 point.padding = unit(0.5, "lines"),
+#                 #fill="red",
+#                 segment.color = 'black',
+#                 alpha = 0.8,
+#                 nudge_x = -1) +
+labs(title = "Turnout Ratio, Nagano-ken (2021)") +
+theme_map() +
+theme(axis.text=element_text(size=22),
+axis.text.x = element_text(vjust = 0.5, color = 'black'),
+axis.text.y = element_text(color = 'black'),
+axis.title.y = element_blank(),
+axis.title.x = element_blank(),
+axis.title=element_text(size=24,face="bold"),
+legend.position = c(0.85, 0.2),
+legend.title.align=0.5,
+plot.title = element_text(hjust = 0.5, size=25,face="bold"),
+legend.text=element_text(size=12),
+legend.title=element_text(size=13, face="bold"),
+legend.margin = margin(8, 8, 8, 8),
+legend.spacing.y = unit(0.5, 'cm'),
+legend.key = element_rect(fill = "white"),
+legend.box.background = element_rect(color="black", size=1),
+legend.key.width=unit(1.5, "cm"),
+legend.key.height = unit(1.5, "cm"))
+ggsave(filename = "NaganoTurnout2021.pdf", width = 15, height = 16, units = "in", device = cairo_pdf)
+ggsave(filename = "NaganoTurnout2021.png", width = 15, height = 16, units = "in")
+#library(ggsflabel)
+Elections4 %>%
+filter(Year %in% 2021) %>%
+mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
+filter(EPref %in% "Nagano") %>%
+ggplot() +
+geom_sf(aes(fill = TurnoutDecile), colour = NA) +
+geom_sf(data = Elections2021 %>%
+filter(EPref %in% "Nagano"),
+fill = NA,
+color = "black",
+size = 2) +
+scale_fill_viridis(option="F", direction = -1,
+breaks = c(2, 4, 6, 8, 10),
+labels = c("53%", "57%", "61%",
+"67%", "87%"),
+name = "Voters' Turnout") +
+scale_x_continuous(breaks = seq(137.4, 138.8, by = .4)) +
+# geom_sf_label_repel(data = Elections2021 %>%
+#                       filter(EPref %in% "Nagano"),
+#                 aes(label = District),
+#                 fontface = 'bold',
+#                 color = 'white',
+#                 box.padding = unit(0.35, "lines"),
+#                 point.padding = unit(0.5, "lines"),
+#                 #fill="red",
+#                 segment.color = 'black',
+#                 alpha = 0.8,
+#                 nudge_x = -1) +
+labs(title = "Turnout Ratio, Nagano-ken (2021)") +
+theme_map() +
+theme(axis.text=element_text(size=22),
+axis.text.x = element_text(vjust = 0.5, color = 'black'),
+axis.text.y = element_text(color = 'black'),
+axis.title.y = element_blank(),
+axis.title.x = element_blank(),
+axis.title=element_text(size=24,face="bold"),
+legend.position = c(0.85, 0.2),
+legend.title.align=0.5,
+plot.title = element_text(hjust = 0.5, size=25,face="bold"),
+legend.text=element_text(size=12),
+legend.title=element_text(size=13, face="bold"),
+legend.margin = margin(8, 8, 8, 8),
+legend.spacing.y = unit(0.5, 'cm'),
+legend.key = element_rect(fill = "white"),
+legend.box.background = element_rect(color="black", size=1),
+legend.key.width=unit(1.5, "cm"),
+legend.key.height = unit(1.5, "cm"))
+ggsave(filename = "NaganoTurnout2021.pdf", width = 15, height = 16, units = "in", device = cairo_pdf)
+ggsave(filename = "NaganoTurnout2021.png", width = 15, height = 16, units = "in")
+p_needed <- c("tidyverse",
+"here",
+"cowplot",
+"readxl",
+"data.table",
+"magrittr",
+"rvest",
+"htmltab",
+"xml2",
+"gt",
+"lme4",
+"gtsummary",
+"gtExtras",
+"crosstable",
+"rmdformats",
+"ggcorrplot",
+"texreg",
+"plm",
+"sf",
+"spdep",
+"ggthemes",
+"ggpubr",
+"ggrepel",
+"ggsflabel",
+"ggspatial",
+"splm",
+"spatialreg",
+"viridis"
+)
+packages <- rownames(installed.packages())
+p_to_install <- p_needed[!(p_needed %in% packages)]
+if (length(p_to_install) > 0) {
+install.packages(p_to_install)
+}
+lapply(p_needed, require, character.only = TRUE)
+knitr::opts_chunk$set(echo = TRUE)
+Elections <- read_csv(here("static", "htmlplots", "Data", "Elections2.csv"), col_names = TRUE)
+# Elections <- Elections[,-c(5,8)]
+Elections[, 5:7][Elections[, 5:7] == 0] <- NA
+Elections2 <- Elections %>%
+filter(LDP>=0 | LDP %in% NA) %>%
+filter(LDP <=1 | LDP %in% NA) %>%
+filter(JCP>=0 | JCP %in% NA) %>%
+filter(JCP <=1 | JCP %in% NA)
+Elections2$Year <- as.character(Elections2$Year)
+Elections2$Year <- as.factor(Elections2$Year)
+Elections2$Code <- as.character(Elections2$Code)
+Elections2$Code <- as.factor(Elections2$Code)
+Elections2 <- Elections2 %>%
+filter(!Code %in% NA) %>%
+mutate(Turnout = ifelse(Turnout >=1, NA, Turnout),
+EldPop = EldPop/100)
+Elections3 <- Elections2[!duplicated(Elections2[,1:2]),]
+Elections4 <- Elections3 %>%
+group_by(kuname) %>%
+filter(all(c("全部過疎", "Normal") %in% Kaso))
+Elections5 <- Elections3 %>%
+group_by(kuname) %>%
+filter(all(c("全部過疎", "Normal", "一部過疎") %in% Kaso))
+# https://stackoverflow.com/a/58207744
+my_pal <- scales::col_numeric(
+paletteer::paletteer_d(
+palette = "ggsci::red_material"
+) %>% as.character(),
+domain = NULL
+)
+Elections3 %>%
+mutate(Fusion = factor(Fusion, levels = c("0", "1"),
+labels = c("Non-Merged", "Merged"))) %>%
+group_by(Year, Fusion) %>%
+dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+`LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
+`LDP-PR` = mean(LDPPR, na.rm=TRUE),
+`LDP-PR-relative` = mean(LDPPR_relative, na.rm=TRUE),
+`LDP-Gap` = mean(LDPDif, na.rm=TRUE),
+`LDP-Gap-relative` = mean(LDPDif_relative, na.rm=TRUE),
+Turnout = mean(Turnout, na.rm=TRUE),
+`Turnout-relative` = mean(Turnout_relative, na.rm=TRUE),
+FStrength = mean(Fstrength, na.rm=TRUE),
+LATperCapita = mean(LATperCapita, na.rm=TRUE),
+Elderly = mean(EldPop, na.rm=TRUE)
+#SCapital = mean(social_capital, na.rm=TRUE)
+) %>%
+gt(rowname_col = "Fusion") %>%
+fmt_number(
+columns = 2:13,
+decimals = 3 # decrease decimal places
+) %>%
+tab_style(
+style = list(
+cell_borders(
+sides = "left",
+color = "black",
+weight = px(3)
+)
+),
+locations = list(
+cells_body(
+columns = c(Turnout)
+))) %>%
+tab_options(
+column_labels.border.top.color = "black",
+column_labels.border.bottom.color = "black",
+table_body.border.bottom.color = "black",
+table_body.hlines.color = "white"
+) %>%
+tab_header(
+title = md("**Municipal characteristics**"),
+) %>%
+data_color(
+columns = 2:13,
+colors = my_pal
+) %>%
+gtsave(
+"merged.png"
+)
+Elections3 %>%
+filter(Kaso2 %in% c("Kaso", "Normal")) %>%
+group_by(Year, Kaso2) %>%
+dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+`LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
+`LDP-PR` = mean(LDPPR, na.rm=TRUE),
+`LDP-PR-relative` = mean(LDPPR_relative, na.rm=TRUE),
+`LDP-Gap` = mean(LDPDif, na.rm=TRUE),
+`LDP-Gap-relative` = mean(LDPDif_relative, na.rm=TRUE),
+Turnout = mean(Turnout, na.rm=TRUE),
+`Turnout-relative` = mean(Turnout_relative, na.rm=TRUE),
+FStrength = mean(Fstrength, na.rm=TRUE),
+LATperCapita = mean(LATperCapita, na.rm=TRUE),
+Elderly = mean(EldPop, na.rm=TRUE)
+#SCapital = mean(social_capital, na.rm=TRUE)
+) %>%
+gt(rowname_col = "Kaso2") %>%
+fmt_number(
+columns = 2:13,
+decimals = 3 # decrease decimal places
+) %>%
+tab_style(
+style = list(
+cell_borders(
+sides = "left",
+color = "black",
+weight = px(3)
+)
+),
+locations = list(
+cells_body(
+columns = c(Turnout)
+))) %>%
+tab_options(
+column_labels.border.top.color = "black",
+column_labels.border.bottom.color = "black",
+table_body.border.bottom.color = "black",
+table_body.hlines.color = "white"
+) %>%
+tab_header(
+title = md("**Municipal characteristics**"),
+subtitle = md("*Aggregated by fiscal profiles*")
+) %>%
+data_color(
+columns = 2:13,
+colors = my_pal
+) %>%
+gtsave(
+"kaso-nonkaso-unique.png"
+)
+Elections3 %>%
+filter(Kaso %in% c("Normal", "みなし過疎",
+"一部過疎", "全部過疎")) %>%
+group_by(Year, Kaso) %>%
+dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+`LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
+`LDP-PR` = mean(LDPPR, na.rm=TRUE),
+`LDP-PR-relative` = mean(LDPPR_relative, na.rm=TRUE),
+`LDP-Gap` = mean(LDPDif, na.rm=TRUE),
+`LDP-Gap-relative` = mean(LDPDif_relative, na.rm=TRUE),
+Turnout = mean(Turnout, na.rm=TRUE),
+`Turnout-relative` = mean(Turnout_relative, na.rm=TRUE),
+FStrength = mean(Fstrength, na.rm=TRUE),
+LATperCapita = mean(LATperCapita, na.rm=TRUE),
+Elderly = mean(EldPop, na.rm=TRUE)
+#SCapital = mean(social_capital, na.rm=TRUE)
+) %>%
+gt(rowname_col = "Kaso") %>%
+fmt_number(
+columns = 2:13,
+decimals = 3 # decrease decimal places
+) %>%
+tab_style(
+style = list(
+cell_borders(
+sides = "left",
+color = "black",
+weight = px(3)
+)
+),
+locations = list(
+cells_body(
+columns = c(Turnout)
+))) %>%
+tab_options(
+column_labels.border.top.color = "black",
+column_labels.border.bottom.color = "black",
+table_body.border.bottom.color = "black",
+table_body.hlines.color = "white"
+) %>%
+tab_header(
+title = md("**Municipal characteristics**"),
+subtitle = md("*Aggregated by fiscal profiles*")
+) %>%
+data_color(
+columns = 2:13,
+colors = my_pal
+) %>%
+gtsave(
+"kaso-detailed-unique.png"
+)
+Elections3 %>%
+filter(Kaso %in% c("Normal", "みなし過疎",
+"一部過疎", "全部過疎", "全部過疎-Merged")) %>%
+group_by(Year, Kaso.fusion) %>%
+dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+`LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
+`LDP-PR` = mean(LDPPR, na.rm=TRUE),
+`LDP-PR-relative` = mean(LDPPR_relative, na.rm=TRUE),
+`LDP-Gap` = mean(LDPDif, na.rm=TRUE),
+`LDP-Gap-relative` = mean(LDPDif_relative, na.rm=TRUE),
+Turnout = mean(Turnout, na.rm=TRUE),
+`Turnout-relative` = mean(Turnout_relative, na.rm = TRUE),
+FStrength = mean(Fstrength, na.rm=TRUE),
+LATperCapita = mean(LATperCapita, na.rm=TRUE),
+Elderly = mean(EldPop, na.rm=TRUE),
+#SCapital = mean(social_capital, na.rm=TRUE)
+) %>%
+gt(rowname_col = "Kaso.fusion") %>%
+fmt_number(
+columns = 2:13,
+decimals = 3 # decrease decimal places
+) %>%
+tab_style(
+style = list(
+cell_borders(
+sides = "left",
+color = "black",
+weight = px(3)
+)
+),
+locations = list(
+cells_body(
+columns = c(Turnout)
+))) %>%
+tab_options(
+column_labels.border.top.color = "black",
+column_labels.border.bottom.color = "black",
+table_body.border.bottom.color = "black",
+table_body.hlines.color = "white"
+) %>%
+tab_header(
+title = md("**Municipal characteristics**"),
+subtitle = md("*Aggregated by fiscal profiles*")
+) %>%
+data_color(
+columns = 2:13,
+colors = my_pal
+) %>%
+gtsave(
+"kaso-merged-detailed-unique.png"
+)
+install.packages("rgdal")
+install.packages("rgdal", type="source")
+Elections3 %>%
+filter(Kaso2 %in% c("Kaso", "Normal"),
+!Year %in% 2009) %>%
+group_by(Kaso2) %>%
+dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+`LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
+`LDP-PR` = mean(LDPPR, na.rm=TRUE),
+`LDP-PR-relative` = mean(LDPPR_relative, na.rm=TRUE),
+`LDP-Gap` = mean(LDPDif, na.rm=TRUE),
+`LDP-Gap-relative` = mean(LDPDif_relative, na.rm=TRUE),
+Turnout = mean(Turnout, na.rm=TRUE),
+`Turnout-relative` = mean(Turnout_relative, na.rm=TRUE),
+FStrength = mean(Fstrength, na.rm=TRUE),
+LATperCapita = mean(LATperCapita, na.rm=TRUE),
+Elderly = mean(EldPop, na.rm=TRUE)
+#SCapital = mean(social_capital, na.rm=TRUE)
+) %>%
+gt(rowname_col = "Kaso2") %>%
+fmt_number(
+columns = 2:12,
+decimals = 3 # decrease decimal places
+) %>%
+tab_style(
+style = list(
+cell_borders(
+sides = "left",
+color = "black",
+weight = px(3)
+)
+),
+locations = list(
+cells_body(
+columns = c(Turnout)
+))) %>%
+tab_options(
+column_labels.border.top.color = "black",
+column_labels.border.bottom.color = "black",
+table_body.border.bottom.color = "black",
+table_body.hlines.color = "white"
+) %>%
+tab_header(
+title = md("**Municipal characteristics**"),
+subtitle = md("*Aggregated by fiscal profiles*")
+) %>%
+data_color(
+columns = 2:12,
+colors = my_pal
+) %>%
+gtsave(
+"kaso-nonkaso-overall.png"
+)
+Elections3 %>%
+filter(Kaso %in% c("Normal", "みなし過疎",
+"一部過疎", "全部過疎", "全部過疎-Merged"),
+!Year %in% 2009) %>%
+group_by(Kaso.fusion) %>%
+dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+`LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
+`LDP-PR` = mean(LDPPR, na.rm=TRUE),
+`LDP-PR-relative` = mean(LDPPR_relative, na.rm=TRUE),
+`LDP-Gap` = mean(LDPDif, na.rm=TRUE),
+`LDP-Gap-relative` = mean(LDPDif_relative, na.rm=TRUE),
+Turnout = mean(Turnout, na.rm=TRUE),
+`Turnout-relative` = mean(Turnout_relative, na.rm=TRUE),
+FStrength = mean(Fstrength, na.rm=TRUE),
+LATperCapita = mean(LATperCapita, na.rm=TRUE),
+Elderly = mean(EldPop, na.rm=TRUE)
+#SCapital = mean(social_capital, na.rm=TRUE)
+) %>%
+gt(rowname_col = "Kaso.fusion") %>%
+fmt_number(
+columns = 2:12,
+decimals = 3 # decrease decimal places
+) %>%
+tab_style(
+style = list(
+cell_borders(
+sides = "left",
+color = "black",
+weight = px(3)
+)
+),
+locations = list(
+cells_body(
+columns = c(Turnout)
+))) %>%
+tab_options(
+column_labels.border.top.color = "black",
+column_labels.border.bottom.color = "black",
+table_body.border.bottom.color = "black",
+table_body.hlines.color = "white"
+) %>%
+tab_header(
+title = md("**Municipal characteristics**"),
+subtitle = md("*Aggregated by fiscal profiles*")
+) %>%
+data_color(
+columns = 2:12,
+colors = my_pal
+) %>%
+gtsave(
+"kaso-merged-detailed-overall.png"
+)
+Elections3 %>%
+filter(Year %in% 2021) %>%
+select(Year, Fusion, Kaso) %>%
+mutate(Fusion = factor(Fusion, levels = c("0", "1"),
+labels = c("Non-Merged", "Merged"))) %>%
+tbl_cross(
+row = Fusion,
+col = Kaso,
+percent = "column",
+label = list(Kaso ~ "2021", Fusion ~ "Fusion")
+)
+t1 <- Elections3 %>%
+filter(Year %in% 2021) %>%
+select(Year, Fusion, Kaso) %>%
+mutate(Fusion = factor(Fusion, levels = c("0", "1"),
+labels = c("Non-Merged", "Merged"))) %>%
+tbl_cross(
+row = Fusion,
+col = Kaso,
+percent = "column",
+label = list(Kaso ~ "2021", Fusion ~ "Fusion")
+)
+gt::gtsave(as_gt(t1), "kaso-table.png")
+??tbl_cross
+View(t1)
+Elections3 %>%
+filter(Year %in% 2021) %>%
+select(Year, Fusion, Kaso) %>%
+mutate(Fusion = factor(Fusion, levels = c("0", "1"),
+labels = c("Non-Merged", "Merged"))) %>%
+tbl_cross(
+row = Fusion,
+col = Kaso,
+percent = "column",
+label = list(Kaso ~ "2021", Fusion ~ "Fusion")
+)
