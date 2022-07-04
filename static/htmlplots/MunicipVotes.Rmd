@@ -100,6 +100,26 @@ Elections3 %>%
 ```
 
 
+```{r include=FALSE}
+# average municip per SMD
+
+Elections3 %>%
+#  filter(Year %in% 2021) %>%
+  group_by(Year, kuname) %>%
+  summarise(n = n()) %>%
+  summarise(avgMun = mean(n))
+
+
+# having both kaso and normal
+
+Elections3 %>%
+#  filter(Year %in% 2021) %>%
+  group_by(Year, kuname) %>%
+  filter(all(c('Normal','Kaso') %in% Kaso2)) %>%
+  summarise(n = n()) %>%
+  summarise(n = n())
+```
+
 
 ```{r echo=FALSE}
 my_pal <- scales::col_numeric(
@@ -540,6 +560,63 @@ Elections3 %>%
 <br><br>
 
 ## 2012 -- 2021 trends
+
+## Basic differences between "merged" and "non-merged"
+
+```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+Elections3 %>%
+  filter(!Year %in% 2009) %>%
+  mutate(Fusion = factor(Fusion, levels = c("0", "1"), 
+                      labels = c("Non-Merged", "Merged"))) %>%
+  group_by(Fusion) %>%
+  dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+                   `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
+                   `LDP-PR` = mean(LDPPR, na.rm=TRUE),
+                   `LDP-PR-relative` = mean(LDPPR_relative, na.rm=TRUE),
+                   `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
+                   `LDP-Gap-relative` = mean(LDPDif_relative, na.rm=TRUE),
+                   Turnout = mean(Turnout, na.rm=TRUE),
+                   `Turnout-relative` = mean(Turnout_relative, na.rm=TRUE),
+                   FStrength = mean(Fstrength, na.rm=TRUE),
+                   LATperCapita = mean(LATperCapita, na.rm=TRUE),
+                   Elderly = mean(EldPop, na.rm=TRUE)
+                   #SCapital = mean(social_capital, na.rm=TRUE)
+                   ) %>%
+  gt(rowname_col = "Fusion") %>%
+  fmt_number(
+    columns = 2:12,
+    decimals = 3 # decrease decimal places
+    ) %>%
+  tab_style(
+    style = list(
+      cell_borders(
+        sides = "left",
+        color = "black",
+        weight = px(3)
+      )
+    ),
+    locations = list(
+      cells_body(
+        columns = c(Turnout)
+      ))) %>%
+  tab_options(
+    column_labels.border.top.color = "black",
+    column_labels.border.bottom.color = "black",
+    table_body.border.bottom.color = "black",
+    table_body.hlines.color = "white"
+    ) %>%
+  tab_header(
+    title = md("**Municipal characteristics**"),
+  ) %>%
+    data_color(
+    columns = 2:12,
+    colors = my_pal
+    )
+#   gtsave(
+#     "merged.png"
+# )
+```
+
 
 ### Basic differences between "Normal" and "Kaso"
 
