@@ -42,7 +42,8 @@ p_needed <- c("tidyverse",
 packages <- rownames(installed.packages())
 p_to_install <- p_needed[!(p_needed %in% packages)]
 if (length(p_to_install) > 0) {
-  install.packages(p_to_install)
+  install.packages(p_to_install,
+                   repos = "http://cran.us.r-project.org")
 }
 lapply(p_needed, require, character.only = TRUE)
 ```
@@ -868,8 +869,8 @@ htmlreg(list(TurnoutMod1, TurnoutMod2, TurnoutMod3),
        custom.model.names = c("Model 1", "Model 2", "Model 3"),
        custom.coef.names = c("(Intercept)",
                              "2014", "2017", "2021", "Fiscal Strength",
-                             "Elderly", "LDP", "みなし過疎",
-                             "一部過疎", "全部過疎", "全部過疎-Merged"),
+                             "Elderly", "LDP", "Quasi-depopulating",
+                             "Partly depopulating", "Fully depopulating", "Fully depopulating"),
        groups = list("Year dummy (base group = '2012')" = 2:4,
          "Fiscal type (base group = 'Normal')" = 8:11),
        caption = NULL,
@@ -897,8 +898,8 @@ htmlreg(list(TurnoutMod4, TurnoutMod5, TurnoutMod6),
        custom.model.names = c("Model 1", "Model 2", "Model 3"),
        custom.coef.names = c("(Intercept)",
                              "2014", "2017", "2021", "Fiscal Strength",
-                             "Elderly", "LDP", "みなし過疎",
-                             "一部過疎", "全部過疎", "全部過疎-Merged"),
+                             "Elderly", "LDP", "Quasi-depopulating",
+                             "Partly depopulating", "Fully depopulating", "Fully depopulating"),
        groups = list("Year dummy (base group = '2012')" = 2:4,
          "Fiscal type (base group = 'Normal')" = 8:11),
        caption = NULL,
@@ -1111,100 +1112,100 @@ htmlreg(list(LDPDifMod4, LDPDifMod5, LDPDifMod6),
 # Mapping
 
 ```{r include=FALSE}
-projcrs <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
-
-d3 <- sf::st_read("GIS/japan_ver81.shp") %>%
-  st_transform(CRS("+proj=longlat +datum=WGS84"))
-
-d3 <- d3[,-c(3:5, 8:9)]
-colnames(d3)[1] <- "Code"
-
-Pref <- read.csv("GIS/JPref2.csv", stringsAsFactors = FALSE)
-colnames(Pref)[1] <- "Code"
-
-PrefMap <- sf::st_read("GIS/JPref.shp") %>%
-  st_transform(CRS("+proj=longlat +datum=WGS84"))
-
-PrefMap2 <- as(PrefMap, "Spatial")
-
-coord2 <- as.data.frame(coordinates(spTransform(PrefMap2, 
-                                                CRS("+proj=longlat +datum=WGS84"))))
-PrefCoord <- cbind(Pref, coord2)
-
-senkyoku2017 <- rgdal::readOGR("GIS/senkyoku289/senkyoku289.shp", encoding = "shift-jis")
-senkyoku2017 <- st_as_sf(senkyoku2017)
-senkyoku2017$kucode <- sprintf("%05s", senkyoku2017$kucode)
-
-senkyoku2017 <- senkyoku2017 %>%
-  arrange(kucode)
-
-senkyoku2017$ken <- as.numeric(senkyoku2017$ken)
-senkyoku2017$ku <- as.numeric(senkyoku2017$ku)
-
-senkyoku2014 <- rgdal::readOGR("GIS/senkyoku295/senkyoku295.shp", encoding = "shift-jis")
-senkyoku2014 <- st_as_sf(senkyoku2014)
-colnames(senkyoku2014)[1] <- "kucode"
-
-senkyoku2014 <- senkyoku2014 %>%
-  arrange(kucode)
-
-senkyoku2014 <- senkyoku2014[-c(3:16)]
-
-
-senkyoku1996 <- rgdal::readOGR("GIS/senkyoku300/senkyoku300.shp", encoding = "shift-jis")
-senkyoku1996 <- st_as_sf(senkyoku1996)
-colnames(senkyoku1996)[1] <- "kucode"
-
-senkyoku1996 <- senkyoku1996 %>%
-  arrange(kucode)
-
-senkyoku1996 <- senkyoku1996[-c(3:16)]
+# projcrs <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
+# 
+# d3 <- sf::st_read("GIS/japan_ver81.shp") %>%
+#   st_transform(CRS("+proj=longlat +datum=WGS84"))
+# 
+# d3 <- d3[,-c(3:5, 8:9)]
+# colnames(d3)[1] <- "Code"
+# 
+# Pref <- read.csv("GIS/JPref2.csv", stringsAsFactors = FALSE)
+# colnames(Pref)[1] <- "Code"
+# 
+# PrefMap <- sf::st_read("GIS/JPref.shp") %>%
+#   st_transform(CRS("+proj=longlat +datum=WGS84"))
+# 
+# PrefMap2 <- as(PrefMap, "Spatial")
+# 
+# coord2 <- as.data.frame(coordinates(spTransform(PrefMap2, 
+#                                                 CRS("+proj=longlat +datum=WGS84"))))
+# PrefCoord <- cbind(Pref, coord2)
+# 
+# senkyoku2017 <- rgdal::readOGR("GIS/senkyoku289/senkyoku289.shp", encoding = "shift-jis")
+# senkyoku2017 <- st_as_sf(senkyoku2017)
+# senkyoku2017$kucode <- sprintf("%05s", senkyoku2017$kucode)
+# 
+# senkyoku2017 <- senkyoku2017 %>%
+#   arrange(kucode)
+# 
+# senkyoku2017$ken <- as.numeric(senkyoku2017$ken)
+# senkyoku2017$ku <- as.numeric(senkyoku2017$ku)
+# 
+# senkyoku2014 <- rgdal::readOGR("GIS/senkyoku295/senkyoku295.shp", encoding = "shift-jis")
+# senkyoku2014 <- st_as_sf(senkyoku2014)
+# colnames(senkyoku2014)[1] <- "kucode"
+# 
+# senkyoku2014 <- senkyoku2014 %>%
+#   arrange(kucode)
+# 
+# senkyoku2014 <- senkyoku2014[-c(3:16)]
+# 
+# 
+# senkyoku1996 <- rgdal::readOGR("GIS/senkyoku300/senkyoku300.shp", encoding = "shift-jis")
+# senkyoku1996 <- st_as_sf(senkyoku1996)
+# colnames(senkyoku1996)[1] <- "kucode"
+# 
+# senkyoku1996 <- senkyoku1996 %>%
+#   arrange(kucode)
+# 
+# senkyoku1996 <- senkyoku1996[-c(3:16)]
 ```
 
 
 ```{r include=FALSE}
-Elections3$PrefNumber <- Pref$Code[match(Elections3$Pref, Pref$Jpref)]
-
-Elections3 <- Elections3 %>%
-  separate(kuname, 
-           into = c("EPref", "ku"), 
-           sep = "(?<=[A-Za-z])(?=[0-9])"
-           )
-
-
-Elections4 <- merge(x = Elections3, y = d3[,c(1,5)], by = "Code", all.x = TRUE)
-Elections4 <- st_as_sf(x = Elections4, crs = projcrs)
+# Elections3$PrefNumber <- Pref$Code[match(Elections3$Pref, Pref$Jpref)]
+# 
+# Elections3 <- Elections3 %>%
+#   separate(kuname, 
+#            into = c("EPref", "ku"), 
+#            sep = "(?<=[A-Za-z])(?=[0-9])"
+#            )
+# 
+# 
+# Elections4 <- merge(x = Elections3, y = d3[,c(1,5)], by = "Code", all.x = TRUE)
+# Elections4 <- st_as_sf(x = Elections4, crs = projcrs)
 ```
 
 ```{r include=FALSE}
-Elections3 %>%
-  filter(Year %in% 2021) %>%
-  summarise(Turnout = quantile(Turnout, c(.1, .2, .3, .4, .5, .6, .7, .8, .9, 1), 
-                               na.rm = TRUE))
+# Elections3 %>%
+#   filter(Year %in% 2021) %>%
+#   summarise(Turnout = quantile(Turnout, c(.1, .2, .3, .4, .5, .6, .7, .8, .9, 1), 
+#                                na.rm = TRUE))
 ```
 
 ```{r include=FALSE}
-Elections3$ku <- as.numeric(Elections3$ku)
-
-Elections2021 <- Elections3 %>%
-  filter(Year %in% 2021) %>%
-  mutate(District = paste0(EPref,ku)) 
-
-Elections2021 <- Elections2021 %>%
-  left_join(senkyoku2017[,c(3:5)], by = c("PrefNumber" = "ken",
-                               "ku" = "ku"))
-
-Elections2021 <- st_as_sf(x = Elections2021, crs = projcrs)
-
-
-Elections2021Dist <- Elections3 %>%
-  filter(Year %in% 2021) %>%
-  mutate(District = paste0(EPref,ku)) %>% 
-  distinct(District, .keep_all = TRUE) %>%
-  left_join(senkyoku2017[,c(3:5)], by = c("PrefNumber" = "ken",
-                               "ku" = "ku"))
-
-Elections2021Dist <- st_as_sf(x = Elections2021Dist, crs = projcrs)
+# Elections3$ku <- as.numeric(Elections3$ku)
+# 
+# Elections2021 <- Elections3 %>%
+#   filter(Year %in% 2021) %>%
+#   mutate(District = paste0(EPref,ku)) 
+# 
+# Elections2021 <- Elections2021 %>%
+#   left_join(senkyoku2017[,c(3:5)], by = c("PrefNumber" = "ken",
+#                                "ku" = "ku"))
+# 
+# Elections2021 <- st_as_sf(x = Elections2021, crs = projcrs)
+# 
+# 
+# Elections2021Dist <- Elections3 %>%
+#   filter(Year %in% 2021) %>%
+#   mutate(District = paste0(EPref,ku)) %>% 
+#   distinct(District, .keep_all = TRUE) %>%
+#   left_join(senkyoku2017[,c(3:5)], by = c("PrefNumber" = "ken",
+#                                "ku" = "ku"))
+# 
+# Elections2021Dist <- st_as_sf(x = Elections2021Dist, crs = projcrs)
 ```
 
 
@@ -1250,92 +1251,92 @@ align_legend <- function(p, hjust = 0.5)
 ### 2021
 
 ```{r include=FALSE}
-(mainland <- Elections4 %>%
-   filter(Year %in% 2021) %>%
-   mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
-   ggplot() +
-   geom_sf(aes(fill = TurnoutDecile), colour = NA) +
-   geom_sf(data = PrefMap,
-           fill = NA,
-           color = "black",
-           size = 0.1) +
-  coord_sf(xlim = c(128, 147), 
-           ylim = c(30.1, 46),
-           expand = FALSE) +
-  scale_fill_viridis(option="F", direction = -1,
-                     breaks = c(2, 4, 6, 8, 10),
-                     labels = c("53%", "57%", "61%",
-                                "67%", "87%"),
-                     name = "Voters' Turnout") +
-  labs(title = "Turnout Ratio (2021)") +
-  theme_map() +
-  theme(axis.text=element_text(size=22),
-        axis.text.x = element_text(vjust = 0.5, color = 'black'),
-        axis.text.y = element_text(color = 'black'),
-        axis.title.y = element_blank(),
-        axis.title.x = element_blank(),
-        axis.title=element_text(size=24,face="bold"),
-        legend.position = c(0.85, 0.5),
-        legend.title.align=0.5,
-        plot.title = element_text(hjust = 0.5, size=25,face="bold"),
-        legend.text=element_text(size=12),
-        legend.title=element_text(size=13, face="bold"),
-        legend.margin = margin(8, 8, 8, 8),
-        legend.spacing.y = unit(0.5, 'cm'),
-        legend.key = element_rect(fill = "white"),
-        legend.box.background = element_rect(color="black", size=1),
-        legend.key.width=unit(1.5, "cm"),
-        legend.key.height = unit(1.5, "cm"))
-)
+# (mainland <- Elections4 %>%
+#    filter(Year %in% 2021) %>%
+#    mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
+#    ggplot() +
+#    geom_sf(aes(fill = TurnoutDecile), colour = NA) +
+#    geom_sf(data = PrefMap,
+#            fill = NA,
+#            color = "black",
+#            size = 0.1) +
+#   coord_sf(xlim = c(128, 147), 
+#            ylim = c(30.1, 46),
+#            expand = FALSE) +
+#   scale_fill_viridis(option="F", direction = -1,
+#                      breaks = c(2, 4, 6, 8, 10),
+#                      labels = c("53%", "57%", "61%",
+#                                 "67%", "87%"),
+#                      name = "Voters' Turnout") +
+#   labs(title = "Turnout Ratio (2021)") +
+#   theme_map() +
+#   theme(axis.text=element_text(size=22),
+#         axis.text.x = element_text(vjust = 0.5, color = 'black'),
+#         axis.text.y = element_text(color = 'black'),
+#         axis.title.y = element_blank(),
+#         axis.title.x = element_blank(),
+#         axis.title=element_text(size=24,face="bold"),
+#         legend.position = c(0.85, 0.5),
+#         legend.title.align=0.5,
+#         plot.title = element_text(hjust = 0.5, size=25,face="bold"),
+#         legend.text=element_text(size=12),
+#         legend.title=element_text(size=13, face="bold"),
+#         legend.margin = margin(8, 8, 8, 8),
+#         legend.spacing.y = unit(0.5, 'cm'),
+#         legend.key = element_rect(fill = "white"),
+#         legend.box.background = element_rect(color="black", size=1),
+#         legend.key.width=unit(1.5, "cm"),
+#         legend.key.height = unit(1.5, "cm"))
+# )
 ```
 
 ```{r include=FALSE}
-(Ryukyu <- Elections4 %>%
-   filter(Year %in% 2021) %>%
-   mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
-   ggplot() +
-   geom_sf(aes(fill = TurnoutDecile),
-           color = "black", size=0.1) +
-  coord_sf(xlim = c(122.5, 130.5), 
-           ylim = c(23.5, 30.1),
-           expand = FALSE, datum = NA) +
-  labs(title = NULL) +
-   scale_fill_viridis(option="F", direction = -1,
-                     breaks = c(2, 4, 6, 8, 10)) +
-  theme(legend.position = "none",
-        axis.title.x = element_blank(),
-        axis.title.y = element_blank(),
-        panel.border = element_rect(colour = "black", fill=NA, size=1)) +
-  geom_text(data = PrefCoord %>%
-                    filter(Code %in% c(47)),
-                  aes(x = V1, y = V2, label = "Okinawa Pref.\n沖縄県"),
-                  size = 10,
-                  alpha = 0.5,
-                  nudge_x = -1.5,
-                  nudge_y = 1.5,
-            family = "HiraKakuPro-W3"))
+# (Ryukyu <- Elections4 %>%
+#    filter(Year %in% 2021) %>%
+#    mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
+#    ggplot() +
+#    geom_sf(aes(fill = TurnoutDecile),
+#            color = "black", size=0.1) +
+#   coord_sf(xlim = c(122.5, 130.5), 
+#            ylim = c(23.5, 30.1),
+#            expand = FALSE, datum = NA) +
+#   labs(title = NULL) +
+#    scale_fill_viridis(option="F", direction = -1,
+#                      breaks = c(2, 4, 6, 8, 10)) +
+#   theme(legend.position = "none",
+#         axis.title.x = element_blank(),
+#         axis.title.y = element_blank(),
+#         panel.border = element_rect(colour = "black", fill=NA, size=1)) +
+#   geom_text(data = PrefCoord %>%
+#                     filter(Code %in% c(47)),
+#                   aes(x = V1, y = V2, label = "Okinawa Pref.\n沖縄県"),
+#                   size = 10,
+#                   alpha = 0.5,
+#                   nudge_x = -1.5,
+#                   nudge_y = 1.5,
+#             family = "HiraKakuPro-W3"))
 ```
 
 ```{r echo=FALSE}
-TurnoutRatio2021 <- mainland +
-    annotation_custom(
-      grob = ggplotGrob(Ryukyu),
-      xmin = 129,
-      xmax = 138,
-      ymin = 36.5,
-      ymax = 47.5
-  ) +
-  annotation_north_arrow(which_north = "grid", location = "br",  
-                         height = unit(4, "cm"), width = unit(4, "cm"),
-                         pad_x = unit(1, "cm"),
-                         pad_y = unit(6, "cm")) +
-  ggsn::scalebar(x.min = 128, x.max = 146.5,
-                   y.min = 31, y.max = 46,
-                   dist = 100, dist_unit = "km",
-                   st.bottom = FALSE, st.color = "black",
-             transform = TRUE, model = "WGS84")
-
-ggdraw(align_legend(TurnoutRatio2021))
+# TurnoutRatio2021 <- mainland +
+#     annotation_custom(
+#       grob = ggplotGrob(Ryukyu),
+#       xmin = 129,
+#       xmax = 138,
+#       ymin = 36.5,
+#       ymax = 47.5
+#   ) +
+#   annotation_north_arrow(which_north = "grid", location = "br",  
+#                          height = unit(4, "cm"), width = unit(4, "cm"),
+#                          pad_x = unit(1, "cm"),
+#                          pad_y = unit(6, "cm")) +
+#   ggsn::scalebar(x.min = 128, x.max = 146.5,
+#                    y.min = 31, y.max = 46,
+#                    dist = 100, dist_unit = "km",
+#                    st.bottom = FALSE, st.color = "black",
+#              transform = TRUE, model = "WGS84")
+# 
+# ggdraw(align_legend(TurnoutRatio2021))
 ```
 
 
@@ -1349,93 +1350,93 @@ ggdraw(align_legend(TurnoutRatio2021))
 ### 2017
 
 ```{r include=FALSE}
-(mainland <- Elections4 %>%
-   filter(Year %in% 2017) %>%
-   mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
-   ggplot() +
-   geom_sf(aes(fill = TurnoutDecile), colour = NA) +
-   geom_sf(data = PrefMap,
-           fill = NA,
-           color = "black",
-           size = 0.1) +
-  coord_sf(xlim = c(128, 147), 
-           ylim = c(30.1, 46),
-           expand = FALSE) +
-  scale_fill_viridis(option="F", direction = -1,
-                     breaks = c(2, 4, 6, 8, 10),
-                     labels = c("50%", "54%", "59%",
-                                "65%", "97%"),
-                     name = "Voters' Turnout") +
-  labs(title = "Turnout Ratio (2017)") +
-  theme_map() +
-  theme(axis.text=element_text(size=22),
-        axis.text.x = element_text(vjust = 0.5, color = 'black'),
-        axis.text.y = element_text(color = 'black'),
-        axis.title.y = element_blank(),
-        axis.title.x = element_blank(),
-        axis.title=element_text(size=24,face="bold"),
-        legend.position = c(0.85, 0.5),
-        legend.title.align=0.5,
-        plot.title = element_text(hjust = 0.5, size=25,face="bold"),
-        legend.text=element_text(size=12),
-        legend.title=element_text(size=13, face="bold"),
-        legend.margin = margin(8, 8, 8, 8),
-        legend.spacing.y = unit(0.5, 'cm'),
-        legend.key = element_rect(fill = "white"),
-        legend.box.background = element_rect(color="black", size=1),
-        legend.key.width=unit(1.5, "cm"),
-        legend.key.height = unit(1.5, "cm"))
-)
+# (mainland <- Elections4 %>%
+#    filter(Year %in% 2017) %>%
+#    mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
+#    ggplot() +
+#    geom_sf(aes(fill = TurnoutDecile), colour = NA) +
+#    geom_sf(data = PrefMap,
+#            fill = NA,
+#            color = "black",
+#            size = 0.1) +
+#   coord_sf(xlim = c(128, 147), 
+#            ylim = c(30.1, 46),
+#            expand = FALSE) +
+#   scale_fill_viridis(option="F", direction = -1,
+#                      breaks = c(2, 4, 6, 8, 10),
+#                      labels = c("50%", "54%", "59%",
+#                                 "65%", "97%"),
+#                      name = "Voters' Turnout") +
+#   labs(title = "Turnout Ratio (2017)") +
+#   theme_map() +
+#   theme(axis.text=element_text(size=22),
+#         axis.text.x = element_text(vjust = 0.5, color = 'black'),
+#         axis.text.y = element_text(color = 'black'),
+#         axis.title.y = element_blank(),
+#         axis.title.x = element_blank(),
+#         axis.title=element_text(size=24,face="bold"),
+#         legend.position = c(0.85, 0.5),
+#         legend.title.align=0.5,
+#         plot.title = element_text(hjust = 0.5, size=25,face="bold"),
+#         legend.text=element_text(size=12),
+#         legend.title=element_text(size=13, face="bold"),
+#         legend.margin = margin(8, 8, 8, 8),
+#         legend.spacing.y = unit(0.5, 'cm'),
+#         legend.key = element_rect(fill = "white"),
+#         legend.box.background = element_rect(color="black", size=1),
+#         legend.key.width=unit(1.5, "cm"),
+#         legend.key.height = unit(1.5, "cm"))
+# )
 ```
 
 ```{r include=FALSE}
-(Ryukyu <- Elections4 %>%
-   filter(Year %in% 2017) %>%
-   mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
-   ggplot() +
-   geom_sf(aes(fill = TurnoutDecile),
-           color = "black", size=0.1) +
-  coord_sf(xlim = c(122.5, 130.5), 
-           ylim = c(23.5, 30.1),
-           expand = FALSE, datum = NA) +
-  labs(title = NULL) +
-   scale_fill_viridis(option="F", direction = -1,
-                     breaks = c(2, 4, 6, 8, 10)) +
-  theme(legend.position = "none",
-        axis.title.x = element_blank(),
-        axis.title.y = element_blank(),
-        panel.border = element_rect(colour = "black", fill=NA, size=1)) +
-  geom_text(data = PrefCoord %>%
-                    filter(Code %in% c(47)),
-                  aes(x = V1, y = V2, label = "Okinawa Pref.\n沖縄県"),
-                  size = 10,
-                  alpha = 0.5,
-                  nudge_x = -1.5,
-                  nudge_y = 1.5,
-            family = "HiraKakuPro-W3"))
+# (Ryukyu <- Elections4 %>%
+#    filter(Year %in% 2017) %>%
+#    mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
+#    ggplot() +
+#    geom_sf(aes(fill = TurnoutDecile),
+#            color = "black", size=0.1) +
+#   coord_sf(xlim = c(122.5, 130.5), 
+#            ylim = c(23.5, 30.1),
+#            expand = FALSE, datum = NA) +
+#   labs(title = NULL) +
+#    scale_fill_viridis(option="F", direction = -1,
+#                      breaks = c(2, 4, 6, 8, 10)) +
+#   theme(legend.position = "none",
+#         axis.title.x = element_blank(),
+#         axis.title.y = element_blank(),
+#         panel.border = element_rect(colour = "black", fill=NA, size=1)) +
+#   geom_text(data = PrefCoord %>%
+#                     filter(Code %in% c(47)),
+#                   aes(x = V1, y = V2, label = "Okinawa Pref.\n沖縄県"),
+#                   size = 10,
+#                   alpha = 0.5,
+#                   nudge_x = -1.5,
+#                   nudge_y = 1.5,
+#             family = "HiraKakuPro-W3"))
 ```
 
 
 ```{r echo=FALSE}
-TurnoutRatio2017 <- mainland +
-    annotation_custom(
-      grob = ggplotGrob(Ryukyu),
-      xmin = 129,
-      xmax = 138,
-      ymin = 36.5,
-      ymax = 47.5
-  ) +
-  annotation_north_arrow(which_north = "grid", location = "br",  
-                         height = unit(4, "cm"), width = unit(4, "cm"),
-                         pad_x = unit(1, "cm"),
-                         pad_y = unit(6, "cm")) +
-  ggsn::scalebar(x.min = 128, x.max = 146.5,
-                   y.min = 31, y.max = 46,
-                   dist = 100, dist_unit = "km",
-                   st.bottom = FALSE, st.color = "black",
-             transform = TRUE, model = "WGS84")
-
-ggdraw(align_legend(TurnoutRatio2017))
+# TurnoutRatio2017 <- mainland +
+#     annotation_custom(
+#       grob = ggplotGrob(Ryukyu),
+#       xmin = 129,
+#       xmax = 138,
+#       ymin = 36.5,
+#       ymax = 47.5
+#   ) +
+#   annotation_north_arrow(which_north = "grid", location = "br",  
+#                          height = unit(4, "cm"), width = unit(4, "cm"),
+#                          pad_x = unit(1, "cm"),
+#                          pad_y = unit(6, "cm")) +
+#   ggsn::scalebar(x.min = 128, x.max = 146.5,
+#                    y.min = 31, y.max = 46,
+#                    dist = 100, dist_unit = "km",
+#                    st.bottom = FALSE, st.color = "black",
+#              transform = TRUE, model = "WGS84")
+# 
+# ggdraw(align_legend(TurnoutRatio2017))
 ```
 
 
@@ -1448,92 +1449,92 @@ ggdraw(align_legend(TurnoutRatio2017))
 ### 2014
 
 ```{r include=FALSE}
-(mainland <- Elections4 %>%
-   filter(Year %in% 2014) %>%
-   mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
-   ggplot() +
-   geom_sf(aes(fill = TurnoutDecile), colour = NA) +
-   geom_sf(data = PrefMap,
-           fill = NA,
-           color = "black",
-           size = 0.1) +
-  coord_sf(xlim = c(128, 147), 
-           ylim = c(30.1, 46),
-           expand = FALSE) +
-  scale_fill_viridis(option="F", direction = -1,
-                     breaks = c(2, 4, 6, 8, 10),
-                     labels = c("47%", "51%", "56%",
-                                "63%", "99%"),
-                     name = "Voters' Turnout") +
-  labs(title = "Turnout Ratio (2014)") +
-  theme_map() +
-  theme(axis.text=element_text(size=22),
-        axis.text.x = element_text(vjust = 0.5, color = 'black'),
-        axis.text.y = element_text(color = 'black'),
-        axis.title.y = element_blank(),
-        axis.title.x = element_blank(),
-        axis.title=element_text(size=24,face="bold"),
-        legend.position = c(0.85, 0.5),
-        legend.title.align=0.5,
-        plot.title = element_text(hjust = 0.5, size=25,face="bold"),
-        legend.text=element_text(size=12),
-        legend.title=element_text(size=13, face="bold"),
-        legend.margin = margin(8, 8, 8, 8),
-        legend.spacing.y = unit(0.5, 'cm'),
-        legend.key = element_rect(fill = "white"),
-        legend.box.background = element_rect(color="black", size=1),
-        legend.key.width=unit(1.5, "cm"),
-        legend.key.height = unit(1.5, "cm"))
-)
+# (mainland <- Elections4 %>%
+#    filter(Year %in% 2014) %>%
+#    mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
+#    ggplot() +
+#    geom_sf(aes(fill = TurnoutDecile), colour = NA) +
+#    geom_sf(data = PrefMap,
+#            fill = NA,
+#            color = "black",
+#            size = 0.1) +
+#   coord_sf(xlim = c(128, 147), 
+#            ylim = c(30.1, 46),
+#            expand = FALSE) +
+#   scale_fill_viridis(option="F", direction = -1,
+#                      breaks = c(2, 4, 6, 8, 10),
+#                      labels = c("47%", "51%", "56%",
+#                                 "63%", "99%"),
+#                      name = "Voters' Turnout") +
+#   labs(title = "Turnout Ratio (2014)") +
+#   theme_map() +
+#   theme(axis.text=element_text(size=22),
+#         axis.text.x = element_text(vjust = 0.5, color = 'black'),
+#         axis.text.y = element_text(color = 'black'),
+#         axis.title.y = element_blank(),
+#         axis.title.x = element_blank(),
+#         axis.title=element_text(size=24,face="bold"),
+#         legend.position = c(0.85, 0.5),
+#         legend.title.align=0.5,
+#         plot.title = element_text(hjust = 0.5, size=25,face="bold"),
+#         legend.text=element_text(size=12),
+#         legend.title=element_text(size=13, face="bold"),
+#         legend.margin = margin(8, 8, 8, 8),
+#         legend.spacing.y = unit(0.5, 'cm'),
+#         legend.key = element_rect(fill = "white"),
+#         legend.box.background = element_rect(color="black", size=1),
+#         legend.key.width=unit(1.5, "cm"),
+#         legend.key.height = unit(1.5, "cm"))
+# )
 ```
 
 ```{r include=FALSE}
-(Ryukyu <- Elections4 %>%
-   filter(Year %in% 2014) %>%
-   mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
-   ggplot() +
-   geom_sf(aes(fill = TurnoutDecile),
-           color = "black", size=0.1) +
-  coord_sf(xlim = c(122.5, 130.5), 
-           ylim = c(23.5, 30.1),
-           expand = FALSE, datum = NA) +
-  labs(title = NULL) +
-   scale_fill_viridis(option="F", direction = -1,
-                     breaks = c(2, 4, 6, 8, 10)) +
-  theme(legend.position = "none",
-        axis.title.x = element_blank(),
-        axis.title.y = element_blank(),
-        panel.border = element_rect(colour = "black", fill=NA, size=1)) +
-  geom_text(data = PrefCoord %>%
-                    filter(Code %in% c(47)),
-                  aes(x = V1, y = V2, label = "Okinawa Pref.\n沖縄県"),
-                  size = 10,
-                  alpha = 0.5,
-                  nudge_x = -1.5,
-                  nudge_y = 1.5,
-            family = "HiraKakuPro-W3"))
+# (Ryukyu <- Elections4 %>%
+#    filter(Year %in% 2014) %>%
+#    mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
+#    ggplot() +
+#    geom_sf(aes(fill = TurnoutDecile),
+#            color = "black", size=0.1) +
+#   coord_sf(xlim = c(122.5, 130.5), 
+#            ylim = c(23.5, 30.1),
+#            expand = FALSE, datum = NA) +
+#   labs(title = NULL) +
+#    scale_fill_viridis(option="F", direction = -1,
+#                      breaks = c(2, 4, 6, 8, 10)) +
+#   theme(legend.position = "none",
+#         axis.title.x = element_blank(),
+#         axis.title.y = element_blank(),
+#         panel.border = element_rect(colour = "black", fill=NA, size=1)) +
+#   geom_text(data = PrefCoord %>%
+#                     filter(Code %in% c(47)),
+#                   aes(x = V1, y = V2, label = "Okinawa Pref.\n沖縄県"),
+#                   size = 10,
+#                   alpha = 0.5,
+#                   nudge_x = -1.5,
+#                   nudge_y = 1.5,
+#             family = "HiraKakuPro-W3"))
 ```
 
 ```{r echo=FALSE}
-TurnoutRatio2014 <- mainland +
-    annotation_custom(
-      grob = ggplotGrob(Ryukyu),
-      xmin = 129,
-      xmax = 138,
-      ymin = 36.5,
-      ymax = 47.5
-  ) +
-  annotation_north_arrow(which_north = "grid", location = "br",  
-                         height = unit(4, "cm"), width = unit(4, "cm"),
-                         pad_x = unit(1, "cm"),
-                         pad_y = unit(6, "cm")) +
-  ggsn::scalebar(x.min = 128, x.max = 146.5,
-                   y.min = 31, y.max = 46,
-                   dist = 100, dist_unit = "km",
-                   st.bottom = FALSE, st.color = "black",
-             transform = TRUE, model = "WGS84")
-
-ggdraw(align_legend(TurnoutRatio2014))
+# TurnoutRatio2014 <- mainland +
+#     annotation_custom(
+#       grob = ggplotGrob(Ryukyu),
+#       xmin = 129,
+#       xmax = 138,
+#       ymin = 36.5,
+#       ymax = 47.5
+#   ) +
+#   annotation_north_arrow(which_north = "grid", location = "br",  
+#                          height = unit(4, "cm"), width = unit(4, "cm"),
+#                          pad_x = unit(1, "cm"),
+#                          pad_y = unit(6, "cm")) +
+#   ggsn::scalebar(x.min = 128, x.max = 146.5,
+#                    y.min = 31, y.max = 46,
+#                    dist = 100, dist_unit = "km",
+#                    st.bottom = FALSE, st.color = "black",
+#              transform = TRUE, model = "WGS84")
+# 
+# ggdraw(align_legend(TurnoutRatio2014))
 ```
 
 
@@ -1546,92 +1547,92 @@ ggdraw(align_legend(TurnoutRatio2014))
 ### 2012
 
 ```{r include=FALSE}
-(mainland <- Elections4 %>%
-   filter(Year %in% 2012) %>%
-   mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
-   ggplot() +
-   geom_sf(aes(fill = TurnoutDecile), colour = NA) +
-   geom_sf(data = PrefMap,
-           fill = NA,
-           color = "black",
-           size = 0.1) +
-  coord_sf(xlim = c(128, 147), 
-           ylim = c(30.1, 46),
-           expand = FALSE) +
-  scale_fill_viridis(option="F", direction = -1,
-                     breaks = c(2, 4, 6, 8, 10),
-                     labels = c("53%", "56%", "60%",
-                                "65%", "87%"),
-                     name = "Voters' Turnout") +
-  labs(title = "Turnout Ratio (2012)") +
-  theme_map() +
-  theme(axis.text=element_text(size=22),
-        axis.text.x = element_text(vjust = 0.5, color = 'black'),
-        axis.text.y = element_text(color = 'black'),
-        axis.title.y = element_blank(),
-        axis.title.x = element_blank(),
-        axis.title=element_text(size=24,face="bold"),
-        legend.position = c(0.85, 0.5),
-        legend.title.align=0.5,
-        plot.title = element_text(hjust = 0.5, size=25,face="bold"),
-        legend.text=element_text(size=12),
-        legend.title=element_text(size=13, face="bold"),
-        legend.margin = margin(8, 8, 8, 8),
-        legend.spacing.y = unit(0.5, 'cm'),
-        legend.key = element_rect(fill = "white"),
-        legend.box.background = element_rect(color="black", size=1),
-        legend.key.width=unit(1.5, "cm"),
-        legend.key.height = unit(1.5, "cm"))
-)
+# (mainland <- Elections4 %>%
+#    filter(Year %in% 2012) %>%
+#    mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
+#    ggplot() +
+#    geom_sf(aes(fill = TurnoutDecile), colour = NA) +
+#    geom_sf(data = PrefMap,
+#            fill = NA,
+#            color = "black",
+#            size = 0.1) +
+#   coord_sf(xlim = c(128, 147), 
+#            ylim = c(30.1, 46),
+#            expand = FALSE) +
+#   scale_fill_viridis(option="F", direction = -1,
+#                      breaks = c(2, 4, 6, 8, 10),
+#                      labels = c("53%", "56%", "60%",
+#                                 "65%", "87%"),
+#                      name = "Voters' Turnout") +
+#   labs(title = "Turnout Ratio (2012)") +
+#   theme_map() +
+#   theme(axis.text=element_text(size=22),
+#         axis.text.x = element_text(vjust = 0.5, color = 'black'),
+#         axis.text.y = element_text(color = 'black'),
+#         axis.title.y = element_blank(),
+#         axis.title.x = element_blank(),
+#         axis.title=element_text(size=24,face="bold"),
+#         legend.position = c(0.85, 0.5),
+#         legend.title.align=0.5,
+#         plot.title = element_text(hjust = 0.5, size=25,face="bold"),
+#         legend.text=element_text(size=12),
+#         legend.title=element_text(size=13, face="bold"),
+#         legend.margin = margin(8, 8, 8, 8),
+#         legend.spacing.y = unit(0.5, 'cm'),
+#         legend.key = element_rect(fill = "white"),
+#         legend.box.background = element_rect(color="black", size=1),
+#         legend.key.width=unit(1.5, "cm"),
+#         legend.key.height = unit(1.5, "cm"))
+# )
 ```
 
 ```{r include=FALSE}
-(Ryukyu <- Elections4 %>%
-   filter(Year %in% 2012) %>%
-   mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
-   ggplot() +
-   geom_sf(aes(fill = TurnoutDecile),
-           color = "black", size=0.1) +
-  coord_sf(xlim = c(122.5, 130.5), 
-           ylim = c(23.5, 30.1),
-           expand = FALSE, datum = NA) +
-  labs(title = NULL) +
-   scale_fill_viridis(option="F", direction = -1,
-                     breaks = c(2, 4, 6, 8, 10)) +
-  theme(legend.position = "none",
-        axis.title.x = element_blank(),
-        axis.title.y = element_blank(),
-        panel.border = element_rect(colour = "black", fill=NA, size=1)) +
-  geom_text(data = PrefCoord %>%
-                    filter(Code %in% c(47)),
-                  aes(x = V1, y = V2, label = "Okinawa Pref.\n沖縄県"),
-                  size = 10,
-                  alpha = 0.5,
-                  nudge_x = -1.5,
-                  nudge_y = 1.5,
-            family = "HiraKakuPro-W3"))
+# (Ryukyu <- Elections4 %>%
+#    filter(Year %in% 2012) %>%
+#    mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
+#    ggplot() +
+#    geom_sf(aes(fill = TurnoutDecile),
+#            color = "black", size=0.1) +
+#   coord_sf(xlim = c(122.5, 130.5), 
+#            ylim = c(23.5, 30.1),
+#            expand = FALSE, datum = NA) +
+#   labs(title = NULL) +
+#    scale_fill_viridis(option="F", direction = -1,
+#                      breaks = c(2, 4, 6, 8, 10)) +
+#   theme(legend.position = "none",
+#         axis.title.x = element_blank(),
+#         axis.title.y = element_blank(),
+#         panel.border = element_rect(colour = "black", fill=NA, size=1)) +
+#   geom_text(data = PrefCoord %>%
+#                     filter(Code %in% c(47)),
+#                   aes(x = V1, y = V2, label = "Okinawa Pref.\n沖縄県"),
+#                   size = 10,
+#                   alpha = 0.5,
+#                   nudge_x = -1.5,
+#                   nudge_y = 1.5,
+#             family = "HiraKakuPro-W3"))
 ```
 
 ```{r echo=FALSE}
-TurnoutRatio2012 <- mainland +
-    annotation_custom(
-      grob = ggplotGrob(Ryukyu),
-      xmin = 129,
-      xmax = 138,
-      ymin = 36.5,
-      ymax = 47.5
-  ) +
-  annotation_north_arrow(which_north = "grid", location = "br",  
-                         height = unit(4, "cm"), width = unit(4, "cm"),
-                         pad_x = unit(1, "cm"),
-                         pad_y = unit(6, "cm")) +
-  ggsn::scalebar(x.min = 128, x.max = 146.5,
-                   y.min = 31, y.max = 46,
-                   dist = 100, dist_unit = "km",
-                   st.bottom = FALSE, st.color = "black",
-             transform = TRUE, model = "WGS84")
-
-ggdraw(align_legend(TurnoutRatio2012))
+# TurnoutRatio2012 <- mainland +
+#     annotation_custom(
+#       grob = ggplotGrob(Ryukyu),
+#       xmin = 129,
+#       xmax = 138,
+#       ymin = 36.5,
+#       ymax = 47.5
+#   ) +
+#   annotation_north_arrow(which_north = "grid", location = "br",  
+#                          height = unit(4, "cm"), width = unit(4, "cm"),
+#                          pad_x = unit(1, "cm"),
+#                          pad_y = unit(6, "cm")) +
+#   ggsn::scalebar(x.min = 128, x.max = 146.5,
+#                    y.min = 31, y.max = 46,
+#                    dist = 100, dist_unit = "km",
+#                    st.bottom = FALSE, st.color = "black",
+#              transform = TRUE, model = "WGS84")
+# 
+# ggdraw(align_legend(TurnoutRatio2012))
 ```
 
 
@@ -1654,85 +1655,85 @@ ggdraw(align_legend(TurnoutRatio2012))
 ## Nagano 2021
 
 ```{r include=FALSE}
-Nagano2021 <- Elections4 %>%
-  filter(Year %in% 2021,
-         EPref %in% "Nagano",
-         ku == 4)
+# Nagano2021 <- Elections4 %>%
+#   filter(Year %in% 2021,
+#          EPref %in% "Nagano",
+#          ku == 4)
 ```
 
 
 ```{r echo=FALSE}
-Elections4 %>%
-   filter(Year %in% 2021) %>%
-   mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
-   filter(EPref %in% "Nagano") %>%
-   ggplot() +
-   geom_sf(aes(fill = TurnoutDecile), colour = NA) +
-   geom_sf(data = Elections2021Dist %>%
-             filter(EPref %in% "Nagano"),
-           fill = NA,
-           color = "white",
-           size = 1.5) +
-  scale_fill_viridis(option="F", direction = -1,
-                     breaks = c(2, 4, 6, 8, 10),
-                     labels = c("53%", "57%", "61%",
-                                "67%", "87%"),
-                     name = "Voters' Turnout") +
-  scale_x_continuous(breaks = seq(137.4, 138.8, by = .4)) +
-  geom_sf_label_repel(data = Nagano2021 %>%
-                        filter(Kaso2 %in% "Normal"),
-                  aes(label = Kaso2),
-                  fontface = 'bold',
-                  color = 'black',
-                  size = 5,
-                  box.padding = unit(0.35, "lines"),
-                  point.padding = unit(0.5, "lines"),
-                  fill="springgreen4",
-                  segment.color = 'black',
-                  alpha = 0.8,
-                  fun.geometry = sf::st_centroid) +
-  geom_sf_label_repel(data = Nagano2021 %>%
-                        filter(Kaso2 %in% "Kaso"),
-                  aes(label = Kaso2),
-                  fontface = 'bold',
-                  color = 'white',
-                  size = 5,
-                  box.padding = unit(0.35, "lines"),
-                  point.padding = unit(0.5, "lines"),
-                  fill="red4",
-                  segment.color = 'black',
-                  alpha = 0.8,
-                  fun.geometry = sf::st_centroid) +
-  geom_sf_label_repel(data = Elections2021Dist %>%
-                        filter(EPref %in% "Nagano"),
-                  aes(label = ku),
-                  fontface = 'bold',
-                  color = 'black',
-                  size = 15,
-                  box.padding = unit(0.35, "lines"),
-                  point.padding = unit(0.5, "lines"),
-                  segment.color = 'black',
-                  alpha = 0.8,
-                  fun.geometry = sf::st_centroid) +
-  labs(title = "Turnout Ratio, Nagano-ken (2021)") +
-  theme_map() +
-  theme(axis.text=element_text(size=22),
-        axis.text.x = element_text(vjust = 0.5, color = 'black'),
-        axis.text.y = element_text(color = 'black'),
-        axis.title.y = element_blank(),
-        axis.title.x = element_blank(),
-        axis.title=element_text(size=24,face="bold"),
-        legend.position = c(0.7, 0.1),
-        legend.title.align=0.5,
-        plot.title = element_text(hjust = 0.5, size=25,face="bold"),
-        legend.text=element_text(size=12),
-        legend.title=element_text(size=13, face="bold"),
-        legend.margin = margin(8, 8, 8, 8),
-        legend.spacing.y = unit(0.5, 'cm'),
-        legend.key = element_rect(fill = "white"),
-        legend.box.background = element_rect(color="black", size=1),
-        legend.key.width=unit(1.5, "cm"),
-        legend.key.height = unit(1.5, "cm"))
+# Elections4 %>%
+#    filter(Year %in% 2021) %>%
+#    mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
+#    filter(EPref %in% "Nagano") %>%
+#    ggplot() +
+#    geom_sf(aes(fill = TurnoutDecile), colour = NA) +
+#    geom_sf(data = Elections2021Dist %>%
+#              filter(EPref %in% "Nagano"),
+#            fill = NA,
+#            color = "white",
+#            size = 1.5) +
+#   scale_fill_viridis(option="F", direction = -1,
+#                      breaks = c(2, 4, 6, 8, 10),
+#                      labels = c("53%", "57%", "61%",
+#                                 "67%", "87%"),
+#                      name = "Voters' Turnout") +
+#   scale_x_continuous(breaks = seq(137.4, 138.8, by = .4)) +
+#   geom_sf_label_repel(data = Nagano2021 %>%
+#                         filter(Kaso2 %in% "Normal"),
+#                   aes(label = Kaso2),
+#                   fontface = 'bold',
+#                   color = 'black',
+#                   size = 5,
+#                   box.padding = unit(0.35, "lines"),
+#                   point.padding = unit(0.5, "lines"),
+#                   fill="springgreen4",
+#                   segment.color = 'black',
+#                   alpha = 0.8,
+#                   fun.geometry = sf::st_centroid) +
+#   geom_sf_label_repel(data = Nagano2021 %>%
+#                         filter(Kaso2 %in% "Kaso"),
+#                   aes(label = Kaso2),
+#                   fontface = 'bold',
+#                   color = 'white',
+#                   size = 5,
+#                   box.padding = unit(0.35, "lines"),
+#                   point.padding = unit(0.5, "lines"),
+#                   fill="red4",
+#                   segment.color = 'black',
+#                   alpha = 0.8,
+#                   fun.geometry = sf::st_centroid) +
+#   geom_sf_label_repel(data = Elections2021Dist %>%
+#                         filter(EPref %in% "Nagano"),
+#                   aes(label = ku),
+#                   fontface = 'bold',
+#                   color = 'black',
+#                   size = 15,
+#                   box.padding = unit(0.35, "lines"),
+#                   point.padding = unit(0.5, "lines"),
+#                   segment.color = 'black',
+#                   alpha = 0.8,
+#                   fun.geometry = sf::st_centroid) +
+#   labs(title = "Turnout Ratio, Nagano-ken (2021)") +
+#   theme_map() +
+#   theme(axis.text=element_text(size=22),
+#         axis.text.x = element_text(vjust = 0.5, color = 'black'),
+#         axis.text.y = element_text(color = 'black'),
+#         axis.title.y = element_blank(),
+#         axis.title.x = element_blank(),
+#         axis.title=element_text(size=24,face="bold"),
+#         legend.position = c(0.7, 0.1),
+#         legend.title.align=0.5,
+#         plot.title = element_text(hjust = 0.5, size=25,face="bold"),
+#         legend.text=element_text(size=12),
+#         legend.title=element_text(size=13, face="bold"),
+#         legend.margin = margin(8, 8, 8, 8),
+#         legend.spacing.y = unit(0.5, 'cm'),
+#         legend.key = element_rect(fill = "white"),
+#         legend.box.background = element_rect(color="black", size=1),
+#         legend.key.width=unit(1.5, "cm"),
+#         legend.key.height = unit(1.5, "cm"))
 ```
 
 ```{r}
