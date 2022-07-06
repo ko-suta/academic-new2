@@ -551,10 +551,10 @@ Elections3 %>%
     data_color(
     columns = 2:13,
     colors = my_pal
-    )
-#   gtsave(
-#     "kaso-merged-detailed-unique.png"
-# )
+    ) %>%
+  gtsave(
+    "kaso-merged-detailed-unique.png"
+)
 ```
 
 <br><br>
@@ -611,10 +611,10 @@ Elections3 %>%
     data_color(
     columns = 2:12,
     colors = my_pal
-    )
-#   gtsave(
-#     "merged.png"
-# )
+    ) %>%
+  gtsave(
+    "merged-overall.png"
+)
 ```
 
 
@@ -734,10 +734,10 @@ Elections3 %>%
     data_color(
     columns = 2:12,
     colors = my_pal
-    )
-#   gtsave(
-#     "kaso-merged-detailed-overall.png"
-# )
+    ) %>%
+  gtsave(
+    "kaso-merged-detailed-overall.png"
+)
 ```
 
 
@@ -969,8 +969,8 @@ htmlreg(list(LDPMod1, LDPMod2, LDPMod3),
        custom.model.names = c("Model 1", "Model 2", "Model 3"),
        custom.coef.names = c("(Intercept)",
                              "2014", "2017", "2021", "Fiscal Strength",
-                             "Elderly", "Turnout", "みなし過疎",
-                             "一部過疎", "全部過疎", "全部過疎-Merged"),
+                             "Elderly", "Turnout", "Quasi-depopulating",
+                             "Partly depopulating", "Fully depopulating", "Fully depopulating"),
        groups = list("Year dummy (base group = '2012')" = 2:4,
          "Fiscal type (base group = 'Normal')" = 8:11),
        caption = NULL,
@@ -998,8 +998,8 @@ htmlreg(list(LDPMod4, LDPMod5, LDPMod6),
        custom.model.names = c("Model 1", "Model 2", "Model 3"),
        custom.coef.names = c("(Intercept)", 
                              "2014", "2017", "2021", "Fiscal Strength",
-                             "Elderly", "Turnout", "みなし過疎",
-                             "一部過疎", "全部過疎", "全部過疎-Merged"),
+                             "Elderly", "Turnout", "Quasi-depopulating",
+                             "Partly depopulating", "Fully depopulating", "Fully depopulating"),
        groups = list("Year dummy (base group = '2012')" = 2:4,
          "Fiscal type (base group = 'Normal')" = 8:11),
        caption = NULL,
@@ -1057,8 +1057,8 @@ htmlreg(list(LDPDifMod1, LDPDifMod2, LDPDifMod3),
        custom.model.names = c("Model 1", "Model 2", "Model 3"),
        custom.coef.names = c("(Intercept)", 
                              "2014", "2017", "2021", "Fiscal Strength",
-                             "Elderly", "Turnout", "みなし過疎",
-                             "一部過疎", "全部過疎", "全部過疎-Merged"),
+                             "Elderly", "Turnout", "Quasi-depopulating",
+                             "Partly depopulating", "Fully depopulating", "Fully depopulating"),
        groups = list("Year dummy (base group = '2012')" = 2:4,
          "Fiscal type (base group = 'Normal')" = 8:11),
        caption = NULL,
@@ -1086,8 +1086,8 @@ htmlreg(list(LDPDifMod4, LDPDifMod5, LDPDifMod6),
        custom.model.names = c("Model 1", "Model 2", "Model 3"),
        custom.coef.names = c("(Intercept)",
                              "2014", "2017", "2021", "Fiscal Strength",
-                             "Elderly", "Turnout", "みなし過疎",
-                             "一部過疎", "全部過疎", "全部過疎-Merged"),
+                             "Elderly", "Turnout", "Quasi-depopulating",
+                             "Partly depopulating", "Fully depopulating", "Fully depopulating"),
        groups = list("Year dummy (base group = '2012')" = 2:4,
          "Fiscal type (base group = 'Normal')" = 8:11),
        caption = NULL,
