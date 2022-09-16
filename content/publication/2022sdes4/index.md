@@ -31,7 +31,7 @@ featured: false
 # links:
 # - name: ""
 #   url: ""
-url_pdf: http://www.souken.kochi-tech.ac.jp/seido/wp/SDES-2022-4.pdf
+url_pdf: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4175844
 url_code: ''
 
 # Featured image

@@ -30,8 +30,8 @@ featured: false
 
 # links:
 # - name: ""
-url: https://ideas.repec.org/p/kch/wpaper/sdes-2022-5.html
-url_pdf: http://www.souken.kochi-tech.ac.jp/seido/wp/SDES-2022-5.html
+# url: https://ideas.repec.org/p/kch/wpaper/sdes-2022-5.html
+url_pdf: https://ideas.repec.org/p/kch/wpaper/sdes-2022-5.html
 url_code: ''
 
 # Featured image
