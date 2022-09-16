@@ -1,7 +1,9 @@
 ---
-title: "COVID-19-associated income loss and job loss: Evidence from Indonesia"
+title: "COVID-19-Associated Income Loss and Job Loss: Evidence from Indonesia"
 authors:
+- Rendra A. A. Putra
 - admin
+- Koji Kotani
 date: "2022-03-22T00:00:00Z"
 doi: "10.2139/ssrn.4175844"
 
@@ -29,7 +31,7 @@ featured: false
 # links:
 # - name: ""
 #   url: ""
-url_pdf: https://ssrn.com/abstract=4175844
+url_pdf: http://www.souken.kochi-tech.ac.jp/seido/wp/SDES-2022-4.pdf
 url_code: ''
 
 # Featured image
