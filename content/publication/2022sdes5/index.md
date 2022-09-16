@@ -2,8 +2,8 @@
 title: "Online Productivity and Types of Assignments in a Japanese Workplace"
 authors:
 - admin
-- Koji Kotani
-- Hodaka Morita
+- [Koji Kotani](https://researchmap.jp/read0137216/)
+- [Hodaka Morita](https://sites.google.com/site/hodakamorita/)
 date: "2022-05-30T00:00:00Z"
 # doi: "10.2139/ssrn.4175844"
 
