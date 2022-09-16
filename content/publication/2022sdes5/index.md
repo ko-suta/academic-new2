@@ -28,9 +28,9 @@ summary: This paper examines how productivity in an online environment depends o
 
 featured: false
 
- links:
+# links:
 # - name: ""
-   url: "https://ideas.repec.org/p/kch/wpaper/sdes-2022-5.html"
+url: https://ideas.repec.org/p/kch/wpaper/sdes-2022-5.html
 url_pdf: http://www.souken.kochi-tech.ac.jp/seido/wp/SDES-2022-5.html
 url_code: ''
 
