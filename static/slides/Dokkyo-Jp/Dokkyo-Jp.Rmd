@@ -1,9 +1,9 @@
 ---
 title: "ロシアの侵略の現状 <br> 並びに.red[日本]と.yellow[ウクライナ] <br> の文化的関係性"
-subtitle: ".light-blue[獨協大学・経済学部]"
+subtitle: ".light-blue[鏡川緑地公園のイベント]"
 author: "オヴシアン二コウ・コスチャンチン"
 institute: ".green[高知工科大学] <br> 経済・マネージメント学群"
-date: "2022年6月8日"
+date: "2022年10月30日"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -264,17 +264,17 @@ knitr::include_graphics("assets/img/chernobyl.jpg")
 
 .pull-right[
 
-- .blue[日付]: 1986年04月26日 `r fa("arrow-alt-circle-right", fill = "#cc0033")` 2011年03月11日
+- .blue[日付]: 1986年04月26日 `r fa("circle-right", fill = "#cc0033")` 2011年03月11日
 
-- .blue[原因]: 人的ミス `r fa("arrow-alt-circle-right", fill = "#cc0033")`　自然災害
+- .blue[原因]: 人的ミス `r fa("circle-right", fill = "#cc0033")`　自然災害
 
-- .blue[放射能]: 14,000 PBq (ベクレル) ~ 空気 `r fa("arrow-alt-circle-right", fill = "#cc0033")`  780 PBq ~ 海洋
+- .blue[放射能]: 14,000 PBq (ベクレル) ~ 空気 `r fa("circle-right", fill = "#cc0033")`  780 PBq ~ 海洋
 
-- .blue[被災地]: 500 km `r fa("arrow-alt-circle-right", fill = "#cc0033")` 30 km
+- .blue[被災地]: 500 km `r fa("circle-right", fill = "#cc0033")` 30 km
 
-- .blue[移動人口]: 335,000 `r fa("arrow-alt-circle-right", fill = "#cc0033")` 154,000
+- .blue[移動人口]: 335,000 `r fa("circle-right", fill = "#cc0033")` 154,000
 
-- .blue[帰国人口]: なし `r fa("arrow-alt-circle-right", fill = "#cc0033")` 122,00
+- .blue[帰国人口]: なし `r fa("circle-right", fill = "#cc0033")` 122,00
 
 ]
 
@@ -287,7 +287,7 @@ knitr::include_graphics("assets/img/chernobyl.jpg")
 
 .pull-left[
 
-.black[福島大学環境放射能研究所] (2013年に設立)  **`r fa("people-carry", fill = "green")`**
+.black[福島大学環境放射能研究所] (2013年に設立)  **`r fa("people-carry-box", fill = "green")`**
 
  - ウクライナ･オデッサ国立環境大学(OSENU)
 
@@ -301,7 +301,7 @@ knitr::include_graphics("assets/img/chernobyl.jpg")
 
  - ウクライナ国立生命環境科学大学(NUBiP)
  
-.black[研究内容]: 放射性物質 (.blue[ストロンチウム90] and .blue[セシウム137]) + 汚染水 `r fa("arrow-alt-circle-right", fill = "#cc0033")` .black[立入禁止区域]を刷新する
+.black[研究内容]: 放射性物質 (.blue[ストロンチウム90] and .blue[セシウム137]) + 汚染水 `r fa("circle-right", fill = "#cc0033")` .black[立入禁止区域]を刷新する
 
 ]
 --
@@ -375,11 +375,11 @@ knitr::include_graphics("assets/img/Japan_Ukraine_Locator.png")
 
 .pull-left[
 
-- 1991年: ソ連の崩壊 (計画経済 `r fa("arrow-alt-circle-right", fill = "#cc0033")` 資本主義)
+- 1991年: ソ連の崩壊 (計画経済 `r fa("circle-right", fill = "#cc0033")` 資本主義)
 
-- 企業: 長期的契約 `r fa("arrow-alt-circle-right", fill = "#cc0033")` 短期的契約
+- 企業: 長期的契約 `r fa("circle-right", fill = "#cc0033")` 短期的契約
 
-- 社会主義 `r fa("arrow-alt-circle-right", fill = "#cc0033")` 民主主義
+- 社会主義 `r fa("circle-right", fill = "#cc0033")` 民主主義
 
 - ロシアによる軍事侵攻
 
@@ -396,7 +396,7 @@ knitr::include_graphics("assets/img/sovietunion.jpg")
 
 - 1945以降: 民主制　(自民党の支配)
 
-- 終身雇用 `r fa("arrow-alt-circle-right", fill = "#cc0033")` [一部] 成果主義
+- 終身雇用 `r fa("circle-right", fill = "#cc0033")` [一部] 成果主義
 
 - 隣国との平和的な関係　（ただし、領土紛争）
 
@@ -449,15 +449,15 @@ background-color: yellow
 
 --
 
-# .center[`r fa("arrow-alt-circle-down", fill = "#cc0033")`] 
+# .center[`r fa("circle-down", fill = "#cc0033")`] 
 
 --
 
-# .center.black[理由: .light-blue[個人の財産権]の保護 `r fa("arrow-alt-circle-right", fill = "#cc0033")` 世界で最も古い企業]
+# .center.black[理由: .light-blue[個人の財産権]の保護 `r fa("circle-right", fill = "#cc0033")` 世界で最も古い企業]
 
 --
 
-# .center.black[.light-blue[しかし], 平和は永遠のことではない `r fa("arrow-alt-circle-right", fill = "#cc0033")` 予期せぬ困難に備えることの重要性]
+# .center.black[.light-blue[しかし], 平和は永遠のことではない `r fa("circle-right", fill = "#cc0033")` 予期せぬ困難に備えることの重要性]
 
 
 ---
@@ -472,7 +472,7 @@ background-position: 5% 1%
 
 ### [タイトルスライド画像ソース](https://www.facebook.com/worldflagsamurai/)
 
-### 私の連絡先 `r fa("arrow-alt-circle-down", fill = "#cc0033")`
+### 私の連絡先 `r fa("circle-down", fill = "#cc0033")`
 
 |                                                                                                            |                                   |
 | :--------------------------------------------------------------------------------------------------------- | :-------------------------------- |
