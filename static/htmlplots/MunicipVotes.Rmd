@@ -1226,34 +1226,60 @@ nb_B3 <- nb2listw(nb_q3, style="B", zero.policy=TRUE) # alternatively, style="W"
 
 
 ```{r include=FALSE}
+fm1 <- Turnout ~ factor(Year) + Fstrength + EldPop + 
+  LDP + factor(Kaso.fusion)
+
 fm2 <- Turnout_relative ~ factor(Year) + Fstrength + EldPop + 
-  LDP_relative + factor(Kaso.fusion)
+  LDP + factor(Kaso.fusion)
 
-fm3 <- LDP_relative ~ as.factor(Year) + Fstrength + EldPop + 
-  Turnout_relative + Kaso.fusion
+fm3 <- LDP ~ factor(Year) + Fstrength + EldPop + 
+  Turnout + Kaso.fusion
+
+fm4 <- LDP_relative ~ factor(Year) + Fstrength + EldPop + 
+  Turnout + Kaso.fusion
 ```
 
 
 ```{r include=FALSE}
-spatial.4 <- spml(fm2, data = ElectionsSMD6, index = c("Code", "Year"), listw = nb_B3,
+# spatial lag
+
+sp_lag_turnout <- spml(fm1, data = ElectionsSMD6, index = c("Code", "Year"), listw = nb_B3,
                   lag = TRUE, spatial.error = "none", model = "within", 
                   effect = "individual", 
                   na.action = na.exclude(), zero.policy = TRUE, legacy = FALSE)
 
-sp_lag_sum <- summary(spatial.4)
+sp_lag_turnout_sum <- summary(sp_lag_turnout)
 
 
-spatial.4.LDP <- spml(fm3, data = ElectionsSMD6, index = c("Code", "Year"), listw = nb_B3,
+sp_lag_turnout_rel <- spml(fm2, data = ElectionsSMD6, index = c("Code", "Year"), listw = nb_B3,
                   lag = TRUE, spatial.error = "none", model = "within", 
                   effect = "individual", 
                   na.action = na.exclude(), zero.policy = TRUE, legacy = FALSE)
 
-sp_lag_sum_LDP <- summary(spatial.4.LDP)
+sp_lag_turnout_rel_sum <- summary(sp_lag_turnout_rel)
+
+
+sp_lag_LDP <- spml(fm3, data = ElectionsSMD6, index = c("Code", "Year"), listw = nb_B3,
+                  lag = TRUE, spatial.error = "none", model = "within", 
+                  effect = "individual", 
+                  na.action = na.exclude(), zero.policy = TRUE, legacy = FALSE)
+
+sp_lag_LDP_sum <- summary(sp_lag_LDP)
+
+
+sp_lag_LDP_rel <- spml(fm4, data = ElectionsSMD6, index = c("Code", "Year"), 
+                          listw = nb_B3,
+                  lag = TRUE, spatial.error = "none", model = "within", 
+                  effect = "individual", 
+                  na.action = na.exclude(), zero.policy = TRUE, legacy = FALSE)
+
+sp_lag_LDP_rel_sum <- summary(sp_lag_LDP_rel)
 ```
 
 
 ```{r include=FALSE}
-spatial.4.2 <- spml(fm2, data = ElectionsSMD6, index = c("Code", "Year"), 
+# spatial error
+sp_er_turnout <- spml(fm1, data = ElectionsSMD6, index = c("Code", "Year"), 
                     listw = nb_B3,
                     lag = FALSE, 
                     spatial.error = "b", 
@@ -1262,10 +1288,10 @@ spatial.4.2 <- spml(fm2, data = ElectionsSMD6, index = c("Code", "Year"),
                     na.action = na.exclude(), 
                     zero.policy = TRUE, legacy = FALSE)
 
-er.mod <- summary(spatial.4.2)
+sp_er_turnout_sum <- summary(sp_er_turnout)
 
 
-spatial.4.2.LDP <- spml(fm3, data = ElectionsSMD6, index = c("Code", "Year"), 
+sp_er_turnout_rel <- spml(fm2, data = ElectionsSMD6, index = c("Code", "Year"), 
                     listw = nb_B3,
                     lag = FALSE, 
                     spatial.error = "b", 
@@ -1274,12 +1300,38 @@ spatial.4.2.LDP <- spml(fm3, data = ElectionsSMD6, index = c("Code", "Year"),
                     na.action = na.exclude(), 
                     zero.policy = TRUE, legacy = FALSE)
 
-er.mod.LDP <- summary(spatial.4.2.LDP)
+sp_er_turnout_rel_sum <- summary(sp_er_turnout_rel)
+
+
+sp_er_LDP <- spml(fm3, data = ElectionsSMD6, index = c("Code", "Year"), 
+                    listw = nb_B3,
+                    lag = FALSE, 
+                    spatial.error = "b", 
+                    model = "within", 
+                    effect = "individual", 
+                    na.action = na.exclude(), 
+                    zero.policy = TRUE, legacy = FALSE)
+
+sp_er_LDP_sum <- summary(sp_er_LDP)
+
+
+sp_er_LDP_rel <- spml(fm4, data = ElectionsSMD6, index = c("Code", "Year"), 
+                    listw = nb_B3,
+                    lag = FALSE, 
+                    spatial.error = "b", 
+                    model = "within", 
+                    effect = "individual", 
+                    na.action = na.exclude(), 
+                    zero.policy = TRUE, legacy = FALSE)
+
+sp_er_LDP_rel_sum <- summary(sp_er_LDP_rel)
 ```
 
 
 ```{r include=FALSE}
-spatial.4.1 <- spml(fm2, data = ElectionsSMD6, index = c("Code", "Year"), 
+# SARAR
+
+sarar_turnout <- spml(fm1, data = ElectionsSMD6, index = c("Code", "Year"), 
                     listw = nb_B3,
                     lag = TRUE, 
                     spatial.error = "b", 
@@ -1288,10 +1340,9 @@ spatial.4.1 <- spml(fm2, data = ElectionsSMD6, index = c("Code", "Year"),
                     na.action = na.exclude(), 
                     zero.policy = TRUE, legacy = FALSE)
 
-sar.mod <- summary(spatial.4.1)
+sarar_turnout_sum <- summary(sarar_turnout)
 
-
-spatial.4.1.LDP <- spml(fm3, data = ElectionsSMD6, index = c("Code", "Year"), 
+sarar_turnout_rel <- spml(fm2, data = ElectionsSMD6, index = c("Code", "Year"), 
                     listw = nb_B3,
                     lag = TRUE, 
                     spatial.error = "b", 
@@ -1300,20 +1351,47 @@ spatial.4.1.LDP <- spml(fm3, data = ElectionsSMD6, index = c("Code", "Year"),
                     na.action = na.exclude(), 
                     zero.policy = TRUE, legacy = FALSE)
 
-sar.mod.LDP <- summary(spatial.4.1.LDP)
+sarar_turnout_rel_sum <- summary(sarar_turnout_rel)
+
+
+
+sarar_LDP <- spml(fm3, data = ElectionsSMD6, index = c("Code", "Year"), 
+                    listw = nb_B3,
+                    lag = TRUE, 
+                    spatial.error = "b", 
+                    model = "within", 
+                    effect = "individual", 
+                    na.action = na.exclude(), 
+                    zero.policy = TRUE, legacy = FALSE)
+
+sarar_LDP_sum <- summary(sarar_LDP)
+
+
+sarar_LDP_rel <- spml(fm3, data = ElectionsSMD6, index = c("Code", "Year"), 
+                    listw = nb_B3,
+                    lag = TRUE, 
+                    spatial.error = "b", 
+                    model = "within", 
+                    effect = "individual", 
+                    na.action = na.exclude(), 
+                    zero.policy = TRUE, legacy = FALSE)
+
+sarar_LDP_rel_sum <- summary(sarar_LDP_rel)
 ```
 
 
 
-## Turnout ratio (relative)
+## Turnout ratio 
+
+### Absolute values
 
 ```{r turnout-spatial, results='asis', echo=FALSE}
-tbl_sp_panel <- as.data.frame(cbind(sp_lag_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
-                                    er.mod$CoefTable[c(2:11,1), c(1, 2, 4)],
-                                    sar.mod$CoefTable[c(3:12,2), c(1, 2, 4)]))
+tbl_sp_panel <- as.data.frame(cbind(sp_lag_turnout_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
+                                    sp_er_turnout_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
+                                    sarar_turnout_sum$CoefTable[c(3:12,2), c(1, 2, 4)]))
 
 tbl_sp_panel <- rbind(tbl_sp_panel,
-                      c(rep(NA,6), sar.mod$CoefTable[1, c(1, 2, 4)]))
+                      c(rep(NA,6), sarar_turnout_sum$CoefTable[1, c(1, 2, 4)]))
 
 names(tbl_sp_panel) <- c('Est_lag', 'SE_lag', 'Pvalue_lag',
                          'Est_err', 'SE_err','Pvalue_err',
@@ -1362,9 +1440,9 @@ reg_sp_lag_error_panel <- data.frame(
 gl_V <- data.frame(
   Observations = "1555")
 
-ar <- as.data.frame(rbind(c("R2", (round(sp_lag_sum$rsqr,2)), 
-                            (round(er.mod$rsqr,2)), 
-                            (round(sar.mod$rsqr,2)))))
+ar <- as.data.frame(rbind(c("R2", (round(sp_lag_turnout_sum$rsqr,2)), 
+                            (round(sp_er_turnout_sum$rsqr,2)), 
+                            (round(sarar_turnout_sum$rsqr,2)))))
 
 mod_grp_V <- list(tidy = reg_sp_panel, glance = gl_V)
 class(mod_grp_V) <- "modelsummary_list"
@@ -1393,15 +1471,106 @@ mod1 %>%
 ```
 
 
-## LDP votes (relative)
+
+### Values relative to SMD-average
+
+```{r turnout-spatial-rel, results='asis', echo=FALSE}
+tbl_sp_panel <- as.data.frame(cbind(sp_lag_turnout_rel_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
+                                    sp_er_turnout_rel_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
+                                    sarar_turnout_rel_sum$CoefTable[c(3:12,2), c(1, 2, 4)]))
+
+tbl_sp_panel <- rbind(tbl_sp_panel,
+                      c(rep(NA,6), sarar_turnout_rel_sum$CoefTable[1, c(1, 2, 4)]))
+
+names(tbl_sp_panel) <- c('Est_lag', 'SE_lag', 'Pvalue_lag',
+                         'Est_err', 'SE_err','Pvalue_err',
+                         'Est_errlag', 'SE_errlag', 'Pvalue_errlag')
+
+reg_sp_panel <- data.frame(
+  term = c(
+           '2014', '2017', '2021',
+           'FStrength',
+           'Elderly', 'LDP (relative)', 
+           'Quasi-depopulating ', 'Partly depopulating',
+           "Fully depopulating", "Fully depopulating (merged)",
+           'lambda', 'NA'
+           ),
+  estimate = tbl_sp_panel$Est_lag,
+  std.error = tbl_sp_panel$SE_lag,
+  p.value = tbl_sp_panel$Pvalue_lag)
+
+er_panel <- data.frame(
+  term = c( 
+           '2014', '2017', '2021',
+           'FStrength',
+           'Elderly', 'LDP (relative)', 
+           'Quasi-depopulating ', 'Partly depopulating',
+           "Fully depopulating", "Fully depopulating (merged)",
+           'Rho', 'NA'
+           ),
+  estimate = tbl_sp_panel$Est_err,
+  std.error = tbl_sp_panel$SE_err,
+  p.value = tbl_sp_panel$Pvalue_err)
+
+reg_sp_lag_error_panel <- data.frame(
+  term = c(
+           '2014', '2017', '2021',
+           'FStrength',
+           'Elderly', 'LDP (relative)', 
+           'Quasi-depopulating ', 'Partly depopulating',
+           "Fully depopulating", "Fully depopulating (merged)",
+           'Rho', 'lambda'
+           ),
+  estimate = tbl_sp_panel$Est_errlag,
+  std.error = tbl_sp_panel$SE_errlag,
+  p.value = tbl_sp_panel$Pvalue_errlag)
+
+
+gl_V <- data.frame(
+  Observations = "1555")
+
+ar <- as.data.frame(rbind(c("R2", (round(sp_lag_turnout_rel_sum$rsqr,2)), 
+                            (round(sp_er_turnout_rel_sum$rsqr,2)), 
+                            (round(sarar_turnout_rel_sum$rsqr,2)))))
+
+mod_grp_V <- list(tidy = reg_sp_panel, glance = gl_V)
+class(mod_grp_V) <- "modelsummary_list"
+
+mod_grp_V1 <- list(tidy = er_panel, glance = gl_V)
+class(mod_grp_V1) <- "modelsummary_list"
+
+mod_grp_V2 <- list(tidy = reg_sp_lag_error_panel, glance = gl_V)
+class(mod_grp_V2) <- "modelsummary_list"
+
+models_V <- list()
+models_V[['Fixed effects lag']] <- mod_grp_V
+models_V[['Fixed effects error']] <- mod_grp_V1
+models_V[['Fixed effects SARAR']] <- mod_grp_V2
+
+mod1 <- modelsummary(models_V, add_rows = ar, stars = T, 
+             output = "kableExtra",
+             fmt = 3)
+
+mod1 %>%
+  pack_rows("Year dummy (base group = ‘2012’)", 1, 6) %>%
+  pack_rows("Fiscal type (base group = ‘Normal’)", 13, 19) %>%
+  row_spec(21, background = 'lightblue') %>%
+  row_spec(23, background = 'lightblue') %>%
+  kable_styling(full_width = T)
+```
+
+
+## LDP votes 
+
+### Absolute values
 
 ```{r ldp-spatial, results='asis', echo=FALSE}
-tbl_sp_panel_LDP <- as.data.frame(cbind(sp_lag_sum_LDP$CoefTable[c(2:11,1), c(1, 2, 4)],
-                                    er.mod.LDP$CoefTable[c(2:11,1), c(1, 2, 4)],
-                                    sar.mod.LDP$CoefTable[c(3:12,2), c(1, 2, 4)]))
+tbl_sp_panel_LDP <- as.data.frame(cbind(sp_lag_LDP_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
+                                    sp_er_LDP_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
+                                    sarar_LDP_sum$CoefTable[c(3:12,2), c(1, 2, 4)]))
 
 tbl_sp_panel_LDP <- rbind(tbl_sp_panel_LDP,
-                      c(rep(NA,6), sar.mod.LDP$CoefTable[1, c(1, 2, 4)]))
+                      c(rep(NA,6), sarar_LDP_sum$CoefTable[1, c(1, 2, 4)]))
 
 names(tbl_sp_panel_LDP) <- c('Est_lag', 'SE_lag', 'Pvalue_lag',
                          'Est_err', 'SE_err','Pvalue_err',
@@ -1450,9 +1619,9 @@ reg_sp_lag_error_panel_ldp <- data.frame(
 gl_V <- data.frame(
   Observations = "1555")
 
-ar <- as.data.frame(rbind(c("R2", (round(sp_lag_sum_LDP$rsqr,2)), 
-                            (round(er.mod.LDP$rsqr,2)), 
-                            (round(sar.mod.LDP$rsqr,2)))))
+ar <- as.data.frame(rbind(c("R2", (round(sp_lag_LDP_sum$rsqr,2)), 
+                            (round(sp_er_LDP_sum$rsqr,2)), 
+                            (round(sarar_LDP_sum$rsqr,2)))))
 
 mod_grp_V <- list(tidy = reg_sp_panel_ldp, glance = gl_V)
 class(mod_grp_V) <- "modelsummary_list"
@@ -1480,6 +1649,93 @@ mod2 %>%
   kable_styling(full_width = T)
 ```
 
+
+### Values relative to SMD-average
+
+```{r ldp-spatial-rel, results='asis', echo=FALSE}
+tbl_sp_panel_LDP <- as.data.frame(cbind(sp_lag_LDP_rel_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
+                                    sp_er_LDP_rel_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
+                                    sarar_LDP_rel_sum$CoefTable[c(3:12,2), c(1, 2, 4)]))
+
+tbl_sp_panel_LDP <- rbind(tbl_sp_panel_LDP,
+                      c(rep(NA,6), sarar_LDP_rel_sum$CoefTable[1, c(1, 2, 4)]))
+
+names(tbl_sp_panel_LDP) <- c('Est_lag', 'SE_lag', 'Pvalue_lag',
+                         'Est_err', 'SE_err','Pvalue_err',
+                         'Est_errlag', 'SE_errlag', 'Pvalue_errlag')
+
+reg_sp_panel_ldp <- data.frame(
+  term = c(
+           '2014', '2017', '2021',
+           'FStrength',
+           'Elderly', 'Turnout (relative)', 
+           'Quasi-depopulating ', 'Partly depopulating',
+           "Fully depopulating", "Fully depopulating (merged)",
+           'lambda', 'NA'
+           ),
+  estimate = tbl_sp_panel_LDP$Est_lag,
+  std.error = tbl_sp_panel_LDP$SE_lag,
+  p.value = tbl_sp_panel_LDP$Pvalue_lag)
+
+er_panel_ldp <- data.frame(
+  term = c( 
+           '2014', '2017', '2021',
+           'FStrength',
+           'Elderly', 'Turnout (relative)', 
+           'Quasi-depopulating ', 'Partly depopulating',
+           "Fully depopulating", "Fully depopulating (merged)",
+           'Rho', 'NA'
+           ),
+  estimate = tbl_sp_panel_LDP$Est_err,
+  std.error = tbl_sp_panel_LDP$SE_err,
+  p.value = tbl_sp_panel_LDP$Pvalue_err)
+
+reg_sp_lag_error_panel_ldp <- data.frame(
+  term = c(
+           '2014', '2017', '2021',
+           'FStrength',
+           'Elderly', 'Turnout (relative)', 
+           'Quasi-depopulating ', 'Partly depopulating',
+           "Fully depopulating", "Fully depopulating (merged)",
+           'Rho', 'lambda'
+           ),
+  estimate = tbl_sp_panel_LDP$Est_errlag,
+  std.error = tbl_sp_panel_LDP$SE_errlag,
+  p.value = tbl_sp_panel_LDP$Pvalue_errlag)
+
+
+gl_V <- data.frame(
+  Observations = "1555")
+
+ar <- as.data.frame(rbind(c("R2", (round(sp_lag_LDP_rel_sum$rsqr,2)), 
+                            (round(sp_er_LDP_rel_sum$rsqr,2)), 
+                            (round(sarar_LDP_rel_sum$rsqr,2)))))
+
+mod_grp_V <- list(tidy = reg_sp_panel_ldp, glance = gl_V)
+class(mod_grp_V) <- "modelsummary_list"
+
+mod_grp_V1 <- list(tidy = er_panel_ldp, glance = gl_V)
+class(mod_grp_V1) <- "modelsummary_list"
+
+mod_grp_V2 <- list(tidy = reg_sp_lag_error_panel_ldp, glance = gl_V)
+class(mod_grp_V2) <- "modelsummary_list"
+
+models_V <- list()
+models_V[['Fixed effects lag']] <- mod_grp_V
+models_V[['Fixed effects error']] <- mod_grp_V1
+models_V[['Fixed effects SARAR']] <- mod_grp_V2
+
+mod2 <- modelsummary(models_V, add_rows = ar, stars = T, 
+             output = "kableExtra",
+             fmt = 3)
+
+mod2 %>%
+  pack_rows("Year dummy (base group = ‘2012’)", 1, 6) %>%
+  pack_rows("Fiscal type (base group = ‘Normal’)", 13, 19) %>%
+  row_spec(21, background = 'lightblue') %>%
+  row_spec(23, background = 'lightblue') %>%
+  kable_styling(full_width = T)
+```
 
 
 ```{r include=FALSE}
