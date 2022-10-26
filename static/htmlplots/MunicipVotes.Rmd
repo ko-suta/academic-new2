@@ -1291,7 +1291,7 @@ spatial.4.1 <- spml(fm2, data = ElectionsSMD6, index = c("Code", "Year"),
 sar.mod <- summary(spatial.4.1)
 
 
-spatial.4.1.LDP <- spml(fm2, data = ElectionsSMD6, index = c("Code", "Year"), 
+spatial.4.1.LDP <- spml(fm3, data = ElectionsSMD6, index = c("Code", "Year"), 
                     listw = nb_B3,
                     lag = TRUE, 
                     spatial.error = "b", 
@@ -1401,7 +1401,7 @@ tbl_sp_panel_LDP <- as.data.frame(cbind(sp_lag_sum_LDP$CoefTable[c(2:11,1), c(1,
                                     sar.mod.LDP$CoefTable[c(3:12,2), c(1, 2, 4)]))
 
 tbl_sp_panel_LDP <- rbind(tbl_sp_panel_LDP,
-                      c(rep(NA,6), sar.mod$CoefTable[1, c(1, 2, 4)]))
+                      c(rep(NA,6), sar.mod.LDP$CoefTable[1, c(1, 2, 4)]))
 
 names(tbl_sp_panel_LDP) <- c('Est_lag', 'SE_lag', 'Pvalue_lag',
                          'Est_err', 'SE_err','Pvalue_err',
