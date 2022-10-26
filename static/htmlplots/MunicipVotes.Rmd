@@ -1438,7 +1438,7 @@ reg_sp_lag_error_panel <- data.frame(
 
 
 gl_V <- data.frame(
-  Observations = "1555")
+  Observations = "6220")
 
 ar <- as.data.frame(rbind(c("R2", (round(sp_lag_turnout_sum$rsqr,2)), 
                             (round(sp_er_turnout_sum$rsqr,2)), 
@@ -1527,7 +1527,7 @@ reg_sp_lag_error_panel <- data.frame(
 
 
 gl_V <- data.frame(
-  Observations = "1555")
+  Observations = "6220")
 
 ar <- as.data.frame(rbind(c("R2", (round(sp_lag_turnout_rel_sum$rsqr,2)), 
                             (round(sp_er_turnout_rel_sum$rsqr,2)), 
@@ -1617,7 +1617,7 @@ reg_sp_lag_error_panel_ldp <- data.frame(
 
 
 gl_V <- data.frame(
-  Observations = "1555")
+  Observations = "6220")
 
 ar <- as.data.frame(rbind(c("R2", (round(sp_lag_LDP_sum$rsqr,2)), 
                             (round(sp_er_LDP_sum$rsqr,2)), 
@@ -1705,7 +1705,7 @@ reg_sp_lag_error_panel_ldp <- data.frame(
 
 
 gl_V <- data.frame(
-  Observations = "1555")
+  Observations = "6220")
 
 ar <- as.data.frame(rbind(c("R2", (round(sp_lag_LDP_rel_sum$rsqr,2)), 
                             (round(sp_er_LDP_rel_sum$rsqr,2)), 
