@@ -1164,7 +1164,7 @@ colnames(d3)[1] <- "Code"
 ```
 
 
-```{r}
+```{r include=FALSE}
 ElectionsSMD4 <- Elections3[,-c(6,11,13,21)]
 
 ElectionsSMD5 <- ElectionsSMD4[complete.cases(ElectionsSMD4), ]
@@ -1306,7 +1306,7 @@ sar.mod.LDP <- summary(spatial.4.1.LDP)
 
 ## Turnout ratio (relative)
 
-```{r turnout-spatial, results='asis'}
+```{r turnout-spatial, results='asis', echo=FALSE}
 tbl_sp_panel <- as.data.frame(cbind(sp_lag_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
                                     er.mod$CoefTable[c(2:11,1), c(1, 2, 4)],
                                     sar.mod$CoefTable[c(3:12,2), c(1, 2, 4)]))
@@ -1378,13 +1378,13 @@ models_V[['Fixed effects SARAR']] <- mod_grp_V2
 
 modelsummary(models_V, add_rows = ar, stars = T, 
              output = "html",
-             title = 'Spatial models with fixed and time effects', fmt = 3)
+             fmt = 3)
 ```
 
 
 ## LDP votes (relative)
 
-```{r ldp-spatial, results='asis'}
+```{r ldp-spatial, results='asis', echo=FALSE}
 tbl_sp_panel_LDP <- as.data.frame(cbind(sp_lag_sum_LDP$CoefTable[c(2:11,1), c(1, 2, 4)],
                                     er.mod.LDP$CoefTable[c(2:11,1), c(1, 2, 4)],
                                     sar.mod.LDP$CoefTable[c(3:12,2), c(1, 2, 4)]))
@@ -1456,7 +1456,7 @@ models_V[['Fixed effects SARAR']] <- mod_grp_V2
 
 modelsummary(models_V, add_rows = ar, stars = T, 
              output = "html",
-             title = 'Spatial models with fixed and time effects', fmt = 3)
+             fmt = 3)
 ```
 
 
@@ -1639,7 +1639,7 @@ align_legend <- function(p, hjust = 0.5)
 ```
 
 
-```{r}
+```{r include=FALSE}
 # ggsave(filename = "Turnout2021.pdf", width = 15, height = 16, units = "in", device = cairo_pdf)
 # ggsave(filename = "Turnout2021.png", width = 15, height = 16, units = "in")
 ```
@@ -1739,7 +1739,7 @@ align_legend <- function(p, hjust = 0.5)
 ```
 
 
-```{r}
+```{r include=FALSE}
 # ggsave(filename = "Turnout2017.pdf", width = 15, height = 16, units = "in", device = cairo_pdf)
 # ggsave(filename = "Turnout2017.png", width = 15, height = 16, units = "in")
 ```
@@ -1837,7 +1837,7 @@ align_legend <- function(p, hjust = 0.5)
 ```
 
 
-```{r}
+```{r include=FALSE}
 # ggsave(filename = "Turnout2014.pdf", width = 15, height = 16, units = "in", device = cairo_pdf)
 # ggsave(filename = "Turnout2014.png", width = 15, height = 16, units = "in")
 ```
@@ -1935,13 +1935,13 @@ align_legend <- function(p, hjust = 0.5)
 ```
 
 
-```{r}
+```{r include=FALSE}
 # ggsave(filename = "Turnout2012.pdf", width = 15, height = 16, units = "in", device = cairo_pdf)
 # ggsave(filename = "Turnout2012.png", width = 15, height = 16, units = "in")
 ```
 
 
-```{r}
+```{r include=FALSE}
 # p <- plot_grid(TurnoutRatio2012, TurnoutRatio2014, 
 #                TurnoutRatio2017, TurnoutRatio2021,
 #                labels = "AUTO")
@@ -2035,7 +2035,7 @@ align_legend <- function(p, hjust = 0.5)
 #         legend.key.height = unit(1.5, "cm"))
 ```
 
-```{r}
+```{r include=FALSE}
 # ggsave(filename = "NaganoTurnout2021.pdf", width = 15, height = 16, units = "in", device = cairo_pdf)
 # ggsave(filename = "NaganoTurnout2021.png", width = 15, height = 16, units = "in")
 ```
