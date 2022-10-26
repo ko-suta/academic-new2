@@ -37,7 +37,8 @@ p_needed <- c("tidyverse",
               "ggspatial",
               "splm",
               "spatialreg",
-              "viridis"
+              "viridis",
+              "modelsummary"
 )
 packages <- rownames(installed.packages())
 p_to_install <- p_needed[!(p_needed %in% packages)]
@@ -552,10 +553,10 @@ Elections3 %>%
     data_color(
     columns = 2:13,
     colors = my_pal
-    ) %>%
-  gtsave(
-    "kaso-merged-detailed-unique.png"
-)
+    )
+#   gtsave(
+#     "kaso-merged-detailed-unique.png"
+# )
 ```
 
 <br><br>
@@ -612,10 +613,10 @@ Elections3 %>%
     data_color(
     columns = 2:12,
     colors = my_pal
-    ) %>%
-  gtsave(
-    "merged-overall.png"
-)
+    )
+#   gtsave(
+#     "merged-overall.png"
+# )
 ```
 
 
@@ -735,10 +736,10 @@ Elections3 %>%
     data_color(
     columns = 2:12,
     colors = my_pal
-    ) %>%
-  gtsave(
-    "kaso-merged-detailed-overall.png"
-)
+    ) 
+#   gtsave(
+#     "kaso-merged-detailed-overall.png"
+# )
 ```
 
 
@@ -1109,16 +1110,16 @@ htmlreg(list(LDPDifMod4, LDPDifMod5, LDPDifMod6),
 
 <br><br>
 
-# Mapping
+# Models with spatial effects
 
 ```{r include=FALSE}
-# projcrs <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
-# 
-# d3 <- sf::st_read("GIS/japan_ver81.shp") %>%
-#   st_transform(CRS("+proj=longlat +datum=WGS84"))
-# 
-# d3 <- d3[,-c(3:5, 8:9)]
-# colnames(d3)[1] <- "Code"
+projcrs <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
+
+d3 <- sf::st_read("GIS/japan_ver81.shp") %>%
+  st_transform(CRS("+proj=longlat +datum=WGS84"))
+
+d3 <- d3[,-c(3:5, 8:9)]
+colnames(d3)[1] <- "Code"
 # 
 # Pref <- read.csv("GIS/JPref2.csv", stringsAsFactors = FALSE)
 # colnames(Pref)[1] <- "Code"
@@ -1161,6 +1162,303 @@ htmlreg(list(LDPDifMod4, LDPDifMod5, LDPDifMod6),
 # 
 # senkyoku1996 <- senkyoku1996[-c(3:16)]
 ```
+
+
+```{r}
+ElectionsSMD4 <- Elections3[,-c(6,11,13,21)]
+
+ElectionsSMD5 <- ElectionsSMD4[complete.cases(ElectionsSMD4), ]
+
+ElectionsSMD5 <- ElectionsSMD5 %>% 
+  mutate(Year=droplevels(Year))
+
+ElectionsSMD6 <- make.pbalanced(ElectionsSMD5, balance.type = "shared.individuals", index = c("Code", "Year"))
+```
+
+
+```{r include=FALSE}
+d7 <- d3 %>%
+  filter(Code %in% ElectionsSMD6$Code)
+
+ElectionsSMD6 <- ElectionsSMD6 %>%
+  filter(Code %in% d7$Code)
+
+ElectionsSMD6 <- pdata.frame(ElectionsSMD6, 
+                             index = c("Code", "Year"), 
+                             drop.index = FALSE, row.names = TRUE,
+                             stringsAsFactors = default.stringsAsFactors(),
+                         replace.non.finite = TRUE,
+                         drop.NA.series = TRUE, drop.const.series = FALSE,
+                         drop.unused.levels = TRUE)
+
+d7 <- st_make_valid(d7)
+d8 <- as(d7, "Spatial")
+```
+
+
+```{r include=FALSE}
+addnbs2 <- function(sp.sample){
+
+    queen_nb <- poly2nb(d7, row.names=d7$Code, queen=TRUE)
+
+    count = card(queen_nb)
+    if(!any(count==0)){
+        return(queen_nb)
+    }
+
+    ## get nearest neighbour index, use centroids:
+    nnbs = knearneigh(coordinates(sp.sample))$nn
+
+    no_edges_from = which(count==0)
+    for(i in no_edges_from){
+        queen_nb[[i]] = nnbs[i]
+    }
+    return(queen_nb)
+}
+```
+
+
+```{r include=FALSE}
+nb_q3 <- addnbs2(d8) 
+nb_B3 <- nb2listw(nb_q3, style="B", zero.policy=TRUE) # alternatively, style="W"
+```
+
+
+```{r include=FALSE}
+fm2 <- Turnout_relative ~ factor(Year) + Fstrength + EldPop + 
+  LDP_relative + factor(Kaso.fusion)
+
+fm3 <- LDP_relative ~ as.factor(Year) + Fstrength + EldPop + 
+  Turnout_relative + Kaso.fusion
+```
+
+
+```{r include=FALSE}
+spatial.4 <- spml(fm2, data = ElectionsSMD6, index = c("Code", "Year"), listw = nb_B3,
+                  lag = TRUE, spatial.error = "none", model = "within", 
+                  effect = "individual", 
+                  na.action = na.exclude(), zero.policy = TRUE, legacy = FALSE)
+
+sp_lag_sum <- summary(spatial.4)
+
+
+spatial.4.LDP <- spml(fm3, data = ElectionsSMD6, index = c("Code", "Year"), listw = nb_B3,
+                  lag = TRUE, spatial.error = "none", model = "within", 
+                  effect = "individual", 
+                  na.action = na.exclude(), zero.policy = TRUE, legacy = FALSE)
+
+sp_lag_sum_LDP <- summary(spatial.4.LDP)
+```
+
+
+```{r include=FALSE}
+spatial.4.2 <- spml(fm2, data = ElectionsSMD6, index = c("Code", "Year"), 
+                    listw = nb_B3,
+                    lag = FALSE, 
+                    spatial.error = "b", 
+                    model = "within", 
+                    effect = "individual", 
+                    na.action = na.exclude(), 
+                    zero.policy = TRUE, legacy = FALSE)
+
+er.mod <- summary(spatial.4.2)
+
+
+spatial.4.2.LDP <- spml(fm3, data = ElectionsSMD6, index = c("Code", "Year"), 
+                    listw = nb_B3,
+                    lag = FALSE, 
+                    spatial.error = "b", 
+                    model = "within", 
+                    effect = "individual", 
+                    na.action = na.exclude(), 
+                    zero.policy = TRUE, legacy = FALSE)
+
+er.mod.LDP <- summary(spatial.4.2.LDP)
+```
+
+
+```{r include=FALSE}
+spatial.4.1 <- spml(fm2, data = ElectionsSMD6, index = c("Code", "Year"), 
+                    listw = nb_B3,
+                    lag = TRUE, 
+                    spatial.error = "b", 
+                    model = "within", 
+                    effect = "individual", 
+                    na.action = na.exclude(), 
+                    zero.policy = TRUE, legacy = FALSE)
+
+sar.mod <- summary(spatial.4.1)
+
+
+spatial.4.1.LDP <- spml(fm2, data = ElectionsSMD6, index = c("Code", "Year"), 
+                    listw = nb_B3,
+                    lag = TRUE, 
+                    spatial.error = "b", 
+                    model = "within", 
+                    effect = "individual", 
+                    na.action = na.exclude(), 
+                    zero.policy = TRUE, legacy = FALSE)
+
+sar.mod.LDP <- summary(spatial.4.1.LDP)
+```
+
+
+
+## Turnout ratio (relative)
+
+```{r turnout-spatial, results='asis'}
+tbl_sp_panel <- as.data.frame(cbind(sp_lag_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
+                                    er.mod$CoefTable[c(2:11,1), c(1, 2, 4)],
+                                    sar.mod$CoefTable[c(3:12,2), c(1, 2, 4)]))
+
+names(tbl_sp_panel) <- c('Est_lag', 'SE_lag', 'Pvalue_lag',
+                         'Est_err', 'SE_err','Pvalue_err',
+                         'Est_errlag', 'SE_errlag', 'Pvalue_errlag')
+
+reg_sp_panel <- data.frame(
+  term = c(
+           '2014', '2017', '2021',
+           'FStrength',
+           'Elderly', 'LDP (relative)', 
+           'Quasi-depopulating ', 'Partly depopulating',
+           "Fully depopulating", "Fully depopulating (merged)",
+           'lambda'
+           ),
+  estimate = tbl_sp_panel$Est_lag,
+  std.error = tbl_sp_panel$SE_lag,
+  p.value = tbl_sp_panel$Pvalue_lag)
+
+er_panel <- data.frame(
+  term = c( 
+           '2014', '2017', '2021',
+           'FStrength',
+           'Elderly', 'LDP (relative)', 
+           'Quasi-depopulating ', 'Partly depopulating',
+           "Fully depopulating", "Fully depopulating (merged)",
+           'Rho'
+           ),
+  estimate = tbl_sp_panel$Est_err,
+  std.error = tbl_sp_panel$SE_err,
+  p.value = tbl_sp_panel$Pvalue_err)
+
+reg_sp_lag_error_panel <- data.frame(
+  term = c(
+           '2014', '2017', '2021',
+           'FStrength',
+           'Elderly', 'LDP (relative)', 
+           'Quasi-depopulating ', 'Partly depopulating',
+           "Fully depopulating", "Fully depopulating (merged)",
+           'Rho'
+           ),
+  estimate = tbl_sp_panel$Est_errlag,
+  std.error = tbl_sp_panel$SE_errlag,
+  p.value = tbl_sp_panel$Pvalue_errlag)
+
+
+gl_V <- data.frame(
+  Observations = "1555")
+
+ar <- as.data.frame(rbind(c("R2", (round(sp_lag_sum$rsqr,2)), 
+                            (round(er.mod$rsqr,2)), 
+                            (round(sar.mod$rsqr,2)))))
+
+mod_grp_V <- list(tidy = reg_sp_panel, glance = gl_V)
+class(mod_grp_V) <- "modelsummary_list"
+
+mod_grp_V1 <- list(tidy = er_panel, glance = gl_V)
+class(mod_grp_V1) <- "modelsummary_list"
+
+mod_grp_V2 <- list(tidy = reg_sp_lag_error_panel, glance = gl_V)
+class(mod_grp_V2) <- "modelsummary_list"
+
+models_V <- list()
+models_V[['Fixed effects lag']] <- mod_grp_V
+models_V[['Fixed effects error']] <- mod_grp_V1
+models_V[['Fixed effects SARAR']] <- mod_grp_V2
+
+modelsummary(models_V, add_rows = ar, stars = T, 
+             output = "html",
+             title = 'Spatial models with fixed and time effects', fmt = 3)
+```
+
+
+## LDP votes (relative)
+
+```{r ldp-spatial, results='asis'}
+tbl_sp_panel_LDP <- as.data.frame(cbind(sp_lag_sum_LDP$CoefTable[c(2:11,1), c(1, 2, 4)],
+                                    er.mod.LDP$CoefTable[c(2:11,1), c(1, 2, 4)],
+                                    sar.mod.LDP$CoefTable[c(3:12,2), c(1, 2, 4)]))
+
+names(tbl_sp_panel_LDP) <- c('Est_lag', 'SE_lag', 'Pvalue_lag',
+                         'Est_err', 'SE_err','Pvalue_err',
+                         'Est_errlag', 'SE_errlag', 'Pvalue_errlag')
+
+reg_sp_panel_ldp <- data.frame(
+  term = c(
+           '2014', '2017', '2021',
+           'FStrength',
+           'Elderly', 'Turnout (relative)', 
+           'Quasi-depopulating ', 'Partly depopulating',
+           "Fully depopulating", "Fully depopulating (merged)",
+           'lambda'
+           ),
+  estimate = tbl_sp_panel_LDP$Est_lag,
+  std.error = tbl_sp_panel_LDP$SE_lag,
+  p.value = tbl_sp_panel_LDP$Pvalue_lag)
+
+er_panel_ldp <- data.frame(
+  term = c( 
+           '2014', '2017', '2021',
+           'FStrength',
+           'Elderly', 'Turnout (relative)', 
+           'Quasi-depopulating ', 'Partly depopulating',
+           "Fully depopulating", "Fully depopulating (merged)",
+           'Rho'
+           ),
+  estimate = tbl_sp_panel_LDP$Est_err,
+  std.error = tbl_sp_panel_LDP$SE_err,
+  p.value = tbl_sp_panel_LDP$Pvalue_err)
+
+reg_sp_lag_error_panel_ldp <- data.frame(
+  term = c(
+           '2014', '2017', '2021',
+           'FStrength',
+           'Elderly', 'Turnout (relative)', 
+           'Quasi-depopulating ', 'Partly depopulating',
+           "Fully depopulating", "Fully depopulating (merged)",
+           'Rho'
+           ),
+  estimate = tbl_sp_panel_LDP$Est_errlag,
+  std.error = tbl_sp_panel_LDP$SE_errlag,
+  p.value = tbl_sp_panel_LDP$Pvalue_errlag)
+
+
+gl_V <- data.frame(
+  Observations = "1555")
+
+ar <- as.data.frame(rbind(c("R2", (round(sp_lag_sum_LDP$rsqr,2)), 
+                            (round(er.mod.LDP$rsqr,2)), 
+                            (round(sar.mod.LDP$rsqr,2)))))
+
+mod_grp_V <- list(tidy = reg_sp_panel_ldp, glance = gl_V)
+class(mod_grp_V) <- "modelsummary_list"
+
+mod_grp_V1 <- list(tidy = er_panel_ldp, glance = gl_V)
+class(mod_grp_V1) <- "modelsummary_list"
+
+mod_grp_V2 <- list(tidy = reg_sp_lag_error_panel_ldp, glance = gl_V)
+class(mod_grp_V2) <- "modelsummary_list"
+
+models_V <- list()
+models_V[['Fixed effects lag']] <- mod_grp_V
+models_V[['Fixed effects error']] <- mod_grp_V1
+models_V[['Fixed effects SARAR']] <- mod_grp_V2
+
+modelsummary(models_V, add_rows = ar, stars = T, 
+             output = "html",
+             title = 'Spatial models with fixed and time effects', fmt = 3)
+```
+
 
 
 ```{r include=FALSE}
@@ -1246,11 +1544,12 @@ align_legend <- function(p, hjust = 0.5)
 ```
 
 
+
+```{r include=FALSE}
 ## Turnout
 
 ### 2021
 
-```{r include=FALSE}
 # (mainland <- Elections4 %>%
 #    filter(Year %in% 2021) %>%
 #    mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
@@ -1347,9 +1646,9 @@ align_legend <- function(p, hjust = 0.5)
 
 
 
+```{r include=FALSE}
 ### 2017
 
-```{r include=FALSE}
 # (mainland <- Elections4 %>%
 #    filter(Year %in% 2017) %>%
 #    mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
@@ -1446,9 +1745,9 @@ align_legend <- function(p, hjust = 0.5)
 ```
 
 
+```{r include=FALSE}
 ### 2014
 
-```{r include=FALSE}
 # (mainland <- Elections4 %>%
 #    filter(Year %in% 2014) %>%
 #    mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
@@ -1544,9 +1843,9 @@ align_legend <- function(p, hjust = 0.5)
 ```
 
 
+```{r include=FALSE}
 ### 2012
 
-```{r include=FALSE}
 # (mainland <- Elections4 %>%
 #    filter(Year %in% 2012) %>%
 #    mutate(TurnoutDecile = dplyr::ntile(Turnout, 10)) %>%
@@ -1652,9 +1951,9 @@ align_legend <- function(p, hjust = 0.5)
 
 
 
+```{r include=FALSE}
 ## Nagano 2021
 
-```{r include=FALSE}
 # Nagano2021 <- Elections4 %>%
 #   filter(Year %in% 2021,
 #          EPref %in% "Nagano",
