@@ -84,13 +84,13 @@ Elections2 <- Elections2 %>%
 
 Elections3 <- Elections2[!duplicated(Elections2[,1:2]),]
 
-Elections4 <- Elections3 %>%
-  group_by(kuname) %>%
-  filter(all(c("全部過疎", "Normal") %in% Kaso))
+# Elections4 <- Elections3 %>%
+#   group_by(kuname) %>%
+#   filter(all(c("全部過疎", "Normal") %in% Kaso))
 
-Elections5 <- Elections3 %>%
-  group_by(kuname) %>%
-  filter(all(c("全部過疎", "Normal", "一部過疎") %in% Kaso))
+# Elections5 <- Elections3 %>%
+#   group_by(kuname) %>%
+#   filter(all(c("全部過疎", "Normal", "一部過疎") %in% Kaso))
 
 # https://stackoverflow.com/a/58207744
 ```
@@ -953,15 +953,15 @@ LDPMod6 <- plm(LDP_relative ~ Year + Fstrength + EldPop + Turnout +
 
 
 ```{r echo=FALSE, include=FALSE}
-ldp.pooled <- plm(LDP ~ Fstrength + Turnout + Kaso.fusion + EldPop,
-                  index=c("Code","Year"), data = Elections3, model = "within", effect = "time")
-
-ldp.fe <- plm(LDP ~ Fstrength + Turnout + Kaso.fusion + EldPop,
-                  index=c("Code","Year"), data = Elections3, model = "within")
-
-ldp.re <- plm(LDP ~ Fstrength + Turnout + Kaso.fusion + EldPop,
-                  index=c("Code","Year"), data = Elections3, 
-                  model = "random")
+# ldp.pooled <- plm(LDP ~ Fstrength + Turnout + Kaso.fusion + EldPop,
+#                   index=c("Code","Year"), data = Elections3, model = "within", effect = "time")
+# 
+# ldp.fe <- plm(LDP ~ Fstrength + Turnout + Kaso.fusion + EldPop,
+#                   index=c("Code","Year"), data = Elections3, model = "within")
+# 
+# ldp.re <- plm(LDP ~ Fstrength + Turnout + Kaso.fusion + EldPop,
+#                   index=c("Code","Year"), data = Elections3, 
+#                   model = "random")
 ```
 
 
@@ -1111,7 +1111,6 @@ htmlreg(list(LDPDifMod4, LDPDifMod5, LDPDifMod6),
 
 <br><br>
 
-# Models with spatial effects
 
 ```{r include=FALSE}
 projcrs <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
@@ -1121,49 +1120,117 @@ d3 <- sf::st_read("GIS/japan_ver81.shp") %>%
 
 d3 <- d3[,-c(3:5, 8:9)]
 colnames(d3)[1] <- "Code"
-# 
-# Pref <- read.csv("GIS/JPref2.csv", stringsAsFactors = FALSE)
-# colnames(Pref)[1] <- "Code"
-# 
-# PrefMap <- sf::st_read("GIS/JPref.shp") %>%
-#   st_transform(CRS("+proj=longlat +datum=WGS84"))
-# 
-# PrefMap2 <- as(PrefMap, "Spatial")
-# 
-# coord2 <- as.data.frame(coordinates(spTransform(PrefMap2, 
-#                                                 CRS("+proj=longlat +datum=WGS84"))))
-# PrefCoord <- cbind(Pref, coord2)
-# 
-# senkyoku2017 <- rgdal::readOGR("GIS/senkyoku289/senkyoku289.shp", encoding = "shift-jis")
-# senkyoku2017 <- st_as_sf(senkyoku2017)
-# senkyoku2017$kucode <- sprintf("%05s", senkyoku2017$kucode)
-# 
-# senkyoku2017 <- senkyoku2017 %>%
-#   arrange(kucode)
-# 
-# senkyoku2017$ken <- as.numeric(senkyoku2017$ken)
-# senkyoku2017$ku <- as.numeric(senkyoku2017$ku)
-# 
-# senkyoku2014 <- rgdal::readOGR("GIS/senkyoku295/senkyoku295.shp", encoding = "shift-jis")
-# senkyoku2014 <- st_as_sf(senkyoku2014)
-# colnames(senkyoku2014)[1] <- "kucode"
-# 
-# senkyoku2014 <- senkyoku2014 %>%
-#   arrange(kucode)
-# 
-# senkyoku2014 <- senkyoku2014[-c(3:16)]
-# 
-# 
-# senkyoku1996 <- rgdal::readOGR("GIS/senkyoku300/senkyoku300.shp", encoding = "shift-jis")
-# senkyoku1996 <- st_as_sf(senkyoku1996)
-# colnames(senkyoku1996)[1] <- "kucode"
-# 
-# senkyoku1996 <- senkyoku1996 %>%
-#   arrange(kucode)
-# 
-# senkyoku1996 <- senkyoku1996[-c(3:16)]
 ```
 
+
+# Cross-sectional spatial models
+
+```{r include=FALSE}
+addnbs <- function(sp.sample){
+
+    queen_nb <- poly2nb(d6, row.names=d6$Code, queen=TRUE)
+
+    count = card(queen_nb)
+    if(!any(count==0)){
+        return(queen_nb)
+    }
+
+    ## get nearest neighbour index, use centroids:
+    nnbs = knearneigh(coordinates(sp.sample))$nn
+
+    no_edges_from = which(count==0)
+    for(i in no_edges_from){
+        queen_nb[[i]] = nnbs[i]
+    }
+    return(queen_nb)
+}
+```
+
+
+```{r include=FALSE}
+Elections2021 <- Elections3 %>%
+  filter(Year %in% 2021)
+
+d5 <- d3 %>%
+  filter(Code %in% Elections2021$Code)
+
+
+d5 <- st_make_valid(d5)
+d6 <- as(d5, "Spatial")
+
+nb_q2 <- addnbs(d6) 
+nb_B2 <- nb2listw(nb_q2, style="W", zero.policy=TRUE)
+```
+
+
+```{r include=FALSE}
+fm_turnout <- Turnout ~ Fstrength + EldPop + LDP + Kaso.fusion
+fm_turnout_rel <- Turnout_relative ~ Fstrength + EldPop + LDP + Kaso.fusion
+```
+
+
+## Turnout ratio 
+
+### 2021 elections
+
+```{r include=FALSE}
+sp_err_turnout_2021 <- errorsarlm(fm_turnout, data = Elections2021, 
+                          listw = nb_B2,
+                          zero.policy = TRUE)
+
+sp_lag_turnout_2021 <- lagsarlm(fm_turnout, data = Elections2021, 
+                          listw = nb_B2,
+                          zero.policy = TRUE)
+
+sp_sacsar_turnout_2021 <- sacsarlm(fm_turnout, data = Elections2021, 
+                          listw = nb_B2,
+                          zero.policy = TRUE)
+
+
+
+sp_err_turnout_rel_2021 <- errorsarlm(fm_turnout_rel, data = Elections2021, 
+                          listw = nb_B2,
+                          zero.policy = TRUE)
+
+sp_lag_turnout_rel_2021 <- lagsarlm(fm_turnout_rel, data = Elections2021, 
+                          listw = nb_B2,
+                          zero.policy = TRUE)
+
+sp_sacsar_turnout_rel_2021 <- sacsarlm(fm_turnout_rel, data = Elections2021, 
+                          listw = nb_B2,
+                          zero.policy = TRUE)
+```
+
+
+```{r turnout-2021, results='asis', echo=FALSE}
+rows <- tribble(~term, ~`Spatial Error`,  ~`Spatial Lag`, ~`Error + Lag`, ~`Spatial Error`,  ~`Spatial Lag`, ~`Error + Lag`,
+                'Num.Obs',        "1761", "1761", "1761", "1761", "1761", "1761")
+attr(rows, 'position') <- c(21)
+
+
+modelsummary(list("Spatial Error" = sp_err_turnout_2021, 
+                  "Spatial Lag" = sp_lag_turnout_2021,
+                  "Error + Lag" = sp_sacsar_turnout_2021,
+                  "Spatial Error" = sp_err_turnout_rel_2021, 
+                  "Spatial Lag" = sp_lag_turnout_rel_2021,
+                  "Error + Lag" = sp_sacsar_turnout_rel_2021),
+             stars = TRUE,
+             add_rows = rows,
+             coef_rename = c("Fstrength" = "Fiscal strength", 
+                             "EldPop" = "Elderly",
+                             "Kaso.fusionみなし過疎" = "Quasi-depopulating",
+                             "Kaso.fusion一部過疎" = "Partly depopulating",
+                             "Kaso.fusion全部過疎" = "Fully depopulating",
+                             "Kaso.fusion全部過疎-Merged" = "Fully depopulating (merged)")
+             ) %>%
+  add_header_above(c(" " = 1, "Turnout" = 3, "Turnout (relative)" = 3)) %>%
+  pack_rows("Fiscal type (base group = ‘Normal’)", 9, 15) %>%
+  row_spec(17, background = 'lightblue') %>%
+  row_spec(19, background = 'lightblue')
+```
+
+
+# Panel spatial models
 
 ```{r include=FALSE}
 ElectionsSMD4 <- Elections3[,-c(6,11,13,21)]
@@ -1200,7 +1267,7 @@ d8 <- as(d7, "Spatial")
 ```{r include=FALSE}
 addnbs2 <- function(sp.sample){
 
-    queen_nb <- poly2nb(d7, row.names=d7$Code, queen=TRUE)
+    queen_nb <- poly2nb(d8, row.names=d8$Code, queen=TRUE)
 
     count = card(queen_nb)
     if(!any(count==0)){
@@ -1735,6 +1802,51 @@ mod2 %>%
   row_spec(21, background = 'lightblue') %>%
   row_spec(23, background = 'lightblue') %>%
   kable_styling(full_width = T)
+```
+
+
+
+```{r}
+# Pref <- read.csv("GIS/JPref2.csv", stringsAsFactors = FALSE)
+# colnames(Pref)[1] <- "Code"
+# 
+# PrefMap <- sf::st_read("GIS/JPref.shp") %>%
+#   st_transform(CRS("+proj=longlat +datum=WGS84"))
+# 
+# PrefMap2 <- as(PrefMap, "Spatial")
+# 
+# coord2 <- as.data.frame(coordinates(spTransform(PrefMap2, 
+#                                                 CRS("+proj=longlat +datum=WGS84"))))
+# PrefCoord <- cbind(Pref, coord2)
+# 
+# senkyoku2017 <- rgdal::readOGR("GIS/senkyoku289/senkyoku289.shp", encoding = "shift-jis")
+# senkyoku2017 <- st_as_sf(senkyoku2017)
+# senkyoku2017$kucode <- sprintf("%05s", senkyoku2017$kucode)
+# 
+# senkyoku2017 <- senkyoku2017 %>%
+#   arrange(kucode)
+# 
+# senkyoku2017$ken <- as.numeric(senkyoku2017$ken)
+# senkyoku2017$ku <- as.numeric(senkyoku2017$ku)
+# 
+# senkyoku2014 <- rgdal::readOGR("GIS/senkyoku295/senkyoku295.shp", encoding = "shift-jis")
+# senkyoku2014 <- st_as_sf(senkyoku2014)
+# colnames(senkyoku2014)[1] <- "kucode"
+# 
+# senkyoku2014 <- senkyoku2014 %>%
+#   arrange(kucode)
+# 
+# senkyoku2014 <- senkyoku2014[-c(3:16)]
+# 
+# 
+# senkyoku1996 <- rgdal::readOGR("GIS/senkyoku300/senkyoku300.shp", encoding = "shift-jis")
+# senkyoku1996 <- st_as_sf(senkyoku1996)
+# colnames(senkyoku1996)[1] <- "kucode"
+# 
+# senkyoku1996 <- senkyoku1996 %>%
+#   arrange(kucode)
+# 
+# senkyoku1996 <- senkyoku1996[-c(3:16)]
 ```
 
 
