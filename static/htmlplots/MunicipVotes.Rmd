@@ -864,44 +864,17 @@ turnout.re <- plm(Turnout ~ Fstrength + LDP + Kaso.fusion + EldPop,
 ```
 
 
-#### Absolute values
-
-```{r turnout, results='asis', echo=FALSE}
-htmlreg(list(TurnoutMod1, TurnoutMod2, TurnoutMod3),
-       custom.model.names = c("Model 1", "Model 2", "Model 3"),
-       custom.coef.names = c("(Intercept)",
-                             "2014", "2017", "2021", "Fiscal Strength",
-                             "Elderly", "LDP", "Quasi-depopulating",
-                             "Partly depopulating", "Fully depopulating", "Fully depopulating (merged)"),
-       groups = list("Year dummy (base group = '2012')" = 2:4,
-         "Fiscal type (base group = 'Normal')" = 8:11),
-       caption = NULL,
-       digits = 2,
-#       reorder.coef = c(2:8,1),
-       include.ercomp = FALSE,
-       single.row = FALSE,
-       booktabs = TRUE,
-       dcolumn = TRUE,
-       caption.above = TRUE,
-       threeparttable = TRUE,
-       use.packages = FALSE,
-       stars = c(0.01, 0.05, 0.1),
-       label = "tab:Turnout"
-       )
-```
-
-
-<br>
-
-#### Values relative to SMD-average
 
 ```{r turnout2, results='asis', echo=FALSE}
-htmlreg(list(TurnoutMod4, TurnoutMod5, TurnoutMod6),
-       custom.model.names = c("Model 1", "Model 2", "Model 3"),
+htmlreg(list(TurnoutMod1, TurnoutMod2, TurnoutMod3,
+  TurnoutMod4, TurnoutMod5, TurnoutMod6),
+       custom.model.names = c("Model 1", "Model 2", "Model 3",
+                              "Model 4", "Model 5", "Model 6"),
        custom.coef.names = c("(Intercept)",
                              "2014", "2017", "2021", "Fiscal Strength",
                              "Elderly", "LDP", "Quasi-depopulating",
                              "Partly depopulating", "Fully depopulating", "Fully depopulating (merged)"),
+  custom.header = list("Turnout" = 1:3, "Turnout (relative)" = 4:6),
        groups = list("Year dummy (base group = '2012')" = 2:4,
          "Fiscal type (base group = 'Normal')" = 8:11),
        caption = NULL,
@@ -965,44 +938,16 @@ LDPMod6 <- plm(LDP_relative ~ Year + Fstrength + EldPop + Turnout +
 ```
 
 
-#### Absolute values
-
-```{r ldp, results='asis', echo=FALSE}
-htmlreg(list(LDPMod1, LDPMod2, LDPMod3),
-       custom.model.names = c("Model 1", "Model 2", "Model 3"),
-       custom.coef.names = c("(Intercept)",
-                             "2014", "2017", "2021", "Fiscal Strength",
-                             "Elderly", "Turnout", "Quasi-depopulating",
-                             "Partly depopulating", "Fully depopulating", "Fully depopulating (merged)"),
-       groups = list("Year dummy (base group = '2012')" = 2:4,
-         "Fiscal type (base group = 'Normal')" = 8:11),
-       caption = NULL,
-       digits = 2,
-#       reorder.coef = c(2:8,1),
-       include.ercomp = FALSE,
-       single.row = FALSE,
-       booktabs = TRUE,
-       dcolumn = TRUE,
-       caption.above = TRUE,
-       threeparttable = TRUE,
-       use.packages = FALSE,
-       stars = c(0.01, 0.05, 0.1),
-       label = "tab:LDP"
-       )
-```
-
-
-<br>
-
-#### Values relative to SMD-average
-
 ```{r ldp2, results='asis', echo=FALSE}
-htmlreg(list(LDPMod4, LDPMod5, LDPMod6),
-       custom.model.names = c("Model 1", "Model 2", "Model 3"),
+htmlreg(list(LDPMod1, LDPMod2, LDPMod3,
+             LDPMod4, LDPMod5, LDPMod6),
+       custom.model.names = c("Model 1", "Model 2", "Model 3",
+                              "Model 4", "Model 5", "Model 6"),
        custom.coef.names = c("(Intercept)", 
                              "2014", "2017", "2021", "Fiscal Strength",
                              "Elderly", "Turnout", "Quasi-depopulating",
                              "Partly depopulating", "Fully depopulating", "Fully depopulating (merged)"),
+       custom.header = list("LDP" = 1:3, "LDP (relative)" = 4:6),
        groups = list("Year dummy (base group = '2012')" = 2:4,
          "Fiscal type (base group = 'Normal')" = 8:11),
        caption = NULL,
@@ -1053,44 +998,16 @@ LDPDifMod6 <- plm(LDPDif_relative ~ Year + Fstrength + EldPop + Turnout +
 ```
 
 
-#### Absolute values
-
-```{r ldpdif, results='asis', echo=FALSE}
-htmlreg(list(LDPDifMod1, LDPDifMod2, LDPDifMod3),
-       custom.model.names = c("Model 1", "Model 2", "Model 3"),
-       custom.coef.names = c("(Intercept)", 
-                             "2014", "2017", "2021", "Fiscal Strength",
-                             "Elderly", "Turnout", "Quasi-depopulating",
-                             "Partly depopulating", "Fully depopulating", "Fully depopulating (merged)"),
-       groups = list("Year dummy (base group = '2012')" = 2:4,
-         "Fiscal type (base group = 'Normal')" = 8:11),
-       caption = NULL,
-       digits = 2,
-#       reorder.coef = c(2:8,1),
-       include.ercomp = FALSE,
-       single.row = FALSE,
-       booktabs = TRUE,
-       dcolumn = TRUE,
-       caption.above = TRUE,
-       threeparttable = TRUE,
-       use.packages = FALSE,
-       stars = c(0.01, 0.05, 0.1),
-       label = "tab:LDPDif"
-       )
-```
-
-
-<br>
-
-#### Values relative to SMD-average
-
 ```{r ldpdif2, results='asis', echo=FALSE}
-htmlreg(list(LDPDifMod4, LDPDifMod5, LDPDifMod6),
-       custom.model.names = c("Model 1", "Model 2", "Model 3"),
+htmlreg(list(LDPDifMod1, LDPDifMod2, LDPDifMod3,
+  LDPDifMod4, LDPDifMod5, LDPDifMod6),
+       custom.model.names = c("Model 1", "Model 2", "Model 3",
+                              "Model 4", "Model 5", "Model 6"),
        custom.coef.names = c("(Intercept)",
                              "2014", "2017", "2021", "Fiscal Strength",
                              "Elderly", "Turnout", "Quasi-depopulating",
                              "Partly depopulating", "Fully depopulating", "Fully depopulating (merged)"),
+       custom.header = list("LDP" = 1:3, "LDP (relative)" = 4:6),
        groups = list("Year dummy (base group = '2012')" = 2:4,
          "Fiscal type (base group = 'Normal')" = 8:11),
        caption = NULL,
@@ -1227,7 +1144,7 @@ modelsummary(list("Spatial Lag" = sp_lag_turnout_2021,
                   "Lag + Error" = sp_sacsar_turnout_2021,
                   "Spatial Lag" = sp_lag_turnout_rel_2021,
                   "Spatial Error" = sp_err_turnout_rel_2021, 
-                  "Error + Lag" = sp_sacsar_turnout_rel_2021),
+                  "Lag + Error" = sp_sacsar_turnout_rel_2021),
              stars = TRUE,
              add_rows = rows,
              coef_map = cm
@@ -1294,7 +1211,7 @@ modelsummary(list("Spatial Lag" = sp_lag_LDP_2021,
                   "Lag + Error" = sp_sacsar_LDP_2021,
                   "Spatial Lag" = sp_lag_LDP_rel_2021,
                   "Spatial Error" = sp_err_LDP_rel_2021, 
-                  "Error + Lag" = sp_sacsar_LDP_rel_2021),
+                  "Lag + Error" = sp_sacsar_LDP_rel_2021),
              stars = TRUE,
              add_rows = rows,
              coef_map = cm
