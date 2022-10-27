@@ -1166,6 +1166,9 @@ nb_B2 <- nb2listw(nb_q2, style="W", zero.policy=TRUE)
 ```{r include=FALSE}
 fm_turnout <- Turnout ~ Fstrength + EldPop + LDP + Kaso.fusion
 fm_turnout_rel <- Turnout_relative ~ Fstrength + EldPop + LDP + Kaso.fusion
+
+fm_LDP <- LDP ~ Fstrength + EldPop + Turnout + Kaso.fusion
+fm_LDP_rel <- LDP_relative ~ Fstrength + EldPop + Turnout + Kaso.fusion
 ```
 
 
@@ -1203,27 +1206,100 @@ sp_sacsar_turnout_rel_2021 <- sacsarlm(fm_turnout_rel, data = Elections2021,
 
 
 ```{r turnout-2021, results='asis', echo=FALSE}
-rows <- tribble(~term, ~`Spatial Error`,  ~`Spatial Lag`, ~`Error + Lag`, ~`Spatial Error`,  ~`Spatial Lag`, ~`Error + Lag`,
+rows <- tribble(~term, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
                 'Num.Obs',        "1761", "1761", "1761", "1761", "1761", "1761")
 attr(rows, 'position') <- c(21)
 
+cm = c("(Intercept)" = "(Intercept)",
+       "Fstrength" = "Fiscal strength", 
+       "EldPop" = "Elderly",
+       "LDP" = "LDP",
+       "Kaso.fusionみなし過疎" = "Quasi-depopulating",
+       "Kaso.fusion一部過疎" = "Partly depopulating",
+       "Kaso.fusion全部過疎" = "Fully depopulating",
+       "Kaso.fusion全部過疎-Merged" = "Fully depopulating (merged)",
+       "rho" = "Lambda", 
+       "lambda" = "Rho")
 
-modelsummary(list("Spatial Error" = sp_err_turnout_2021, 
-                  "Spatial Lag" = sp_lag_turnout_2021,
-                  "Error + Lag" = sp_sacsar_turnout_2021,
-                  "Spatial Error" = sp_err_turnout_rel_2021, 
+
+modelsummary(list("Spatial Lag" = sp_lag_turnout_2021,
+                  "Spatial Error" = sp_err_turnout_2021, 
+                  "Lag + Error" = sp_sacsar_turnout_2021,
                   "Spatial Lag" = sp_lag_turnout_rel_2021,
+                  "Spatial Error" = sp_err_turnout_rel_2021, 
                   "Error + Lag" = sp_sacsar_turnout_rel_2021),
              stars = TRUE,
              add_rows = rows,
-             coef_rename = c("Fstrength" = "Fiscal strength", 
-                             "EldPop" = "Elderly",
-                             "Kaso.fusionみなし過疎" = "Quasi-depopulating",
-                             "Kaso.fusion一部過疎" = "Partly depopulating",
-                             "Kaso.fusion全部過疎" = "Fully depopulating",
-                             "Kaso.fusion全部過疎-Merged" = "Fully depopulating (merged)")
+             coef_map = cm
              ) %>%
   add_header_above(c(" " = 1, "Turnout" = 3, "Turnout (relative)" = 3)) %>%
+  pack_rows("Fiscal type (base group = ‘Normal’)", 9, 15) %>%
+  row_spec(17, background = 'lightblue') %>%
+  row_spec(19, background = 'lightblue')
+```
+
+
+## LDP votes
+
+### 2021 elections
+
+```{r include=FALSE}
+sp_err_LDP_2021 <- errorsarlm(fm_LDP, data = Elections2021, 
+                          listw = nb_B2,
+                          zero.policy = TRUE)
+
+sp_lag_LDP_2021 <- lagsarlm(fm_LDP, data = Elections2021, 
+                          listw = nb_B2,
+                          zero.policy = TRUE)
+
+sp_sacsar_LDP_2021 <- sacsarlm(fm_LDP, data = Elections2021, 
+                          listw = nb_B2,
+                          zero.policy = TRUE)
+
+
+
+sp_err_LDP_rel_2021 <- errorsarlm(fm_LDP_rel, data = Elections2021, 
+                          listw = nb_B2,
+                          zero.policy = TRUE)
+
+sp_lag_LDP_rel_2021 <- lagsarlm(fm_LDP_rel, data = Elections2021, 
+                          listw = nb_B2,
+                          zero.policy = TRUE)
+
+sp_sacsar_LDP_rel_2021 <- sacsarlm(fm_LDP_rel, data = Elections2021, 
+                          listw = nb_B2,
+                          zero.policy = TRUE)
+```
+
+
+```{r ldp-2021, results='asis', echo=FALSE}
+rows <- tribble(~term, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
+                'Num.Obs',        "1761", "1761", "1761", "1761", "1761", "1761")
+attr(rows, 'position') <- c(21)
+
+cm = c("(Intercept)" = "(Intercept)",
+       "Fstrength" = "Fiscal strength", 
+       "EldPop" = "Elderly",
+       "Turnout" = "Turnout",
+       "Kaso.fusionみなし過疎" = "Quasi-depopulating",
+       "Kaso.fusion一部過疎" = "Partly depopulating",
+       "Kaso.fusion全部過疎" = "Fully depopulating",
+       "Kaso.fusion全部過疎-Merged" = "Fully depopulating (merged)",
+       "rho" = "Lambda", 
+       "lambda" = "Rho")
+
+
+modelsummary(list("Spatial Lag" = sp_lag_LDP_2021,
+                  "Spatial Error" = sp_err_LDP_2021, 
+                  "Lag + Error" = sp_sacsar_LDP_2021,
+                  "Spatial Lag" = sp_lag_LDP_rel_2021,
+                  "Spatial Error" = sp_err_LDP_rel_2021, 
+                  "Error + Lag" = sp_sacsar_LDP_rel_2021),
+             stars = TRUE,
+             add_rows = rows,
+             coef_map = cm
+             ) %>%
+  add_header_above(c(" " = 1, "LDP" = 3, "LDP (relative)" = 3)) %>%
   pack_rows("Fiscal type (base group = ‘Normal’)", 9, 15) %>%
   row_spec(17, background = 'lightblue') %>%
   row_spec(19, background = 'lightblue')
@@ -1450,7 +1526,6 @@ sarar_LDP_rel_sum <- summary(sarar_LDP_rel)
 
 ## Turnout ratio 
 
-### Absolute values
 
 ```{r turnout-spatial, results='asis', echo=FALSE}
 tbl_sp_panel <- as.data.frame(cbind(sp_lag_turnout_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
@@ -1519,27 +1594,10 @@ class(mod_grp_V1) <- "modelsummary_list"
 
 mod_grp_V2 <- list(tidy = reg_sp_lag_error_panel, glance = gl_V)
 class(mod_grp_V2) <- "modelsummary_list"
-
-models_V <- list()
-models_V[['Fixed effects lag']] <- mod_grp_V
-models_V[['Fixed effects error']] <- mod_grp_V1
-models_V[['Fixed effects SARAR']] <- mod_grp_V2
-
-mod1 <- modelsummary(models_V, add_rows = ar, stars = T, 
-             output = "kableExtra",
-             fmt = 3)
-
-mod1 %>%
-  pack_rows("Year dummy (base group = ‘2012’)", 1, 6) %>%
-  pack_rows("Fiscal type (base group = ‘Normal’)", 13, 19) %>%
-  row_spec(21, background = 'lightblue') %>%
-  row_spec(23, background = 'lightblue') %>%
-  kable_styling(full_width = T)
 ```
 
 
 
-### Values relative to SMD-average
 
 ```{r turnout-spatial-rel, results='asis', echo=FALSE}
 tbl_sp_panel <- as.data.frame(cbind(sp_lag_turnout_rel_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
@@ -1596,29 +1654,34 @@ reg_sp_lag_error_panel <- data.frame(
 gl_V <- data.frame(
   Observations = "6220")
 
-ar <- as.data.frame(rbind(c("R2", (round(sp_lag_turnout_rel_sum$rsqr,2)), 
+ar <- as.data.frame(rbind(c("R2", 
+                            (round(sp_lag_turnout_sum$rsqr,2)), 
+                            (round(sp_er_turnout_sum$rsqr,2)), 
+                            (round(sarar_turnout_sum$rsqr,2)),
+                            (round(sp_lag_turnout_rel_sum$rsqr,2)), 
                             (round(sp_er_turnout_rel_sum$rsqr,2)), 
                             (round(sarar_turnout_rel_sum$rsqr,2)))))
 
-mod_grp_V <- list(tidy = reg_sp_panel, glance = gl_V)
-class(mod_grp_V) <- "modelsummary_list"
+mod_grp_V3 <- list(tidy = reg_sp_panel, glance = gl_V)
+class(mod_grp_V3) <- "modelsummary_list"
 
-mod_grp_V1 <- list(tidy = er_panel, glance = gl_V)
-class(mod_grp_V1) <- "modelsummary_list"
+mod_grp_V4 <- list(tidy = er_panel, glance = gl_V)
+class(mod_grp_V4) <- "modelsummary_list"
 
-mod_grp_V2 <- list(tidy = reg_sp_lag_error_panel, glance = gl_V)
-class(mod_grp_V2) <- "modelsummary_list"
+mod_grp_V5 <- list(tidy = reg_sp_lag_error_panel, glance = gl_V)
+class(mod_grp_V5) <- "modelsummary_list"
 
-models_V <- list()
-models_V[['Fixed effects lag']] <- mod_grp_V
-models_V[['Fixed effects error']] <- mod_grp_V1
-models_V[['Fixed effects SARAR']] <- mod_grp_V2
 
-mod1 <- modelsummary(models_V, add_rows = ar, stars = T, 
+modelsummary(list("Spatial Lag" = mod_grp_V,
+             "Spatial Error" = mod_grp_V1,
+             "Lag + Error" = mod_grp_V2,
+             "Spatial Lag" = mod_grp_V3,
+             "Spatial Error" = mod_grp_V4,
+             "Lag + Error" = mod_grp_V5), 
+             add_rows = ar, stars = T, 
              output = "kableExtra",
-             fmt = 3)
-
-mod1 %>%
+             fmt = 3) %>%
+  add_header_above(c(" " = 1, "Turnout" = 3, "Turnout (relative)" = 3)) %>%
   pack_rows("Year dummy (base group = ‘2012’)", 1, 6) %>%
   pack_rows("Fiscal type (base group = ‘Normal’)", 13, 19) %>%
   row_spec(21, background = 'lightblue') %>%
@@ -1628,8 +1691,6 @@ mod1 %>%
 
 
 ## LDP votes 
-
-### Absolute values
 
 ```{r ldp-spatial, results='asis', echo=FALSE}
 tbl_sp_panel_LDP <- as.data.frame(cbind(sp_lag_LDP_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
@@ -1698,26 +1759,9 @@ class(mod_grp_V1) <- "modelsummary_list"
 
 mod_grp_V2 <- list(tidy = reg_sp_lag_error_panel_ldp, glance = gl_V)
 class(mod_grp_V2) <- "modelsummary_list"
-
-models_V <- list()
-models_V[['Fixed effects lag']] <- mod_grp_V
-models_V[['Fixed effects error']] <- mod_grp_V1
-models_V[['Fixed effects SARAR']] <- mod_grp_V2
-
-mod2 <- modelsummary(models_V, add_rows = ar, stars = T, 
-             output = "kableExtra",
-             fmt = 3)
-
-mod2 %>%
-  pack_rows("Year dummy (base group = ‘2012’)", 1, 6) %>%
-  pack_rows("Fiscal type (base group = ‘Normal’)", 13, 19) %>%
-  row_spec(21, background = 'lightblue') %>%
-  row_spec(23, background = 'lightblue') %>%
-  kable_styling(full_width = T)
 ```
 
 
-### Values relative to SMD-average
 
 ```{r ldp-spatial-rel, results='asis', echo=FALSE}
 tbl_sp_panel_LDP <- as.data.frame(cbind(sp_lag_LDP_rel_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
@@ -1774,29 +1818,34 @@ reg_sp_lag_error_panel_ldp <- data.frame(
 gl_V <- data.frame(
   Observations = "6220")
 
-ar <- as.data.frame(rbind(c("R2", (round(sp_lag_LDP_rel_sum$rsqr,2)), 
+ar <- as.data.frame(rbind(c("R2", 
+                            (round(sp_lag_LDP_sum$rsqr,2)), 
+                            (round(sp_er_LDP_sum$rsqr,2)), 
+                            (round(sarar_LDP_sum$rsqr,2)),
+                            (round(sp_lag_LDP_rel_sum$rsqr,2)), 
                             (round(sp_er_LDP_rel_sum$rsqr,2)), 
                             (round(sarar_LDP_rel_sum$rsqr,2)))))
 
-mod_grp_V <- list(tidy = reg_sp_panel_ldp, glance = gl_V)
-class(mod_grp_V) <- "modelsummary_list"
+mod_grp_V3 <- list(tidy = reg_sp_panel_ldp, glance = gl_V)
+class(mod_grp_V3) <- "modelsummary_list"
 
-mod_grp_V1 <- list(tidy = er_panel_ldp, glance = gl_V)
-class(mod_grp_V1) <- "modelsummary_list"
+mod_grp_V4 <- list(tidy = er_panel_ldp, glance = gl_V)
+class(mod_grp_V4) <- "modelsummary_list"
 
-mod_grp_V2 <- list(tidy = reg_sp_lag_error_panel_ldp, glance = gl_V)
-class(mod_grp_V2) <- "modelsummary_list"
+mod_grp_V5 <- list(tidy = reg_sp_lag_error_panel_ldp, glance = gl_V)
+class(mod_grp_V5) <- "modelsummary_list"
 
-models_V <- list()
-models_V[['Fixed effects lag']] <- mod_grp_V
-models_V[['Fixed effects error']] <- mod_grp_V1
-models_V[['Fixed effects SARAR']] <- mod_grp_V2
 
-mod2 <- modelsummary(models_V, add_rows = ar, stars = T, 
+modelsummary(list("Spatial Lag" = mod_grp_V,
+             "Spatial Error" = mod_grp_V1,
+             "Lag + Error" = mod_grp_V2,
+             "Spatial Lag" = mod_grp_V3,
+             "Spatial Error" = mod_grp_V4,
+             "Lag + Error" = mod_grp_V5),
+             add_rows = ar, stars = T, 
              output = "kableExtra",
-             fmt = 3)
-
-mod2 %>%
+             fmt = 3) %>%
+  add_header_above(c(" " = 1, "LDP" = 3, "LDP (relative)" = 3)) %>%
   pack_rows("Year dummy (base group = ‘2012’)", 1, 6) %>%
   pack_rows("Fiscal type (base group = ‘Normal’)", 13, 19) %>%
   row_spec(21, background = 'lightblue') %>%
@@ -1806,7 +1855,7 @@ mod2 %>%
 
 
 
-```{r}
+```{r include=FALSE}
 # Pref <- read.csv("GIS/JPref2.csv", stringsAsFactors = FALSE)
 # colnames(Pref)[1] <- "Code"
 # 
