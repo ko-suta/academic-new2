@@ -909,10 +909,10 @@ htmlreg(list(TurnoutMod2, TurnoutMod3,
 # LDPMod1 <- plm(LDP ~ Year + Fstrength, index=c("Code","Year"),
 #                    model = "pooling", data = Elections3)
 
-LDPMod2 <- plm(LDP ~ Year + Fstrength + EldPop + Turnout + LATperCapita, index=c("Code","Year"),
+LDPMod2 <- plm(LDP ~ Year + Fstrength + Turnout + LATperCapita, index=c("Code","Year"),
                    model = "pooling", data = Elections3)
 
-LDPMod3 <- plm(LDP ~ Year + Fstrength + EldPop + Turnout + 
+LDPMod3 <- plm(LDP ~ Year + Fstrength + Turnout + 
                    LATperCapita + Kaso.fusion*EldPop, index=c("Code","Year"),
                    model = "pooling", data = Elections3)
 
@@ -923,11 +923,11 @@ LDPMod3 <- plm(LDP ~ Year + Fstrength + EldPop + Turnout +
 # LDPMod4 <- plm(LDP_relative ~ Year + Fstrength, index=c("Code","Year"),
 #                    model = "pooling", data = Elections3)
 
-LDPMod5 <- plm(LDP_relative ~ Year + Fstrength + EldPop + Turnout + 
+LDPMod5 <- plm(LDP_relative ~ Year + Fstrength + Turnout + 
                  LATperCapita, index=c("Code","Year"),
                model = "pooling", data = Elections3)
 
-LDPMod6 <- plm(LDP_relative ~ Year + Fstrength + EldPop + Turnout + 
+LDPMod6 <- plm(LDP_relative ~ Year + Fstrength + Turnout + 
                    LATperCapita + Kaso.fusion*EldPop, index=c("Code","Year"),
                    model = "pooling", data = Elections3)
 
@@ -969,7 +969,7 @@ htmlreg(list(LDPMod2, LDPMod3,
                      "Elderly (base group = 'x Normal')" = 13:16),
        caption = NULL,
        digits = 2,
-#       reorder.coef = c(2:8,1),Absolute
+#       reorder.coef = c(1:5,7:12,6,13:16),
        include.ercomp = FALSE,
        single.row = FALSE,
        booktabs = TRUE,
@@ -990,11 +990,11 @@ htmlreg(list(LDPMod2, LDPMod3,
 # LDPDifMod1 <- plm(LDPDif ~ Year + Fstrength, index=c("Code","Year"),
 #                    model = "pooling", data = Elections3)
 
-LDPDifMod2 <- plm(LDPDif ~ Year + Fstrength + EldPop + Turnout +
+LDPDifMod2 <- plm(LDPDif ~ Year + Fstrength + Turnout +
                     LATperCapita, index=c("Code","Year"),
                    model = "pooling", data = Elections3)
 
-LDPDifMod3 <- plm(LDPDif ~ Year + Fstrength + EldPop + Turnout + 
+LDPDifMod3 <- plm(LDPDif ~ Year + Fstrength + Turnout + 
                    LATperCapita + Kaso.fusion*EldPop, index=c("Code","Year"),
                    model = "pooling", data = Elections3)
 
@@ -1005,11 +1005,11 @@ LDPDifMod3 <- plm(LDPDif ~ Year + Fstrength + EldPop + Turnout +
 # LDPDifMod4 <- plm(LDPDif_relative ~ Year + Fstrength, index=c("Code","Year"),
 #                    model = "pooling", data = Elections3)
 
-LDPDifMod5 <- plm(LDPDif_relative ~ Year + Fstrength + EldPop + Turnout +
+LDPDifMod5 <- plm(LDPDif_relative ~ Year + Fstrength + Turnout +
                     LATperCapita, index=c("Code","Year"),
                    model = "pooling", data = Elections3)
 
-LDPDifMod6 <- plm(LDPDif_relative ~ Year + Fstrength + EldPop + Turnout + 
+LDPDifMod6 <- plm(LDPDif_relative ~ Year + Fstrength + Turnout + 
                    LATperCapita + Kaso.fusion*EldPop, index=c("Code","Year"),
                    model = "pooling", data = Elections3)
 
