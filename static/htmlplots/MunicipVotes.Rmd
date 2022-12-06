@@ -824,12 +824,12 @@ Elections3[,-c(6,11,13:15,18:20,22:30)] %>%
 # TurnoutMod1 <- plm(Turnout ~ Year + Fstrength, index=c("Code","Year"),
 #                    model = "pooling", data = Elections3)
 
-TurnoutMod2 <- plm(Turnout ~ Year + Fstrength + LDP + LATperCapita,
+TurnoutMod2 <- plm(Turnout ~ Year + Fstrength + EldPop + LDP + LATperCapita,
                    index=c("Code","Year"),
                    model = "pooling", data = Elections3)
 
-TurnoutMod3 <- plm(Turnout ~ Year + Fstrength + LDP + LATperCapita +
-                   Kaso.fusion*EldPop, index=c("Code","Year"),
+TurnoutMod3 <- plm(Turnout ~ Year + Fstrength + EldPop + LDP + LATperCapita +
+                   Kaso.fusion, index=c("Code","Year"),
                    model = "pooling", data = Elections3)
 
 # sqrt(car::vif(TurnoutMod3))
@@ -841,16 +841,17 @@ TurnoutMod3 <- plm(Turnout ~ Year + Fstrength + LDP + LATperCapita +
 # TurnoutMod4 <- plm(Turnout_relative ~ Year + Fstrength, index=c("Code","Year"),
 #                    model = "pooling", data = Elections3)
 
-TurnoutMod5 <- plm(Turnout_relative ~ Year + Fstrength + LDP + LATperCapita,
+TurnoutMod5 <- plm(Turnout_relative ~ Year + Fstrength + EldPop + LDP + LATperCapita,
                    index=c("Code","Year"),
                    model = "pooling", data = Elections3)
 
-TurnoutMod6 <- plm(Turnout_relative ~ Year + Fstrength + LDP + 
-                   LATperCapita + Kaso.fusion*EldPop, index=c("Code","Year"),
+TurnoutMod6 <- plm(Turnout_relative ~ Year + Fstrength + EldPop + LDP + 
+                   LATperCapita + Kaso.fusion, index=c("Code","Year"),
                    model = "pooling", data = Elections3)
 
 #sqrt(car::vif(TurnoutMod6))
 ```
+
 
 
 ```{r echo=FALSE, include=FALSE}
@@ -874,18 +875,13 @@ htmlreg(list(TurnoutMod2, TurnoutMod3,
                               "Model 4"),
        custom.coef.names = c("(Intercept)",
                              "2014", "2017", "2021", "Fiscal Strength",
-                             "LDP", "LAT per Capita",
+                             "Elderly", "LDP", "LAT per Capita",
                              "Quasi-depopulating",
                              "Partly depopulating", "Fully depopulating",
-                             "Fully depopulating (merged)", "Elderly",
-                             "x Quasi-depopulating",
-                             "x Partly depopulating", "x Fully depopulating",
-                             "x Fully depopulating (merged)"
-                             ),
+                             "Fully depopulating (merged)"),
   custom.header = list("Turnout" = 1:2, "Turnout (relative)" = 3:4),
   groups = list("Year dummy (base group = '2012')" = 2:4,
-                     "Fiscal type (base group = 'Normal')" = 8:11,
-                     "Elderly (base group = 'x Normal')" = 13:16),
+                "Fiscal type (base group = 'Normal')" = 9:12),
        caption = NULL,
        digits = 2,
 #       reorder.coef = c(2:8,1),
@@ -909,11 +905,11 @@ htmlreg(list(TurnoutMod2, TurnoutMod3,
 # LDPMod1 <- plm(LDP ~ Year + Fstrength, index=c("Code","Year"),
 #                    model = "pooling", data = Elections3)
 
-LDPMod2 <- plm(LDP ~ Year + Fstrength + Turnout + LATperCapita, index=c("Code","Year"),
-                   model = "pooling", data = Elections3)
+LDPMod2 <- plm(LDP ~ Year + Fstrength + EldPop + Turnout + LATperCapita, 
+               index=c("Code","Year"), model = "pooling", data = Elections3)
 
-LDPMod3 <- plm(LDP ~ Year + Fstrength + Turnout + 
-                   LATperCapita + Kaso.fusion*EldPop, index=c("Code","Year"),
+LDPMod3 <- plm(LDP ~ Year + Fstrength + EldPop + Turnout + 
+                   LATperCapita + Kaso.fusion, index=c("Code","Year"),
                    model = "pooling", data = Elections3)
 
 #sqrt(car::vif(LDPMod6))
@@ -923,12 +919,12 @@ LDPMod3 <- plm(LDP ~ Year + Fstrength + Turnout +
 # LDPMod4 <- plm(LDP_relative ~ Year + Fstrength, index=c("Code","Year"),
 #                    model = "pooling", data = Elections3)
 
-LDPMod5 <- plm(LDP_relative ~ Year + Fstrength + Turnout + 
+LDPMod5 <- plm(LDP_relative ~ Year + Fstrength + EldPop + Turnout + 
                  LATperCapita, index=c("Code","Year"),
                model = "pooling", data = Elections3)
 
-LDPMod6 <- plm(LDP_relative ~ Year + Fstrength + Turnout + 
-                   LATperCapita + Kaso.fusion*EldPop, index=c("Code","Year"),
+LDPMod6 <- plm(LDP_relative ~ Year + Fstrength + EldPop + Turnout + 
+                   LATperCapita + Kaso.fusion, index=c("Code","Year"),
                    model = "pooling", data = Elections3)
 
 #sqrt(car::vif(LDPMod6))
@@ -955,18 +951,13 @@ htmlreg(list(LDPMod2, LDPMod3,
                               "Model 4"),
        custom.coef.names = c("(Intercept)",
                              "2014", "2017", "2021", "Fiscal Strength",
-                             "Turnout", "LAT per Capita",
+                             "Elderly", "Turnout", "LAT per Capita",
                              "Quasi-depopulating",
                              "Partly depopulating", "Fully depopulating",
-                             "Fully depopulating (merged)", "Elderly",
-                             "x Quasi-depopulating",
-                             "x Partly depopulating", "x Fully depopulating",
-                             "x Fully depopulating (merged)"
-                             ),
-  custom.header = list("LDP" = 1:2, "LDP (relative)" = 3:4),
-  groups = list("Year dummy (base group = '2012')" = 2:4,
-                     "Fiscal type (base group = 'Normal')" = 8:11,
-                     "Elderly (base group = 'x Normal')" = 13:16),
+                             "Fully depopulating (merged)"),
+       custom.header = list("Turnout" = 1:2, "Turnout (relative)" = 3:4),
+       groups = list("Year dummy (base group = '2012')" = 2:4,
+                "Fiscal type (base group = 'Normal')" = 9:12),
        caption = NULL,
        digits = 2,
 #       reorder.coef = c(1:5,7:12,6,13:16),
@@ -990,12 +981,12 @@ htmlreg(list(LDPMod2, LDPMod3,
 # LDPDifMod1 <- plm(LDPDif ~ Year + Fstrength, index=c("Code","Year"),
 #                    model = "pooling", data = Elections3)
 
-LDPDifMod2 <- plm(LDPDif ~ Year + Fstrength + Turnout +
+LDPDifMod2 <- plm(LDPDif ~ Year + Fstrength + EldPop + Turnout +
                     LATperCapita, index=c("Code","Year"),
                    model = "pooling", data = Elections3)
 
-LDPDifMod3 <- plm(LDPDif ~ Year + Fstrength + Turnout + 
-                   LATperCapita + Kaso.fusion*EldPop, index=c("Code","Year"),
+LDPDifMod3 <- plm(LDPDif ~ Year + Fstrength + EldPop + Turnout + 
+                   LATperCapita + Kaso.fusion, index=c("Code","Year"),
                    model = "pooling", data = Elections3)
 
 #sqrt(car::vif(LDPMod3))
@@ -1005,12 +996,12 @@ LDPDifMod3 <- plm(LDPDif ~ Year + Fstrength + Turnout +
 # LDPDifMod4 <- plm(LDPDif_relative ~ Year + Fstrength, index=c("Code","Year"),
 #                    model = "pooling", data = Elections3)
 
-LDPDifMod5 <- plm(LDPDif_relative ~ Year + Fstrength + Turnout +
+LDPDifMod5 <- plm(LDPDif_relative ~ Year + Fstrength + EldPop + Turnout +
                     LATperCapita, index=c("Code","Year"),
                    model = "pooling", data = Elections3)
 
-LDPDifMod6 <- plm(LDPDif_relative ~ Year + Fstrength + Turnout + 
-                   LATperCapita + Kaso.fusion*EldPop, index=c("Code","Year"),
+LDPDifMod6 <- plm(LDPDif_relative ~ Year + Fstrength + EldPop + Turnout + 
+                   LATperCapita + Kaso.fusion, index=c("Code","Year"),
                    model = "pooling", data = Elections3)
 
 #sqrt(car::vif(LDPMod3))
@@ -1023,18 +1014,13 @@ htmlreg(list(LDPDifMod2, LDPDifMod3, LDPDifMod5, LDPDifMod6),
                               "Model 4"),
        custom.coef.names = c("(Intercept)",
                              "2014", "2017", "2021", "Fiscal Strength",
-                             "Turnout", "LAT per Capita",
+                             "Elderly", "Turnout", "LAT per Capita",
                              "Quasi-depopulating",
                              "Partly depopulating", "Fully depopulating",
-                             "Fully depopulating (merged)", "Elderly",
-                             "x Quasi-depopulating",
-                             "x Partly depopulating", "x Fully depopulating",
-                             "x Fully depopulating (merged)"
-                             ),
-  custom.header = list("LDP" = 1:2, "LDP (relative)" = 3:4),
-  groups = list("Year dummy (base group = '2012')" = 2:4,
-                     "Fiscal type (base group = 'Normal')" = 8:11,
-                     "Elderly (base group = 'x Normal')" = 13:16),
+                             "Fully depopulating (merged)"),
+       custom.header = list("Turnout" = 1:2, "Turnout (relative)" = 3:4),
+       groups = list("Year dummy (base group = '2012')" = 2:4,
+                "Fiscal type (base group = 'Normal')" = 9:12),
        caption = NULL,
        digits = 2,
 #       reorder.coef = c(2:8,1),
