@@ -1218,7 +1218,7 @@ modelsummary(list("Spatial Lag" = sp_lag_turnout_2021,
              coef_map = cm
              ) %>%
   add_header_above(c(" " = 1, "Turnout" = 3, "Turnout (relative)" = 3)) %>%
-  pack_rows("Fiscal type (base group = ‘Normal’)", 10, 16) %>%
+  pack_rows("Fiscal type (base group = ‘Normal’)", 11, 16) %>%
   row_spec(19, background = 'lightblue') %>%
   row_spec(21, background = 'lightblue')
 ```
@@ -1322,7 +1322,7 @@ modelsummary(list("Spatial Lag" = sp_lag_turnout_2017,
              coef_map = cm
              ) %>%
   add_header_above(c(" " = 1, "Turnout" = 3, "Turnout (relative)" = 3)) %>%
-  pack_rows("Fiscal type (base group = ‘Normal’)", 10, 16) %>%
+  pack_rows("Fiscal type (base group = ‘Normal’)", 11, 16) %>%
   row_spec(19, background = 'lightblue') %>%
   row_spec(21, background = 'lightblue')
 ```
@@ -1426,7 +1426,7 @@ modelsummary(list("Spatial Lag" = sp_lag_turnout_2014,
              coef_map = cm
              ) %>%
   add_header_above(c(" " = 1, "Turnout" = 3, "Turnout (relative)" = 3)) %>%
-  pack_rows("Fiscal type (base group = ‘Normal’)", 10, 16) %>%
+  pack_rows("Fiscal type (base group = ‘Normal’)", 11, 16) %>%
   row_spec(19, background = 'lightblue') %>%
   row_spec(21, background = 'lightblue')
 ```
@@ -1530,7 +1530,7 @@ modelsummary(list("Spatial Lag" = sp_lag_turnout_2012,
              coef_map = cm
              ) %>%
   add_header_above(c(" " = 1, "Turnout" = 3, "Turnout (relative)" = 3)) %>%
-  pack_rows("Fiscal type (base group = ‘Normal’)", 10, 16) %>%
+  pack_rows("Fiscal type (base group = ‘Normal’)", 11, 16) %>%
   row_spec(19, background = 'lightblue') %>%
   row_spec(21, background = 'lightblue')
 ```
@@ -1599,7 +1599,7 @@ modelsummary(list("Spatial Lag" = sp_lag_turnout_2021,
              coef_map = cm
              ) %>%
   add_header_above(c(" " = 1, "Turnout" = 3, "Turnout (relative)" = 3)) %>%
-  pack_rows("Fiscal type (base group = ‘Normal’)", 10, 16) %>%
+  pack_rows("Fiscal type (base group = ‘Normal’)", 11, 16) %>%
   row_spec(19, background = 'lightblue') %>%
   row_spec(21, background = 'lightblue')
 ```
@@ -1666,7 +1666,7 @@ modelsummary(list("Spatial Lag" = sp_lag_turnout_2017,
              coef_map = cm
              ) %>%
   add_header_above(c(" " = 1, "Turnout" = 3, "Turnout (relative)" = 3)) %>%
-  pack_rows("Fiscal type (base group = ‘Normal’)", 10, 16) %>%
+  pack_rows("Fiscal type (base group = ‘Normal’)", 11, 16) %>%
   row_spec(19, background = 'lightblue') %>%
   row_spec(21, background = 'lightblue')
 ```
@@ -1733,7 +1733,7 @@ modelsummary(list("Spatial Lag" = sp_lag_turnout_2014,
              coef_map = cm
              ) %>%
   add_header_above(c(" " = 1, "Turnout" = 3, "Turnout (relative)" = 3)) %>%
-  pack_rows("Fiscal type (base group = ‘Normal’)", 10, 16) %>%
+  pack_rows("Fiscal type (base group = ‘Normal’)", 11, 16) %>%
   row_spec(19, background = 'lightblue') %>%
   row_spec(21, background = 'lightblue')
 ```
@@ -1800,7 +1800,7 @@ modelsummary(list("Spatial Lag" = sp_lag_turnout_2012,
              coef_map = cm
              ) %>%
   add_header_above(c(" " = 1, "Turnout" = 3, "Turnout (relative)" = 3)) %>%
-  pack_rows("Fiscal type (base group = ‘Normal’)", 10, 16) %>%
+  pack_rows("Fiscal type (base group = ‘Normal’)", 11, 16) %>%
   row_spec(19, background = 'lightblue') %>%
   row_spec(21, background = 'lightblue')
 ```
