@@ -134,7 +134,61 @@ my_pal <- scales::col_numeric(
 
 ```
 
+
 # Exploratory tables
+
+## Overall yearly trends
+
+```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+Elections3 %>%
+  filter(!Year %in% 2009) %>%
+  group_by(Year) %>%
+  dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
+                   `LDP-SMD-relative` = mean(LDP_relative, na.rm=TRUE),
+                   `LDP-PR` = mean(LDPPR, na.rm=TRUE),
+                   `LDP-PR-relative` = mean(LDPPR_relative, na.rm=TRUE),
+                   `LDP-Gap` = mean(LDPDif, na.rm=TRUE),
+                   `LDP-Gap-relative` = mean(LDPDif_relative, na.rm=TRUE),
+                   Turnout = mean(Turnout, na.rm=TRUE),
+                   `Turnout-relative` = mean(Turnout_relative, na.rm=TRUE),
+                   FStrength = mean(Fstrength, na.rm=TRUE),
+                   LATperCapita = mean(LATperCapita, na.rm=TRUE),
+                   Elderly = mean(EldPop, na.rm=TRUE)
+                   #SCapital = mean(social_capital, na.rm=TRUE)
+                   ) %>%
+  gt() %>%
+  fmt_number(
+    columns = 3:12,
+    decimals = 3 # decrease decimal places
+    ) %>%
+  tab_style(
+    style = list(
+      cell_borders(
+        sides = "left",
+        color = "black",
+        weight = px(3)
+      )
+    ),
+    locations = list(
+      cells_body(
+        columns = c(Turnout)
+      ))) %>%
+  tab_options(
+    column_labels.border.top.color = "black",
+    column_labels.border.bottom.color = "black",
+    table_body.border.bottom.color = "black",
+    table_body.hlines.color = "white"
+    ) %>%
+  tab_header(
+    title = md("**Municipal characteristics**"),
+  ) %>%
+    data_color(
+    columns = 2:12,
+    colors = my_pal
+    )
+```
+
+
 
 ## Basic differences between "merged" and "non-merged"
 
@@ -377,6 +431,7 @@ Elections3 %>%
 
 ```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE, include=FALSE}
 Elections3 %>%
+  filter(!Year %in% 2009) %>%
   group_by(Year, Kaso2.fusion) %>%
   dplyr::summarize(`LDP-SMD` = mean(LDP, na.rm=TRUE),
                      `LDP-PR` = mean(LDPPR, na.rm=TRUE),
@@ -1092,11 +1147,11 @@ nb_B2 <- nb2listw(nb_q2, style="W", zero.policy=TRUE)
 
 
 ```{r include=FALSE}
-fm_turnout <- Turnout ~ Fstrength + EldPop + LDP + Kaso.fusion
-fm_turnout_rel <- Turnout_relative ~ Fstrength + EldPop + LDP + Kaso.fusion
+fm_turnout <- Turnout ~ Fstrength + EldPop + LDP + LATperCapita + Kaso.fusion
+fm_turnout_rel <- Turnout_relative ~ Fstrength + EldPop + LDP + LATperCapita + Kaso.fusion
 
-fm_LDP <- LDP ~ Fstrength + EldPop + Turnout + Kaso.fusion
-fm_LDP_rel <- LDP_relative ~ Fstrength + EldPop + Turnout + Kaso.fusion
+fm_LDP <- LDP ~ Fstrength + EldPop + Turnout + LATperCapita + Kaso.fusion
+fm_LDP_rel <- LDP_relative ~ Fstrength + EldPop + Turnout + LATperCapita + Kaso.fusion
 ```
 
 
@@ -1134,14 +1189,16 @@ sp_sacsar_turnout_rel_2021 <- sacsarlm(fm_turnout_rel, data = Elections2021,
 
 
 ```{r turnout-2021, results='asis', echo=FALSE}
-rows <- tribble(~term, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
+rows <- tribble(~term, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
+                ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
                 'Num.Obs',        "1761", "1761", "1761", "1761", "1761", "1761")
-attr(rows, 'position') <- c(21)
+attr(rows, 'position') <- c(23)
 
 cm = c("(Intercept)" = "(Intercept)",
        "Fstrength" = "Fiscal strength", 
        "EldPop" = "Elderly",
        "LDP" = "LDP",
+       "LATperCapita" = "LAT per Capita",
        "Kaso.fusionみなし過疎" = "Quasi-depopulating",
        "Kaso.fusion一部過疎" = "Partly depopulating",
        "Kaso.fusion全部過疎" = "Fully depopulating",
@@ -1161,9 +1218,9 @@ modelsummary(list("Spatial Lag" = sp_lag_turnout_2021,
              coef_map = cm
              ) %>%
   add_header_above(c(" " = 1, "Turnout" = 3, "Turnout (relative)" = 3)) %>%
-  pack_rows("Fiscal type (base group = ‘Normal’)", 9, 15) %>%
-  row_spec(17, background = 'lightblue') %>%
-  row_spec(19, background = 'lightblue')
+  pack_rows("Fiscal type (base group = ‘Normal’)", 10, 16) %>%
+  row_spec(19, background = 'lightblue') %>%
+  row_spec(21, background = 'lightblue')
 ```
 
 
@@ -1236,14 +1293,16 @@ sp_sacsar_turnout_rel_2017 <- sacsarlm(fm_turnout_rel, data = Elections2017,
 
 
 ```{r turnout-2017, results='asis', echo=FALSE}
-rows <- tribble(~term, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
+rows <- tribble(~term, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
+                ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
                 'Num.Obs',        "1787", "1787", "1787", "1787", "1787", "1787")
-attr(rows, 'position') <- c(21)
+attr(rows, 'position') <- c(23)
 
 cm = c("(Intercept)" = "(Intercept)",
        "Fstrength" = "Fiscal strength", 
        "EldPop" = "Elderly",
        "LDP" = "LDP",
+       "LATperCapita" = "LAT per Capita",
        "Kaso.fusionみなし過疎" = "Quasi-depopulating",
        "Kaso.fusion一部過疎" = "Partly depopulating",
        "Kaso.fusion全部過疎" = "Fully depopulating",
@@ -1263,9 +1322,9 @@ modelsummary(list("Spatial Lag" = sp_lag_turnout_2017,
              coef_map = cm
              ) %>%
   add_header_above(c(" " = 1, "Turnout" = 3, "Turnout (relative)" = 3)) %>%
-  pack_rows("Fiscal type (base group = ‘Normal’)", 9, 15) %>%
-  row_spec(17, background = 'lightblue') %>%
-  row_spec(19, background = 'lightblue')
+  pack_rows("Fiscal type (base group = ‘Normal’)", 10, 16) %>%
+  row_spec(19, background = 'lightblue') %>%
+  row_spec(21, background = 'lightblue')
 ```
 
 
@@ -1338,14 +1397,16 @@ sp_sacsar_turnout_rel_2014 <- sacsarlm(fm_turnout_rel, data = Elections2014,
 
 
 ```{r turnout-2014, results='asis', echo=FALSE}
-rows <- tribble(~term, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
+rows <- tribble(~term, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
+                ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
                 'Num.Obs',        "1809", "1809", "1809", "1809", "1809", "1809")
-attr(rows, 'position') <- c(21)
+attr(rows, 'position') <- c(23)
 
 cm = c("(Intercept)" = "(Intercept)",
        "Fstrength" = "Fiscal strength", 
        "EldPop" = "Elderly",
        "LDP" = "LDP",
+       "LATperCapita" = "LAT per Capita",
        "Kaso.fusionみなし過疎" = "Quasi-depopulating",
        "Kaso.fusion一部過疎" = "Partly depopulating",
        "Kaso.fusion全部過疎" = "Fully depopulating",
@@ -1365,9 +1426,9 @@ modelsummary(list("Spatial Lag" = sp_lag_turnout_2014,
              coef_map = cm
              ) %>%
   add_header_above(c(" " = 1, "Turnout" = 3, "Turnout (relative)" = 3)) %>%
-  pack_rows("Fiscal type (base group = ‘Normal’)", 9, 15) %>%
-  row_spec(17, background = 'lightblue') %>%
-  row_spec(19, background = 'lightblue')
+  pack_rows("Fiscal type (base group = ‘Normal’)", 10, 16) %>%
+  row_spec(19, background = 'lightblue') %>%
+  row_spec(21, background = 'lightblue')
 ```
 
 
@@ -1440,14 +1501,16 @@ sp_sacsar_turnout_rel_2012 <- sacsarlm(fm_turnout_rel, data = Elections2012,
 
 
 ```{r turnout-2012, results='asis', echo=FALSE}
-rows <- tribble(~term, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
+rows <- tribble(~term, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
+                ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
                 'Num.Obs',        "1766", "1766", "1766", "1766", "1766", "1766")
-attr(rows, 'position') <- c(21)
+attr(rows, 'position') <- c(23)
 
 cm = c("(Intercept)" = "(Intercept)",
        "Fstrength" = "Fiscal strength", 
        "EldPop" = "Elderly",
        "LDP" = "LDP",
+       "LATperCapita" = "LAT per Capita",
        "Kaso.fusionみなし過疎" = "Quasi-depopulating",
        "Kaso.fusion一部過疎" = "Partly depopulating",
        "Kaso.fusion全部過疎" = "Fully depopulating",
@@ -1467,9 +1530,9 @@ modelsummary(list("Spatial Lag" = sp_lag_turnout_2012,
              coef_map = cm
              ) %>%
   add_header_above(c(" " = 1, "Turnout" = 3, "Turnout (relative)" = 3)) %>%
-  pack_rows("Fiscal type (base group = ‘Normal’)", 9, 15) %>%
-  row_spec(17, background = 'lightblue') %>%
-  row_spec(19, background = 'lightblue')
+  pack_rows("Fiscal type (base group = ‘Normal’)", 10, 16) %>%
+  row_spec(19, background = 'lightblue') %>%
+  row_spec(21, background = 'lightblue')
 ```
 
 
@@ -1507,14 +1570,16 @@ sp_sacsar_LDP_rel_2021 <- sacsarlm(fm_LDP_rel, data = Elections2021,
 
 
 ```{r ldp-2021, results='asis', echo=FALSE}
-rows <- tribble(~term, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
+rows <- tribble(~term, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
+                ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
                 'Num.Obs',        "1761", "1761", "1761", "1761", "1761", "1761")
-attr(rows, 'position') <- c(21)
+attr(rows, 'position') <- c(23)
 
 cm = c("(Intercept)" = "(Intercept)",
        "Fstrength" = "Fiscal strength", 
        "EldPop" = "Elderly",
        "Turnout" = "Turnout",
+       "LATperCapita" = "LAT per Capita",
        "Kaso.fusionみなし過疎" = "Quasi-depopulating",
        "Kaso.fusion一部過疎" = "Partly depopulating",
        "Kaso.fusion全部過疎" = "Fully depopulating",
@@ -1523,20 +1588,20 @@ cm = c("(Intercept)" = "(Intercept)",
        "lambda" = "Rho")
 
 
-modelsummary(list("Spatial Lag" = sp_lag_LDP_2021,
-                  "Spatial Error" = sp_err_LDP_2021, 
-                  "Lag + Error" = sp_sacsar_LDP_2021,
-                  "Spatial Lag" = sp_lag_LDP_rel_2021,
-                  "Spatial Error" = sp_err_LDP_rel_2021, 
-                  "Lag + Error" = sp_sacsar_LDP_rel_2021),
+modelsummary(list("Spatial Lag" = sp_lag_turnout_2021,
+                  "Spatial Error" = sp_err_turnout_2021, 
+                  "Lag + Error" = sp_sacsar_turnout_2021,
+                  "Spatial Lag" = sp_lag_turnout_rel_2021,
+                  "Spatial Error" = sp_err_turnout_rel_2021, 
+                  "Lag + Error" = sp_sacsar_turnout_rel_2021),
              stars = TRUE,
              add_rows = rows,
              coef_map = cm
              ) %>%
-  add_header_above(c(" " = 1, "LDP" = 3, "LDP (relative)" = 3)) %>%
-  pack_rows("Fiscal type (base group = ‘Normal’)", 9, 15) %>%
-  row_spec(17, background = 'lightblue') %>%
-  row_spec(19, background = 'lightblue')
+  add_header_above(c(" " = 1, "Turnout" = 3, "Turnout (relative)" = 3)) %>%
+  pack_rows("Fiscal type (base group = ‘Normal’)", 10, 16) %>%
+  row_spec(19, background = 'lightblue') %>%
+  row_spec(21, background = 'lightblue')
 ```
 
 
@@ -1572,14 +1637,16 @@ sp_sacsar_LDP_rel_2017 <- sacsarlm(fm_LDP_rel, data = Elections2017,
 
 
 ```{r ldp-2017, results='asis', echo=FALSE}
-rows <- tribble(~term, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
+rows <- tribble(~term, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
+                ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
                 'Num.Obs',        "1782", "1782", "1782", "1782", "1782", "1782")
-attr(rows, 'position') <- c(21)
+attr(rows, 'position') <- c(23)
 
 cm = c("(Intercept)" = "(Intercept)",
        "Fstrength" = "Fiscal strength", 
        "EldPop" = "Elderly",
        "Turnout" = "Turnout",
+       "LATperCapita" = "LAT per Capita",
        "Kaso.fusionみなし過疎" = "Quasi-depopulating",
        "Kaso.fusion一部過疎" = "Partly depopulating",
        "Kaso.fusion全部過疎" = "Fully depopulating",
@@ -1588,20 +1655,20 @@ cm = c("(Intercept)" = "(Intercept)",
        "lambda" = "Rho")
 
 
-modelsummary(list("Spatial Lag" = sp_lag_LDP_2017,
-                  "Spatial Error" = sp_err_LDP_2017, 
-                  "Lag + Error" = sp_sacsar_LDP_2017,
-                  "Spatial Lag" = sp_lag_LDP_rel_2017,
-                  "Spatial Error" = sp_err_LDP_rel_2017, 
-                  "Lag + Error" = sp_sacsar_LDP_rel_2017),
+modelsummary(list("Spatial Lag" = sp_lag_turnout_2017,
+                  "Spatial Error" = sp_err_turnout_2017, 
+                  "Lag + Error" = sp_sacsar_turnout_2017,
+                  "Spatial Lag" = sp_lag_turnout_rel_2017,
+                  "Spatial Error" = sp_err_turnout_rel_2017, 
+                  "Lag + Error" = sp_sacsar_turnout_rel_2017),
              stars = TRUE,
              add_rows = rows,
              coef_map = cm
              ) %>%
-  add_header_above(c(" " = 1, "LDP" = 3, "LDP (relative)" = 3)) %>%
-  pack_rows("Fiscal type (base group = ‘Normal’)", 9, 15) %>%
-  row_spec(17, background = 'lightblue') %>%
-  row_spec(19, background = 'lightblue')
+  add_header_above(c(" " = 1, "Turnout" = 3, "Turnout (relative)" = 3)) %>%
+  pack_rows("Fiscal type (base group = ‘Normal’)", 10, 16) %>%
+  row_spec(19, background = 'lightblue') %>%
+  row_spec(21, background = 'lightblue')
 ```
 
 
@@ -1637,14 +1704,16 @@ sp_sacsar_LDP_rel_2014 <- sacsarlm(fm_LDP_rel, data = Elections2014,
 
 
 ```{r ldp-2014, results='asis', echo=FALSE}
-rows <- tribble(~term, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
+rows <- tribble(~term, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
+                ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
                 'Num.Obs',        "1806", "1806", "1806", "1806", "1806", "1806")
-attr(rows, 'position') <- c(21)
+attr(rows, 'position') <- c(23)
 
 cm = c("(Intercept)" = "(Intercept)",
        "Fstrength" = "Fiscal strength", 
        "EldPop" = "Elderly",
        "Turnout" = "Turnout",
+       "LATperCapita" = "LAT per Capita",
        "Kaso.fusionみなし過疎" = "Quasi-depopulating",
        "Kaso.fusion一部過疎" = "Partly depopulating",
        "Kaso.fusion全部過疎" = "Fully depopulating",
@@ -1653,20 +1722,20 @@ cm = c("(Intercept)" = "(Intercept)",
        "lambda" = "Rho")
 
 
-modelsummary(list("Spatial Lag" = sp_lag_LDP_2014,
-                  "Spatial Error" = sp_err_LDP_2014, 
-                  "Lag + Error" = sp_sacsar_LDP_2014,
-                  "Spatial Lag" = sp_lag_LDP_rel_2014,
-                  "Spatial Error" = sp_err_LDP_rel_2014, 
-                  "Lag + Error" = sp_sacsar_LDP_rel_2014),
+modelsummary(list("Spatial Lag" = sp_lag_turnout_2014,
+                  "Spatial Error" = sp_err_turnout_2014, 
+                  "Lag + Error" = sp_sacsar_turnout_2014,
+                  "Spatial Lag" = sp_lag_turnout_rel_2014,
+                  "Spatial Error" = sp_err_turnout_rel_2014, 
+                  "Lag + Error" = sp_sacsar_turnout_rel_2014),
              stars = TRUE,
              add_rows = rows,
              coef_map = cm
              ) %>%
-  add_header_above(c(" " = 1, "LDP" = 3, "LDP (relative)" = 3)) %>%
-  pack_rows("Fiscal type (base group = ‘Normal’)", 9, 15) %>%
-  row_spec(17, background = 'lightblue') %>%
-  row_spec(19, background = 'lightblue')
+  add_header_above(c(" " = 1, "Turnout" = 3, "Turnout (relative)" = 3)) %>%
+  pack_rows("Fiscal type (base group = ‘Normal’)", 10, 16) %>%
+  row_spec(19, background = 'lightblue') %>%
+  row_spec(21, background = 'lightblue')
 ```
 
 
@@ -1702,14 +1771,16 @@ sp_sacsar_LDP_rel_2012 <- sacsarlm(fm_LDP_rel, data = Elections2012,
 
 
 ```{r ldp-2012, results='asis', echo=FALSE}
-rows <- tribble(~term, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
+rows <- tribble(~term, ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
+                ~`Spatial Lag`,  ~`Spatial Error`, ~`Lag + Error`,
                 'Num.Obs',        "1766", "1766", "1766", "1766", "1766", "1766")
-attr(rows, 'position') <- c(21)
+attr(rows, 'position') <- c(23)
 
 cm = c("(Intercept)" = "(Intercept)",
        "Fstrength" = "Fiscal strength", 
        "EldPop" = "Elderly",
        "Turnout" = "Turnout",
+       "LATperCapita" = "LAT per Capita",
        "Kaso.fusionみなし過疎" = "Quasi-depopulating",
        "Kaso.fusion一部過疎" = "Partly depopulating",
        "Kaso.fusion全部過疎" = "Fully depopulating",
@@ -1718,20 +1789,20 @@ cm = c("(Intercept)" = "(Intercept)",
        "lambda" = "Rho")
 
 
-modelsummary(list("Spatial Lag" = sp_lag_LDP_2012,
-                  "Spatial Error" = sp_err_LDP_2012, 
-                  "Lag + Error" = sp_sacsar_LDP_2012,
-                  "Spatial Lag" = sp_lag_LDP_rel_2012,
-                  "Spatial Error" = sp_err_LDP_rel_2012, 
-                  "Lag + Error" = sp_sacsar_LDP_rel_2012),
+modelsummary(list("Spatial Lag" = sp_lag_turnout_2012,
+                  "Spatial Error" = sp_err_turnout_2012, 
+                  "Lag + Error" = sp_sacsar_turnout_2012,
+                  "Spatial Lag" = sp_lag_turnout_rel_2012,
+                  "Spatial Error" = sp_err_turnout_rel_2012, 
+                  "Lag + Error" = sp_sacsar_turnout_rel_2012),
              stars = TRUE,
              add_rows = rows,
              coef_map = cm
              ) %>%
-  add_header_above(c(" " = 1, "LDP" = 3, "LDP (relative)" = 3)) %>%
-  pack_rows("Fiscal type (base group = ‘Normal’)", 9, 15) %>%
-  row_spec(17, background = 'lightblue') %>%
-  row_spec(19, background = 'lightblue')
+  add_header_above(c(" " = 1, "Turnout" = 3, "Turnout (relative)" = 3)) %>%
+  pack_rows("Fiscal type (base group = ‘Normal’)", 10, 16) %>%
+  row_spec(19, background = 'lightblue') %>%
+  row_spec(21, background = 'lightblue')
 ```
 
 
@@ -1801,16 +1872,16 @@ nb_B3 <- nb2listw(nb_q3, style="B", zero.policy=TRUE) # alternatively, style="W"
 
 ```{r include=FALSE}
 fm1 <- Turnout ~ factor(Year) + Fstrength + EldPop + 
-  LDP + factor(Kaso.fusion)
+  LDP + LATperCapita + factor(Kaso.fusion)
 
 fm2 <- Turnout_relative ~ factor(Year) + Fstrength + EldPop + 
-  LDP + factor(Kaso.fusion)
+  LDP + LATperCapita + factor(Kaso.fusion)
 
 fm3 <- LDP ~ factor(Year) + Fstrength + EldPop + 
-  Turnout + Kaso.fusion
+  Turnout + LATperCapita + Kaso.fusion
 
 fm4 <- LDP_relative ~ factor(Year) + Fstrength + EldPop + 
-  Turnout + Kaso.fusion
+  Turnout + LATperCapita + Kaso.fusion
 ```
 
 
@@ -1959,9 +2030,9 @@ sarar_LDP_rel_sum <- summary(sarar_LDP_rel)
 
 
 ```{r turnout-spatial, results='asis', echo=FALSE}
-tbl_sp_panel <- as.data.frame(cbind(sp_lag_turnout_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
-                                    sp_er_turnout_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
-                                    sarar_turnout_sum$CoefTable[c(3:12,2), c(1, 2, 4)]))
+tbl_sp_panel <- as.data.frame(cbind(sp_lag_turnout_sum$CoefTable[c(2:12,1), c(1, 2, 4)],
+                                    sp_er_turnout_sum$CoefTable[c(2:12,1), c(1, 2, 4)],
+                                    sarar_turnout_sum$CoefTable[c(3:13,2), c(1, 2, 4)]))
 
 tbl_sp_panel <- rbind(tbl_sp_panel,
                       c(rep(NA,6), sarar_turnout_sum$CoefTable[1, c(1, 2, 4)]))
@@ -1974,7 +2045,7 @@ reg_sp_panel <- data.frame(
   term = c(
            '2014', '2017', '2021',
            'FStrength',
-           'Elderly', 'LDP (relative)', 
+           'Elderly', 'LDP (relative)', 'LAT per Capita',
            'Quasi-depopulating ', 'Partly depopulating',
            "Fully depopulating", "Fully depopulating (merged)",
            'lambda', 'NA'
@@ -1987,7 +2058,7 @@ er_panel <- data.frame(
   term = c( 
            '2014', '2017', '2021',
            'FStrength',
-           'Elderly', 'LDP (relative)', 
+           'Elderly', 'LDP (relative)', 'LAT per Capita',
            'Quasi-depopulating ', 'Partly depopulating',
            "Fully depopulating", "Fully depopulating (merged)",
            'Rho', 'NA'
@@ -2000,7 +2071,7 @@ reg_sp_lag_error_panel <- data.frame(
   term = c(
            '2014', '2017', '2021',
            'FStrength',
-           'Elderly', 'LDP (relative)', 
+           'Elderly', 'LDP (relative)', 'LAT per Capita',
            'Quasi-depopulating ', 'Partly depopulating',
            "Fully depopulating", "Fully depopulating (merged)",
            'Rho', 'lambda'
@@ -2031,9 +2102,9 @@ class(mod_grp_V2) <- "modelsummary_list"
 
 
 ```{r turnout-spatial-rel, results='asis', echo=FALSE}
-tbl_sp_panel <- as.data.frame(cbind(sp_lag_turnout_rel_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
-                                    sp_er_turnout_rel_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
-                                    sarar_turnout_rel_sum$CoefTable[c(3:12,2), c(1, 2, 4)]))
+tbl_sp_panel <- as.data.frame(cbind(sp_lag_turnout_rel_sum$CoefTable[c(2:12,1), c(1, 2, 4)],
+                                    sp_er_turnout_rel_sum$CoefTable[c(2:12,1), c(1, 2, 4)],
+                                    sarar_turnout_rel_sum$CoefTable[c(3:13,2), c(1, 2, 4)]))
 
 tbl_sp_panel <- rbind(tbl_sp_panel,
                       c(rep(NA,6), sarar_turnout_rel_sum$CoefTable[1, c(1, 2, 4)]))
@@ -2046,7 +2117,7 @@ reg_sp_panel <- data.frame(
   term = c(
            '2014', '2017', '2021',
            'FStrength',
-           'Elderly', 'LDP (relative)', 
+           'Elderly', 'LDP (relative)', 'LAT per Capita',
            'Quasi-depopulating ', 'Partly depopulating',
            "Fully depopulating", "Fully depopulating (merged)",
            'lambda', 'NA'
@@ -2059,7 +2130,7 @@ er_panel <- data.frame(
   term = c( 
            '2014', '2017', '2021',
            'FStrength',
-           'Elderly', 'LDP (relative)', 
+           'Elderly', 'LDP (relative)', 'LAT per Capita',
            'Quasi-depopulating ', 'Partly depopulating',
            "Fully depopulating", "Fully depopulating (merged)",
            'Rho', 'NA'
@@ -2072,7 +2143,7 @@ reg_sp_lag_error_panel <- data.frame(
   term = c(
            '2014', '2017', '2021',
            'FStrength',
-           'Elderly', 'LDP (relative)', 
+           'Elderly', 'LDP (relative)', 'LAT per Capita',
            'Quasi-depopulating ', 'Partly depopulating',
            "Fully depopulating", "Fully depopulating (merged)",
            'Rho', 'lambda'
@@ -2114,9 +2185,9 @@ modelsummary(list("Spatial Lag" = mod_grp_V,
              fmt = 3) %>%
   add_header_above(c(" " = 1, "Turnout" = 3, "Turnout (relative)" = 3)) %>%
   pack_rows("Year dummy (base group = ‘2012’)", 1, 6) %>%
-  pack_rows("Fiscal type (base group = ‘Normal’)", 13, 19) %>%
-  row_spec(21, background = 'lightblue') %>%
+  pack_rows("Fiscal type (base group = ‘Normal’)", 15, 21) %>%
   row_spec(23, background = 'lightblue') %>%
+  row_spec(25, background = 'lightblue') %>%
   kable_styling(full_width = T)
 ```
 
@@ -2124,9 +2195,9 @@ modelsummary(list("Spatial Lag" = mod_grp_V,
 ## LDP votes 
 
 ```{r ldp-spatial, results='asis', echo=FALSE}
-tbl_sp_panel_LDP <- as.data.frame(cbind(sp_lag_LDP_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
-                                    sp_er_LDP_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
-                                    sarar_LDP_sum$CoefTable[c(3:12,2), c(1, 2, 4)]))
+tbl_sp_panel_LDP <- as.data.frame(cbind(sp_lag_LDP_sum$CoefTable[c(2:12,1), c(1, 2, 4)],
+                                    sp_er_LDP_sum$CoefTable[c(2:12,1), c(1, 2, 4)],
+                                    sarar_LDP_sum$CoefTable[c(3:13,2), c(1, 2, 4)]))
 
 tbl_sp_panel_LDP <- rbind(tbl_sp_panel_LDP,
                       c(rep(NA,6), sarar_LDP_sum$CoefTable[1, c(1, 2, 4)]))
@@ -2139,7 +2210,7 @@ reg_sp_panel_ldp <- data.frame(
   term = c(
            '2014', '2017', '2021',
            'FStrength',
-           'Elderly', 'Turnout (relative)', 
+           'Elderly', 'Turnout (relative)', 'LAT per Capita',
            'Quasi-depopulating ', 'Partly depopulating',
            "Fully depopulating", "Fully depopulating (merged)",
            'lambda', 'NA'
@@ -2152,7 +2223,7 @@ er_panel_ldp <- data.frame(
   term = c( 
            '2014', '2017', '2021',
            'FStrength',
-           'Elderly', 'Turnout (relative)', 
+           'Elderly', 'Turnout (relative)', 'LAT per Capita',
            'Quasi-depopulating ', 'Partly depopulating',
            "Fully depopulating", "Fully depopulating (merged)",
            'Rho', 'NA'
@@ -2165,7 +2236,7 @@ reg_sp_lag_error_panel_ldp <- data.frame(
   term = c(
            '2014', '2017', '2021',
            'FStrength',
-           'Elderly', 'Turnout (relative)', 
+           'Elderly', 'Turnout (relative)', 'LAT per Capita',
            'Quasi-depopulating ', 'Partly depopulating',
            "Fully depopulating", "Fully depopulating (merged)",
            'Rho', 'lambda'
@@ -2195,9 +2266,9 @@ class(mod_grp_V2) <- "modelsummary_list"
 
 
 ```{r ldp-spatial-rel, results='asis', echo=FALSE}
-tbl_sp_panel_LDP <- as.data.frame(cbind(sp_lag_LDP_rel_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
-                                    sp_er_LDP_rel_sum$CoefTable[c(2:11,1), c(1, 2, 4)],
-                                    sarar_LDP_rel_sum$CoefTable[c(3:12,2), c(1, 2, 4)]))
+tbl_sp_panel_LDP <- as.data.frame(cbind(sp_lag_LDP_rel_sum$CoefTable[c(2:12,1), c(1, 2, 4)],
+                                    sp_er_LDP_rel_sum$CoefTable[c(2:12,1), c(1, 2, 4)],
+                                    sarar_LDP_rel_sum$CoefTable[c(3:13,2), c(1, 2, 4)]))
 
 tbl_sp_panel_LDP <- rbind(tbl_sp_panel_LDP,
                       c(rep(NA,6), sarar_LDP_rel_sum$CoefTable[1, c(1, 2, 4)]))
@@ -2210,7 +2281,7 @@ reg_sp_panel_ldp <- data.frame(
   term = c(
            '2014', '2017', '2021',
            'FStrength',
-           'Elderly', 'Turnout (relative)', 
+           'Elderly', 'Turnout (relative)', 'LAT per Capita',
            'Quasi-depopulating ', 'Partly depopulating',
            "Fully depopulating", "Fully depopulating (merged)",
            'lambda', 'NA'
@@ -2223,7 +2294,7 @@ er_panel_ldp <- data.frame(
   term = c( 
            '2014', '2017', '2021',
            'FStrength',
-           'Elderly', 'Turnout (relative)', 
+           'Elderly', 'Turnout (relative)', 'LAT per Capita',
            'Quasi-depopulating ', 'Partly depopulating',
            "Fully depopulating", "Fully depopulating (merged)",
            'Rho', 'NA'
@@ -2236,7 +2307,7 @@ reg_sp_lag_error_panel_ldp <- data.frame(
   term = c(
            '2014', '2017', '2021',
            'FStrength',
-           'Elderly', 'Turnout (relative)', 
+           'Elderly', 'Turnout (relative)', 'LAT per Capita',
            'Quasi-depopulating ', 'Partly depopulating',
            "Fully depopulating", "Fully depopulating (merged)",
            'Rho', 'lambda'
@@ -2278,9 +2349,9 @@ modelsummary(list("Spatial Lag" = mod_grp_V,
              fmt = 3) %>%
   add_header_above(c(" " = 1, "LDP" = 3, "LDP (relative)" = 3)) %>%
   pack_rows("Year dummy (base group = ‘2012’)", 1, 6) %>%
-  pack_rows("Fiscal type (base group = ‘Normal’)", 13, 19) %>%
-  row_spec(21, background = 'lightblue') %>%
+  pack_rows("Fiscal type (base group = ‘Normal’)", 15, 21) %>%
   row_spec(23, background = 'lightblue') %>%
+  row_spec(25, background = 'lightblue') %>%
   kable_styling(full_width = T)
 ```
 
