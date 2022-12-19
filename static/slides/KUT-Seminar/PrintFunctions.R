@@ -1,8 +1,8 @@
 library(pagedown)
 library(xaringan)
-library(xaringanBuilder)
+library(renderthis)
 library(here)
 
 ------------------
 
-build_pdf(here("static", "slides", "KUT-Seminar", "KUT-Seminar.Rmd"))
+to_pdf(here("static", "slides", "KUT-Seminar", "KUT-Seminar.Rmd"))

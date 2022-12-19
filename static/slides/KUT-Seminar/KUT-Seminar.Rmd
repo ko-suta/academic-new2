@@ -411,6 +411,37 @@ knitr::include_graphics("assets/img/tokyo.jpg")
 ]
 ---
 
+background-color: #EE82EE
+
+# 🇯🇵 .black[support] .white[✈] 🇺🇦 
+
+--
+
+### 🛡️️ drones, bulletproof vests, helmets, winter battle dress uniform, tents, cameras, hygiene products, emergency rations, binoculars, flashlights, medical equipment...
+
+--
+
+### 🌿 emergency humanitarian assistance of 💲200 million via international organizations (Japan has provided Ukraine 💲1.87 billion in ODA since 2014)
+
+--
+
+### 💰 financial support of 💲600 million
+
+--
+
+### 🛂 visa extensions to any Ukrainians in Japan
+
+--
+
+### 👣 accepting evacuees (more than 2000 people already)
+
+--
+
+### 🛑 economic sanctions against 🇷🇺
+
+
+---
+
 class: middle
 background-color: yellow
 
