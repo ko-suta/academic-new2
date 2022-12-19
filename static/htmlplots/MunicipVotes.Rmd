@@ -124,6 +124,39 @@ Elections3 %>%
 ```
 
 
+```{r include=FALSE}
+# merged municipalities that "switched" from partly depopulating 
+# to fully depopulating municipalities between 2009/2012 and 2021
+
+Set1 <- Elections3 %>%
+  filter(Year == "2009" &
+           Fusion == 1 & 
+           Kaso == "一部過疎") %>%
+  select(Code, Pref, Municip, LDP, LDP_relative, Turnout_relative)
+
+Set2 <- Elections3 %>%
+  filter(Year == "2021" &
+           Fusion == 1 & 
+           Kaso == "全部過疎") %>%
+  select(Code, Pref, Municip, LDP, LDP_relative, Turnout_relative)
+
+Set12 <- inner_join(Set1,Set2, by="Code")
+
+Set12 <- Set12 %>%
+  mutate(LDPdif = LDP.y - LDP.x,
+         LDPdif_rel = LDP_relative.y - LDP_relative.x,
+         Turnout_dif = Turnout_relative.y - Turnout_relative.x)
+
+Set12 %>%
+  summarise(mean(LDPdif, na.rm = TRUE),
+            mean(LDPdif_rel, na.rm = TRUE),
+            mean(Turnout_dif, na.rm = TRUE))
+```
+
+
+
+
+
 ```{r echo=FALSE}
 my_pal <- scales::col_numeric(
   paletteer::paletteer_d(

@@ -1,9 +1,9 @@
 ---
 title: ".yellow[Ukraine] & .red[Japan]: <br> Historical & Cultural Parallels"
-subtitle: ".light-blue[Presentation made at <br> K&#333;chi Prefectural Assembly]"
+subtitle: ".light-blue[2021 KUT Seminar:] <br> “Global Competency Modelling” "
 author: "Kostiantyn Ovsiannikov, Ph.D."
 institute: ".white.bg-green[K&#333;chi University of Technology]"
-date: "6 April 2022"
+date: "20 December 2022"
 output:
   xaringan::moon_reader:
 #    chakra: libs/remark-latest.min.js
