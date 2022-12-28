@@ -206,7 +206,7 @@ Elections3 %>%
                    ) %>%
   gt() %>%
   fmt_number(
-    columns = 3:12,
+    columns = 2:12,
     decimals = 3 # decrease decimal places
     ) %>%
   tab_style(
@@ -910,7 +910,7 @@ Elections3[,-c(23:28)] %>%
 ## Correlation matrix
 
 ```{r echo=FALSE, results='asis'}
-Elections3[,-c(6,11,13:15,18:20,22:30)] %>%
+Elections3[,-c(6,11,13:15,18:20,21:30)] %>%
   select_if(is.numeric) %>%
   cor(use = "complete.obs") %>% 
   ggcorrplot(hc.order = TRUE, #hierarchical ordering
@@ -1071,7 +1071,7 @@ htmlreg(list(LDPMod2, LDPMod3,
                              "Quasi-depopulating",
                              "Partly depopulating", "Fully depopulating",
                              "Fully depopulating (merged)"),
-       custom.header = list("Turnout" = 1:2, "Turnout (relative)" = 3:4),
+       custom.header = list("LDP" = 1:2, "LDP (relative)" = 3:4),
        groups = list("Year dummy (base group = '2012')" = 2:4,
                 "Fiscal type (base group = 'Normal')" = 9:13),
        caption = NULL,
@@ -1135,7 +1135,8 @@ htmlreg(list(LDPDifMod2, LDPDifMod3, LDPDifMod5, LDPDifMod6),
                              "Quasi-depopulating",
                              "Partly depopulating", "Fully depopulating",
                              "Fully depopulating (merged)"),
-       custom.header = list("Turnout" = 1:2, "Turnout (relative)" = 3:4),
+       custom.header = list("LDP: SMD-PR Dif." = 1:2, 
+                            "LDP: SMD-PR Dif. (relative)" = 3:4),
        groups = list("Year dummy (base group = '2012')" = 2:4,
                 "Fiscal type (base group = 'Normal')" = 9:13),
        caption = NULL,
