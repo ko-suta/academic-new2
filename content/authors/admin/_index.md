@@ -17,8 +17,8 @@ interests:
 - Labor Economics
 - Technological Innovation
 organizations:
-- name: Kochi University of Technology
-  url: "https://www.kochi-tech.ac.jp/english/index.html"
+- name: Shohoku College
+  url: "https://www.shohoku.ac.jp/index.html"
 role: Researcher under the JSPS Grant-in-Aid for Young Scientists
 social:
 - icon: envelope
@@ -43,8 +43,8 @@ superuser: true
 title: Kostiantyn Ovsiannikov
 ---
 
-I am a postdoc at Kochi University of Technology.
-My interests include **corporate governance**, **labor economics** and **technological innovation**. 
+I am an assistant professor at Shohoku College.
+My interests include **labor economics**, **political economy** and **experimental economics**. 
 In my dissertation, I explored how the pursuit of the shareholder-value ideology by management has affected labor policies at large Japanese enterprises.
 
 My current research project focuses on the market perception of corporate innovations in Japan.
