@@ -1,0 +1,326 @@
+---
+title: "Presentation of the ongoing research"
+subtitle: "Job Seminar: <br> .white.bg-black[Research Institute for Future Design]"
+author: "Kostiantyn Ovsiannikov, Ph.D."
+institute: ".white.bg-green[Kochi University of Technology]"
+date: "15 May 2023"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["rutgers-new.css", "rutgers-fonts"]
+    nature:
+      beforeInit: "macros.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: 16:9
+      #ratio: "191:100"
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(showtext)
+library(summarytools)
+library(here)
+library(ymlthis)
+library(tidyverse)
+library(fontawesome)
+library(readr)
+library(ggthemes)
+library(ggpubr)
+library(RColorBrewer)
+library(kableExtra)
+library(data.table)
+library(metathis)
+library(xaringanthemer)
+library(xaringanExtra)
+library(data.table)
+library(RefManageR)
+library(plm)
+library(mgcv)
+library(mgcViz)
+library(stargazer)
+library(plotly)
+library(htmlwidgets)
+library(modelsummary)
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(collapse = TRUE,
+                      fig.retina = 3)
+
+```
+
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+# BibOptions(check.entries = FALSE,
+#            bib.style = "authoryear",
+#            cite.style = "alphabetic",
+#            style = "markdown",
+#            hyperlink = FALSE,
+#            dashed = FALSE)
+# myBib <- ReadBib(here("static", "slides", "SASE-2021", "Innovation.bib"), check = FALSE)
+```
+
+
+```{r xaringan-extra, echo=FALSE}
+
+xaringanExtra::use_scribble()
+xaringanExtra::use_tile_view()
+xaringanExtra::use_tachyons()
+xaringanExtra::use_panelset()
+xaringanExtra::use_share_again()
+xaringanExtra::use_broadcast()
+xaringanExtra::use_search(show_icon = TRUE)
+
+xaringanExtra::style_share_again(
+  foreground = "white",
+  background = "black",
+  share_buttons = c("twitter", "linkedin", "facebook")
+)
+
+xaringanExtra::use_logo(
+  width = "220px",
+  height = "256px",
+  position = xaringanExtra::css_position(top = "2em", right = "2em"),
+  image_url = "assets/img/KUT.jpg",
+  exclude_class = "hide_logo"
+)
+
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+
+xaringanExtra::use_progress_bar(
+  color = "#0051BA", 
+  location = "top", 
+  height = "10px"
+  )
+```
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+style_duo(primary_color = "#ffffff", secondary_color = "#515151")
+```
+
+```{r metathis, echo=FALSE}
+meta() %>%
+  meta_name("github-repo" = "ko-suta/academic-new") %>% 
+  meta_social(
+    title = "Presentation of the ongoing research",
+    description = paste(
+      "Job Seminar",
+      "Research Institute for Future Design"
+    ),
+    url = "https://kovsiannikov.com/slides/rifd/rifd",
+    image = "https://kovsiannikov.com/img/Techno-screen.png",
+    image_alt = "RIFD Job Seminar",
+    og_type = "website",
+    og_author = "Kostiantyn Ovsiannikov",
+    twitter_card_type = "summary_large_image",
+    twitter_creator = "@kovsiann"
+  ) %>%
+  include_meta()
+```
+
+# Research background
+
+--
+
+.pull-left-narrow[
+.center[### `r fa("people-carry", fill = "green")`]]
+.pull-right-wide[### ]
+
+
+---
+class: highlight-last-item
+
+# Why current research matters
+
+- Growing importance of telework, especially due to the COVID-19 impact `r fa("globe-asia", fill = "blue")`
+
+--
+
+- Challenge of replicating corporate operations remotely granting the importance of face-to-face interactions `r fa("globe-asia", fill = "blue")`
+
+--
+
+- Distinct corporate institutional arrangements in Japan (.white.bg-black[relational finance] & .white.bg-black[stakeholder governance]) `r fa("arrow-right", fill = "blue")`
+
+--
+
+- Chance to re-create optimal work-life balance by combining office work and telework `r fa("arrow-right", fill = "blue")`
+
+
+--
+
+<br>
+
+<ru-blockquote>Organizations are social communities in which individual and social expertise is transformed into economically useful products and services
+.right[— <cite>`r TextCite(myBib, "kogut1992os", .opts = list(cite.style = "authoryear", style = "html"))`</cite>]</ru-blockquote>
+
+--
+
+<br>
+
+- .white.bg-black[However], during the last 30 years, Japan has witnessed **institutional** `r fa("random", fill = "blue")` , as **market influence** has `r fa("arrow-up", fill = "blue")`
+
+
+???
+
+* legislation promoting market competition has been toughened -- 2005 amendment of Japan's Anti-Monopoly Act
+
+* entry barriers lowered for pharmaceuticals during the late-1990s, which paved a path to a more intensive industrial competition
+
+* similar processes have been observed in Japan's electric sector since mid-1990s, leading to a higher R&D efficiency as well as more intensive patenting
+
+* these developments invited further attention to changing market perceptions of corporate innovations amid the ongoing balance shift from the institutional towards a more market-based industrial model
+
+---
+
+# RQ & Hypotheses
+
+.black.bg-washed-green.b--dark-green.ba.bw2.br3.shadow-5.ph4.mt5[
+What are the main factors affecting productivity and job satisfaction in an online environment?]
+
+--
+> **Hypothesis 1**
+>
+The perceived telework productivity is higher for .white.bg-black[individual] than for .white.bg-black[collective] tasks.
+
+???
+
+* R&D stock is a long-term institutional signaling; attribute of a **network-based** business approach that works in the regulated and coordinated environment
+
+--
+
+> **Hypothesis 2**
+>
+Managers and recipients of “seniority-merit” wages are less productive in an online environment than, respectively, ordinary employees and recipients of “performance-based” wages.
+
+???
+
+- Patents' quantity and quality are preconditions for successfully waging market **competition**. Here, not only the mere R&D spending, but rather **R&D efficiency** matters
+
+--
+
+> **Hypothesis 3**
+>
+TSE positively evaluates influential patents judged by the number of citations accruing to them.
+This represents the .white.bg-black[qualitative-market] aspect of innovative policies.
+
+
+---
+
+# Data
+
+.panelset.sideways[
+.panel[.panel-name[Sample features]
+
+- 1000 employees (sourced via the marketing company)
+
+- 44 out of 47 Japanese prefectures 
+
+- 600 males \& 400 females
+
+- 50\% employed in SMEs (< 1000 workers); 50\% -- in large companies 
+]
+
+
+.panel[.panel-name[Telework-related comfort]
+
+```{r echo=FALSE, include=TRUE, out.width = "45%", fig.align='center', fig.cap = 'Telework productivity'}
+knitr::include_graphics("assets/img/Q37-TeleComfortRanking2.png")
+```
+
+]
+
+.panel[.panel-name[Telework productivity]
+
+
+```{r echo=FALSE, include=TRUE, out.width = "45%", fig.align='center', fig.cap = 'Telework productivity'}
+knitr::include_graphics("assets/img/Q29-Overall-Productivity-Ranking.png")
+```
+
+]
+
+.panel[.panel-name[Individual vs. collective \& Simple vs. creative]
+
+
+```{r echo=FALSE, include=TRUE, out.width = "45%", fig.align='center', fig.cap = 'Telework productivity'}
+knitr::include_graphics("assets/img/CombineHist.pdf")
+```
+
+]
+
+]
+
+
+
+---
+
+# Conclusions
+
+--
+
+> 
+**1.** Institutional features associated with .white.bg-black[R&D spending] provide valuable signals for investors across multiple industries.
+>
+
+???
+
+* Most of the companies, but especially the ones belonging to **Pharm** and **Chemical** industries are still embedded in a system of industrial coordination. Oligopolistic features still prevalent
+
+--
+
+> 
+**2.** Quality of a patented output .white.bg-black[(Citations per Patent)] mostly matters for the manufacturing sector.
+>
+
+???
+
+* Thereby these companies react to the accumulating competitive pressures and are redefining themselves within an open-market system
+
+--
+
+> 
+**3.** Pronounced nonlinear trend in the market perception of .white.bg-black[corporate age]: only the more experienced companies receive market premium as they get older.
+>
+
+
+--
+
+## Limitations
+
+* Only utilized the JPO data, need to look at **Triadic Patents** as well
+
+* Find out the updated **depreciation rates** for the knowledge stocks (per industry) 
+
+* Possibly including **corporate governance** and **shareholding structure** to better capture the institutional aspects of innovation
+
+---
+
+# References
+
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+
+---
+
+class: title-slide-final, middle
+background-image: url(assets/img/SASE.png)
+background-size: 200px
+background-position: 5% 1%
+
+# Thank You for Your attention!
+
+## Questions / Suggestions?
+
+### You can access the presentation & contact me `r fa("arrow-alt-circle-down", fill = "#cc0033")`
+
+|                                                                                                            |                                   |
+| :--------------------------------------------------------------------------------------------------------- | :-------------------------------- |
+| <a href="mailto:ovsiannikov@kochi-tech.ac.jp">`r fa("paper-plane", fill = "#cc0033")`          | ovsiannikov@kochi-tech.ac.jp |
+|                                                                                                |                              |
+| <a href="https://kovsiannikov.com/slides/sase-2021/sase-2021">`r fa("link", fill = "#cc0033")` | kovsiannikov.com             |
