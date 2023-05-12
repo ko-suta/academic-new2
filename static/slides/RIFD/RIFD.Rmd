@@ -287,17 +287,6 @@ knitr::include_graphics("assets/img/CombineHist.pdf")
 **3.** Pronounced nonlinear trend in the market perception of .white.bg-black[corporate age]: only the more experienced companies receive market premium as they get older.
 >
 
-
---
-
-## Limitations
-
-* Only utilized the JPO data, need to look at **Triadic Patents** as well
-
-* Find out the updated **depreciation rates** for the knowledge stocks (per industry) 
-
-* Possibly including **corporate governance** and **shareholding structure** to better capture the institutional aspects of innovation
-
 ---
 
 # References
