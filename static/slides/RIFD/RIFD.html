@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>.bg-blue[Presentation of the ongoing research]</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Kostiantyn Ovsiannikov, Ph.D." />
+    <meta name="date" content="2023-05-15" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/rutgers-fonts.css" rel="stylesheet" />
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="libs/js-cookie/js.cookie.js"></script>
+    <script src="libs/peerjs/peerjs.min.js"></script>
+    <script src="libs/tiny.toast/toast.min.js"></script>
+    <link href="libs/xaringanExtra-broadcast/broadcast.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-broadcast/broadcast.js"></script>
+    <script src="libs/mark.js/mark.min.js"></script>
+    <link href="libs/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
+    <link href="libs/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
+    <meta name="github-repo" content="ko-suta/academic-new"/>
+    <meta name="twitter:title" content="Presentation of the ongoing research"/>
+    <meta name="twitter:description" content="Job Seminar Research Institute for Future Design"/>
+    <meta name="twitter:url" content="https://kovsiannikov.com/slides/rifd/rifd"/>
+    <meta name="twitter:image" content="https://kovsiannikov.com/img/Techno-screen.png"/>
+    <meta name="twitter:image:alt" content="RIFD Job Seminar"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@kovsiann"/>
+    <meta name="twitter:site" content="@kovsiann"/>
+    <meta property="og:title" content="Presentation of the ongoing research"/>
+    <meta property="og:description" content="Job Seminar Research Institute for Future Design"/>
+    <meta property="og:url" content="https://kovsiannikov.com/slides/rifd/rifd"/>
+    <meta property="og:image" content="https://kovsiannikov.com/img/Techno-screen.png"/>
+    <meta property="og:image:alt" content="RIFD Job Seminar"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="article:author" content="Kostiantyn Ovsiannikov"/>
+    <link rel="stylesheet" href="rutgers-new.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# .bg-blue[Presentation of the ongoing research]
+]
+.subtitle[
+## Job Seminar: <br> .green[Research Institute for Future Design]
+]
+.author[
+### Kostiantyn Ovsiannikov, Ph.D.
+]
+.institute[
+### .white.bg-green[Kochi University of Technology]
+]
+.date[
+### 15 May 2023
+]
+
+---
+
+
+
+
+
+
+
+
+<style>.shareagain-bar {
+--shareagain-foreground: white;
+--shareagain-background: black;
+--shareagain-pinterest: none;
+--shareagain-pocket: none;
+--shareagain-reddit: none;
+}</style><div>
+<style type="text/css">.xaringan-extra-logo {
+width: 220px;
+height: 256px;
+z-index: 0;
+background-image: url(assets/img/KUT.jpg);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:2em;right:2em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div><style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 10px;
+  background-color: #0051BA;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+
+# Areas of expertise
+
+--
+
+.pull-left-narrow[
+.center[## 👨‍💼]]
+.pull-right-wide[## labor economics]
+
+--
+
+.pull-left-narrow[
+.center[## 🧪]]
+.pull-right-wide[## experimental economics]
+
+--
+
+.pull-left-narrow[
+.center[## 🏗]]
+.pull-right-wide[## public economics]
+
+---
+class: title-slide-section-red middle
+
+# .black[Project 1.] **.white[Telework-related productivity &amp; satisfaction]**
+
+--
+
+### Ovsiannikov, K., Kotani, K., &amp; Morita, H. (2022). Online productivity and types of assignments in a Japanese workplace. *Social Design Engineering Series*, 2022-5
+
+---
+class: highlight-last-item
+
+# Why this research matters
+
+- ### Growing importance of telework, especially due to the **COVID-19** impact 🦠
+
+--
+
+- ### Challenge of replicating corporate operations remotely granting the importance of **face-to-face** interactions 🤝
+
+--
+
+- ### Distinct corporate institutional arrangements in Japan (**relational finance** &amp; **stakeholder governance**) 💴 🏣
+
+--
+
+- ### Chance to re-create optimal **work-life balance** by combining office work and telework 💮
+
+---
+
+# RQ &amp; Hypotheses
+
+&lt;ru-blockquote&gt;What are the main factors affecting **productivity** and **job satisfaction** in an online environment?&lt;/ru-blockquote&gt;
+
+--
+&gt; **Hypothesis 1**
+&gt;
+The perceived telework productivity is higher for .white.bg-black[individual] than for .white.bg-black[collective] tasks.
+
+--
+
+&gt; **Hypothesis 2**
+&gt;
+The perceived telework productivity is higher for .white.bg-black[simple] than for .white.bg-black[creative] tasks.
+
+--
+
+&gt; **Hypothesis 3**
+&gt;
+Managers and recipients of .white.bg-black[“seniority-merit”] wages are less productive in an online environment than, respectively, ordinary employees and recipients of .white.bg-black[“performance-based”] wages.
+
+---
+
+# Data &amp; findings
+
+.panelset.sideways[
+.panel[.panel-name[**Sample features**]
+
+- ### 500 employees (sourced via the marketing company)
+
+- ### 41 out of 47 Japanese prefectures 🗾
+
+- ### 300 males &amp; 200 females
+
+- ### 50% employed in SMEs (&lt; 1000 workers); 50% — in large companies 
+]
+
+
+.panel[.panel-name[**Telework-related comfort**]
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="assets/img/Q37-TeleComfortRanking2.png" alt="Telework-related comfort" width="100%" /&gt;
+&lt;p class="caption"&gt;Telework-related comfort&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+.panel[.panel-name[**Telework productivity**]
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="assets/img/Q29-Overall-Productivity-Ranking.png" alt="Telework productivity" width="100%" /&gt;
+&lt;p class="caption"&gt;Telework productivity&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+.panel[.panel-name[**Individual vs. collective &amp; Simple vs. creative**]
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="assets/img/CombinedHist.png" alt="Perceived online productivity: variations across main domains (“1” — lowest score, “5” — highest score)" width="65%" /&gt;
+&lt;p class="caption"&gt;Perceived online productivity: variations across main domains (“1” — lowest score, “5” — highest score)&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+.panel[.panel-name[**Key takeaways**]
+
+- ### online productivity is significantly lower for **collective** than for **individual** assignments
+
+- ### employees under the **“seniority-merit”** wage system experience consistently lower levels of online productivity than recipients of **"performance-based"** wages for all types of assignments
+
+- ### **managerial affiliation** ➡ **low group productivity**; high pre-COVID **sleeping hours** ➡ **low individual productivity** for both simple and creative tasks
+
+]
+
+]
+
+---
+
+class: title-slide-section-grey middle
+
+# .black.bg-white[Project 2.] **.white[Perils associated with non-regular employment]**
+
+--
+
+.pull-right-wide[
+.center[### Putra, R., Ovsiannikov, K., &amp; Kotani, K. (2023). COVID-19-associated income loss and job loss: Evidence from Indonesia. *Journal of Asian Economics*]]
+.pull-left-narrow[
+
+&lt;img src="assets/img/JAE.jpg" width="80%" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+class: highlight-last-item
+
+# Why this research matters
+
+- ### Non-regular employees have **weaker social protection** and are easy targets for corporate layoffs during crises 🎲
+
+--
+
+- ### **Shareholders' pressure** ➡ prioritizing short-term profits at the expense of employment security 💹
+
+--
+
+- ### Lower productivity of precarious labor ➡ negative impact on corporate sustainability 🥀
+
+---
+# RQ &amp; Hypothesis
+
+&lt;ru-blockquote&gt;What are the main features of income- and job-loss deprivations accruing within developing economies due to the impact of the the COVID-19 pandemic?&lt;/ru-blockquote&gt;
+
+--
+&gt; **Hypothesis**
+&gt;
+Informally employed workers such as **“self-employed”** and **“temps”** have suffered higher magnitudes of income loss and job loss than formally employed workers.
+
+
+---
+# Data &amp; Findings
+
+.panelset.sideways[
+.panel[.panel-name[**Sample features**]
+
+- ### 292,000 observations (2020 Indonesian National Labor Force Survey)
+
+- ### 511 out of 514 Indonesian sub-provinces 🇮🇩
+
+- ### 52% employed formally, 48% — informally
+
+- ### 49% urban, 51% rural residents
+
+- ### COVID-19 infection rate proxy used for Propensity Score Matching (PSM): Facebook Data for Good (FDG) measuring daily mobility in August 2020 vs. February 2020 
+]
+
+
+.panel[.panel-name[**Indonesia’s regional trends**]
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="assets/img/Mobility-Average.png" alt=" Google Community Mobility Report" width="100%" /&gt;
+&lt;p class="caption"&gt; Google Community Mobility Report&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+.panel[.panel-name[**Findings**]
+
+- #### **self-employed** are 25% more likely than regular workers to experience **income loss**
+
+- #### **temporary employees** are 15% more likely than regular workers to experience **income loss** and 1% more likely — job loss
+
+- #### **urban** residents are 1% more likely than rural to experience **income loss**
+
+- #### **household heads** have 2% and 0.4% higher chances of losing, respectively, **income** and **job**, than respondents with other family roles
+
+- #### respondents with **higher education** are 20% less likely to **loose income** and 1% less likely to **loose job** than those with **incomplete high-school education**
+
+]
+
+]
+
+---
+
+# Conclusions
+
+--
+
+&gt; 
+**1.** Institutional features associated with .white.bg-black[R&amp;D spending] provide valuable signals for investors across multiple industries.
+&gt;
+
+???
+
+* Most of the companies, but especially the ones belonging to **Pharm** and **Chemical** industries are still embedded in a system of industrial coordination. Oligopolistic features still prevalent
+
+--
+
+&gt; 
+**2.** Quality of a patented output .white.bg-black[(Citations per Patent)] mostly matters for the manufacturing sector.
+&gt;
+
+???
+
+* Thereby these companies react to the accumulating competitive pressures and are redefining themselves within an open-market system
+
+--
+
+&gt; 
+**3.** Pronounced nonlinear trend in the market perception of .white.bg-black[corporate age]: only the more experienced companies receive market premium as they get older.
+&gt;
+
+
+---
+
+class: title-slide-final, middle
+background-image: url(assets/img/SASE.png)
+background-size: 200px
+background-position: 5% 1%
+
+# Thank You for Your attention!
+
+## Questions / Suggestions?
+
+### You can access the presentation &amp; contact me <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#cc0033;overflow:visible;position:relative;"><path d="M256 464a208 208 0 1 1 0-416 208 208 0 1 1 0 416zM256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM376.9 294.6c4.5-4.2 7.1-10.1 7.1-16.3c0-12.3-10-22.3-22.3-22.3H304V160c0-17.7-14.3-32-32-32l-32 0c-17.7 0-32 14.3-32 32v96H150.3C138 256 128 266 128 278.3c0 6.2 2.6 12.1 7.1 16.3l107.1 99.9c3.8 3.5 8.7 5.5 13.8 5.5s10.1-2 13.8-5.5l107.1-99.9z"/></svg>
+
+|                                                                                                            |                                   |
+| :--------------------------------------------------------------------------------------------------------- | :-------------------------------- |
+| &lt;a href="mailto:ovsiannikov@kochi-tech.ac.jp"&gt;<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#cc0033;overflow:visible;position:relative;"><path d="M16.1 260.2c-22.6 12.9-20.5 47.3 3.6 57.3L160 376V479.3c0 18.1 14.6 32.7 32.7 32.7c9.7 0 18.9-4.3 25.1-11.8l62-74.3 123.9 51.6c18.9 7.9 40.8-4.5 43.9-24.7l64-416c1.9-12.1-3.4-24.3-13.5-31.2s-23.3-7.5-34-1.4l-448 256zm52.1 25.5L409.7 90.6 190.1 336l1.2 1L68.2 285.7zM403.3 425.4L236.7 355.9 450.8 116.6 403.3 425.4z"/></svg>          | me@kovsiannikov.com |
+|                                                                                                |                              |
+| &lt;a href="https://kovsiannikov.com/slides/rifd/rifd"&gt;<svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#cc0033;overflow:visible;position:relative;"><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg> | kovsiannikov.com             |
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

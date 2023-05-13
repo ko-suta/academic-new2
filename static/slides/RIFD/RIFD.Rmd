@@ -1,6 +1,6 @@
 ---
-title: "Presentation of the ongoing research"
-subtitle: "Job Seminar: <br> .white.bg-black[Research Institute for Future Design]"
+title: ".bg-blue[Presentation of the ongoing research]"
+subtitle: "Job Seminar: <br> .green[Research Institute for Future Design]"
 author: "Kostiantyn Ovsiannikov, Ph.D."
 institute: ".white.bg-green[Kochi University of Technology]"
 date: "15 May 2023"
@@ -123,139 +123,217 @@ meta() %>%
   include_meta()
 ```
 
-# Research background
+# Areas of expertise
 
 --
 
 .pull-left-narrow[
-.center[### `r fa("people-carry", fill = "green")`]]
-.pull-right-wide[### ]
+.center[## 👨‍💼]]
+.pull-right-wide[## labor economics]
 
+--
+
+.pull-left-narrow[
+.center[## 🧪]]
+.pull-right-wide[## experimental economics]
+
+--
+
+.pull-left-narrow[
+.center[## 🏗]]
+.pull-right-wide[## public economics]
+
+---
+class: title-slide-section-red middle
+
+# .black[Project 1.] **.white[Telework-related productivity & satisfaction]**
+
+--
+
+### Ovsiannikov, K., Kotani, K., & Morita, H. (2022). Online productivity and types of assignments in a Japanese workplace. *Social Design Engineering Series*, 2022-5
 
 ---
 class: highlight-last-item
 
-# Why current research matters
+# Why this research matters
 
-- Growing importance of telework, especially due to the COVID-19 impact `r fa("globe-asia", fill = "blue")`
-
---
-
-- Challenge of replicating corporate operations remotely granting the importance of face-to-face interactions `r fa("globe-asia", fill = "blue")`
+- ### Growing importance of telework, especially due to the **COVID-19** impact 🦠
 
 --
 
-- Distinct corporate institutional arrangements in Japan (.white.bg-black[relational finance] & .white.bg-black[stakeholder governance]) `r fa("arrow-right", fill = "blue")`
+- ### Challenge of replicating corporate operations remotely granting the importance of **face-to-face** interactions 🤝
 
 --
 
-- Chance to re-create optimal work-life balance by combining office work and telework `r fa("arrow-right", fill = "blue")`
-
-
---
-
-<br>
-
-<ru-blockquote>Organizations are social communities in which individual and social expertise is transformed into economically useful products and services
-.right[— <cite>`r TextCite(myBib, "kogut1992os", .opts = list(cite.style = "authoryear", style = "html"))`</cite>]</ru-blockquote>
+- ### Distinct corporate institutional arrangements in Japan (**relational finance** & **stakeholder governance**) 💴 🏣
 
 --
 
-<br>
-
-- .white.bg-black[However], during the last 30 years, Japan has witnessed **institutional** `r fa("random", fill = "blue")` , as **market influence** has `r fa("arrow-up", fill = "blue")`
-
-
-???
-
-* legislation promoting market competition has been toughened -- 2005 amendment of Japan's Anti-Monopoly Act
-
-* entry barriers lowered for pharmaceuticals during the late-1990s, which paved a path to a more intensive industrial competition
-
-* similar processes have been observed in Japan's electric sector since mid-1990s, leading to a higher R&D efficiency as well as more intensive patenting
-
-* these developments invited further attention to changing market perceptions of corporate innovations amid the ongoing balance shift from the institutional towards a more market-based industrial model
+- ### Chance to re-create optimal **work-life balance** by combining office work and telework 💮
 
 ---
 
 # RQ & Hypotheses
 
-.black.bg-washed-green.b--dark-green.ba.bw2.br3.shadow-5.ph4.mt5[
-What are the main factors affecting productivity and job satisfaction in an online environment?]
+<ru-blockquote>What are the main factors affecting **productivity** and **job satisfaction** in an online environment?</ru-blockquote>
 
 --
 > **Hypothesis 1**
 >
 The perceived telework productivity is higher for .white.bg-black[individual] than for .white.bg-black[collective] tasks.
 
-???
-
-* R&D stock is a long-term institutional signaling; attribute of a **network-based** business approach that works in the regulated and coordinated environment
-
 --
 
 > **Hypothesis 2**
 >
-Managers and recipients of “seniority-merit” wages are less productive in an online environment than, respectively, ordinary employees and recipients of “performance-based” wages.
-
-???
-
-- Patents' quantity and quality are preconditions for successfully waging market **competition**. Here, not only the mere R&D spending, but rather **R&D efficiency** matters
+The perceived telework productivity is higher for .white.bg-black[simple] than for .white.bg-black[creative] tasks.
 
 --
 
 > **Hypothesis 3**
 >
-TSE positively evaluates influential patents judged by the number of citations accruing to them.
-This represents the .white.bg-black[qualitative-market] aspect of innovative policies.
-
+Managers and recipients of .white.bg-black[“seniority-merit”] wages are less productive in an online environment than, respectively, ordinary employees and recipients of .white.bg-black[“performance-based”] wages.
 
 ---
 
-# Data
+# Data & findings
 
 .panelset.sideways[
-.panel[.panel-name[Sample features]
+.panel[.panel-name[**Sample features**]
 
-- 1000 employees (sourced via the marketing company)
+- ### 500 employees (sourced via the marketing company)
 
-- 44 out of 47 Japanese prefectures 
+- ### 41 out of 47 Japanese prefectures 🗾
 
-- 600 males \& 400 females
+- ### 300 males & 200 females
 
-- 50\% employed in SMEs (< 1000 workers); 50\% -- in large companies 
+- ### 50% employed in SMEs (< 1000 workers); 50% — in large companies 
 ]
 
 
-.panel[.panel-name[Telework-related comfort]
+.panel[.panel-name[**Telework-related comfort**]
 
-```{r echo=FALSE, include=TRUE, out.width = "45%", fig.align='center', fig.cap = 'Telework productivity'}
+```{r echo=FALSE, include=TRUE, out.width = "100%", fig.align='center', fig.cap = 'Telework-related comfort'}
 knitr::include_graphics("assets/img/Q37-TeleComfortRanking2.png")
 ```
 
 ]
 
-.panel[.panel-name[Telework productivity]
+.panel[.panel-name[**Telework productivity**]
 
 
-```{r echo=FALSE, include=TRUE, out.width = "45%", fig.align='center', fig.cap = 'Telework productivity'}
+```{r echo=FALSE, include=TRUE, out.width = "100%", fig.align='center', fig.cap = 'Telework productivity'}
 knitr::include_graphics("assets/img/Q29-Overall-Productivity-Ranking.png")
 ```
 
 ]
 
-.panel[.panel-name[Individual vs. collective \& Simple vs. creative]
+.panel[.panel-name[**Individual vs. collective & Simple vs. creative**]
 
 
-```{r echo=FALSE, include=TRUE, out.width = "45%", fig.align='center', fig.cap = 'Telework productivity'}
-knitr::include_graphics("assets/img/CombineHist.pdf")
+```{r echo=FALSE, include=TRUE, out.width = "65%", fig.align='center', fig.cap = 'Perceived online productivity: variations across main domains (“1” — lowest score, “5” — highest score)'}
+knitr::include_graphics("assets/img/CombinedHist.png")
 ```
 
 ]
 
+.panel[.panel-name[**Key takeaways**]
+
+- ### online productivity is significantly lower for **collective** than for **individual** assignments
+
+- ### employees under the **“seniority-merit”** wage system experience consistently lower levels of online productivity than recipients of **"performance-based"** wages for all types of assignments
+
+- ### **managerial affiliation** ➡ **low group productivity**; high pre-COVID **sleeping hours** ➡ **low individual productivity** for both simple and creative tasks
+
+]
+
+]
+
+---
+
+class: title-slide-section-grey middle
+
+# .black.bg-white[Project 2.] **.white[Perils associated with non-regular employment]**
+
+--
+
+.pull-right-wide[
+.center[### Putra, R., Ovsiannikov, K., & Kotani, K. (2023). COVID-19-associated income loss and job loss: Evidence from Indonesia. *Journal of Asian Economics*]]
+.pull-left-narrow[
+
+```{r echo=FALSE, include=TRUE, out.width = "80%", fig.align='center'}
+knitr::include_graphics("assets/img/JAE.jpg")
+```
+
+]
+
+---
+class: highlight-last-item
+
+# Why this research matters
+
+- ### Non-regular employees have **weaker social protection** and are easy targets for corporate layoffs during crises 🎲
+
+--
+
+- ### **Shareholders' pressure** ➡ prioritizing short-term profits at the expense of employment security 💹
+
+--
+
+- ### Lower productivity of precarious labor ➡ negative impact on corporate sustainability 🥀
+
+---
+# RQ & Hypothesis
+
+<ru-blockquote>What are the main features of income- and job-loss deprivations accruing within developing economies due to the impact of the the COVID-19 pandemic?</ru-blockquote>
+
+--
+> **Hypothesis**
+>
+Informally employed workers such as **“self-employed”** and **“temps”** have suffered higher magnitudes of income loss and job loss than formally employed workers.
+
+
+---
+# Data & Findings
+
+.panelset.sideways[
+.panel[.panel-name[**Sample features**]
+
+- ### 292,000 observations (2020 Indonesian National Labor Force Survey)
+
+- ### 511 out of 514 Indonesian sub-provinces 🇮🇩
+
+- ### 52% employed formally, 48% — informally
+
+- ### 49% urban, 51% rural residents
+
+- ### COVID-19 infection rate proxy used for Propensity Score Matching (PSM): Facebook Data for Good (FDG) measuring daily mobility in August 2020 vs. February 2020 
 ]
 
 
+.panel[.panel-name[**Indonesia’s regional trends**]
+
+```{r echo=FALSE, include=TRUE, out.width = "100%", fig.align='center', fig.cap = ' Google Community Mobility Report'}
+knitr::include_graphics("assets/img/Mobility-Average.png")
+```
+
+]
+
+.panel[.panel-name[**Findings**]
+
+- #### **self-employed** are 25% more likely than regular workers to experience **income loss**
+
+- #### **temporary employees** are 15% more likely than regular workers to experience **income loss** and 1% more likely — job loss
+
+- #### **urban** residents are 1% more likely than rural to experience **income loss**
+
+- #### **household heads** have 2% and 0.4% higher chances of losing, respectively, **income** and **job**, than respondents with other family roles
+
+- #### respondents with **higher education** are 20% less likely to **loose income** and 1% less likely to **loose job** than those with **incomplete high-school education**
+
+]
+
+]
 
 ---
 
@@ -287,13 +365,6 @@ knitr::include_graphics("assets/img/CombineHist.pdf")
 **3.** Pronounced nonlinear trend in the market perception of .white.bg-black[corporate age]: only the more experienced companies receive market premium as they get older.
 >
 
----
-
-# References
-
-```{r refs, echo=FALSE, results="asis"}
-PrintBibliography(myBib)
-```
 
 ---
 
@@ -310,6 +381,6 @@ background-position: 5% 1%
 
 |                                                                                                            |                                   |
 | :--------------------------------------------------------------------------------------------------------- | :-------------------------------- |
-| <a href="mailto:ovsiannikov@kochi-tech.ac.jp">`r fa("paper-plane", fill = "#cc0033")`          | ovsiannikov@kochi-tech.ac.jp |
+| <a href="mailto:ovsiannikov@kochi-tech.ac.jp">`r fa("paper-plane", fill = "#cc0033")`          | me@kovsiannikov.com |
 |                                                                                                |                              |
-| <a href="https://kovsiannikov.com/slides/sase-2021/sase-2021">`r fa("link", fill = "#cc0033")` | kovsiannikov.com             |
+| <a href="https://kovsiannikov.com/slides/rifd/rifd">`r fa("link", fill = "#cc0033")` | kovsiannikov.com             |
