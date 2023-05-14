@@ -361,12 +361,12 @@ knitr::include_graphics("assets/img/Mobility-Average.png")
 .panel[.panel-name[Technical know-how 🛠️]
 
 .pull-left-narrow[
-.center[## `r fa("r-project", fill = "blue")` `r fa("plus-square", fill = "black")` `r fa("markdown", fill = "black")`]]
-.pull-right-wide[## manuscripts `r fa("code", fill = "black")` presentations `r fa("code", fill = "black")` websites]
+.center[### `r fa("r-project", fill = "blue")` `r fa("plus-square", fill = "black")` `r fa("markdown", fill = "black")`]]
+.pull-right-wide[### manuscripts `r fa("code", fill = "black")` presentations `r fa("code", fill = "black")` websites]
 
 .pull-left-narrow[
-.center[## `r fa("python", fill = "green")`]]
-.pull-right-wide[## .white.bg-black[oTree] `r fa("code-merge", fill = "black")` online experiments]
+.center[### `r fa("python", fill = "green")`]]
+.pull-right-wide[### .white.bg-black[oTree] `r fa("code-merge", fill = "black")` online experiments]
 
 ]
 
