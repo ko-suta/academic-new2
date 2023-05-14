@@ -320,7 +320,7 @@ Against the impact of COVID-19, informally employed workers such as .white.bg-bl
 
 .panel[.panel-name[**Indonesia’s regional trends**]
 
-```{r echo=FALSE, include=TRUE, out.width = "100%", fig.align='center', fig.cap = ' Google Community Mobility Report'}
+```{r echo=FALSE, include=TRUE, out.width = "100%", fig.align='center', fig.cap = 'Google Community Mobility Report'}
 knitr::include_graphics("assets/img/Mobility-Average.png")
 ```
 
@@ -346,7 +346,7 @@ knitr::include_graphics("assets/img/Mobility-Average.png")
 
 # Contribution to the RIFD mission
 
-.panelset[
+.panelset.sideways[
 
 .panel[.panel-name[Adherence to Future Design (FD) principles 🌱]
 
@@ -370,15 +370,26 @@ knitr::include_graphics("assets/img/Mobility-Average.png")
 
 ]
 
+.panel[.panel-name[Teaching experience 👨‍🏫️]
+
+.pull-right[
+
+```{r echo=FALSE}
+knitr::include_url("https://kovsiannikov.com/courses/")
+```
+
+
+]
+
+]
+
 .panel[.panel-name[International collaborations 🌏]
 
 .pull-right[
 
-
-```{r echo=FALSE}
-knitr::include_url("http://ffj.ehess.fr/kostiantyn_ovsiannikov.html")
+```{r echo=FALSE, include=TRUE, out.width = "100%", fig.align='center', fig.cap = 'Google Community Mobility Report'}
+knitr::include_graphics("assets/img/Mobility-Average.png")
 ```
-
 
 ]
 
