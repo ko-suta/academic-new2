@@ -375,7 +375,7 @@ knitr::include_graphics("assets/img/Mobility-Average.png")
 .pull-right[
 
 ```{r echo=FALSE}
-knitr::include_url("https://kovsiannikov.com/courses/")
+knitr::include_url("https://kovsiannikov.com/courses.html")
 ```
 
 
