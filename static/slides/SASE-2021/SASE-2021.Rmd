@@ -327,7 +327,7 @@ cols <- c('#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#e78ac3','#a65628')
   filter(Year >= 1971 & Year <= 2014) %>%
   ggplot(aes(x = Year, y = Mean, group = Industry, 
              color = Industry, shape = Industry, linetype = Industry)) + 
-  geom_line(size = 2) +
+  geom_line(linewidth = 2) +
   labs(y="Average Number of Years Required",
        x="Application Year") +
   scale_colour_manual(values = cols) +

@@ -128,7 +128,7 @@ meta() %>%
 --
 
 .pull-left-narrow[
-.center[## 👨‍💼]]
+.center[## 🧑‍🔧]]
 .pull-right-wide[## labor economics]
 
 --
@@ -157,7 +157,7 @@ class: highlight-last-item
 
 # Why this research matters
 
-- ### Growing importance of telework, especially due to the **COVID-19** impact 🦠
+- ### Growing importance of **telework**, especially due to the **COVID-19** impact 🦠
 
 --
 
@@ -169,7 +169,7 @@ class: highlight-last-item
 
 --
 
-- ### Chance to re-create optimal **work-life balance** by combining office work and telework 💮
+- ### Chance to re-create optimal **work-life balance** by combining office work and telework 🌸
 
 ---
 
@@ -196,24 +196,24 @@ Managers and recipients of .white.bg-black[“seniority-merit”] wages are less
 
 ---
 
-# Data & findings
+# Data & Findings
 
 .panelset.sideways[
 .panel[.panel-name[**Sample features**]
 
 - ### 500 employees (sourced via the marketing company)
 
-- ### 41 out of 47 Japanese prefectures 🗾
+- ### 41 out of 47 Japanese **prefectures** 🗾
 
-- ### 300 males & 200 females
+- ### 300 **males** 👷‍♂ & 200 **females** 👷‍♀
 
-- ### 50% employed in SMEs (< 1000 workers); 50% — in large companies 
+- ### 50% employed in **SMEs** (< 1000 workers) 💼; 50% — in **large companies** 👨‍💼
 ]
 
 
 .panel[.panel-name[**Telework-related comfort**]
 
-```{r echo=FALSE, include=TRUE, out.width = "100%", fig.align='center', fig.cap = 'Telework-related comfort'}
+```{r echo=FALSE, include=TRUE, out.width = "100%", fig.align='center'}
 knitr::include_graphics("assets/img/Q37-TeleComfortRanking2.png")
 ```
 
@@ -222,7 +222,7 @@ knitr::include_graphics("assets/img/Q37-TeleComfortRanking2.png")
 .panel[.panel-name[**Telework productivity**]
 
 
-```{r echo=FALSE, include=TRUE, out.width = "100%", fig.align='center', fig.cap = 'Telework productivity'}
+```{r echo=FALSE, include=TRUE, out.width = "100%", fig.align='center'}
 knitr::include_graphics("assets/img/Q29-Overall-Productivity-Ranking.png")
 ```
 
@@ -231,7 +231,7 @@ knitr::include_graphics("assets/img/Q29-Overall-Productivity-Ranking.png")
 .panel[.panel-name[**Individual vs. collective & Simple vs. creative**]
 
 
-```{r echo=FALSE, include=TRUE, out.width = "65%", fig.align='center', fig.cap = 'Perceived online productivity: variations across main domains (“1” — lowest score, “5” — highest score)'}
+```{r echo=FALSE, include=TRUE, out.width = "65%", fig.align='center', fig.cap = '“1” — lowest score, “5” — highest score'}
 knitr::include_graphics("assets/img/CombinedHist.png")
 ```
 
@@ -239,11 +239,19 @@ knitr::include_graphics("assets/img/CombinedHist.png")
 
 .panel[.panel-name[**Key takeaways**]
 
-- ### online productivity is significantly lower for **collective** than for **individual** assignments
+- ### online productivity is significantly lower for **collective** than for **individual** assignments (based on paired Wilcoxon T-test)
 
-- ### employees under the **“seniority-merit”** wage system experience consistently lower levels of online productivity than recipients of **"performance-based"** wages for all types of assignments
+- ### employees under the **"seniority-merit"** wage system experience consistently lower levels of online productivity than recipients of **"performance-based"** wages for all types of assignments
 
-- ### **managerial affiliation** ➡ **low group productivity**; high pre-COVID **sleeping hours** ➡ **low individual productivity** for both simple and creative tasks
+- ### **managerial affiliation** ➡ **low group productivity**; high COVID-period **sleeping hours** ➡ **high individual productivity** for both simple and creative tasks
+
+]
+
+.panel[.panel-name[**Next steps**]
+
+- ### encapsulating intra-corporate features (**↕** and **↔** **communication**) based on the sample of 1000 respondents
+
+- ### designing **experiments** to reproduce different types of assignments in a face-to-face vs. online working environment
 
 ]
 
@@ -280,18 +288,17 @@ class: highlight-last-item
 
 --
 
-- ### Lower productivity of precarious labor ➡ negative impact on corporate sustainability 🥀
+- ### **Lower productivity** of precarious labor ➡ negative impact on corporate sustainability 🥀
 
 ---
 # RQ & Hypothesis
 
-<ru-blockquote>What are the main features of income- and job-loss deprivations accruing within developing economies due to the impact of the the COVID-19 pandemic?</ru-blockquote>
+<ru-blockquote>What are the main features of **income-** and **job-loss** deprivations accruing within developing economies due to the impact of the the **COVID-19** pandemic?</ru-blockquote>
 
 --
 > **Hypothesis**
 >
-Informally employed workers such as **“self-employed”** and **“temps”** have suffered higher magnitudes of income loss and job loss than formally employed workers.
-
+Against the impact of COVID-19, informally employed workers such as .white.bg-black[self-employed] and .white.bg-black[temporary workers] suffer higher magnitudes of income loss and job loss than formally employed workers.
 
 ---
 # Data & Findings
@@ -299,15 +306,15 @@ Informally employed workers such as **“self-employed”** and **“temps”** 
 .panelset.sideways[
 .panel[.panel-name[**Sample features**]
 
-- ### 292,000 observations (2020 Indonesian National Labor Force Survey)
+- ### 292,000 observations (2020 National Labor Force Survey)
 
-- ### 511 out of 514 Indonesian sub-provinces 🇮🇩
+- ### 511 out of 514 Indonesian **sub-provinces** 🇮🇩
 
-- ### 52% employed formally, 48% — informally
+- ### 52% employed **formally** 🦺, 48% — **informally** 🎨
 
-- ### 49% urban, 51% rural residents
+- ### 49% **urban** 🌃, 51% **rural** residents 🚜
 
-- ### COVID-19 infection rate proxy used for Propensity Score Matching (PSM): Facebook Data for Good (FDG) measuring daily mobility in August 2020 vs. February 2020 
+- ### COVID-19 **infection rate proxy** used for Propensity Score Matching (PSM): `r fa("facebook", fill = "blue")` Data for Good (FDG) measuring daily mobility in .white.bg-black[August 2020] vs. .white.bg-black[February 2020] 🚶
 ]
 
 
@@ -323,18 +330,61 @@ knitr::include_graphics("assets/img/Mobility-Average.png")
 
 - #### **self-employed** are 25% more likely than regular workers to experience **income loss**
 
-- #### **temporary employees** are 15% more likely than regular workers to experience **income loss** and 1% more likely — job loss
+- #### **temporary employees** are 15% more likely than regular workers to experience **income loss** and 1% more likely — **job loss**
 
 - #### **urban** residents are 1% more likely than rural to experience **income loss**
 
-- #### **household heads** have 2% and 0.4% higher chances of losing, respectively, **income** and **job**, than respondents with other family roles
+- #### **household heads** have 2% higher chances of **losing income** and 0.4% higher chances of **losing job** than respondents with other family roles
 
-- #### respondents with **higher education** are 20% less likely to **loose income** and 1% less likely to **loose job** than those with **incomplete high-school education**
+- #### respondents with **higher education** are 20% less likely to **loose income** and 1% less likely to **loose job** than those with **incomplete high-school** education
+
+]
+
+]
+
+---
+
+# Contribution to the RIFD mission
+
+.panelset[
+
+.panel[.panel-name[Adherence to Future Design (FD) principles 🌱]
+
+- ### Corporate Social Responsibility (**CSR**) & Socially Responsible Investment (**SRI**) 
+
+- ### corporate mission and raison d'être
+
+- ### conceptualizing an ideal workplace: online ➕ face-to-face
+
+]
+
+.panel[.panel-name[Technical know-how 🛠️]
+
+.pull-left-narrow[
+.center[## `r fa("r-project", fill = "blue")` `r fa("plus-square", fill = "black")` `r fa("markdown", fill = "black")`]]
+.pull-right-wide[## manuscripts `r fa("code", fill = "black")` presentations `r fa("code", fill = "black")` websites]
+
+.pull-left-narrow[
+.center[## `r fa("python", fill = "green")`]]
+.pull-right-wide[## .white.bg-black[oTree] `r fa("code-merge", fill = "black")` online experiments]
+
+]
+
+.panel[.panel-name[International collaborations 🌏]
+
+.pull-right[
+
+
+```{r echo=FALSE, fig.cap = '<a href="http://ffj.ehess.fr/kostiantyn_ovsiannikov.html" style="color:Black;">Source</a>'}
+knitr::include_url("http://ffj.ehess.fr/kostiantyn_ovsiannikov.html")
+```
+
 
 ]
 
 ]
 
+]
 ---
 
 # Conclusions
