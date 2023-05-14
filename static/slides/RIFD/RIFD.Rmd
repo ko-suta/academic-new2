@@ -1,8 +1,8 @@
 ---
-title: ".bg-blue[Presentation of the ongoing research]"
-subtitle: "Job Seminar: <br> .green[Research Institute for Future Design]"
+title: ".bg-blue[Presentation of the <br> ongoing research]"
+subtitle: "Job Seminar: <br> .white.bg-green[Research Institute for <br> Future Design]"
 author: "Kostiantyn Ovsiannikov, Ph.D."
-institute: ".white.bg-green[Kochi University of Technology]"
+institute: ".green[Kochi University of Technology]"
 date: "15 May 2023"
 output:
   xaringan::moon_reader:
@@ -157,6 +157,8 @@ class: highlight-last-item
 
 # Why this research matters
 
+--
+
 - ### Growing importance of **telework**, especially due to the **COVID-19** impact 🦠
 
 --
@@ -174,6 +176,8 @@ class: highlight-last-item
 ---
 
 # RQ & Hypotheses
+
+--
 
 <ru-blockquote>What are the main factors affecting **productivity** and **job satisfaction** in an online environment?</ru-blockquote>
 
@@ -284,7 +288,7 @@ class: highlight-last-item
 
 --
 
-- ### **Shareholders' pressure** ➡ prioritizing short-term profits at the expense of employment security 💹
+- ### **Shareholders' pressure** ➡ prioritizing short-term profits at the expense of employment security 🤑
 
 --
 
@@ -292,6 +296,8 @@ class: highlight-last-item
 
 ---
 # RQ & Hypothesis
+
+--
 
 <ru-blockquote>What are the main features of **income-** and **job-loss** deprivations accruing within developing economies due to the impact of the the **COVID-19** pandemic?</ru-blockquote>
 
@@ -343,6 +349,7 @@ knitr::include_graphics("assets/img/Mobility-Average.png")
 ]
 
 ---
+background-color: bisque
 
 # Contribution to the RIFD mission
 
@@ -350,11 +357,11 @@ knitr::include_graphics("assets/img/Mobility-Average.png")
 
 .panel[.panel-name[Adherence to Future Design (FD) principles 🌱]
 
-- ### Corporate Social Responsibility (**CSR**) & Socially Responsible Investment (**SRI**) 
+- ### Corporate Social Responsibility (**CSR**) & Socially Responsible Investment (**SRI**) 💹
 
 - ### corporate mission and raison d'être
 
-- ### conceptualizing an ideal workplace: online ➕ face-to-face
+- ### conceptualizing an **ideal workplace**: online `r fa("plus-square", fill = "black")` face-to-face
 
 ]
 
@@ -365,67 +372,34 @@ knitr::include_graphics("assets/img/Mobility-Average.png")
 .pull-right-wide[### manuscripts `r fa("code", fill = "black")` presentations `r fa("code", fill = "black")` websites]
 
 .pull-left-narrow[
-.center[### `r fa("python", fill = "green")`]]
-.pull-right-wide[### .white.bg-black[oTree] `r fa("code-merge", fill = "black")` online experiments]
+.center[### `r fa("python", fill = "green")` `r fa("plus-square", fill = "black")` .white.bg-black[oTree]]]
+.pull-right-wide[### `r fa("code-merge", fill = "black")` online experiments]
 
 ]
 
-.panel[.panel-name[Teaching experience 👨‍🏫️]
+.panel[.panel-name[Teaching ability 👨‍🏫️]
 
-.pull-right[
+### - Possible courses to be in charge of at KUT: **"Labor Economics"**, **"Public Economics"**
 
-```{r echo=FALSE}
-knitr::include_url("https://kovsiannikov.com/courses.html")
+### - Teaching experience:
+
+```{r echo=FALSE, out.width = "100%"}
+knitr::include_graphics("assets/img/my-courses.png")
 ```
 
-
-]
 
 ]
 
 .panel[.panel-name[International collaborations 🌏]
 
-.pull-right[
-
-```{r echo=FALSE, include=TRUE, out.width = "100%", fig.align='center', fig.cap = 'Google Community Mobility Report'}
-knitr::include_graphics("assets/img/Mobility-Average.png")
+```{r echo=FALSE, include=TRUE, out.width = "55%", fig.align='center', fig.cap = '<a href="http://ffj.ehess.fr/kostiantyn_ovsiannikov.html" style="color:blue;">Associate Researcher at Fondation France-Japon (FFJ)</a>'}
+knitr::include_graphics("assets/img/ffj.png")
 ```
 
-]
 
 ]
 
 ]
----
-
-# Conclusions
-
---
-
-> 
-**1.** Institutional features associated with .white.bg-black[R&D spending] provide valuable signals for investors across multiple industries.
->
-
-???
-
-* Most of the companies, but especially the ones belonging to **Pharm** and **Chemical** industries are still embedded in a system of industrial coordination. Oligopolistic features still prevalent
-
---
-
-> 
-**2.** Quality of a patented output .white.bg-black[(Citations per Patent)] mostly matters for the manufacturing sector.
->
-
-???
-
-* Thereby these companies react to the accumulating competitive pressures and are redefining themselves within an open-market system
-
---
-
-> 
-**3.** Pronounced nonlinear trend in the market perception of .white.bg-black[corporate age]: only the more experienced companies receive market premium as they get older.
->
-
 
 ---
 

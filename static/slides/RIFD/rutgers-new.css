@@ -114,8 +114,8 @@ thead, tfoot, tr:nth-child(even) { background: none; }
 
 /* Add image and change bg color */
 .title-slide {
-  background-image: url(assets/img/Techno.jpg);
-  background-position: 300% 50%;
+  background-image: url(assets/img/waterfall-amegaeri.jpg);
+  background-position: 335% 50%;
   background-size: 1100px;
   background-color: #000000;
  /* padding-left: 100px;  /* delete this for 4:3 aspect ratio */
