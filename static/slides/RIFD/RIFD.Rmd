@@ -51,17 +51,6 @@ knitr::opts_chunk$set(collapse = TRUE,
 ```
 
 
-```{r, load_refs, include=FALSE, cache=FALSE}
-# BibOptions(check.entries = FALSE,
-#            bib.style = "authoryear",
-#            cite.style = "alphabetic",
-#            style = "markdown",
-#            hyperlink = FALSE,
-#            dashed = FALSE)
-# myBib <- ReadBib(here("static", "slides", "SASE-2021", "Innovation.bib"), check = FALSE)
-```
-
-
 ```{r xaringan-extra, echo=FALSE}
 
 xaringanExtra::use_scribble()
