@@ -175,6 +175,20 @@ class: highlight-last-item
 
 ---
 
+# Related publication
+
+.pull-right-wide[
+.center[### Ovsiannikov, K. (2017). Corporate governance reforms in Japan: Instilling the new regime. *Cogent Business & Management*, 4(1).]]
+.pull-left-narrow[
+
+```{r echo=FALSE, include=TRUE, out.width = "100%", fig.align='center'}
+knitr::include_graphics("assets/img/Cogent.png")
+```
+
+]
+
+---
+
 # RQ & Hypotheses
 
 --
@@ -273,16 +287,19 @@ class: title-slide-section-grey middle
 .center[### Putra, R., Ovsiannikov, K., & Kotani, K. (2023). COVID-19-associated income loss and job loss: Evidence from Indonesia. *Journal of Asian Economics*]]
 .pull-left-narrow[
 
-```{r echo=FALSE, include=TRUE, out.width = "80%", fig.align='center'}
+```{r echo=FALSE, include=TRUE, out.width = "90%", fig.align='center'}
 knitr::include_graphics("assets/img/JAE.jpg")
 ```
 
 ]
 
 ---
+
 class: highlight-last-item
 
 # Why this research matters
+
+--
 
 - ### Non-regular employees have **weaker social protection** and are easy targets for corporate layoffs during crises 🎲
 
@@ -293,6 +310,20 @@ class: highlight-last-item
 --
 
 - ### **Lower productivity** of precarious labor ➡ negative impact on corporate sustainability 🥀
+
+---
+
+# Related publication
+
+.pull-right-wide[
+.center[### Ovsiannikov, K. (2018). Impact of shareholder-value pursuit on labor policies at Japanese joint-stock companies: Case of Nikkei Index 400. *The Japanese Political Economy*, 42(1-4), 21-52.]]
+.pull-left-narrow[
+
+```{r echo=FALSE, include=TRUE, out.width = "90%", fig.align='center'}
+knitr::include_graphics("assets/img/JPE.jpg")
+```
+
+]
 
 ---
 # RQ & Hypothesis
@@ -328,6 +359,14 @@ Against the impact of COVID-19, informally employed workers such as .white.bg-bl
 
 ```{r echo=FALSE, include=TRUE, out.width = "100%", fig.align='center', fig.cap = 'Google Community Mobility Report'}
 knitr::include_graphics("assets/img/Mobility-Average.png")
+```
+
+]
+
+.panel[.panel-name[**Propensity score matching (PSM)**]
+
+```{r echo=FALSE, include=TRUE, out.width = "90%", fig.align='center', fig.cap = 'Google Community Mobility Report'}
+knitr::include_graphics("assets/img/loveplot_combined_new.png")
 ```
 
 ]
