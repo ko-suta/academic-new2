@@ -375,7 +375,7 @@ knitr::include_graphics("assets/img/Mobility-Average.png")
 .pull-right[
 
 
-```{r echo=FALSE, fig.cap = '<a href="http://ffj.ehess.fr/kostiantyn_ovsiannikov.html" style="color:Black;">Source</a>'}
+```{r echo=FALSE}
 knitr::include_url("http://ffj.ehess.fr/kostiantyn_ovsiannikov.html")
 ```
 
