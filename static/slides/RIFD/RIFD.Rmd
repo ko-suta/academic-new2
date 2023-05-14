@@ -113,7 +113,7 @@ meta() %>%
       "Research Institute for Future Design"
     ),
     url = "https://kovsiannikov.com/slides/rifd/rifd",
-    image = "https://kovsiannikov.com/img/Techno-screen.png",
+    image = "https://kovsiannikov.com/img/rifd.png",
     image_alt = "RIFD Job Seminar",
     og_type = "website",
     og_author = "Kostiantyn Ovsiannikov",
