@@ -1,5 +1,5 @@
 ---
-title: ".bg-blue[Presentation of the <br> ongoing research]"
+title: ".yellow[Presentation of the <br> ongoing research]"
 subtitle: "Job Seminar: <br> .white.bg-green[Research Institute for <br> Future Design]"
 author: "Kostiantyn Ovsiannikov, Ph.D."
 institute: ".green[Kochi University of Technology]"
