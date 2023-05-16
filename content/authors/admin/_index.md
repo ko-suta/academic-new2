@@ -11,7 +11,7 @@ education:
   - course: B.A. in Political Science
     institution: National University of Kyiv-Mohyla Academy
     year: 2011
-email: "k.ovsiannikov@gmail.com"
+email: "me@kovsiannikov.com"
 interests:
 - Corporate Governance
 - Labor Economics
