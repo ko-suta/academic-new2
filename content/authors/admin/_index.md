@@ -16,6 +16,10 @@ interests:
 - Corporate Governance
 - Labor Economics
 - Technological Innovation
+- {{< icon name="r-project" pack="fab" >}}{{< icon name="plus" pack="fab" >}}{{< icon name="markdown" pack="fab" >}}
+- {{< icon name="python" pack="fab" >}}
+- {{< icon name="redhat" pack="fab" >}}{{< icon name="linux" pack="fab" >}}
+
 organizations:
 - name: Shohoku College
   url: "https://www.shohoku.ac.jp/index.html"
@@ -45,12 +49,9 @@ title: Kostiantyn Ovsiannikov
 
 I am an assistant professor at [Shohoku College](https://www.shohoku.ac.jp/index.html).
 My interests include **labor economics** 🧑‍🔧, **political economy** 💹 and **experimental economics** 🧪. 
-In my dissertation, I explored how the pursuit of the shareholder-value ideology by management has affected labor policies at large Japanese enterprises 🎏🏗.
+In my dissertation, I explored how the pursuit of the shareholder-value ideology by management has affected labor policies at large Japanese enterprises 🎏.
 
 My current research project focuses on the market perception of corporate innovations in Japan 🗾.
 It is funded by the JSPS Grant-in-Aid for Young Scientists.
-
-My entire workflow is based on {{< icon name="r-project" pack="fab" style="color: #3584e4;" >}}{{< icon name="square-plus" pack="fab" >}}{{< icon name="markdown" pack="fab" >}}.
-I am conducting economic experiments with the `oTree` {{< icon name="python" pack="fab" style="color: #26a269;" >}} package.
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "files/cv.pdf" "newtab" >}}resumé{{< /staticref >}}.
