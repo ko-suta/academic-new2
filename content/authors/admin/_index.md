@@ -16,6 +16,9 @@ interests:
 - Corporate Governance
 - Labor Economics
 - Technological Innovation
+- {{< icon name="r-project" pack="fab" >}}{{< icon name="plus" pack="fab" >}}{{< icon name="markdown" pack="fab" >}}
+- {{< icon name="python" pack="fab" >}}
+- {{< icon name="redhat" pack="fab" >}}{{< icon name="linux" pack="fab" >}}
 organizations:
 - name: Shohoku College
   url: "https://www.shohoku.ac.jp/index.html"
