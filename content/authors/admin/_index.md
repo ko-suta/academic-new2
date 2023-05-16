@@ -16,8 +16,6 @@ interests:
 - Corporate Governance
 - Labor Economics
 - Technological Innovation
-- {{< icon name="r-project" pack="fab" >}}{{< icon name="markdown" pack="fab" >}}
-- {{< icon name="python" pack="fab" >}}
 organizations:
 - name: Shohoku College
   url: "https://www.shohoku.ac.jp/index.html"
@@ -51,5 +49,9 @@ In my dissertation, I explored how the pursuit of the shareholder-value ideology
 
 My current research project focuses on the market perception of corporate innovations in Japan 🗾.
 It is funded by the JSPS Grant-in-Aid for Young Scientists.
+
+- [x] Workflow: {{< icon name="r-project" pack="fab" >}}{{< icon name="plus" pack="fab" >}}{{< icon name="markdown" pack="fab" >}}
+- [x] Economic experiments: {{< icon name="python" pack="fab" >}}{{< icon name="plus" pack="fab" >}}`oTree`
+- [x] OS: {{< icon name="redhat" pack="fab" >}}{{< icon name="linux" pack="fab" >}}
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "files/cv.pdf" "newtab" >}}resumé{{< /staticref >}}.
