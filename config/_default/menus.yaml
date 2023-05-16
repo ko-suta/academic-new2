@@ -6,25 +6,25 @@ main:
   - name: Home
     url: '#about'
     weight: 10
-  - name: Research 🔭
+  - name: 🔭Research
     url: '#projects'
     weight: 20
-  - name: Publications 📝
+  - name: 📝Publications
     url: 'publication'
     weight: 30
-  - name: Teaching 👨‍🏫
+  - name: 👨‍🏫Teaching
     url: 'courses'
     weight: 40
-  - name: Talks 🎙️
+  - name: 🎙️Talks
     url: '#talks'
     weight: 50
-  - name: Contact 📟
+  - name: 🪪Contact
     url: '#contact'
     weight: 60
-  - name: Blog ✍️
+  - name: ✍Blog️
     url: 'post'
     weight: 70
-  - name: CV 📜
+  - name: 📜CV
     url: files/cv.pdf
     weight: 70
   - name: 🇺🇦
