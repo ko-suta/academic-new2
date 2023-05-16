@@ -6,4 +6,4 @@ title: 🇺🇦 & 🇯🇵
 view: 2
 ---
 
-<a href="https://supportukrainenow.org/">Support Ukraine 🇺🇦</a>
+<a href="https://supportukrainenow.org/" target="_blank" rel="noopener noreferrer">Support Ukraine 🇺🇦</a>
