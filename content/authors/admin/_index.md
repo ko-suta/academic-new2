@@ -1,5 +1,5 @@
 ---
-bio: My research interests include *corporate governance*, *labor economics* and *technological innovation*.
+bio: My research interests include *labor economics*, *experimental economics* and *political economy*.
 education:
   courses:
   - course: Ph.D. in Political Economy & Japanese Studies
