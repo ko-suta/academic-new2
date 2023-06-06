@@ -319,7 +319,7 @@ knitr::include_graphics("assets/img/JPE.jpg")
 
 --
 
-<ru-blockquote>What are the main features of **income-** and **job-loss** deprivations accruing within developing economies due to the impact of the the **COVID-19** pandemic?</ru-blockquote>
+<ru-blockquote>What are the main features of **income-** and **job-loss** deprivations accruing within developing economies due to the impact of the **COVID-19** pandemic?</ru-blockquote>
 
 --
 > **Hypothesis**
