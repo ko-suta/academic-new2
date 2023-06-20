@@ -9,6 +9,9 @@ main:
   - name: 🔭Research
     url: '#projects'
     weight: 20
+  - name: ✨Featured
+    url: '#featured'
+    weight: 20
   - name: 📝Publications
     url: 'publication'
     weight: 30
