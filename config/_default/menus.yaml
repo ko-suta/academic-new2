@@ -28,7 +28,7 @@ main:
     url: 'post'
     weight: 70
   - name: 📜CV
-    url: files/cv.pdf
+    url: files/cv.html
     weight: 70
   - name: 🇺🇦
     url: 'ukraine'
