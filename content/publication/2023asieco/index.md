@@ -5,7 +5,7 @@ authors:
 - admin
 - Koji Kotani
 date: "2023-06-20T00:00:00Z"
-doi: "https://doi.org/10.1016/j.asieco.2023.101631"
+doi: "10.1016/j.asieco.2023.101631"
 
 # Schedule page publish date (NOT publication's date).
 publishDate: "2022-09-16T00:00:00Z"
