@@ -11,7 +11,7 @@ education:
   - course: B.A. in Political Science
     institution: National University of Kyiv-Mohyla Academy
     year: 2011
-email: "me@kovsiannikov.com"
+email: "admin@kovsiannikov.com"
 interests:
 - Labor economics
 - Experimental economics 
