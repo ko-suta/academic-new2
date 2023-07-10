@@ -54,4 +54,4 @@ It is funded by the JSPS Grant-in-Aid for Young Scientists.
 - [x] Economic experiments: {{< icon name="python" pack="fab" >}}`oTree`
 - [x] OS: {{< icon name="linux" pack="fab" >}}{{< icon name="fedora" pack="fab" >}}
 
-{{< icon name="download" pack="fas" >}} Download my {{< staticref "files/cv.pdf" "newtab" >}}resumé{{< /staticref >}}.
+{{< icon name="download" pack="fas" >}} View my {{< staticref "files/cv.html" "newtab" >}}resumé{{< /staticref >}}.
