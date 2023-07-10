@@ -43,7 +43,7 @@ superuser: true
 title: Kostiantyn Ovsiannikov
 ---
 
-I am an assistant professor at [Shohoku College](https://www.shohoku.ac.jp/index.html).
+I am an assistant professor at [Shohoku College](https://www.shohoku.ac.jp/index.html) and an associate researcher at [Fondation France-Japon de l’EHESS (FFJ)](http://ffj.ehess.fr/kostiantyn_ovsiannikov.html).
 My interests include **labor economics**🧑‍🔧, **political economy** and **experimental economics** 🎯.
 In my dissertation, I explored how the pursuit of the shareholder-value ideology by management has affected labor policies at large Japanese enterprises 🎏.
 
