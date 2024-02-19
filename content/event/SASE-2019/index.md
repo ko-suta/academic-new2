@@ -8,7 +8,6 @@ address:
 all_day: true
 authors: []
 date: "2019-06-27T13:00:00Z"
-date_end: "2019-06-29T15:00:00Z"
 event: 2019 SASE Annual Meeting
 event_url: https://sase.org/event/2019-new-york-city/
 featured: false
