@@ -2444,7 +2444,7 @@ addnbs <- function(sp.sample){
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/6A5EpqqDOdk" frameborder="0" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/6A5EpqqDOdk" data-external= "1" > </iframe>
 
 
 ```{r include=FALSE}
