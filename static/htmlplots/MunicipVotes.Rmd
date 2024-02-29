@@ -2449,7 +2449,7 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 <br><br>
 
 
-<iframe src="https://www.youtube.com/embed/6A5EpqqDOdk" data-external= "1" > </iframe>
+<iframe src="https://shohoku.share-wis.com/courses/15316/lectures/258358" data-external= "1" > </iframe>
 
 ```{r include=FALSE}
 # Pref <- read.csv("GIS/JPref2.csv", stringsAsFactors = FALSE)
