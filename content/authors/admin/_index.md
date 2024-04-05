@@ -17,9 +17,9 @@ interests:
 - Experimental economics 
 - Political economy
 organizations:
-- name: Shohoku College
-  url: "https://www.shohoku.ac.jp/index.html"
-role: Researcher under the JSPS Grant-in-Aid for Young Scientists
+- name: Kochi University of Technology (Research Institute for Future Design)
+  url: "http://www.souken.kochi-tech.ac.jp/seido/en/index.html"
+role: Assistant Professor
 social:
 - icon: envelope
   icon_pack: fas
