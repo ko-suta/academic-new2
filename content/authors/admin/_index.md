@@ -17,9 +17,9 @@ interests:
 - Experimental economics 
 - Political economy
 organizations:
-- name: Shohoku College
-  url: "https://www.shohoku.ac.jp/index.html"
-role: Researcher under the JSPS Grant-in-Aid for Young Scientists
+- name: Kochi University of Technology (Research Institute for Future Design)
+  url: "http://www.souken.kochi-tech.ac.jp/seido/en/index.html"
+role: Assistant Professor
 social:
 - icon: envelope
   icon_pack: fas
@@ -45,7 +45,7 @@ title: Kostiantyn Ovsiannikov
 
 Thanks for visiting my homepage!
 My professional affiliations are as follows:
-- assistant professor at [Shohoku College](https://www.shohoku.ac.jp/index.html) 
+- assistant professor at [Kochi University of Technology](http://www.souken.kochi-tech.ac.jp/seido/en/index.html) 
 - associate researcher at [Fondation France-Japon de l’EHESS (FFJ)](http://ffj.ehess.fr/kostiantyn_ovsiannikov.html)
 - part-time lecturer for the [Transdisciplinary Course Program (TRACS), Eberhard Karls Universität Tübingen](https://uni-tuebingen.de/en/study/finding-a-course/transdisciplinary-competencies/transdisciplinary-course-program/)
 
