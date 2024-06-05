@@ -4,7 +4,6 @@ authors:
 - Franz Waldenberger
 - admin
 date: "2023-12-01T00:00:00Z"
-doi: "978-3-86205-968-3"
 
 # Schedule page publish date (NOT publication's date).
 publishDate: "2024-06-05T00:00:00Z"
@@ -28,7 +27,7 @@ summary: This paper presents a quantitative review of socio-demographic developm
 featured: false
 
 links:
-- name: Book information
+- name: Book Info
   url: https://www.iudicium.de/katalog/86205-480.htm
 
 
