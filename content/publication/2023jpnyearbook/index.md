@@ -1,38 +1,38 @@
 ---
-title: "COVID-19-Associated Income Loss and Job Loss: Evidence from Indonesia"
+title: "Japan’s Municipalities in Demographic Transition: A Quantitative Review"
 authors:
-- Rendra A. A. Putra
+- Franz Waldenberger
 - admin
-- Koji Kotani
-date: "2023-06-20T00:00:00Z"
-doi: "10.1016/j.asieco.2023.101631"
+date: "2023-12-01T00:00:00Z"
+isbn: "978-3-86205-968-3"
 
 # Schedule page publish date (NOT publication's date).
-publishDate: "2022-09-16T00:00:00Z"
+publishDate: "2024-06-05T00:00:00Z"
 
 # Publication type.
 # Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;
 # 3 = Preprint / Working Paper; 4 = Report; 5 = Book; 6 = Book section;
 # 7 = Thesis; 8 = Patent
-publication_types: ["2"]
+publication_types: ["6"]
 
 # Publication name and optional abbreviated publication name.
-publication: "*Journal of Asian Economics, 87*(101631)"
+publication: "*Japan 2023: Politics, Economy and Society*"
 publication_short: ""
 
-abstract: COVID-19 pandemic has substantially altered socioeconomic conditions around the world. While numerous existing studies analyze the impact of the COVID-19 pandemic among developed states, little is known about its effects on people’s lives and social discrepancies in emerging economies. To this end, we empirically analyze the 2020 Indonesian Labor Force Survey data, hypothesizing that COVID-19 has given idiosyncratic risks and impacts on people by gender, age, education, occupation and regions. We find that income loss and job loss are prominent among males, younger and less educated people as well as among self-employed and part-time non-agricultural workers. These tendencies are not pronounced for people enjoying high income and mobility, but tend to be evident for urban residents and those having dependents. Notably, self-employed people have the highest risk of losing income, while part-time urban workers face the highest probability of losing their jobs. The propensity score matching method also demonstrates that these losses are most evident for the regions susceptible to COVID-19. Overall, we suggest that socioeconomically disadvantaged groups require additional support to strengthen their resilience in the face of exogenous shocks, such as the one caused by the global coronavirus pandemic.
+abstract: Demographic change in Japan is having very different effects at the municipal level. This is due on the one hand to the steadily increasing concentration of the population in the Tōkyō metropolitan area, and on the other hand to the nationwide advance of urbanization. Both trends are accelerating population decline and aging in Japan’s rural regions. The following paper illustrates the dynamics using a quantitative analysis for the period from 2000 to 2020. The period thus also captures the changes brought about by the wave of municipal mergers between 2000 and 2009. The basis is the Population Census and local income tax and financial statistics. The data show that most Japan’s 1741 municipalities today are small and sparsely populated. There are significant differences at the municipal level in population growth, aging, fertility, income levels, and financial strength. Small and sparsely populated municipalities are affected by a significantly greater decline and faster aging of the population, incomes are lower here and the financial strength of municipal budgets is weaker.
 
 # Summary. An optional shortened abstract.
-summary: This paper examines socio-economic determinants of job- and income loss in Indonesia against the impact of the COVID-19
+summary: This paper presents a quantitative review of socio-demographic developments in Japan on the municipal level from 2000 to 2020.
 
 
-featured: true
+featured: false
 
 # links:
-# - name: ""
-#   url_code: ""
-url_preprint: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4175844
-url_pdf: 'https://www.sciencedirect.com/science/article/pii/S1049007823000519'
+- name: "Book information"
+  url: https://www.iudicium.de/katalog/86205-480.htm
+# url_code: ""
+# url_preprint: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4175844
+# url_pdf: 'https://www.sciencedirect.com/science/article/pii/S1049007823000519'
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder. 
