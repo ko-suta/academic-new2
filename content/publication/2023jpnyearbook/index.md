@@ -27,12 +27,10 @@ summary: This paper presents a quantitative review of socio-demographic developm
 
 featured: false
 
-# links:
-- name: "Book information"
-  url: https://www.iudicium.de/katalog/86205-480.htm
-# url_code: ""
-# url_preprint: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4175844
-# url_pdf: 'https://www.sciencedirect.com/science/article/pii/S1049007823000519'
+# # links:
+# - name: "Book information"
+#   url: https://www.iudicium.de/katalog/86205-480.htm
+
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder. 
@@ -45,7 +43,7 @@ image:
 #   Simply enter your project's folder or file name without extension.
 #   E.g. `internal-project` references `content/project/internal-project/index.md`.
 #   Otherwise, set `projects: []`.
-projects: [telework]
+projects: []
 
 # Slides (optional).
 #   Associate this publication with Markdown slides.
