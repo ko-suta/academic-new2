@@ -4,7 +4,7 @@ authors:
 - Franz Waldenberger
 - admin
 date: "2023-12-01T00:00:00Z"
-isbn: "978-3-86205-968-3"
+doi: "978-3-86205-968-3"
 
 # Schedule page publish date (NOT publication's date).
 publishDate: "2024-06-05T00:00:00Z"
@@ -16,7 +16,7 @@ publishDate: "2024-06-05T00:00:00Z"
 publication_types: ["6"]
 
 # Publication name and optional abbreviated publication name.
-publication: "*Japan 2023: Politics, Economy and Society*"
+publication: "*Japan: Politics, Economy and Society*, vol.46"
 publication_short: ""
 
 abstract: Demographic change in Japan is having very different effects at the municipal level. This is due on the one hand to the steadily increasing concentration of the population in the Tōkyō metropolitan area, and on the other hand to the nationwide advance of urbanization. Both trends are accelerating population decline and aging in Japan’s rural regions. The following paper illustrates the dynamics using a quantitative analysis for the period from 2000 to 2020. The period thus also captures the changes brought about by the wave of municipal mergers between 2000 and 2009. The basis is the Population Census and local income tax and financial statistics. The data show that most Japan’s 1741 municipalities today are small and sparsely populated. There are significant differences at the municipal level in population growth, aging, fertility, income levels, and financial strength. Small and sparsely populated municipalities are affected by a significantly greater decline and faster aging of the population, incomes are lower here and the financial strength of municipal budgets is weaker.
@@ -27,9 +27,9 @@ summary: This paper presents a quantitative review of socio-demographic developm
 
 featured: false
 
-# # links:
-# - name: "Book information"
-#   url: https://www.iudicium.de/katalog/86205-480.htm
+links:
+- name: Book information
+  url: https://www.iudicium.de/katalog/86205-480.htm
 
 
 # Featured image
