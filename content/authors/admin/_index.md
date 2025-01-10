@@ -18,7 +18,7 @@ interests:
 - Political economy
 organizations:
 - name: Kochi University of Technology (Research Institute for Future Design)
-  url: "http://www.souken.kochi-tech.ac.jp/seido/en/index.html"
+  url: "https://www.kochi-tech.ac.jp/profile/en/ovsiannikov.html"
 role: Assistant Professor
 social:
 - icon: envelope
