@@ -1,9 +1,9 @@
 ---
 title: ".yellow[Ukraine] & .red[Japan]: <br> Historical & Cultural Parallels"
-subtitle: ".light-blue[2022 KUT Seminar:] <br> .white[“Global Competency Modelling”]"
+subtitle: ".light-blue[2025 Kochi University Seminar:] <br> .white[“On International Cooperation”]"
 author: "Kostiantyn Ovsiannikov, Ph.D."
 institute: ".white.bg-green[K&#333;chi University of Technology]"
-date: "20 December 2022"
+date: "21 January 2025"
 output:
   xaringan::moon_reader:
 #    chakra: libs/remark-latest.min.js
