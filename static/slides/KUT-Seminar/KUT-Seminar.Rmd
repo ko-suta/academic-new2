@@ -1,9 +1,17 @@
 ---
+<<<<<<< HEAD
 title: ".yellow[Ukraine] & .red[Japan]: <br> Historical & Cultural Parallels"
 subtitle: ".light-blue[2025 Kochi University Seminar:] <br> .white[“On International Cooperation”]"
 author: "Kostiantyn Ovsiannikov, Ph.D."
 institute: ".white.bg-green[K&#333;chi University of Technology]"
 date: "21 January 2025"
+=======
+title: ".yellow[Ukraine] & .red[Japan]: <br> Historical & Economic Parallels"
+subtitle: ".light-blue[2024 KUT Seminar:] <br> .white[“Global Competency Modelling”]"
+author: "Kostiantyn Ovsiannikov, Ph.D."
+institute: ".white.bg-green[K&#333;chi University of Technology]"
+date: "19 December 2024"
+>>>>>>> 0959d151ba897bf391de6d66d9f970bad0e611d8
 output:
   xaringan::moon_reader:
 #    chakra: libs/remark-latest.min.js
