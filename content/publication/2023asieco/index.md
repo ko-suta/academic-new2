@@ -26,7 +26,7 @@ abstract: COVID-19 pandemic has substantially altered socioeconomic conditions a
 summary: This paper examines socio-economic determinants of job- and income loss in Indonesia against the impact of the COVID-19
 
 
-featured: true
+featured: false
 
 # links:
 # - name: ""

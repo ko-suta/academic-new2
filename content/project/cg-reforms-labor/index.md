@@ -1,7 +1,7 @@
 ---
 title: Corporate Governance & Non-regular Employment
 
-summary: Examining the role of Japan's coporate governance reforms and their labor-related repercussions
+summary: Examining the role of Japan's corporate governance reforms and their labor-related repercussions
 
 tags:
 - Corporate Governance
